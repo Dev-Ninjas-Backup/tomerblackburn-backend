@@ -17,11 +17,24 @@ async function bootstrap() {
   );
 
   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
-    .setVersion('1.0')
-    .addTag('cats')
-    .addBearerAuth()
+    .setTitle('TomerBlackburn Authentication API')
+    .setDescription(
+      'A secure authentication API with JWT tokens, featuring user registration and login endpoints. Built with NestJS and PostgreSQL.',
+    )
+    .setVersion('1.0.0')
+    .addTag('authentication', 'User authentication endpoints')
+    .addTag('health', 'Health check and system status')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+        description: 'Enter JWT token',
+        in: 'header',
+      },
+      'JWT-auth',
+    )
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory, {

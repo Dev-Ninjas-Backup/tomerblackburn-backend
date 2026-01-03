@@ -1,0 +1,138 @@
+name: CI/CD Pipeline
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches:
+            - "**"
+
+jobs:
+    ci-check:
+        name: Lint, Format, Build
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 10
+
+            - name: Install dependencies
+              run: pnpm install
+
+            - name: Create dummy .env for Prisma
+              run: echo "DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy" > .env
+
+            - name: Generate Prisma Client
+              run: pnpm prisma:generate
+
+            - name: Run Ci fix
+              run: pnpm ci:fix
+
+            - name: Build Project
+              run: pnpm build
+
+    build-and-push:
+        name: Build and Push Docker Image
+        runs-on: ubuntu-latest
+        needs: ci-check
+        if: github.ref == 'refs/heads/main'
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Log in to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                  username: ${{ secrets.DOCKER_USERNAME }}
+                  password: ${{ secrets.DOCKER_PASSWORD }}
+
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
+
+            - name: Build and Push Docker image
+              uses: docker/build-push-action@v5
+              with:
+                  context: .
+                  push: true
+                  tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.PACKAGE_NAME }}:latest
+                  cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ secrets.PACKAGE_NAME }}:buildcache
+                  cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ secrets.PACKAGE_NAME }}:buildcache,mode=max
+
+    deploy:
+        name: Deploy
+        runs-on: ubuntu-latest
+        needs: build-and-push
+        if: github.ref == 'refs/heads/main'
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Login to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                  username: ${{ secrets.DOCKER_USERNAME }}
+                  password: ${{ secrets.DOCKER_PASSWORD }}
+
+            - name: Install Cloudflared
+              run: |
+                  wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+                  sudo dpkg -i cloudflared-linux-amd64.deb
+                  cloudflared --version
+
+            - name: Setup SSH Key
+              run: |
+                  mkdir -p ~/.ssh
+                  echo "${{ secrets.VPS_SSH_PRIVATE_KEY }}" > ~/.ssh/server.ssh
+                  chmod 600 ~/.ssh/server.ssh
+                  ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+
+            - name: Setup SSH Config
+              run: |
+                  cat >> ~/.ssh/config << 'EOF'
+                  Host server
+                      HostName ${{ secrets.VPS_HOST }}
+                      User ${{ secrets.VPS_USER }}
+                      ProxyCommand cloudflared access ssh --hostname ${{ secrets.VPS_HOST }}
+                      IdentityFile ~/.ssh/server.ssh
+                      StrictHostKeyChecking no
+                      LogLevel QUIET
+                      RequestTTY no
+                      UserKnownHostsFile /dev/null
+                  EOF
+                  chmod 600 ~/.ssh/config
+
+            - name: Test SSH Connection
+              run: ssh -q server 'echo "SSH connection successful"'
+
+            - name: Docker Login on Server
+              run: ssh -q server "echo '${{ secrets.DOCKER_PASSWORD }}' | docker login -u '${{ secrets.DOCKER_USERNAME }}' --password-stdin"
+
+            - name: Copy Docker Compose File
+              run: scp -q -F ~/.ssh/config docker-compose.yml server:~/apps/${{ secrets.PACKAGE_NAME }}/
+
+            - name: Deploy Application
+              run: |
+                  ssh -q server 2>&1 << 'EOF' | grep -v "Welcome\|Documentation\|Management\|Support\|System information\|System load\|Usage of\|Memory usage\|Swap usage\|Temperature\|Processes\|Users logged in\|IPv4 address\|IPv6 address\|Strictly confined\|Expanded Security\|updates can be\|Web console"
+                  cd ~/apps/${{ secrets.PACKAGE_NAME }}
+
+                  if [ ! -f .env ]; then
+                    echo "Warning: .env file not found"
+                  fi
+
+                  docker compose --profile prod pull
+                  docker compose --profile prod down --remove-orphans
+                  docker compose --profile prod up -d
+                  docker system prune -f
+
+                  echo "Deployment completed successfully!"
+                  EOF
