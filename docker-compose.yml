@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      - POSTGRES_USER=tomerblackburn
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=tomerblackburnDB
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker-init:/docker-entrypoint-initdb.d
+    command: postgres -c log_connections=on -c log_statement=all
+
+volumes:
+  postgres_data:

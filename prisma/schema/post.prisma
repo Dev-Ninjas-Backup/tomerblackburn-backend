@@ -1,0 +1,4 @@
+model Post{
+  id    String @unique @default(cuid())
+  title String
+}
