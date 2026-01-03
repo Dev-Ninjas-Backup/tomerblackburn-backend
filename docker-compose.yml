@@ -3,7 +3,10 @@ version: '3.9'
 services:
   postgres:
     image: postgres:15
-    container_name: postgres_db
+    container_name: ${PACKAGE_NAME}_db
+    profiles:
+      - dev
+      - prod
     restart: always
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
@@ -22,6 +25,10 @@ services:
       retries: 5
 
   app:
+    image: softvence/${PACKAGE_NAME}:latest
+    profiles:
+      - prod
+    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
