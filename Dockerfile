@@ -39,6 +39,9 @@ COPY package.json pnpm-lock.yaml ./
 # Install only production dependencies (ignore scripts to avoid husky error)
 RUN pnpm install --prod --frozen-lockfile --ignore-scripts
 
+# Install prisma CLI for migrations
+RUN pnpm add prisma@7.0.1
+
 # Copy prisma schema and config
 COPY prisma ./prisma
 COPY prisma.config.ts ./
