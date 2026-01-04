@@ -42,15 +42,19 @@ RUN pnpm install --prod --frozen-lockfile --ignore-scripts
 # Install prisma CLI for migrations
 RUN pnpm add prisma@7.0.1
 
-# Copy prisma schema and config
+# Copy prisma directory (including schema, migrations, and generated files)
 COPY prisma ./prisma
 COPY prisma.config.ts ./
+COPY tsconfig.json ./
 
 # Set dummy DATABASE_URL for Prisma generate
 ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
 
 # Generate Prisma Client
 RUN pnpx prisma generate
+
+# Verify migrations are copied
+RUN ls -la prisma/ && ls -la prisma/migrations/ || echo "Migrations directory check"
 
 # Copy built application from builder
 COPY --from=builder /app/dist ./dist
