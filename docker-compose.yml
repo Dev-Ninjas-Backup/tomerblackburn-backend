@@ -45,7 +45,7 @@ services:
         condition: service_healthy
     networks:
       - tomerblackburn-backend-network
-    command: sh -c "npx prisma migrate deploy && node dist/main"
+    command: sh -c "npx prisma migrate deploy && node dist/src/main"
 
 networks:
   tomerblackburn-backend-network:
