@@ -1,0 +1,15 @@
+model ContactUs {
+    id        String   @id @default(uuid())
+    firstName String
+    lastName  String
+    email     String
+    phone     String
+    address   String
+    city      String
+    state     String
+    zipCode   String
+    message   String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}

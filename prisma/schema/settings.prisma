@@ -1,0 +1,12 @@
+model settings {
+    id          String   @id @default(uuid())
+    siteTitle   String
+    siteDescription String
+    logoImageId String?
+    logoImage   FileInstance? @relation(fields: [logoImageId], references: [id])
+
+    contactNumber String
+
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}

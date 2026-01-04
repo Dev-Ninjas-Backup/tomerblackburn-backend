@@ -1,0 +1,9 @@
+model Portfolio {
+    id          String   @id @default(uuid())
+    category    String
+    imageId     String?
+    image       FileInstance? @relation(fields: [imageId], references: [id])
+
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
