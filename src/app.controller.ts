@@ -15,7 +15,7 @@ export class AppController {
   }
 
   @Get('health')
-  @ApiOperation({ summary: 'Health check endpoint with developer info' })
+  @ApiOperation({ summary: 'Health check endpoint' })
   @ApiResponse({
     status: 200,
     description: 'Returns health status and developer information',
