@@ -47,6 +47,24 @@ services:
       - tomerblackburn-backend-network
     command: sh -c "echo 'Checking Prisma setup...' && ls -la prisma/ && ls -la prisma/migrations/ && echo 'Running migrations...' && npx prisma migrate deploy && echo 'Starting application...' && node dist/src/main"
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ${PACKAGE_NAME}_phpmyadmin
+    profiles:
+      - prod
+      - dev
+    restart: always
+    environment:
+      PMA_HOST: postgres
+      PMA_PORT: 5432
+      PMA_USER: ${POSTGRES_USER}
+      PMA_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "8085:80"
+    depends_on:
+      - postgres
+    networks:
+      - tomerblackburn-backend-network
 networks:
   tomerblackburn-backend-network:
     driver: bridge
