@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.0.1
- * Query Engine version: f09f2815f091dbba658cdcd2264306d88bb5bda6
+ * Prisma Client JS version: 7.2.0
+ * Query Engine version: 0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.0.1",
-  engine: "f09f2815f091dbba658cdcd2264306d88bb5bda6"
+  client: "7.2.0",
+  engine: "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3"
 }
 
 /**
@@ -384,6 +384,17 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  ActivityLog: 'ActivityLog',
+  BathroomType: 'BathroomType',
+  BathroomTypeCostCode: 'BathroomTypeCostCode',
+  CompanySetting: 'CompanySetting',
+  CostCode: 'CostCode',
+  CostCodeCategory: 'CostCodeCategory',
+  CostCodeOption: 'CostCodeOption',
+  EmailLog: 'EmailLog',
+  Submission: 'Submission',
+  SubmissionItem: 'SubmissionItem',
+  SubmissionMedia: 'SubmissionMedia',
   ContactUs: 'ContactUs',
   FileInstance: 'FileInstance',
   HomePage: 'HomePage',
@@ -407,10 +418,824 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "contactUs" | "fileInstance" | "homePage" | "serviceStandsOut" | "aboutUs" | "portfolio" | "settings" | "user"
+    modelProps: "activityLog" | "bathroomType" | "bathroomTypeCostCode" | "companySetting" | "costCode" | "costCodeCategory" | "costCodeOption" | "emailLog" | "submission" | "submissionItem" | "submissionMedia" | "contactUs" | "fileInstance" | "homePage" | "serviceStandsOut" | "aboutUs" | "portfolio" | "settings" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    ActivityLog: {
+      payload: Prisma.$ActivityLogPayload<ExtArgs>
+      fields: Prisma.ActivityLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ActivityLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ActivityLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+        }
+        findFirst: {
+          args: Prisma.ActivityLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ActivityLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+        }
+        findMany: {
+          args: Prisma.ActivityLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload>[]
+        }
+        create: {
+          args: Prisma.ActivityLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+        }
+        createMany: {
+          args: Prisma.ActivityLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ActivityLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload>[]
+        }
+        delete: {
+          args: Prisma.ActivityLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+        }
+        update: {
+          args: Prisma.ActivityLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.ActivityLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ActivityLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ActivityLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.ActivityLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ActivityLogPayload>
+        }
+        aggregate: {
+          args: Prisma.ActivityLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateActivityLog>
+        }
+        groupBy: {
+          args: Prisma.ActivityLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ActivityLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ActivityLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ActivityLogCountAggregateOutputType> | number
+        }
+      }
+    }
+    BathroomType: {
+      payload: Prisma.$BathroomTypePayload<ExtArgs>
+      fields: Prisma.BathroomTypeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BathroomTypeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BathroomTypeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>
+        }
+        findFirst: {
+          args: Prisma.BathroomTypeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BathroomTypeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>
+        }
+        findMany: {
+          args: Prisma.BathroomTypeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>[]
+        }
+        create: {
+          args: Prisma.BathroomTypeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>
+        }
+        createMany: {
+          args: Prisma.BathroomTypeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BathroomTypeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>[]
+        }
+        delete: {
+          args: Prisma.BathroomTypeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>
+        }
+        update: {
+          args: Prisma.BathroomTypeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>
+        }
+        deleteMany: {
+          args: Prisma.BathroomTypeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BathroomTypeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BathroomTypeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>[]
+        }
+        upsert: {
+          args: Prisma.BathroomTypeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>
+        }
+        aggregate: {
+          args: Prisma.BathroomTypeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBathroomType>
+        }
+        groupBy: {
+          args: Prisma.BathroomTypeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BathroomTypeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BathroomTypeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BathroomTypeCountAggregateOutputType> | number
+        }
+      }
+    }
+    BathroomTypeCostCode: {
+      payload: Prisma.$BathroomTypeCostCodePayload<ExtArgs>
+      fields: Prisma.BathroomTypeCostCodeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BathroomTypeCostCodeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BathroomTypeCostCodeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>
+        }
+        findFirst: {
+          args: Prisma.BathroomTypeCostCodeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BathroomTypeCostCodeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>
+        }
+        findMany: {
+          args: Prisma.BathroomTypeCostCodeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>[]
+        }
+        create: {
+          args: Prisma.BathroomTypeCostCodeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>
+        }
+        createMany: {
+          args: Prisma.BathroomTypeCostCodeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BathroomTypeCostCodeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>[]
+        }
+        delete: {
+          args: Prisma.BathroomTypeCostCodeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>
+        }
+        update: {
+          args: Prisma.BathroomTypeCostCodeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>
+        }
+        deleteMany: {
+          args: Prisma.BathroomTypeCostCodeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BathroomTypeCostCodeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BathroomTypeCostCodeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>[]
+        }
+        upsert: {
+          args: Prisma.BathroomTypeCostCodeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>
+        }
+        aggregate: {
+          args: Prisma.BathroomTypeCostCodeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBathroomTypeCostCode>
+        }
+        groupBy: {
+          args: Prisma.BathroomTypeCostCodeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BathroomTypeCostCodeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BathroomTypeCostCodeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BathroomTypeCostCodeCountAggregateOutputType> | number
+        }
+      }
+    }
+    CompanySetting: {
+      payload: Prisma.$CompanySettingPayload<ExtArgs>
+      fields: Prisma.CompanySettingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CompanySettingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CompanySettingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+        }
+        findFirst: {
+          args: Prisma.CompanySettingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CompanySettingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+        }
+        findMany: {
+          args: Prisma.CompanySettingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>[]
+        }
+        create: {
+          args: Prisma.CompanySettingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+        }
+        createMany: {
+          args: Prisma.CompanySettingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CompanySettingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>[]
+        }
+        delete: {
+          args: Prisma.CompanySettingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+        }
+        update: {
+          args: Prisma.CompanySettingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+        }
+        deleteMany: {
+          args: Prisma.CompanySettingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CompanySettingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CompanySettingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>[]
+        }
+        upsert: {
+          args: Prisma.CompanySettingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+        }
+        aggregate: {
+          args: Prisma.CompanySettingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCompanySetting>
+        }
+        groupBy: {
+          args: Prisma.CompanySettingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompanySettingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CompanySettingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompanySettingCountAggregateOutputType> | number
+        }
+      }
+    }
+    CostCode: {
+      payload: Prisma.$CostCodePayload<ExtArgs>
+      fields: Prisma.CostCodeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CostCodeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CostCodeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload>
+        }
+        findFirst: {
+          args: Prisma.CostCodeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CostCodeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload>
+        }
+        findMany: {
+          args: Prisma.CostCodeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload>[]
+        }
+        create: {
+          args: Prisma.CostCodeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload>
+        }
+        createMany: {
+          args: Prisma.CostCodeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CostCodeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload>[]
+        }
+        delete: {
+          args: Prisma.CostCodeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload>
+        }
+        update: {
+          args: Prisma.CostCodeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload>
+        }
+        deleteMany: {
+          args: Prisma.CostCodeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CostCodeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CostCodeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload>[]
+        }
+        upsert: {
+          args: Prisma.CostCodeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodePayload>
+        }
+        aggregate: {
+          args: Prisma.CostCodeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCostCode>
+        }
+        groupBy: {
+          args: Prisma.CostCodeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CostCodeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CostCodeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CostCodeCountAggregateOutputType> | number
+        }
+      }
+    }
+    CostCodeCategory: {
+      payload: Prisma.$CostCodeCategoryPayload<ExtArgs>
+      fields: Prisma.CostCodeCategoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CostCodeCategoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CostCodeCategoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload>
+        }
+        findFirst: {
+          args: Prisma.CostCodeCategoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CostCodeCategoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload>
+        }
+        findMany: {
+          args: Prisma.CostCodeCategoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload>[]
+        }
+        create: {
+          args: Prisma.CostCodeCategoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload>
+        }
+        createMany: {
+          args: Prisma.CostCodeCategoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CostCodeCategoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload>[]
+        }
+        delete: {
+          args: Prisma.CostCodeCategoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload>
+        }
+        update: {
+          args: Prisma.CostCodeCategoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.CostCodeCategoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CostCodeCategoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CostCodeCategoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.CostCodeCategoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeCategoryPayload>
+        }
+        aggregate: {
+          args: Prisma.CostCodeCategoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCostCodeCategory>
+        }
+        groupBy: {
+          args: Prisma.CostCodeCategoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CostCodeCategoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CostCodeCategoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CostCodeCategoryCountAggregateOutputType> | number
+        }
+      }
+    }
+    CostCodeOption: {
+      payload: Prisma.$CostCodeOptionPayload<ExtArgs>
+      fields: Prisma.CostCodeOptionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CostCodeOptionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CostCodeOptionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload>
+        }
+        findFirst: {
+          args: Prisma.CostCodeOptionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CostCodeOptionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload>
+        }
+        findMany: {
+          args: Prisma.CostCodeOptionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload>[]
+        }
+        create: {
+          args: Prisma.CostCodeOptionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload>
+        }
+        createMany: {
+          args: Prisma.CostCodeOptionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CostCodeOptionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload>[]
+        }
+        delete: {
+          args: Prisma.CostCodeOptionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload>
+        }
+        update: {
+          args: Prisma.CostCodeOptionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload>
+        }
+        deleteMany: {
+          args: Prisma.CostCodeOptionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CostCodeOptionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CostCodeOptionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload>[]
+        }
+        upsert: {
+          args: Prisma.CostCodeOptionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeOptionPayload>
+        }
+        aggregate: {
+          args: Prisma.CostCodeOptionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCostCodeOption>
+        }
+        groupBy: {
+          args: Prisma.CostCodeOptionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CostCodeOptionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CostCodeOptionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CostCodeOptionCountAggregateOutputType> | number
+        }
+      }
+    }
+    EmailLog: {
+      payload: Prisma.$EmailLogPayload<ExtArgs>
+      fields: Prisma.EmailLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EmailLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EmailLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload>
+        }
+        findFirst: {
+          args: Prisma.EmailLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EmailLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload>
+        }
+        findMany: {
+          args: Prisma.EmailLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload>[]
+        }
+        create: {
+          args: Prisma.EmailLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload>
+        }
+        createMany: {
+          args: Prisma.EmailLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EmailLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload>[]
+        }
+        delete: {
+          args: Prisma.EmailLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload>
+        }
+        update: {
+          args: Prisma.EmailLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.EmailLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EmailLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EmailLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.EmailLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EmailLogPayload>
+        }
+        aggregate: {
+          args: Prisma.EmailLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEmailLog>
+        }
+        groupBy: {
+          args: Prisma.EmailLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmailLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EmailLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EmailLogCountAggregateOutputType> | number
+        }
+      }
+    }
+    Submission: {
+      payload: Prisma.$SubmissionPayload<ExtArgs>
+      fields: Prisma.SubmissionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SubmissionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SubmissionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload>
+        }
+        findFirst: {
+          args: Prisma.SubmissionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SubmissionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload>
+        }
+        findMany: {
+          args: Prisma.SubmissionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload>[]
+        }
+        create: {
+          args: Prisma.SubmissionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload>
+        }
+        createMany: {
+          args: Prisma.SubmissionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SubmissionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload>[]
+        }
+        delete: {
+          args: Prisma.SubmissionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload>
+        }
+        update: {
+          args: Prisma.SubmissionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload>
+        }
+        deleteMany: {
+          args: Prisma.SubmissionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SubmissionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SubmissionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload>[]
+        }
+        upsert: {
+          args: Prisma.SubmissionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionPayload>
+        }
+        aggregate: {
+          args: Prisma.SubmissionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSubmission>
+        }
+        groupBy: {
+          args: Prisma.SubmissionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SubmissionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SubmissionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SubmissionCountAggregateOutputType> | number
+        }
+      }
+    }
+    SubmissionItem: {
+      payload: Prisma.$SubmissionItemPayload<ExtArgs>
+      fields: Prisma.SubmissionItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SubmissionItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SubmissionItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload>
+        }
+        findFirst: {
+          args: Prisma.SubmissionItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SubmissionItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload>
+        }
+        findMany: {
+          args: Prisma.SubmissionItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload>[]
+        }
+        create: {
+          args: Prisma.SubmissionItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload>
+        }
+        createMany: {
+          args: Prisma.SubmissionItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SubmissionItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload>[]
+        }
+        delete: {
+          args: Prisma.SubmissionItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload>
+        }
+        update: {
+          args: Prisma.SubmissionItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.SubmissionItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SubmissionItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SubmissionItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.SubmissionItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionItemPayload>
+        }
+        aggregate: {
+          args: Prisma.SubmissionItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSubmissionItem>
+        }
+        groupBy: {
+          args: Prisma.SubmissionItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SubmissionItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SubmissionItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SubmissionItemCountAggregateOutputType> | number
+        }
+      }
+    }
+    SubmissionMedia: {
+      payload: Prisma.$SubmissionMediaPayload<ExtArgs>
+      fields: Prisma.SubmissionMediaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SubmissionMediaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SubmissionMediaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload>
+        }
+        findFirst: {
+          args: Prisma.SubmissionMediaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SubmissionMediaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload>
+        }
+        findMany: {
+          args: Prisma.SubmissionMediaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload>[]
+        }
+        create: {
+          args: Prisma.SubmissionMediaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload>
+        }
+        createMany: {
+          args: Prisma.SubmissionMediaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SubmissionMediaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload>[]
+        }
+        delete: {
+          args: Prisma.SubmissionMediaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload>
+        }
+        update: {
+          args: Prisma.SubmissionMediaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload>
+        }
+        deleteMany: {
+          args: Prisma.SubmissionMediaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SubmissionMediaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SubmissionMediaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload>[]
+        }
+        upsert: {
+          args: Prisma.SubmissionMediaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionMediaPayload>
+        }
+        aggregate: {
+          args: Prisma.SubmissionMediaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSubmissionMedia>
+        }
+        groupBy: {
+          args: Prisma.SubmissionMediaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SubmissionMediaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SubmissionMediaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SubmissionMediaCountAggregateOutputType> | number
+        }
+      }
+    }
     ContactUs: {
       payload: Prisma.$ContactUsPayload<ExtArgs>
       fields: Prisma.ContactUsFieldRefs
@@ -1042,6 +1867,196 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const ActivityLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  description: 'description',
+  metadata: 'metadata',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  createdAt: 'createdAt'
+} as const
+
+export type ActivityLogScalarFieldEnum = (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum]
+
+
+export const BathroomTypeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  fullDescription: 'fullDescription',
+  basePrice: 'basePrice',
+  imageFileId: 'imageFileId',
+  isActive: 'isActive',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BathroomTypeScalarFieldEnum = (typeof BathroomTypeScalarFieldEnum)[keyof typeof BathroomTypeScalarFieldEnum]
+
+
+export const BathroomTypeCostCodeScalarFieldEnum = {
+  id: 'id',
+  bathroomTypeId: 'bathroomTypeId',
+  costCodeId: 'costCodeId',
+  isIncludedInBase: 'isIncludedInBase',
+  isRequired: 'isRequired',
+  defaultQuantity: 'defaultQuantity',
+  createdAt: 'createdAt'
+} as const
+
+export type BathroomTypeCostCodeScalarFieldEnum = (typeof BathroomTypeCostCodeScalarFieldEnum)[keyof typeof BathroomTypeCostCodeScalarFieldEnum]
+
+
+export const CompanySettingScalarFieldEnum = {
+  id: 'id',
+  companyName: 'companyName',
+  email: 'email',
+  phone: 'phone',
+  address: 'address',
+  logoFileId: 'logoFileId',
+  sendEmailOnSubmission: 'sendEmailOnSubmission',
+  sendConfirmationToClient: 'sendConfirmationToClient',
+  dailySummaryReport: 'dailySummaryReport',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanySettingScalarFieldEnum = (typeof CompanySettingScalarFieldEnum)[keyof typeof CompanySettingScalarFieldEnum]
+
+
+export const CostCodeScalarFieldEnum = {
+  id: 'id',
+  categoryId: 'categoryId',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  basePrice: 'basePrice',
+  unitType: 'unitType',
+  colorTag: 'colorTag',
+  calculationType: 'calculationType',
+  requiresQuantity: 'requiresQuantity',
+  isOptional: 'isOptional',
+  isActive: 'isActive',
+  appliesToFp: 'appliesToFp',
+  appliesToTps: 'appliesToTps',
+  appliesToTpt: 'appliesToTpt',
+  appliesToTp: 'appliesToTp',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CostCodeScalarFieldEnum = (typeof CostCodeScalarFieldEnum)[keyof typeof CostCodeScalarFieldEnum]
+
+
+export const CostCodeCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CostCodeCategoryScalarFieldEnum = (typeof CostCodeCategoryScalarFieldEnum)[keyof typeof CostCodeCategoryScalarFieldEnum]
+
+
+export const CostCodeOptionScalarFieldEnum = {
+  id: 'id',
+  costCodeId: 'costCodeId',
+  optionName: 'optionName',
+  optionValue: 'optionValue',
+  priceModifier: 'priceModifier',
+  finalPrice: 'finalPrice',
+  isDefault: 'isDefault',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CostCodeOptionScalarFieldEnum = (typeof CostCodeOptionScalarFieldEnum)[keyof typeof CostCodeOptionScalarFieldEnum]
+
+
+export const EmailLogScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  emailType: 'emailType',
+  recipientEmail: 'recipientEmail',
+  recipientName: 'recipientName',
+  subject: 'subject',
+  body: 'body',
+  status: 'status',
+  errorMessage: 'errorMessage',
+  sentAt: 'sentAt',
+  createdAt: 'createdAt'
+} as const
+
+export type EmailLogScalarFieldEnum = (typeof EmailLogScalarFieldEnum)[keyof typeof EmailLogScalarFieldEnum]
+
+
+export const SubmissionScalarFieldEnum = {
+  id: 'id',
+  submissionNumber: 'submissionNumber',
+  bathroomTypeId: 'bathroomTypeId',
+  clientName: 'clientName',
+  clientEmail: 'clientEmail',
+  clientPhone: 'clientPhone',
+  projectAddress: 'projectAddress',
+  zipCode: 'zipCode',
+  basePrice: 'basePrice',
+  additionalItemsTotal: 'additionalItemsTotal',
+  totalAmount: 'totalAmount',
+  status: 'status',
+  projectNotes: 'projectNotes',
+  additionalDetails: 'additionalDetails',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  submittedAt: 'submittedAt',
+  updatedAt: 'updatedAt',
+  reviewedAt: 'reviewedAt',
+  completedAt: 'completedAt'
+} as const
+
+export type SubmissionScalarFieldEnum = (typeof SubmissionScalarFieldEnum)[keyof typeof SubmissionScalarFieldEnum]
+
+
+export const SubmissionItemScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  costCodeId: 'costCodeId',
+  selectedOptionId: 'selectedOptionId',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  totalPrice: 'totalPrice',
+  itemType: 'itemType',
+  isEnabled: 'isEnabled',
+  userInputValue: 'userInputValue',
+  notes: 'notes',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionItemScalarFieldEnum = (typeof SubmissionItemScalarFieldEnum)[keyof typeof SubmissionItemScalarFieldEnum]
+
+
+export const SubmissionMediaScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  fileInstanceId: 'fileInstanceId',
+  mediaType: 'mediaType',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  uploadedAt: 'uploadedAt'
+} as const
+
+export type SubmissionMediaScalarFieldEnum = (typeof SubmissionMediaScalarFieldEnum)[keyof typeof SubmissionMediaScalarFieldEnum]
+
+
 export const ContactUsScalarFieldEnum = {
   id: 'id',
   firstName: 'firstName',
@@ -1210,16 +2225,23 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'FileType'
+ * Reference to a field of type 'Decimal'
  */
-export type EnumFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FileType'>
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
     
 
 
 /**
- * Reference to a field of type 'FileType[]'
+ * Reference to a field of type 'Decimal[]'
  */
-export type ListEnumFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FileType[]'>
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1234,6 +2256,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'FileType'
+ */
+export type EnumFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FileType'>
+    
+
+
+/**
+ * Reference to a field of type 'FileType[]'
+ */
+export type ListEnumFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FileType[]'>
     
 
 
@@ -1299,7 +2335,7 @@ export type PrismaClientOptions = ({
    *  { emit: 'stdout', level: 'error' }
    * 
    * ```
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
+   * Read more in our [docs](https://pris.ly/d/logging).
    */
   log?: (LogLevel | LogDefinition)[]
   /**
@@ -1327,8 +2363,35 @@ export type PrismaClientOptions = ({
    * ```
    */
   omit?: GlobalOmitConfig
+  /**
+   * SQL commenter plugins that add metadata to SQL queries as comments.
+   * Comments follow the sqlcommenter format: https://google.github.io/sqlcommenter/
+   * 
+   * @example
+   * ```
+   * const prisma = new PrismaClient({
+   *   adapter,
+   *   comments: [
+   *     traceContext(),
+   *     queryInsights(),
+   *   ],
+   * })
+   * ```
+   */
+  comments?: runtime.SqlCommenterPlugin[]
 }
 export type GlobalOmitConfig = {
+  activityLog?: Prisma.ActivityLogOmit
+  bathroomType?: Prisma.BathroomTypeOmit
+  bathroomTypeCostCode?: Prisma.BathroomTypeCostCodeOmit
+  companySetting?: Prisma.CompanySettingOmit
+  costCode?: Prisma.CostCodeOmit
+  costCodeCategory?: Prisma.CostCodeCategoryOmit
+  costCodeOption?: Prisma.CostCodeOptionOmit
+  emailLog?: Prisma.EmailLogOmit
+  submission?: Prisma.SubmissionOmit
+  submissionItem?: Prisma.SubmissionItemOmit
+  submissionMedia?: Prisma.SubmissionMediaOmit
   contactUs?: Prisma.ContactUsOmit
   fileInstance?: Prisma.FileInstanceOmit
   homePage?: Prisma.HomePageOmit

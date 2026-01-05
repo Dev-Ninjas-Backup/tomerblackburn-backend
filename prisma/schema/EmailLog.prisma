@@ -1,0 +1,21 @@
+model EmailLog {
+  id             String    @id @default(uuid())
+  submissionId   String?
+  emailType      String    // submission_notification, client_confirmation, daily_summary
+  recipientEmail String
+  recipientName  String?
+  subject        String?
+  body           String?
+  status         String    // sent, failed, pending
+  errorMessage   String?
+  sentAt         DateTime?
+  createdAt      DateTime  @default(now())
+
+  submission Submission? @relation(fields: [submissionId], references: [id])
+
+  @@index([submissionId])
+  @@index([emailType])
+  @@index([status])
+  @@index([createdAt])
+  @@map("email_logs")
+}

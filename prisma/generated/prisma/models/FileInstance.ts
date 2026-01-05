@@ -261,6 +261,9 @@ export type FileInstanceWhereInput = {
   aboutUsImages?: Prisma.AboutUsListRelationFilter
   portfolioImages?: Prisma.PortfolioListRelationFilter
   settingLogos?: Prisma.SettingsListRelationFilter
+  companySettingsLogo?: Prisma.CompanySettingListRelationFilter
+  bathroomTypeImages?: Prisma.BathroomTypeListRelationFilter
+  submissionMedia?: Prisma.SubmissionMediaListRelationFilter
 }
 
 export type FileInstanceOrderByWithRelationInput = {
@@ -279,6 +282,9 @@ export type FileInstanceOrderByWithRelationInput = {
   aboutUsImages?: Prisma.AboutUsOrderByRelationAggregateInput
   portfolioImages?: Prisma.PortfolioOrderByRelationAggregateInput
   settingLogos?: Prisma.settingsOrderByRelationAggregateInput
+  companySettingsLogo?: Prisma.CompanySettingOrderByRelationAggregateInput
+  bathroomTypeImages?: Prisma.BathroomTypeOrderByRelationAggregateInput
+  submissionMedia?: Prisma.SubmissionMediaOrderByRelationAggregateInput
 }
 
 export type FileInstanceWhereUniqueInput = Prisma.AtLeast<{
@@ -300,6 +306,9 @@ export type FileInstanceWhereUniqueInput = Prisma.AtLeast<{
   aboutUsImages?: Prisma.AboutUsListRelationFilter
   portfolioImages?: Prisma.PortfolioListRelationFilter
   settingLogos?: Prisma.SettingsListRelationFilter
+  companySettingsLogo?: Prisma.CompanySettingListRelationFilter
+  bathroomTypeImages?: Prisma.BathroomTypeListRelationFilter
+  submissionMedia?: Prisma.SubmissionMediaListRelationFilter
 }, "id">
 
 export type FileInstanceOrderByWithAggregationInput = {
@@ -352,6 +361,9 @@ export type FileInstanceCreateInput = {
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput
   settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceUncheckedCreateInput = {
@@ -370,6 +382,9 @@ export type FileInstanceUncheckedCreateInput = {
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput
   settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceUpdateInput = {
@@ -388,6 +403,9 @@ export type FileInstanceUpdateInput = {
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput
   settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceUncheckedUpdateInput = {
@@ -406,6 +424,9 @@ export type FileInstanceUncheckedUpdateInput = {
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput
   settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceCreateManyInput = {
@@ -445,6 +466,16 @@ export type FileInstanceUncheckedUpdateManyInput = {
   size?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type FileInstanceNullableScalarRelationFilter = {
+  is?: Prisma.FileInstanceWhereInput | null
+  isNot?: Prisma.FileInstanceWhereInput | null
+}
+
+export type FileInstanceScalarRelationFilter = {
+  is?: Prisma.FileInstanceWhereInput
+  isNot?: Prisma.FileInstanceWhereInput
 }
 
 export type FileInstanceCountOrderByAggregateInput = {
@@ -494,21 +525,54 @@ export type FileInstanceSumOrderByAggregateInput = {
   size?: Prisma.SortOrder
 }
 
-export type FileInstanceNullableScalarRelationFilter = {
-  is?: Prisma.FileInstanceWhereInput | null
-  isNot?: Prisma.FileInstanceWhereInput | null
+export type FileInstanceCreateNestedOneWithoutBathroomTypeImagesInput = {
+  create?: Prisma.XOR<Prisma.FileInstanceCreateWithoutBathroomTypeImagesInput, Prisma.FileInstanceUncheckedCreateWithoutBathroomTypeImagesInput>
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutBathroomTypeImagesInput
+  connect?: Prisma.FileInstanceWhereUniqueInput
+}
+
+export type FileInstanceUpdateOneWithoutBathroomTypeImagesNestedInput = {
+  create?: Prisma.XOR<Prisma.FileInstanceCreateWithoutBathroomTypeImagesInput, Prisma.FileInstanceUncheckedCreateWithoutBathroomTypeImagesInput>
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutBathroomTypeImagesInput
+  upsert?: Prisma.FileInstanceUpsertWithoutBathroomTypeImagesInput
+  disconnect?: Prisma.FileInstanceWhereInput | boolean
+  delete?: Prisma.FileInstanceWhereInput | boolean
+  connect?: Prisma.FileInstanceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FileInstanceUpdateToOneWithWhereWithoutBathroomTypeImagesInput, Prisma.FileInstanceUpdateWithoutBathroomTypeImagesInput>, Prisma.FileInstanceUncheckedUpdateWithoutBathroomTypeImagesInput>
+}
+
+export type FileInstanceCreateNestedOneWithoutCompanySettingsLogoInput = {
+  create?: Prisma.XOR<Prisma.FileInstanceCreateWithoutCompanySettingsLogoInput, Prisma.FileInstanceUncheckedCreateWithoutCompanySettingsLogoInput>
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutCompanySettingsLogoInput
+  connect?: Prisma.FileInstanceWhereUniqueInput
+}
+
+export type FileInstanceUpdateOneWithoutCompanySettingsLogoNestedInput = {
+  create?: Prisma.XOR<Prisma.FileInstanceCreateWithoutCompanySettingsLogoInput, Prisma.FileInstanceUncheckedCreateWithoutCompanySettingsLogoInput>
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutCompanySettingsLogoInput
+  upsert?: Prisma.FileInstanceUpsertWithoutCompanySettingsLogoInput
+  disconnect?: Prisma.FileInstanceWhereInput | boolean
+  delete?: Prisma.FileInstanceWhereInput | boolean
+  connect?: Prisma.FileInstanceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FileInstanceUpdateToOneWithWhereWithoutCompanySettingsLogoInput, Prisma.FileInstanceUpdateWithoutCompanySettingsLogoInput>, Prisma.FileInstanceUncheckedUpdateWithoutCompanySettingsLogoInput>
+}
+
+export type FileInstanceCreateNestedOneWithoutSubmissionMediaInput = {
+  create?: Prisma.XOR<Prisma.FileInstanceCreateWithoutSubmissionMediaInput, Prisma.FileInstanceUncheckedCreateWithoutSubmissionMediaInput>
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutSubmissionMediaInput
+  connect?: Prisma.FileInstanceWhereUniqueInput
+}
+
+export type FileInstanceUpdateOneRequiredWithoutSubmissionMediaNestedInput = {
+  create?: Prisma.XOR<Prisma.FileInstanceCreateWithoutSubmissionMediaInput, Prisma.FileInstanceUncheckedCreateWithoutSubmissionMediaInput>
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutSubmissionMediaInput
+  upsert?: Prisma.FileInstanceUpsertWithoutSubmissionMediaInput
+  connect?: Prisma.FileInstanceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.FileInstanceUpdateToOneWithWhereWithoutSubmissionMediaInput, Prisma.FileInstanceUpdateWithoutSubmissionMediaInput>, Prisma.FileInstanceUncheckedUpdateWithoutSubmissionMediaInput>
 }
 
 export type EnumFileTypeFieldUpdateOperationsInput = {
   set?: $Enums.FileType
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type FileInstanceCreateNestedOneWithoutHomeBackgroundImageInput = {
@@ -591,6 +655,294 @@ export type FileInstanceUpdateOneWithoutSettingLogosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.FileInstanceUpdateToOneWithWhereWithoutSettingLogosInput, Prisma.FileInstanceUpdateWithoutSettingLogosInput>, Prisma.FileInstanceUncheckedUpdateWithoutSettingLogosInput>
 }
 
+export type FileInstanceCreateWithoutBathroomTypeImagesInput = {
+  id?: string
+  filename: string
+  originalFilename: string
+  path: string
+  url: string
+  fileType?: $Enums.FileType
+  mimeType: string
+  size: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  homeBackgroundImage?: Prisma.HomePageCreateNestedManyWithoutHomeBackgroundImageInput
+  serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput
+  aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput
+  portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput
+  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput
+}
+
+export type FileInstanceUncheckedCreateWithoutBathroomTypeImagesInput = {
+  id?: string
+  filename: string
+  originalFilename: string
+  path: string
+  url: string
+  fileType?: $Enums.FileType
+  mimeType: string
+  size: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  homeBackgroundImage?: Prisma.HomePageUncheckedCreateNestedManyWithoutHomeBackgroundImageInput
+  serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput
+  aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput
+  portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput
+  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput
+}
+
+export type FileInstanceCreateOrConnectWithoutBathroomTypeImagesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput
+  create: Prisma.XOR<Prisma.FileInstanceCreateWithoutBathroomTypeImagesInput, Prisma.FileInstanceUncheckedCreateWithoutBathroomTypeImagesInput>
+}
+
+export type FileInstanceUpsertWithoutBathroomTypeImagesInput = {
+  update: Prisma.XOR<Prisma.FileInstanceUpdateWithoutBathroomTypeImagesInput, Prisma.FileInstanceUncheckedUpdateWithoutBathroomTypeImagesInput>
+  create: Prisma.XOR<Prisma.FileInstanceCreateWithoutBathroomTypeImagesInput, Prisma.FileInstanceUncheckedCreateWithoutBathroomTypeImagesInput>
+  where?: Prisma.FileInstanceWhereInput
+}
+
+export type FileInstanceUpdateToOneWithWhereWithoutBathroomTypeImagesInput = {
+  where?: Prisma.FileInstanceWhereInput
+  data: Prisma.XOR<Prisma.FileInstanceUpdateWithoutBathroomTypeImagesInput, Prisma.FileInstanceUncheckedUpdateWithoutBathroomTypeImagesInput>
+}
+
+export type FileInstanceUpdateWithoutBathroomTypeImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  filename?: Prisma.StringFieldUpdateOperationsInput | string
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  homeBackgroundImage?: Prisma.HomePageUpdateManyWithoutHomeBackgroundImageNestedInput
+  serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput
+  aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput
+  portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput
+  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput
+}
+
+export type FileInstanceUncheckedUpdateWithoutBathroomTypeImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  filename?: Prisma.StringFieldUpdateOperationsInput | string
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  homeBackgroundImage?: Prisma.HomePageUncheckedUpdateManyWithoutHomeBackgroundImageNestedInput
+  serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput
+  aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput
+  portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput
+  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput
+}
+
+export type FileInstanceCreateWithoutCompanySettingsLogoInput = {
+  id?: string
+  filename: string
+  originalFilename: string
+  path: string
+  url: string
+  fileType?: $Enums.FileType
+  mimeType: string
+  size: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  homeBackgroundImage?: Prisma.HomePageCreateNestedManyWithoutHomeBackgroundImageInput
+  serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput
+  aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput
+  portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput
+  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput
+  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput
+}
+
+export type FileInstanceUncheckedCreateWithoutCompanySettingsLogoInput = {
+  id?: string
+  filename: string
+  originalFilename: string
+  path: string
+  url: string
+  fileType?: $Enums.FileType
+  mimeType: string
+  size: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  homeBackgroundImage?: Prisma.HomePageUncheckedCreateNestedManyWithoutHomeBackgroundImageInput
+  serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput
+  aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput
+  portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput
+  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput
+}
+
+export type FileInstanceCreateOrConnectWithoutCompanySettingsLogoInput = {
+  where: Prisma.FileInstanceWhereUniqueInput
+  create: Prisma.XOR<Prisma.FileInstanceCreateWithoutCompanySettingsLogoInput, Prisma.FileInstanceUncheckedCreateWithoutCompanySettingsLogoInput>
+}
+
+export type FileInstanceUpsertWithoutCompanySettingsLogoInput = {
+  update: Prisma.XOR<Prisma.FileInstanceUpdateWithoutCompanySettingsLogoInput, Prisma.FileInstanceUncheckedUpdateWithoutCompanySettingsLogoInput>
+  create: Prisma.XOR<Prisma.FileInstanceCreateWithoutCompanySettingsLogoInput, Prisma.FileInstanceUncheckedCreateWithoutCompanySettingsLogoInput>
+  where?: Prisma.FileInstanceWhereInput
+}
+
+export type FileInstanceUpdateToOneWithWhereWithoutCompanySettingsLogoInput = {
+  where?: Prisma.FileInstanceWhereInput
+  data: Prisma.XOR<Prisma.FileInstanceUpdateWithoutCompanySettingsLogoInput, Prisma.FileInstanceUncheckedUpdateWithoutCompanySettingsLogoInput>
+}
+
+export type FileInstanceUpdateWithoutCompanySettingsLogoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  filename?: Prisma.StringFieldUpdateOperationsInput | string
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  homeBackgroundImage?: Prisma.HomePageUpdateManyWithoutHomeBackgroundImageNestedInput
+  serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput
+  aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput
+  portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput
+  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput
+}
+
+export type FileInstanceUncheckedUpdateWithoutCompanySettingsLogoInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  filename?: Prisma.StringFieldUpdateOperationsInput | string
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  homeBackgroundImage?: Prisma.HomePageUncheckedUpdateManyWithoutHomeBackgroundImageNestedInput
+  serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput
+  aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput
+  portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput
+  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput
+}
+
+export type FileInstanceCreateWithoutSubmissionMediaInput = {
+  id?: string
+  filename: string
+  originalFilename: string
+  path: string
+  url: string
+  fileType?: $Enums.FileType
+  mimeType: string
+  size: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  homeBackgroundImage?: Prisma.HomePageCreateNestedManyWithoutHomeBackgroundImageInput
+  serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput
+  aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput
+  portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput
+  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput
+}
+
+export type FileInstanceUncheckedCreateWithoutSubmissionMediaInput = {
+  id?: string
+  filename: string
+  originalFilename: string
+  path: string
+  url: string
+  fileType?: $Enums.FileType
+  mimeType: string
+  size: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  homeBackgroundImage?: Prisma.HomePageUncheckedCreateNestedManyWithoutHomeBackgroundImageInput
+  serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput
+  aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput
+  portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput
+  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput
+}
+
+export type FileInstanceCreateOrConnectWithoutSubmissionMediaInput = {
+  where: Prisma.FileInstanceWhereUniqueInput
+  create: Prisma.XOR<Prisma.FileInstanceCreateWithoutSubmissionMediaInput, Prisma.FileInstanceUncheckedCreateWithoutSubmissionMediaInput>
+}
+
+export type FileInstanceUpsertWithoutSubmissionMediaInput = {
+  update: Prisma.XOR<Prisma.FileInstanceUpdateWithoutSubmissionMediaInput, Prisma.FileInstanceUncheckedUpdateWithoutSubmissionMediaInput>
+  create: Prisma.XOR<Prisma.FileInstanceCreateWithoutSubmissionMediaInput, Prisma.FileInstanceUncheckedCreateWithoutSubmissionMediaInput>
+  where?: Prisma.FileInstanceWhereInput
+}
+
+export type FileInstanceUpdateToOneWithWhereWithoutSubmissionMediaInput = {
+  where?: Prisma.FileInstanceWhereInput
+  data: Prisma.XOR<Prisma.FileInstanceUpdateWithoutSubmissionMediaInput, Prisma.FileInstanceUncheckedUpdateWithoutSubmissionMediaInput>
+}
+
+export type FileInstanceUpdateWithoutSubmissionMediaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  filename?: Prisma.StringFieldUpdateOperationsInput | string
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  homeBackgroundImage?: Prisma.HomePageUpdateManyWithoutHomeBackgroundImageNestedInput
+  serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput
+  aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput
+  portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput
+  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput
+}
+
+export type FileInstanceUncheckedUpdateWithoutSubmissionMediaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  filename?: Prisma.StringFieldUpdateOperationsInput | string
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string
+  path?: Prisma.StringFieldUpdateOperationsInput | string
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  homeBackgroundImage?: Prisma.HomePageUncheckedUpdateManyWithoutHomeBackgroundImageNestedInput
+  serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput
+  aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput
+  portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput
+  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput
+}
+
 export type FileInstanceCreateWithoutHomeBackgroundImageInput = {
   id?: string
   filename: string
@@ -606,6 +958,9 @@ export type FileInstanceCreateWithoutHomeBackgroundImageInput = {
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput
   settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceUncheckedCreateWithoutHomeBackgroundImageInput = {
@@ -623,6 +978,9 @@ export type FileInstanceUncheckedCreateWithoutHomeBackgroundImageInput = {
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput
   settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceCreateOrConnectWithoutHomeBackgroundImageInput = {
@@ -656,6 +1014,9 @@ export type FileInstanceUpdateWithoutHomeBackgroundImageInput = {
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput
   settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceUncheckedUpdateWithoutHomeBackgroundImageInput = {
@@ -673,6 +1034,9 @@ export type FileInstanceUncheckedUpdateWithoutHomeBackgroundImageInput = {
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput
   settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceCreateWithoutServiceImagesInput = {
@@ -690,6 +1054,9 @@ export type FileInstanceCreateWithoutServiceImagesInput = {
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput
   settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceUncheckedCreateWithoutServiceImagesInput = {
@@ -707,6 +1074,9 @@ export type FileInstanceUncheckedCreateWithoutServiceImagesInput = {
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput
   settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceCreateOrConnectWithoutServiceImagesInput = {
@@ -740,6 +1110,9 @@ export type FileInstanceUpdateWithoutServiceImagesInput = {
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput
   settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceUncheckedUpdateWithoutServiceImagesInput = {
@@ -757,6 +1130,9 @@ export type FileInstanceUncheckedUpdateWithoutServiceImagesInput = {
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput
   settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceCreateWithoutAboutUsImagesInput = {
@@ -774,6 +1150,9 @@ export type FileInstanceCreateWithoutAboutUsImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput
   settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceUncheckedCreateWithoutAboutUsImagesInput = {
@@ -791,6 +1170,9 @@ export type FileInstanceUncheckedCreateWithoutAboutUsImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput
   settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceCreateOrConnectWithoutAboutUsImagesInput = {
@@ -824,6 +1206,9 @@ export type FileInstanceUpdateWithoutAboutUsImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput
   settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceUncheckedUpdateWithoutAboutUsImagesInput = {
@@ -841,6 +1226,9 @@ export type FileInstanceUncheckedUpdateWithoutAboutUsImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput
   settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceCreateWithoutPortfolioImagesInput = {
@@ -858,6 +1246,9 @@ export type FileInstanceCreateWithoutPortfolioImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput
   settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceUncheckedCreateWithoutPortfolioImagesInput = {
@@ -875,6 +1266,9 @@ export type FileInstanceUncheckedCreateWithoutPortfolioImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput
   settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceCreateOrConnectWithoutPortfolioImagesInput = {
@@ -908,6 +1302,9 @@ export type FileInstanceUpdateWithoutPortfolioImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput
   settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceUncheckedUpdateWithoutPortfolioImagesInput = {
@@ -925,6 +1322,9 @@ export type FileInstanceUncheckedUpdateWithoutPortfolioImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput
   settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceCreateWithoutSettingLogosInput = {
@@ -942,6 +1342,9 @@ export type FileInstanceCreateWithoutSettingLogosInput = {
   serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput
+  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceUncheckedCreateWithoutSettingLogosInput = {
@@ -959,6 +1362,9 @@ export type FileInstanceUncheckedCreateWithoutSettingLogosInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput
 }
 
 export type FileInstanceCreateOrConnectWithoutSettingLogosInput = {
@@ -992,6 +1398,9 @@ export type FileInstanceUpdateWithoutSettingLogosInput = {
   serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput
 }
 
 export type FileInstanceUncheckedUpdateWithoutSettingLogosInput = {
@@ -1009,6 +1418,9 @@ export type FileInstanceUncheckedUpdateWithoutSettingLogosInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput
+  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput
+  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput
 }
 
 
@@ -1022,6 +1434,9 @@ export type FileInstanceCountOutputType = {
   aboutUsImages: number
   portfolioImages: number
   settingLogos: number
+  companySettingsLogo: number
+  bathroomTypeImages: number
+  submissionMedia: number
 }
 
 export type FileInstanceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1030,6 +1445,9 @@ export type FileInstanceCountOutputTypeSelect<ExtArgs extends runtime.Types.Exte
   aboutUsImages?: boolean | FileInstanceCountOutputTypeCountAboutUsImagesArgs
   portfolioImages?: boolean | FileInstanceCountOutputTypeCountPortfolioImagesArgs
   settingLogos?: boolean | FileInstanceCountOutputTypeCountSettingLogosArgs
+  companySettingsLogo?: boolean | FileInstanceCountOutputTypeCountCompanySettingsLogoArgs
+  bathroomTypeImages?: boolean | FileInstanceCountOutputTypeCountBathroomTypeImagesArgs
+  submissionMedia?: boolean | FileInstanceCountOutputTypeCountSubmissionMediaArgs
 }
 
 /**
@@ -1077,6 +1495,27 @@ export type FileInstanceCountOutputTypeCountSettingLogosArgs<ExtArgs extends run
   where?: Prisma.settingsWhereInput
 }
 
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountCompanySettingsLogoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompanySettingWhereInput
+}
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountBathroomTypeImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BathroomTypeWhereInput
+}
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountSubmissionMediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubmissionMediaWhereInput
+}
+
 
 export type FileInstanceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1094,6 +1533,9 @@ export type FileInstanceSelect<ExtArgs extends runtime.Types.Extensions.Internal
   aboutUsImages?: boolean | Prisma.FileInstance$aboutUsImagesArgs<ExtArgs>
   portfolioImages?: boolean | Prisma.FileInstance$portfolioImagesArgs<ExtArgs>
   settingLogos?: boolean | Prisma.FileInstance$settingLogosArgs<ExtArgs>
+  companySettingsLogo?: boolean | Prisma.FileInstance$companySettingsLogoArgs<ExtArgs>
+  bathroomTypeImages?: boolean | Prisma.FileInstance$bathroomTypeImagesArgs<ExtArgs>
+  submissionMedia?: boolean | Prisma.FileInstance$submissionMediaArgs<ExtArgs>
   _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["fileInstance"]>
 
@@ -1143,6 +1585,9 @@ export type FileInstanceInclude<ExtArgs extends runtime.Types.Extensions.Interna
   aboutUsImages?: boolean | Prisma.FileInstance$aboutUsImagesArgs<ExtArgs>
   portfolioImages?: boolean | Prisma.FileInstance$portfolioImagesArgs<ExtArgs>
   settingLogos?: boolean | Prisma.FileInstance$settingLogosArgs<ExtArgs>
+  companySettingsLogo?: boolean | Prisma.FileInstance$companySettingsLogoArgs<ExtArgs>
+  bathroomTypeImages?: boolean | Prisma.FileInstance$bathroomTypeImagesArgs<ExtArgs>
+  submissionMedia?: boolean | Prisma.FileInstance$submissionMediaArgs<ExtArgs>
   _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type FileInstanceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1156,6 +1601,9 @@ export type $FileInstancePayload<ExtArgs extends runtime.Types.Extensions.Intern
     aboutUsImages: Prisma.$AboutUsPayload<ExtArgs>[]
     portfolioImages: Prisma.$PortfolioPayload<ExtArgs>[]
     settingLogos: Prisma.$settingsPayload<ExtArgs>[]
+    companySettingsLogo: Prisma.$CompanySettingPayload<ExtArgs>[]
+    bathroomTypeImages: Prisma.$BathroomTypePayload<ExtArgs>[]
+    submissionMedia: Prisma.$SubmissionMediaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1567,6 +2015,9 @@ export interface Prisma__FileInstanceClient<T, Null = never, ExtArgs extends run
   aboutUsImages<T extends Prisma.FileInstance$aboutUsImagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FileInstance$aboutUsImagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AboutUsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   portfolioImages<T extends Prisma.FileInstance$portfolioImagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FileInstance$portfolioImagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortfolioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   settingLogos<T extends Prisma.FileInstance$settingLogosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FileInstance$settingLogosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$settingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  companySettingsLogo<T extends Prisma.FileInstance$companySettingsLogoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FileInstance$companySettingsLogoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bathroomTypeImages<T extends Prisma.FileInstance$bathroomTypeImagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FileInstance$bathroomTypeImagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BathroomTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  submissionMedia<T extends Prisma.FileInstance$submissionMediaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.FileInstance$submissionMediaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionMediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2111,6 +2562,78 @@ export type FileInstance$settingLogosArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.SettingsScalarFieldEnum | Prisma.SettingsScalarFieldEnum[]
+}
+
+/**
+ * FileInstance.companySettingsLogo
+ */
+export type FileInstance$companySettingsLogoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CompanySetting
+   */
+  select?: Prisma.CompanySettingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CompanySetting
+   */
+  omit?: Prisma.CompanySettingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanySettingInclude<ExtArgs> | null
+  where?: Prisma.CompanySettingWhereInput
+  orderBy?: Prisma.CompanySettingOrderByWithRelationInput | Prisma.CompanySettingOrderByWithRelationInput[]
+  cursor?: Prisma.CompanySettingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CompanySettingScalarFieldEnum | Prisma.CompanySettingScalarFieldEnum[]
+}
+
+/**
+ * FileInstance.bathroomTypeImages
+ */
+export type FileInstance$bathroomTypeImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BathroomType
+   */
+  select?: Prisma.BathroomTypeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BathroomType
+   */
+  omit?: Prisma.BathroomTypeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BathroomTypeInclude<ExtArgs> | null
+  where?: Prisma.BathroomTypeWhereInput
+  orderBy?: Prisma.BathroomTypeOrderByWithRelationInput | Prisma.BathroomTypeOrderByWithRelationInput[]
+  cursor?: Prisma.BathroomTypeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BathroomTypeScalarFieldEnum | Prisma.BathroomTypeScalarFieldEnum[]
+}
+
+/**
+ * FileInstance.submissionMedia
+ */
+export type FileInstance$submissionMediaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubmissionMedia
+   */
+  select?: Prisma.SubmissionMediaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SubmissionMedia
+   */
+  omit?: Prisma.SubmissionMediaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionMediaInclude<ExtArgs> | null
+  where?: Prisma.SubmissionMediaWhereInput
+  orderBy?: Prisma.SubmissionMediaOrderByWithRelationInput | Prisma.SubmissionMediaOrderByWithRelationInput[]
+  cursor?: Prisma.SubmissionMediaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubmissionMediaScalarFieldEnum | Prisma.SubmissionMediaScalarFieldEnum[]
 }
 
 /**

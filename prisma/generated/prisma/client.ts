@@ -27,16 +27,71 @@ export * from "./enums"
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Contactuses
- * const contactuses = await prisma.contactUs.findMany()
+ * // Fetch zero or more ActivityLogs
+ * const activityLogs = await prisma.activityLog.findMany()
  * ```
  * 
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ * Read more in our [docs](https://pris.ly/d/client).
  */
 export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
+/**
+ * Model ActivityLog
+ * 
+ */
+export type ActivityLog = Prisma.ActivityLogModel
+/**
+ * Model BathroomType
+ * 
+ */
+export type BathroomType = Prisma.BathroomTypeModel
+/**
+ * Model BathroomTypeCostCode
+ * 
+ */
+export type BathroomTypeCostCode = Prisma.BathroomTypeCostCodeModel
+/**
+ * Model CompanySetting
+ * 
+ */
+export type CompanySetting = Prisma.CompanySettingModel
+/**
+ * Model CostCode
+ * 
+ */
+export type CostCode = Prisma.CostCodeModel
+/**
+ * Model CostCodeCategory
+ * 
+ */
+export type CostCodeCategory = Prisma.CostCodeCategoryModel
+/**
+ * Model CostCodeOption
+ * 
+ */
+export type CostCodeOption = Prisma.CostCodeOptionModel
+/**
+ * Model EmailLog
+ * 
+ */
+export type EmailLog = Prisma.EmailLogModel
+/**
+ * Model Submission
+ * 
+ */
+export type Submission = Prisma.SubmissionModel
+/**
+ * Model SubmissionItem
+ * 
+ */
+export type SubmissionItem = Prisma.SubmissionItemModel
+/**
+ * Model SubmissionMedia
+ * 
+ */
+export type SubmissionMedia = Prisma.SubmissionMediaModel
 /**
  * Model ContactUs
  * 

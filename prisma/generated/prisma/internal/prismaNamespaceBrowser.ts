@@ -51,6 +51,17 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  ActivityLog: 'ActivityLog',
+  BathroomType: 'BathroomType',
+  BathroomTypeCostCode: 'BathroomTypeCostCode',
+  CompanySetting: 'CompanySetting',
+  CostCode: 'CostCode',
+  CostCodeCategory: 'CostCodeCategory',
+  CostCodeOption: 'CostCodeOption',
+  EmailLog: 'EmailLog',
+  Submission: 'Submission',
+  SubmissionItem: 'SubmissionItem',
+  SubmissionMedia: 'SubmissionMedia',
   ContactUs: 'ContactUs',
   FileInstance: 'FileInstance',
   HomePage: 'HomePage',
@@ -75,6 +86,196 @@ export const TransactionIsolationLevel = {
 } as const
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const ActivityLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  description: 'description',
+  metadata: 'metadata',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  createdAt: 'createdAt'
+} as const
+
+export type ActivityLogScalarFieldEnum = (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum]
+
+
+export const BathroomTypeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  fullDescription: 'fullDescription',
+  basePrice: 'basePrice',
+  imageFileId: 'imageFileId',
+  isActive: 'isActive',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BathroomTypeScalarFieldEnum = (typeof BathroomTypeScalarFieldEnum)[keyof typeof BathroomTypeScalarFieldEnum]
+
+
+export const BathroomTypeCostCodeScalarFieldEnum = {
+  id: 'id',
+  bathroomTypeId: 'bathroomTypeId',
+  costCodeId: 'costCodeId',
+  isIncludedInBase: 'isIncludedInBase',
+  isRequired: 'isRequired',
+  defaultQuantity: 'defaultQuantity',
+  createdAt: 'createdAt'
+} as const
+
+export type BathroomTypeCostCodeScalarFieldEnum = (typeof BathroomTypeCostCodeScalarFieldEnum)[keyof typeof BathroomTypeCostCodeScalarFieldEnum]
+
+
+export const CompanySettingScalarFieldEnum = {
+  id: 'id',
+  companyName: 'companyName',
+  email: 'email',
+  phone: 'phone',
+  address: 'address',
+  logoFileId: 'logoFileId',
+  sendEmailOnSubmission: 'sendEmailOnSubmission',
+  sendConfirmationToClient: 'sendConfirmationToClient',
+  dailySummaryReport: 'dailySummaryReport',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanySettingScalarFieldEnum = (typeof CompanySettingScalarFieldEnum)[keyof typeof CompanySettingScalarFieldEnum]
+
+
+export const CostCodeScalarFieldEnum = {
+  id: 'id',
+  categoryId: 'categoryId',
+  code: 'code',
+  name: 'name',
+  description: 'description',
+  basePrice: 'basePrice',
+  unitType: 'unitType',
+  colorTag: 'colorTag',
+  calculationType: 'calculationType',
+  requiresQuantity: 'requiresQuantity',
+  isOptional: 'isOptional',
+  isActive: 'isActive',
+  appliesToFp: 'appliesToFp',
+  appliesToTps: 'appliesToTps',
+  appliesToTpt: 'appliesToTpt',
+  appliesToTp: 'appliesToTp',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CostCodeScalarFieldEnum = (typeof CostCodeScalarFieldEnum)[keyof typeof CostCodeScalarFieldEnum]
+
+
+export const CostCodeCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CostCodeCategoryScalarFieldEnum = (typeof CostCodeCategoryScalarFieldEnum)[keyof typeof CostCodeCategoryScalarFieldEnum]
+
+
+export const CostCodeOptionScalarFieldEnum = {
+  id: 'id',
+  costCodeId: 'costCodeId',
+  optionName: 'optionName',
+  optionValue: 'optionValue',
+  priceModifier: 'priceModifier',
+  finalPrice: 'finalPrice',
+  isDefault: 'isDefault',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CostCodeOptionScalarFieldEnum = (typeof CostCodeOptionScalarFieldEnum)[keyof typeof CostCodeOptionScalarFieldEnum]
+
+
+export const EmailLogScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  emailType: 'emailType',
+  recipientEmail: 'recipientEmail',
+  recipientName: 'recipientName',
+  subject: 'subject',
+  body: 'body',
+  status: 'status',
+  errorMessage: 'errorMessage',
+  sentAt: 'sentAt',
+  createdAt: 'createdAt'
+} as const
+
+export type EmailLogScalarFieldEnum = (typeof EmailLogScalarFieldEnum)[keyof typeof EmailLogScalarFieldEnum]
+
+
+export const SubmissionScalarFieldEnum = {
+  id: 'id',
+  submissionNumber: 'submissionNumber',
+  bathroomTypeId: 'bathroomTypeId',
+  clientName: 'clientName',
+  clientEmail: 'clientEmail',
+  clientPhone: 'clientPhone',
+  projectAddress: 'projectAddress',
+  zipCode: 'zipCode',
+  basePrice: 'basePrice',
+  additionalItemsTotal: 'additionalItemsTotal',
+  totalAmount: 'totalAmount',
+  status: 'status',
+  projectNotes: 'projectNotes',
+  additionalDetails: 'additionalDetails',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  submittedAt: 'submittedAt',
+  updatedAt: 'updatedAt',
+  reviewedAt: 'reviewedAt',
+  completedAt: 'completedAt'
+} as const
+
+export type SubmissionScalarFieldEnum = (typeof SubmissionScalarFieldEnum)[keyof typeof SubmissionScalarFieldEnum]
+
+
+export const SubmissionItemScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  costCodeId: 'costCodeId',
+  selectedOptionId: 'selectedOptionId',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  totalPrice: 'totalPrice',
+  itemType: 'itemType',
+  isEnabled: 'isEnabled',
+  userInputValue: 'userInputValue',
+  notes: 'notes',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionItemScalarFieldEnum = (typeof SubmissionItemScalarFieldEnum)[keyof typeof SubmissionItemScalarFieldEnum]
+
+
+export const SubmissionMediaScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  fileInstanceId: 'fileInstanceId',
+  mediaType: 'mediaType',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  uploadedAt: 'uploadedAt'
+} as const
+
+export type SubmissionMediaScalarFieldEnum = (typeof SubmissionMediaScalarFieldEnum)[keyof typeof SubmissionMediaScalarFieldEnum]
 
 
 export const ContactUsScalarFieldEnum = {
