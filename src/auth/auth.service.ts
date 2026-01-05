@@ -20,7 +20,7 @@ export class AuthService {
     try {
       const { name, email, password } = registerDto;
 
-      const existingUser = await this.prisma.client.user.findUnique({
+      const existingUser = await this.prisma.user.findUnique({
         where: { email },
       });
 
@@ -30,7 +30,7 @@ export class AuthService {
 
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      const user = await this.prisma.client.user.create({
+      const user = await this.prisma.user.create({
         data: {
           name,
           email,
@@ -65,7 +65,7 @@ export class AuthService {
     try {
       const { email, password } = loginDto;
 
-      const user = await this.prisma.client.user.findUnique({
+      const user = await this.prisma.user.findUnique({
         where: { email },
       });
 
