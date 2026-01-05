@@ -30,7 +30,6 @@ export class BathroomTypesService {
         );
       }
 
-      // Upload file if provided
       let imageFileId = createBathroomTypeDto.imageFileId;
       if (file) {
         const uploadedFile = await this.uploadService.uploadFile(file);
