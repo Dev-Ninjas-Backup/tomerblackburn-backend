@@ -3,26 +3,21 @@ model Submission {
   submissionNumber     String    @unique // EST-2025-001
   bathroomTypeId       String
   
-  // Client Information
   clientName           String
   clientEmail          String
   clientPhone          String
   projectAddress       String
   zipCode              String?
   
-  // Estimate Details
   basePrice            Decimal   @db.Decimal(10, 2)
   additionalItemsTotal Decimal   @default(0) @db.Decimal(10, 2)
   totalAmount          Decimal   @db.Decimal(10, 2)
-  
-  // Status Tracking
+
   status               String    @default("PENDING") // PENDING, PROCESSING, COMPLETED
   
-  // Additional Information
   projectNotes         String?
   additionalDetails    String?
   
-  // Metadata
   ipAddress            String?
   userAgent            String?
   submittedAt          DateTime  @default(now())
@@ -49,12 +44,10 @@ model SubmissionItem {
   costCodeId       String
   selectedOptionId String?
   
-  // Pricing Details
   quantity         Decimal  @default(1) @db.Decimal(10, 2)
   unitPrice        Decimal  @db.Decimal(10, 2)
   totalPrice       Decimal  @db.Decimal(10, 2)
   
-  // Item Details
   itemType         String?  // fixed, selection, toggle, user_input
   isEnabled        Boolean  @default(true)
   userInputValue   String?

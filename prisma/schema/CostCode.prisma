@@ -12,7 +12,6 @@ model CostCode {
   isOptional       Boolean  @default(false)
   isActive         Boolean  @default(true)
   
-  // Bathroom type applicability
   appliesToFp      Boolean  @default(false) // Four Piece
   appliesToTps     Boolean  @default(false) // Three Piece Shower
   appliesToTpt     Boolean  @default(false) // Three Piece Tub
