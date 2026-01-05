@@ -27,7 +27,7 @@ export class AppService {
           name: 'Mirza Saikat Ahmmed',
           email: 'mirzasaikatahmmed@gmail.com',
           github: 'https://github.com/mirzasaikatahmmed',
-          portfolio: 'https://mirzasaikatahmmed.com',
+          portfolio: 'https://saikat.com.bd',
         },
         api: {
           version: '1.0.0',

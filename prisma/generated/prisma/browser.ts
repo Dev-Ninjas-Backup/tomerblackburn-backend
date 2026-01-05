@@ -18,6 +18,61 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
+ * Model ActivityLog
+ * 
+ */
+export type ActivityLog = Prisma.ActivityLogModel
+/**
+ * Model BathroomType
+ * 
+ */
+export type BathroomType = Prisma.BathroomTypeModel
+/**
+ * Model BathroomTypeCostCode
+ * 
+ */
+export type BathroomTypeCostCode = Prisma.BathroomTypeCostCodeModel
+/**
+ * Model CompanySetting
+ * 
+ */
+export type CompanySetting = Prisma.CompanySettingModel
+/**
+ * Model CostCode
+ * 
+ */
+export type CostCode = Prisma.CostCodeModel
+/**
+ * Model CostCodeCategory
+ * 
+ */
+export type CostCodeCategory = Prisma.CostCodeCategoryModel
+/**
+ * Model CostCodeOption
+ * 
+ */
+export type CostCodeOption = Prisma.CostCodeOptionModel
+/**
+ * Model EmailLog
+ * 
+ */
+export type EmailLog = Prisma.EmailLogModel
+/**
+ * Model Submission
+ * 
+ */
+export type Submission = Prisma.SubmissionModel
+/**
+ * Model SubmissionItem
+ * 
+ */
+export type SubmissionItem = Prisma.SubmissionItemModel
+/**
+ * Model SubmissionMedia
+ * 
+ */
+export type SubmissionMedia = Prisma.SubmissionMediaModel
+/**
  * Model ContactUs
  * 
  */

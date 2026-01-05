@@ -1,0 +1,21 @@
+model BathroomType {
+  id              String   @id @default(uuid())
+  code            String   @unique // FP, TPS, TPT, TP
+  name            String
+  fullDescription String?
+  basePrice       Decimal  @default(0) @db.Decimal(10, 2)
+  imageFileId     String?
+  isActive        Boolean  @default(true)
+  displayOrder    Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  imageFile FileInstance? @relation("BathroomTypeImage", fields: [imageFileId], references: [id])
+
+  submissions             Submission[]
+  bathroomTypeCostCodes   BathroomTypeCostCode[]
+
+  @@index([code])
+  @@index([isActive])
+  @@map("bathroom_types")
+}

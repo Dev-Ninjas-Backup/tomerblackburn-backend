@@ -425,10 +425,6 @@ export type HomePageUncheckedUpdateManyWithoutHomeBackgroundImageNestedInput = {
   deleteMany?: Prisma.HomePageScalarWhereInput | Prisma.HomePageScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type HomePageCreateWithoutHomeBackgroundImageInput = {
   id?: string
   title: string

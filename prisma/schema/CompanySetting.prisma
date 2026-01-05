@@ -1,0 +1,17 @@
+model CompanySetting {
+  id                        String    @id @default(uuid())
+  companyName               String
+  email                     String
+  phone                     String?
+  address                   String?
+  logoFileId                String?
+  sendEmailOnSubmission     Boolean   @default(true)
+  sendConfirmationToClient  Boolean   @default(true)
+  dailySummaryReport        Boolean   @default(false)
+  createdAt                 DateTime  @default(now())
+  updatedAt                 DateTime  @updatedAt
+
+  logoFile FileInstance? @relation("CompanyLogo", fields: [logoFileId], references: [id])
+
+  @@map("company_settings")
+}

@@ -17,6 +17,9 @@ model FileInstance {
     aboutUsImages      AboutUs[]
     portfolioImages    Portfolio[]
     settingLogos       settings[]
+    companySettingsLogo CompanySetting[]    @relation("CompanyLogo")
+    bathroomTypeImages  BathroomType[]      @relation("BathroomTypeImage")
+    submissionMedia     SubmissionMedia[]
 
     @@map("file_instances")
 }

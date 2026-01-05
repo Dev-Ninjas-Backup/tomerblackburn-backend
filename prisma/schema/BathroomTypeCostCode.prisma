@@ -1,0 +1,17 @@
+model BathroomTypeCostCode {
+  id                  String   @id @default(uuid())
+  bathroomTypeId      String
+  costCodeId          String
+  isIncludedInBase    Boolean  @default(true)
+  isRequired          Boolean  @default(false)
+  defaultQuantity     Decimal? @db.Decimal(10, 2)
+  createdAt           DateTime @default(now())
+
+  bathroomType BathroomType @relation(fields: [bathroomTypeId], references: [id], onDelete: Cascade)
+  costCode     CostCode     @relation(fields: [costCodeId], references: [id], onDelete: Cascade)
+
+  @@unique([bathroomTypeId, costCodeId])
+  @@index([bathroomTypeId])
+  @@index([costCodeId])
+  @@map("bathroom_type_cost_codes")
+}
