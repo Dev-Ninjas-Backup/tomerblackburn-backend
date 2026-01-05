@@ -1,11 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CostCodeOptionsService } from './cost-code-options.service';
 import { CreateCostCodeOptionDto } from './dto/create-cost-code-option.dto';
 import { UpdateCostCodeOptionDto } from './dto/update-cost-code-option.dto';
 
 @Controller('cost-code-options')
 export class CostCodeOptionsController {
-  constructor(private readonly costCodeOptionsService: CostCodeOptionsService) {}
+  constructor(
+    private readonly costCodeOptionsService: CostCodeOptionsService,
+  ) {}
 
   @Post()
   create(@Body() createCostCodeOptionDto: CreateCostCodeOptionDto) {
@@ -23,7 +33,10 @@ export class CostCodeOptionsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCostCodeOptionDto: UpdateCostCodeOptionDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCostCodeOptionDto: UpdateCostCodeOptionDto,
+  ) {
     return this.costCodeOptionsService.update(+id, updateCostCodeOptionDto);
   }
 

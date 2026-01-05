@@ -20,8 +20,28 @@ import { UploadService } from './modules/upload/upload.service';
 import { PdfGeneratorService } from './modules/pdf/pdf-generator.service';
 
 @Module({
-  imports: [AuthModule, PrismaModule, BathroomTypesModule, CostCodeCategoriesModule, CostCodesModule, CostCodeOptionsModule, SubmissionsModule, SubmissionItemsModule, SubmissionMediaModule, CompanySettingsModule, EmailLogsModule, ActivityLogsModule, BathroomTypeCostCodesModule],
+  imports: [
+    AuthModule,
+    PrismaModule,
+    BathroomTypesModule,
+    CostCodeCategoriesModule,
+    CostCodesModule,
+    CostCodeOptionsModule,
+    SubmissionsModule,
+    SubmissionItemsModule,
+    SubmissionMediaModule,
+    CompanySettingsModule,
+    EmailLogsModule,
+    ActivityLogsModule,
+    BathroomTypeCostCodesModule,
+  ],
   controllers: [AppController],
-  providers: [AppService, PricingService, EmailService, UploadService, PdfGeneratorService],
+  providers: [
+    AppService,
+    PricingService,
+    EmailService,
+    UploadService,
+    PdfGeneratorService,
+  ],
 })
 export class AppModule {}

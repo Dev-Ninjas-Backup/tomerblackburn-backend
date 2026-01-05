@@ -1,11 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SubmissionItemsService } from './submission-items.service';
 import { CreateSubmissionItemDto } from './dto/create-submission-item.dto';
 import { UpdateSubmissionItemDto } from './dto/update-submission-item.dto';
 
 @Controller('submission-items')
 export class SubmissionItemsController {
-  constructor(private readonly submissionItemsService: SubmissionItemsService) {}
+  constructor(
+    private readonly submissionItemsService: SubmissionItemsService,
+  ) {}
 
   @Post()
   create(@Body() createSubmissionItemDto: CreateSubmissionItemDto) {
@@ -23,7 +33,10 @@ export class SubmissionItemsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSubmissionItemDto: UpdateSubmissionItemDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateSubmissionItemDto: UpdateSubmissionItemDto,
+  ) {
     return this.submissionItemsService.update(+id, updateSubmissionItemDto);
   }
 
