@@ -1,11 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SubmissionMediaService } from './submission-media.service';
 import { CreateSubmissionMediaDto } from './dto/create-submission-media.dto';
 import { UpdateSubmissionMediaDto } from './dto/update-submission-media.dto';
 
 @Controller('submission-media')
 export class SubmissionMediaController {
-  constructor(private readonly submissionMediaService: SubmissionMediaService) {}
+  constructor(
+    private readonly submissionMediaService: SubmissionMediaService,
+  ) {}
 
   @Post()
   create(@Body() createSubmissionMediaDto: CreateSubmissionMediaDto) {
@@ -23,7 +33,10 @@ export class SubmissionMediaController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSubmissionMediaDto: UpdateSubmissionMediaDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateSubmissionMediaDto: UpdateSubmissionMediaDto,
+  ) {
     return this.submissionMediaService.update(+id, updateSubmissionMediaDto);
   }
 

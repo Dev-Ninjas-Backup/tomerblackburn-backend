@@ -16,7 +16,10 @@ export class BathroomTypeCostCodesService {
     return `This action returns a #${id} bathroomTypeCostCode`;
   }
 
-  update(id: number, updateBathroomTypeCostCodeDto: UpdateBathroomTypeCostCodeDto) {
+  update(
+    id: number,
+    updateBathroomTypeCostCodeDto: UpdateBathroomTypeCostCodeDto,
+  ) {
     return `This action updates a #${id} bathroomTypeCostCode`;
   }
 
