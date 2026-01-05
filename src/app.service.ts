@@ -11,7 +11,7 @@ export class AppService {
 
   async getHealthCheck() {
     try {
-      await this.prisma.client.$queryRaw`SELECT 1`;
+      await this.prisma.$queryRaw`SELECT 1`;
       const dbStatus = 'connected';
 
       return {

@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -14,13 +15,17 @@ import { CompanySettingsModule } from './modules/company-settings/company-settin
 import { EmailLogsModule } from './modules/email-logs/email-logs.module';
 import { ActivityLogsModule } from './modules/activity-logs/activity-logs.module';
 import { BathroomTypeCostCodesModule } from './modules/bathroom-type-cost-codes/bathroom-type-cost-codes.module';
+import { UploadModule } from './modules/upload/upload.module';
 import { PricingService } from './modules/pricing/pricing.service';
 import { EmailService } from './modules/notifications/email.service';
-import { UploadService } from './modules/upload/upload.service';
 import { PdfGeneratorService } from './modules/pdf/pdf-generator.service';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
     AuthModule,
     PrismaModule,
     BathroomTypesModule,
@@ -34,14 +39,9 @@ import { PdfGeneratorService } from './modules/pdf/pdf-generator.service';
     EmailLogsModule,
     ActivityLogsModule,
     BathroomTypeCostCodesModule,
+    UploadModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    PricingService,
-    EmailService,
-    UploadService,
-    PdfGeneratorService,
-  ],
+  providers: [AppService, PricingService, EmailService, PdfGeneratorService],
 })
 export class AppModule {}
