@@ -6,12 +6,19 @@ import {
 import { CreateBathroomTypeDto } from './dto/create-bathroom-type.dto';
 import { PrismaService } from '@/common/prisma/prisma.service';
 import { UpdateBathroomTypeDto } from './dto/update-bathroom-type.dto';
+import { UploadService } from '../upload/upload.service';
 
 @Injectable()
 export class BathroomTypesService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly uploadService: UploadService,
+  ) {}
 
-  async create(createBathroomTypeDto: CreateBathroomTypeDto) {
+  async create(
+    createBathroomTypeDto: CreateBathroomTypeDto,
+    file?: Express.Multer.File,
+  ) {
     try {
       const existingCode = await this.prisma.bathroomType.findUnique({
         where: { code: createBathroomTypeDto.code },
@@ -23,8 +30,18 @@ export class BathroomTypesService {
         );
       }
 
+      // Upload file if provided
+      let imageFileId = createBathroomTypeDto.imageFileId;
+      if (file) {
+        const uploadedFile = await this.uploadService.uploadFile(file);
+        imageFileId = uploadedFile.id;
+      }
+
       const bathroomType = await this.prisma.bathroomType.create({
-        data: createBathroomTypeDto,
+        data: {
+          ...createBathroomTypeDto,
+          imageFileId,
+        },
         include: {
           imageFile: true,
         },
@@ -162,7 +179,11 @@ export class BathroomTypesService {
     }
   }
 
-  async update(id: string, updateBathroomTypeDto: UpdateBathroomTypeDto) {
+  async update(
+    id: string,
+    updateBathroomTypeDto: UpdateBathroomTypeDto,
+    file?: Express.Multer.File,
+  ) {
     try {
       await this.findOne(id);
 
@@ -178,9 +199,19 @@ export class BathroomTypesService {
         }
       }
 
+      // Upload new file if provided
+      let imageFileId = updateBathroomTypeDto.imageFileId;
+      if (file) {
+        const uploadedFile = await this.uploadService.uploadFile(file);
+        imageFileId = uploadedFile.id;
+      }
+
       const bathroomType = await this.prisma.bathroomType.update({
         where: { id },
-        data: updateBathroomTypeDto,
+        data: {
+          ...updateBathroomTypeDto,
+          ...(imageFileId && { imageFileId }),
+        },
         include: {
           imageFile: true,
         },

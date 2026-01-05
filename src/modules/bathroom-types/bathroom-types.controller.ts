@@ -36,24 +36,52 @@ export class BathroomTypesController {
   @Post()
   @ApiOperation({
     summary: 'Create a new bathroom type',
-    description: 'Creates a new bathroom type with the provided details',
+    description: 'Creates a new bathroom type with optional image upload',
   })
-  @ApiConsumes('application/json')
+  @ApiConsumes('multipart/form-data')
   @ApiBody({
-    type: CreateBathroomTypeDto,
-    examples: {
-      example1: {
-        summary: 'Four Piece Bathroom',
-        value: {
-          code: 'FP',
-          name: 'Four Piece',
-          fullDescription: 'Toilet + Sink + Shower + Tub',
-          basePrice: 15000.0,
-          imageFileId: '123e4567-e89b-12d3-a456-426614174000',
-          isActive: true,
-          displayOrder: 1,
+    schema: {
+      type: 'object',
+      properties: {
+        code: {
+          type: 'string',
+          example: 'FP',
+          maxLength: 10,
+          description: 'Unique code for bathroom type',
+        },
+        name: {
+          type: 'string',
+          example: 'Four Piece',
+          maxLength: 100,
+          description: 'Name of bathroom type',
+        },
+        fullDescription: {
+          type: 'string',
+          example: 'Toilet + Sink + Shower + Tub',
+          description: 'Full description',
+        },
+        basePrice: {
+          type: 'number',
+          example: 15000.0,
+          description: 'Base price',
+        },
+        isActive: {
+          type: 'boolean',
+          example: true,
+          description: 'Active status',
+        },
+        displayOrder: {
+          type: 'number',
+          example: 1,
+          description: 'Display order',
+        },
+        image: {
+          type: 'string',
+          format: 'binary',
+          description: 'Image file (optional)',
         },
       },
+      required: ['code', 'name', 'basePrice'],
     },
   })
   @ApiResponse({
@@ -69,8 +97,12 @@ export class BathroomTypesController {
     status: HttpStatus.CONFLICT,
     description: 'Bathroom type with this code already exists',
   })
-  create(@Body() createBathroomTypeDto: CreateBathroomTypeDto) {
-    return this.bathroomTypesService.create(createBathroomTypeDto);
+  @UseInterceptors(FileInterceptor('image'))
+  create(
+    @Body() createBathroomTypeDto: CreateBathroomTypeDto,
+    @UploadedFile() image?: Express.Multer.File,
+  ) {
+    return this.bathroomTypesService.create(createBathroomTypeDto, image);
   }
 
   @Get()
@@ -162,24 +194,52 @@ export class BathroomTypesController {
   @Patch(':id')
   @ApiOperation({
     summary: 'Update bathroom type',
-    description: 'Update an existing bathroom type by ID',
+    description: 'Update an existing bathroom type with optional image upload',
   })
-  @ApiConsumes('application/json')
+  @ApiConsumes('multipart/form-data')
   @ApiParam({
     name: 'id',
     description: 'Bathroom type UUID',
     example: '123e4567-e89b-12d3-a456-426614174000',
   })
   @ApiBody({
-    type: UpdateBathroomTypeDto,
-    examples: {
-      example1: {
-        summary: 'Update bathroom type details',
-        value: {
-          name: 'Four Piece Deluxe',
-          fullDescription: 'Toilet + Sink + Shower + Tub with premium fixtures',
-          basePrice: 18000.0,
-          isActive: true,
+    schema: {
+      type: 'object',
+      properties: {
+        code: {
+          type: 'string',
+          example: 'FP',
+          description: 'Unique code',
+        },
+        name: {
+          type: 'string',
+          example: 'Four Piece Deluxe',
+          description: 'Name',
+        },
+        fullDescription: {
+          type: 'string',
+          example: 'Toilet + Sink + Shower + Tub with premium fixtures',
+          description: 'Full description',
+        },
+        basePrice: {
+          type: 'number',
+          example: 18000.0,
+          description: 'Base price',
+        },
+        isActive: {
+          type: 'boolean',
+          example: true,
+          description: 'Active status',
+        },
+        displayOrder: {
+          type: 'number',
+          example: 1,
+          description: 'Display order',
+        },
+        image: {
+          type: 'string',
+          format: 'binary',
+          description: 'New image file (optional)',
         },
       },
     },
@@ -197,11 +257,13 @@ export class BathroomTypesController {
     status: HttpStatus.CONFLICT,
     description: 'Bathroom type with this code already exists',
   })
+  @UseInterceptors(FileInterceptor('image'))
   update(
     @Param('id') id: string,
     @Body() updateBathroomTypeDto: UpdateBathroomTypeDto,
+    @UploadedFile() image?: Express.Multer.File,
   ) {
-    return this.bathroomTypesService.update(id, updateBathroomTypeDto);
+    return this.bathroomTypesService.update(id, updateBathroomTypeDto, image);
   }
 
   @Delete(':id')
