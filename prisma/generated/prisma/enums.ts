@@ -8,6 +8,46 @@
  * 🟢 You can import this file directly.
  */
 
+export const QuestionType = {
+  WHITE: 'WHITE',
+  BLUE: 'BLUE',
+  GREEN: 'GREEN',
+  ORANGE: 'ORANGE',
+  YELLOW: 'YELLOW',
+  RED: 'RED',
+  PURPLE: 'PURPLE',
+} as const;
+
+export type QuestionType = (typeof QuestionType)[keyof typeof QuestionType];
+
+export const UnitType = {
+  FIXED: 'FIXED',
+  PER_SQFT: 'PER_SQFT',
+  PER_EACH: 'PER_EACH',
+  PER_LOT: 'PER_LOT',
+  PER_SET: 'PER_SET',
+  PER_UPGRADE: 'PER_UPGRADE',
+} as const;
+
+export type UnitType = (typeof UnitType)[keyof typeof UnitType];
+
+export const SubmissionStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED',
+} as const;
+
+export type SubmissionStatus =
+  (typeof SubmissionStatus)[keyof typeof SubmissionStatus];
+
+export const MediaType = {
+  PHOTO: 'PHOTO',
+  VIDEO: 'VIDEO',
+} as const;
+
+export type MediaType = (typeof MediaType)[keyof typeof MediaType];
+
 export const FileType = {
   image: 'image',
   docs: 'docs',
@@ -19,3 +59,11 @@ export const FileType = {
 } as const;
 
 export type FileType = (typeof FileType)[keyof typeof FileType];
+
+export const UserRole = {
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  ADMIN: 'ADMIN',
+  VIEW_ONLY: 'VIEW_ONLY',
+} as const;
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole];

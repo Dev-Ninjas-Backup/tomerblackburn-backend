@@ -123,10 +123,25 @@ export type ServiceStandsOut = Prisma.ServiceStandsOutModel;
  */
 export type AboutUs = Prisma.AboutUsModel;
 /**
+ * Model PortfolioCategory
+ *
+ */
+export type PortfolioCategory = Prisma.PortfolioCategoryModel;
+/**
+ * Model PortfolioImage
+ *
+ */
+export type PortfolioImage = Prisma.PortfolioImageModel;
+/**
  * Model Portfolio
  *
  */
 export type Portfolio = Prisma.PortfolioModel;
+/**
+ * Model SiteSettings
+ *
+ */
+export type SiteSettings = Prisma.SiteSettingsModel;
 /**
  * Model settings
  *

@@ -19,13 +19,13 @@ export class CostCodeOptionEntity implements CostCodeOption {
   priceModifier: Decimal;
 
   @ApiProperty()
-  finalPrice: Decimal;
-
-  @ApiProperty()
   isDefault: boolean;
 
   @ApiProperty()
   displayOrder: number;
+
+  @ApiProperty()
+  isActive: boolean;
 
   @ApiProperty()
   createdAt: Date;

@@ -12,6 +12,9 @@ export class BathroomTypeEntity implements BathroomType {
   name: string;
 
   @ApiProperty()
+  shortDescription: string | null;
+
+  @ApiProperty()
   fullDescription: string | null;
 
   @ApiProperty()

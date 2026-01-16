@@ -1,12 +1,37 @@
+// General site settings (singleton - only one record)
+model SiteSettings {
+  id              String        @id @default(uuid())
+  siteTitle       String
+  siteDescription String?
+  logoImageId     String?
+  logoImage       FileInstance? @relation(fields: [logoImageId], references: [id])
+
+  contactNumber String?
+  contactEmail  String?
+
+  // Social Media Links
+  facebookUrl  String?
+  instagramUrl String?
+  twitterUrl   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("site_settings")
+}
+
+// Keep backward compatibility - will be deprecated
 model settings {
-    id          String   @id @default(uuid())
-    siteTitle   String
-    siteDescription String
-    logoImageId String?
-    logoImage   FileInstance? @relation(fields: [logoImageId], references: [id])
+  id              String        @id @default(uuid())
+  siteTitle       String
+  siteDescription String
+  logoImageId     String?
+  logoImage       FileInstance? @relation("SettingsLogo", fields: [logoImageId], references: [id])
 
-    contactNumber String
+  contactNumber String
 
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("settings_old")
 }

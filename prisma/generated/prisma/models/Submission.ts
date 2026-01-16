@@ -50,7 +50,7 @@ export type SubmissionMinAggregateOutputType = {
   basePrice: runtime.Decimal | null;
   additionalItemsTotal: runtime.Decimal | null;
   totalAmount: runtime.Decimal | null;
-  status: string | null;
+  status: $Enums.SubmissionStatus | null;
   projectNotes: string | null;
   additionalDetails: string | null;
   ipAddress: string | null;
@@ -73,7 +73,7 @@ export type SubmissionMaxAggregateOutputType = {
   basePrice: runtime.Decimal | null;
   additionalItemsTotal: runtime.Decimal | null;
   totalAmount: runtime.Decimal | null;
-  status: string | null;
+  status: $Enums.SubmissionStatus | null;
   projectNotes: string | null;
   additionalDetails: string | null;
   ipAddress: string | null;
@@ -295,7 +295,7 @@ export type SubmissionGroupByOutputType = {
   basePrice: runtime.Decimal;
   additionalItemsTotal: runtime.Decimal;
   totalAmount: runtime.Decimal;
-  status: string;
+  status: $Enums.SubmissionStatus;
   projectNotes: string | null;
   additionalDetails: string | null;
   ipAddress: string | null;
@@ -354,7 +354,9 @@ export type SubmissionWhereInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFilter<'Submission'> | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFilter<'Submission'>
+    | $Enums.SubmissionStatus;
   projectNotes?: Prisma.StringNullableFilter<'Submission'> | string | null;
   additionalDetails?: Prisma.StringNullableFilter<'Submission'> | string | null;
   ipAddress?: Prisma.StringNullableFilter<'Submission'> | string | null;
@@ -438,7 +440,9 @@ export type SubmissionWhereUniqueInput = Prisma.AtLeast<
       | runtime.DecimalJsLike
       | number
       | string;
-    status?: Prisma.StringFilter<'Submission'> | string;
+    status?:
+      | Prisma.EnumSubmissionStatusFilter<'Submission'>
+      | $Enums.SubmissionStatus;
     projectNotes?: Prisma.StringNullableFilter<'Submission'> | string | null;
     additionalDetails?:
       | Prisma.StringNullableFilter<'Submission'>
@@ -534,7 +538,9 @@ export type SubmissionScalarWhereWithAggregatesInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringWithAggregatesFilter<'Submission'> | string;
+  status?:
+    | Prisma.EnumSubmissionStatusWithAggregatesFilter<'Submission'>
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.StringNullableWithAggregatesFilter<'Submission'>
     | string
@@ -583,7 +589,7 @@ export type SubmissionCreateInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -614,7 +620,7 @@ export type SubmissionUncheckedCreateInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -654,7 +660,9 @@ export type SubmissionUpdateInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -710,7 +718,9 @@ export type SubmissionUncheckedUpdateInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -754,7 +764,7 @@ export type SubmissionCreateManyInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -791,7 +801,9 @@ export type SubmissionUpdateManyMutationInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -843,7 +855,9 @@ export type SubmissionUncheckedUpdateManyInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1103,6 +1117,10 @@ export type SubmissionUpdateOneWithoutEmailLogsNestedInput = {
   >;
 };
 
+export type EnumSubmissionStatusFieldUpdateOperationsInput = {
+  set?: $Enums.SubmissionStatus;
+};
+
 export type SubmissionCreateNestedOneWithoutSubmissionItemsInput = {
   create?: Prisma.XOR<
     Prisma.SubmissionCreateWithoutSubmissionItemsInput,
@@ -1170,7 +1188,7 @@ export type SubmissionCreateWithoutBathroomTypeInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -1199,7 +1217,7 @@ export type SubmissionUncheckedCreateWithoutBathroomTypeInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -1286,7 +1304,9 @@ export type SubmissionScalarWhereInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFilter<'Submission'> | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFilter<'Submission'>
+    | $Enums.SubmissionStatus;
   projectNotes?: Prisma.StringNullableFilter<'Submission'> | string | null;
   additionalDetails?: Prisma.StringNullableFilter<'Submission'> | string | null;
   ipAddress?: Prisma.StringNullableFilter<'Submission'> | string | null;
@@ -1320,7 +1340,7 @@ export type SubmissionCreateWithoutEmailLogsInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -1350,7 +1370,7 @@ export type SubmissionUncheckedCreateWithoutEmailLogsInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -1417,7 +1437,9 @@ export type SubmissionUpdateWithoutEmailLogsInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1472,7 +1494,9 @@ export type SubmissionUncheckedUpdateWithoutEmailLogsInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1514,7 +1538,7 @@ export type SubmissionCreateWithoutSubmissionItemsInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -1544,7 +1568,7 @@ export type SubmissionUncheckedCreateWithoutSubmissionItemsInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -1611,7 +1635,9 @@ export type SubmissionUpdateWithoutSubmissionItemsInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1666,7 +1692,9 @@ export type SubmissionUncheckedUpdateWithoutSubmissionItemsInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1708,7 +1736,7 @@ export type SubmissionCreateWithoutSubmissionMediaInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -1738,7 +1766,7 @@ export type SubmissionUncheckedCreateWithoutSubmissionMediaInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -1805,7 +1833,9 @@ export type SubmissionUpdateWithoutSubmissionMediaInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1860,7 +1890,9 @@ export type SubmissionUncheckedUpdateWithoutSubmissionMediaInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1902,7 +1934,7 @@ export type SubmissionCreateManyBathroomTypeInput = {
     | number
     | string;
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: string;
+  status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
   ipAddress?: string | null;
@@ -1939,7 +1971,9 @@ export type SubmissionUpdateWithoutBathroomTypeInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1993,7 +2027,9 @@ export type SubmissionUncheckedUpdateWithoutBathroomTypeInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2047,7 +2083,9 @@ export type SubmissionUncheckedUpdateManyWithoutBathroomTypeInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  status?: Prisma.StringFieldUpdateOperationsInput | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFieldUpdateOperationsInput
+    | $Enums.SubmissionStatus;
   projectNotes?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2324,7 +2362,7 @@ export type $SubmissionPayload<
       basePrice: runtime.Decimal;
       additionalItemsTotal: runtime.Decimal;
       totalAmount: runtime.Decimal;
-      status: string;
+      status: $Enums.SubmissionStatus;
       projectNotes: string | null;
       additionalDetails: string | null;
       ipAddress: string | null;
@@ -2987,7 +3025,7 @@ export interface SubmissionFieldRefs {
   readonly basePrice: Prisma.FieldRef<'Submission', 'Decimal'>;
   readonly additionalItemsTotal: Prisma.FieldRef<'Submission', 'Decimal'>;
   readonly totalAmount: Prisma.FieldRef<'Submission', 'Decimal'>;
-  readonly status: Prisma.FieldRef<'Submission', 'String'>;
+  readonly status: Prisma.FieldRef<'Submission', 'SubmissionStatus'>;
   readonly projectNotes: Prisma.FieldRef<'Submission', 'String'>;
   readonly additionalDetails: Prisma.FieldRef<'Submission', 'String'>;
   readonly ipAddress: Prisma.FieldRef<'Submission', 'String'>;

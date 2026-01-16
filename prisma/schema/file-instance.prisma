@@ -1,35 +1,38 @@
 model FileInstance {
-    id String @id @default(uuid())
+  id String @id @default(uuid())
 
-    filename         String
-    originalFilename String
-    path             String
-    url              String
-    fileType         FileType @default(any)
-    mimeType         String
-    size             Int
+  filename         String
+  originalFilename String
+  path             String
+  url              String
+  fileType         FileType @default(any)
+  mimeType         String
+  size             Int
 
-    createdAt             DateTime     @default(now())
-    updatedAt             DateTime     @default(now()) @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
-    homeBackgroundImage HomePage[]
-    serviceImages      ServiceStandsOut[]
-    aboutUsImages      AboutUs[]
-    portfolioImages    Portfolio[]
-    settingLogos       settings[]
-    companySettingsLogo CompanySetting[]    @relation("CompanyLogo")
-    bathroomTypeImages  BathroomType[]      @relation("BathroomTypeImage")
-    submissionMedia     SubmissionMedia[]
+  homeBackgroundImage     HomePage[]
+  serviceImages           ServiceStandsOut[]
+  aboutUsImages           AboutUs[]
+  portfolioImages         Portfolio[]
+  portfolioCategoryImages PortfolioImage[]
+  siteSettingsLogos       SiteSettings[]
+  settingLogos            settings[]         @relation("SettingsLogo")
+  companySettingsLogo     CompanySetting[]   @relation("CompanyLogo")
+  bathroomTypeImages      BathroomType[]     @relation("BathroomTypeImage")
+  submissionMedia         SubmissionMedia[]
+  userAvatars             User[]             @relation("UserAvatar")
 
-    @@map("file_instances")
+  @@map("file_instances")
 }
 
 enum FileType {
-    image
-    docs
-    link
-    document
-    any
-    video
-    audio
+  image
+  docs
+  link
+  document
+  any
+  video
+  audio
 }

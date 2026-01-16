@@ -1,31 +1,39 @@
 model Submission {
-  id                   String    @id @default(uuid())
-  submissionNumber     String    @unique // EST-2025-001
-  bathroomTypeId       String
-  
-  clientName           String
-  clientEmail          String
-  clientPhone          String
-  projectAddress       String
-  zipCode              String?
-  
-  basePrice            Decimal   @db.Decimal(10, 2)
-  additionalItemsTotal Decimal   @default(0) @db.Decimal(10, 2)
-  totalAmount          Decimal   @db.Decimal(10, 2)
+  id               String @id @default(uuid())
+  submissionNumber String @unique // EST-2026-001
 
-  status               String    @default("PENDING") // PENDING, PROCESSING, COMPLETED
-  
-  projectNotes         String?
-  additionalDetails    String?
-  
-  ipAddress            String?
-  userAgent            String?
-  submittedAt          DateTime  @default(now())
-  updatedAt            DateTime  @updatedAt
-  reviewedAt           DateTime?
-  completedAt          DateTime?
+  // Bathroom Type Reference
+  bathroomTypeId String
 
-  bathroomType    BathroomType       @relation(fields: [bathroomTypeId], references: [id])
+  // Client Information
+  clientName     String
+  clientEmail    String
+  clientPhone    String
+  projectAddress String
+  zipCode        String?
+
+  // Pricing Summary
+  basePrice            Decimal @db.Decimal(10, 2)
+  additionalItemsTotal Decimal @default(0) @db.Decimal(10, 2)
+  totalAmount          Decimal @db.Decimal(10, 2)
+
+  // Status Tracking
+  status SubmissionStatus @default(PENDING)
+
+  // Additional Info
+  projectNotes      String?
+  additionalDetails String?
+
+  // Tracking
+  ipAddress   String?
+  userAgent   String?
+  submittedAt DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  reviewedAt  DateTime?
+  completedAt DateTime?
+
+  // Relations
+  bathroomType    BathroomType      @relation(fields: [bathroomTypeId], references: [id])
   submissionItems SubmissionItem[]
   submissionMedia SubmissionMedia[]
   emailLogs       EmailLog[]
@@ -33,45 +41,63 @@ model Submission {
   @@index([submissionNumber])
   @@index([status])
   @@index([clientEmail])
+  @@index([clientPhone])
   @@index([submittedAt])
   @@index([bathroomTypeId])
   @@map("submissions")
 }
 
+enum SubmissionStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELLED
+}
+
 model SubmissionItem {
-  id               String   @id @default(uuid())
+  id               String  @id @default(uuid())
   submissionId     String
   costCodeId       String
   selectedOptionId String?
-  
-  quantity         Decimal  @default(1) @db.Decimal(10, 2)
-  unitPrice        Decimal  @db.Decimal(10, 2)
-  totalPrice       Decimal  @db.Decimal(10, 2)
-  
-  itemType         String?  // fixed, selection, toggle, user_input
-  isEnabled        Boolean  @default(true)
-  userInputValue   String?
-  
-  notes            String?
-  createdAt        DateTime @default(now())
 
+  // Pricing Details
+  quantity   Decimal @default(1) @db.Decimal(10, 2)
+  unitPrice  Decimal @db.Decimal(10, 2)
+  totalPrice Decimal @db.Decimal(10, 2)
+
+  // Item Behavior (snapshot of how it was answered)
+  questionType   QuestionType? // Snapshot of cost code's question type at submission time
+  isEnabled      Boolean       @default(true) // For toggle items
+  userInputValue String? // For user input items (e.g., "150" sqft)
+
+  // Snapshot of item details at submission time
+  itemName           String? // Snapshot of cost code name
+  itemDescription    String? // Snapshot of cost code description
+  selectedOptionName String? // Snapshot of selected option name
+
+  notes     String?
+  createdAt DateTime @default(now())
+
+  // Relations
   submission     Submission      @relation(fields: [submissionId], references: [id], onDelete: Cascade)
   costCode       CostCode        @relation(fields: [costCodeId], references: [id])
   selectedOption CostCodeOption? @relation(fields: [selectedOptionId], references: [id])
 
   @@index([submissionId])
   @@index([costCodeId])
+  @@index([selectedOptionId])
   @@map("submission_items")
 }
 
 model SubmissionMedia {
-  id             String   @id @default(uuid())
+  id             String @id @default(uuid())
   submissionId   String
   fileInstanceId String
-  mediaType      String
-  description    String?
-  displayOrder   Int      @default(0)
-  uploadedAt     DateTime @default(now())
+
+  mediaType    MediaType @default(PHOTO)
+  description  String?
+  displayOrder Int       @default(0)
+  uploadedAt   DateTime  @default(now())
 
   submission   Submission   @relation(fields: [submissionId], references: [id], onDelete: Cascade)
   fileInstance FileInstance @relation(fields: [fileInstanceId], references: [id])
@@ -80,4 +106,9 @@ model SubmissionMedia {
   @@index([mediaType])
   @@index([fileInstanceId])
   @@map("submission_media")
+}
+
+enum MediaType {
+  PHOTO
+  VIDEO
 }

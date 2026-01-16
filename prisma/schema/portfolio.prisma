@@ -1,9 +1,50 @@
-model Portfolio {
-    id          String   @id @default(uuid())
-    category    String
-    imageId     String?
-    image       FileInstance? @relation(fields: [imageId], references: [id])
+// Portfolio category/project (e.g., "Lakeview")
+model PortfolioCategory {
+  id           String  @id @default(uuid())
+  name         String // "Lakeview", "Lincoln Park", etc.
+  slug         String  @unique
+  description  String?
+  displayOrder Int     @default(0)
+  isActive     Boolean @default(true)
 
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  images PortfolioImage[]
+
+  @@index([slug])
+  @@index([isActive])
+  @@map("portfolio_categories")
+}
+
+// Individual images within a portfolio category
+model PortfolioImage {
+  id           String  @id @default(uuid())
+  categoryId   String
+  fileId       String
+  caption      String?
+  displayOrder Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  category PortfolioCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  file     FileInstance      @relation(fields: [fileId], references: [id])
+
+  @@index([categoryId])
+  @@index([fileId])
+  @@map("portfolio_images")
+}
+
+// Keep backward compatibility - will be deprecated
+model Portfolio {
+  id       String        @id @default(uuid())
+  category String
+  imageId  String?
+  image    FileInstance? @relation(fields: [imageId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("portfolios")
 }

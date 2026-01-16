@@ -32,8 +32,18 @@ export class CreateBathroomTypeDto {
   name: string;
 
   @ApiProperty({
-    description: 'Full description of what is included',
+    description: 'Short description displayed on cards',
     example: 'Toilet + Sink + Shower + Tub',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  shortDescription?: string;
+
+  @ApiProperty({
+    description: 'Full detailed description of what is included',
+    example:
+      'Complete bathroom renovation including toilet, sink/vanity, shower, and bathtub installation.',
     required: false,
   })
   @IsString()
@@ -41,7 +51,7 @@ export class CreateBathroomTypeDto {
   fullDescription?: string;
 
   @ApiProperty({
-    description: 'Base price for this bathroom type',
+    description: 'Base price for this bathroom type (displayed on cards)',
     example: 15000.0,
     minimum: 0,
   })

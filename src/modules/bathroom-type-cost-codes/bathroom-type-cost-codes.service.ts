@@ -151,20 +151,10 @@ export class BathroomTypeCostCodesService {
       const assignments = [];
 
       for (const costCode of costCodes) {
-        const applicableTo: string[] = [];
-
-        if (costCode.appliesToFp && bathroomTypeMap['FP']) {
-          applicableTo.push(bathroomTypeMap['FP']);
-        }
-        if (costCode.appliesToTps && bathroomTypeMap['TPS']) {
-          applicableTo.push(bathroomTypeMap['TPS']);
-        }
-        if (costCode.appliesToTpt && bathroomTypeMap['TPT']) {
-          applicableTo.push(bathroomTypeMap['TPT']);
-        }
-        if (costCode.appliesToTp && bathroomTypeMap['TP']) {
-          applicableTo.push(bathroomTypeMap['TP']);
-        }
+        // Apply to all bathroom types by default
+        // Note: The old appliesToFp, appliesToTps, appliesToTpt, appliesToTp fields
+        // no longer exist in the schema. This sync now applies to all bathroom types.
+        const applicableTo = Object.values(bathroomTypeMap);
 
         for (const bathroomTypeId of applicableTo) {
           const existing = await this.prisma.bathroomTypeCostCode.findFirst({
@@ -179,7 +169,7 @@ export class BathroomTypeCostCodesService {
               data: {
                 bathroomTypeId,
                 costCodeId: costCode.id,
-                isIncludedInBase: costCode.colorTag === 'WHITE',
+                isIncludedInBase: costCode.questionType === 'WHITE',
                 isRequired: false,
               },
             });

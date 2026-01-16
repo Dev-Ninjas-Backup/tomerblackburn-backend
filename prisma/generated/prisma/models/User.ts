@@ -29,6 +29,10 @@ export type UserMinAggregateOutputType = {
   name: string | null;
   email: string | null;
   password: string | null;
+  role: $Enums.UserRole | null;
+  isActive: boolean | null;
+  avatarFileId: string | null;
+  lastLoginAt: Date | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -38,6 +42,10 @@ export type UserMaxAggregateOutputType = {
   name: string | null;
   email: string | null;
   password: string | null;
+  role: $Enums.UserRole | null;
+  isActive: boolean | null;
+  avatarFileId: string | null;
+  lastLoginAt: Date | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -47,6 +55,10 @@ export type UserCountAggregateOutputType = {
   name: number;
   email: number;
   password: number;
+  role: number;
+  isActive: number;
+  avatarFileId: number;
+  lastLoginAt: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -57,6 +69,10 @@ export type UserMinAggregateInputType = {
   name?: true;
   email?: true;
   password?: true;
+  role?: true;
+  isActive?: true;
+  avatarFileId?: true;
+  lastLoginAt?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -66,6 +82,10 @@ export type UserMaxAggregateInputType = {
   name?: true;
   email?: true;
   password?: true;
+  role?: true;
+  isActive?: true;
+  avatarFileId?: true;
+  lastLoginAt?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -75,6 +95,10 @@ export type UserCountAggregateInputType = {
   name?: true;
   email?: true;
   password?: true;
+  role?: true;
+  isActive?: true;
+  avatarFileId?: true;
+  lastLoginAt?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -164,6 +188,10 @@ export type UserGroupByOutputType = {
   name: string;
   email: string;
   password: string;
+  role: $Enums.UserRole;
+  isActive: boolean;
+  avatarFileId: string | null;
+  lastLoginAt: Date | null;
   createdAt: Date;
   updatedAt: Date;
   _count: UserCountAggregateOutputType | null;
@@ -191,8 +219,16 @@ export type UserWhereInput = {
   name?: Prisma.StringFilter<'User'> | string;
   email?: Prisma.StringFilter<'User'> | string;
   password?: Prisma.StringFilter<'User'> | string;
+  role?: Prisma.EnumUserRoleFilter<'User'> | $Enums.UserRole;
+  isActive?: Prisma.BoolFilter<'User'> | boolean;
+  avatarFileId?: Prisma.StringNullableFilter<'User'> | string | null;
+  lastLoginAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
   createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
+  avatarFile?: Prisma.XOR<
+    Prisma.FileInstanceNullableScalarRelationFilter,
+    Prisma.FileInstanceWhereInput
+  > | null;
   activityLogs?: Prisma.ActivityLogListRelationFilter;
 };
 
@@ -201,8 +237,13 @@ export type UserOrderByWithRelationInput = {
   name?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   password?: Prisma.SortOrder;
+  role?: Prisma.SortOrder;
+  isActive?: Prisma.SortOrder;
+  avatarFileId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  avatarFile?: Prisma.FileInstanceOrderByWithRelationInput;
   activityLogs?: Prisma.ActivityLogOrderByRelationAggregateInput;
 };
 
@@ -215,8 +256,16 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
     NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
     name?: Prisma.StringFilter<'User'> | string;
     password?: Prisma.StringFilter<'User'> | string;
+    role?: Prisma.EnumUserRoleFilter<'User'> | $Enums.UserRole;
+    isActive?: Prisma.BoolFilter<'User'> | boolean;
+    avatarFileId?: Prisma.StringNullableFilter<'User'> | string | null;
+    lastLoginAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
     createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
+    avatarFile?: Prisma.XOR<
+      Prisma.FileInstanceNullableScalarRelationFilter,
+      Prisma.FileInstanceWhereInput
+    > | null;
     activityLogs?: Prisma.ActivityLogListRelationFilter;
   },
   'id' | 'email'
@@ -227,6 +276,10 @@ export type UserOrderByWithAggregationInput = {
   name?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   password?: Prisma.SortOrder;
+  role?: Prisma.SortOrder;
+  isActive?: Prisma.SortOrder;
+  avatarFileId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.UserCountOrderByAggregateInput;
@@ -246,6 +299,17 @@ export type UserScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<'User'> | string;
   email?: Prisma.StringWithAggregatesFilter<'User'> | string;
   password?: Prisma.StringWithAggregatesFilter<'User'> | string;
+  role?: Prisma.EnumUserRoleWithAggregatesFilter<'User'> | $Enums.UserRole;
+  isActive?: Prisma.BoolWithAggregatesFilter<'User'> | boolean;
+  avatarFileId?:
+    | Prisma.StringNullableWithAggregatesFilter<'User'>
+    | string
+    | null;
+  lastLoginAt?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<'User'>
+    | Date
+    | string
+    | null;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'User'> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<'User'> | Date | string;
 };
@@ -255,8 +319,12 @@ export type UserCreateInput = {
   name: string;
   email: string;
   password: string;
+  role?: $Enums.UserRole;
+  isActive?: boolean;
+  lastLoginAt?: Date | string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  avatarFile?: Prisma.FileInstanceCreateNestedOneWithoutUserAvatarsInput;
   activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput;
 };
 
@@ -265,6 +333,10 @@ export type UserUncheckedCreateInput = {
   name: string;
   email: string;
   password: string;
+  role?: $Enums.UserRole;
+  isActive?: boolean;
+  avatarFileId?: string | null;
+  lastLoginAt?: Date | string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput;
@@ -275,8 +347,16 @@ export type UserUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  avatarFile?: Prisma.FileInstanceUpdateOneWithoutUserAvatarsNestedInput;
   activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput;
 };
 
@@ -285,6 +365,17 @@ export type UserUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  avatarFileId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput;
@@ -295,6 +386,10 @@ export type UserCreateManyInput = {
   name: string;
   email: string;
   password: string;
+  role?: $Enums.UserRole;
+  isActive?: boolean;
+  avatarFileId?: string | null;
+  lastLoginAt?: Date | string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -304,6 +399,13 @@ export type UserUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -313,6 +415,17 @@ export type UserUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  avatarFileId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -322,11 +435,25 @@ export type UserNullableScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput | null;
 };
 
+export type UserListRelationFilter = {
+  every?: Prisma.UserWhereInput;
+  some?: Prisma.UserWhereInput;
+  none?: Prisma.UserWhereInput;
+};
+
+export type UserOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder;
+};
+
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   password?: Prisma.SortOrder;
+  role?: Prisma.SortOrder;
+  isActive?: Prisma.SortOrder;
+  avatarFileId?: Prisma.SortOrder;
+  lastLoginAt?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -336,6 +463,10 @@ export type UserMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   password?: Prisma.SortOrder;
+  role?: Prisma.SortOrder;
+  isActive?: Prisma.SortOrder;
+  avatarFileId?: Prisma.SortOrder;
+  lastLoginAt?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -345,6 +476,10 @@ export type UserMinOrderByAggregateInput = {
   name?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   password?: Prisma.SortOrder;
+  role?: Prisma.SortOrder;
+  isActive?: Prisma.SortOrder;
+  avatarFileId?: Prisma.SortOrder;
+  lastLoginAt?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -377,13 +512,107 @@ export type UserUpdateOneWithoutActivityLogsNestedInput = {
   >;
 };
 
+export type UserCreateNestedManyWithoutAvatarFileInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutAvatarFileInput,
+        Prisma.UserUncheckedCreateWithoutAvatarFileInput
+      >
+    | Prisma.UserCreateWithoutAvatarFileInput[]
+    | Prisma.UserUncheckedCreateWithoutAvatarFileInput[];
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutAvatarFileInput
+    | Prisma.UserCreateOrConnectWithoutAvatarFileInput[];
+  createMany?: Prisma.UserCreateManyAvatarFileInputEnvelope;
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[];
+};
+
+export type UserUncheckedCreateNestedManyWithoutAvatarFileInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutAvatarFileInput,
+        Prisma.UserUncheckedCreateWithoutAvatarFileInput
+      >
+    | Prisma.UserCreateWithoutAvatarFileInput[]
+    | Prisma.UserUncheckedCreateWithoutAvatarFileInput[];
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutAvatarFileInput
+    | Prisma.UserCreateOrConnectWithoutAvatarFileInput[];
+  createMany?: Prisma.UserCreateManyAvatarFileInputEnvelope;
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[];
+};
+
+export type UserUpdateManyWithoutAvatarFileNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutAvatarFileInput,
+        Prisma.UserUncheckedCreateWithoutAvatarFileInput
+      >
+    | Prisma.UserCreateWithoutAvatarFileInput[]
+    | Prisma.UserUncheckedCreateWithoutAvatarFileInput[];
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutAvatarFileInput
+    | Prisma.UserCreateOrConnectWithoutAvatarFileInput[];
+  upsert?:
+    | Prisma.UserUpsertWithWhereUniqueWithoutAvatarFileInput
+    | Prisma.UserUpsertWithWhereUniqueWithoutAvatarFileInput[];
+  createMany?: Prisma.UserCreateManyAvatarFileInputEnvelope;
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[];
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[];
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[];
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[];
+  update?:
+    | Prisma.UserUpdateWithWhereUniqueWithoutAvatarFileInput
+    | Prisma.UserUpdateWithWhereUniqueWithoutAvatarFileInput[];
+  updateMany?:
+    | Prisma.UserUpdateManyWithWhereWithoutAvatarFileInput
+    | Prisma.UserUpdateManyWithWhereWithoutAvatarFileInput[];
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[];
+};
+
+export type UserUncheckedUpdateManyWithoutAvatarFileNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.UserCreateWithoutAvatarFileInput,
+        Prisma.UserUncheckedCreateWithoutAvatarFileInput
+      >
+    | Prisma.UserCreateWithoutAvatarFileInput[]
+    | Prisma.UserUncheckedCreateWithoutAvatarFileInput[];
+  connectOrCreate?:
+    | Prisma.UserCreateOrConnectWithoutAvatarFileInput
+    | Prisma.UserCreateOrConnectWithoutAvatarFileInput[];
+  upsert?:
+    | Prisma.UserUpsertWithWhereUniqueWithoutAvatarFileInput
+    | Prisma.UserUpsertWithWhereUniqueWithoutAvatarFileInput[];
+  createMany?: Prisma.UserCreateManyAvatarFileInputEnvelope;
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[];
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[];
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[];
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[];
+  update?:
+    | Prisma.UserUpdateWithWhereUniqueWithoutAvatarFileInput
+    | Prisma.UserUpdateWithWhereUniqueWithoutAvatarFileInput[];
+  updateMany?:
+    | Prisma.UserUpdateManyWithWhereWithoutAvatarFileInput
+    | Prisma.UserUpdateManyWithWhereWithoutAvatarFileInput[];
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[];
+};
+
+export type EnumUserRoleFieldUpdateOperationsInput = {
+  set?: $Enums.UserRole;
+};
+
 export type UserCreateWithoutActivityLogsInput = {
   id?: string;
   name: string;
   email: string;
   password: string;
+  role?: $Enums.UserRole;
+  isActive?: boolean;
+  lastLoginAt?: Date | string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  avatarFile?: Prisma.FileInstanceCreateNestedOneWithoutUserAvatarsInput;
 };
 
 export type UserUncheckedCreateWithoutActivityLogsInput = {
@@ -391,6 +620,10 @@ export type UserUncheckedCreateWithoutActivityLogsInput = {
   name: string;
   email: string;
   password: string;
+  role?: $Enums.UserRole;
+  isActive?: boolean;
+  avatarFileId?: string | null;
+  lastLoginAt?: Date | string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -428,8 +661,16 @@ export type UserUpdateWithoutActivityLogsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  avatarFile?: Prisma.FileInstanceUpdateOneWithoutUserAvatarsNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutActivityLogsInput = {
@@ -437,6 +678,164 @@ export type UserUncheckedUpdateWithoutActivityLogsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  avatarFileId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type UserCreateWithoutAvatarFileInput = {
+  id?: string;
+  name: string;
+  email: string;
+  password: string;
+  role?: $Enums.UserRole;
+  isActive?: boolean;
+  lastLoginAt?: Date | string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  activityLogs?: Prisma.ActivityLogCreateNestedManyWithoutUserInput;
+};
+
+export type UserUncheckedCreateWithoutAvatarFileInput = {
+  id?: string;
+  name: string;
+  email: string;
+  password: string;
+  role?: $Enums.UserRole;
+  isActive?: boolean;
+  lastLoginAt?: Date | string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  activityLogs?: Prisma.ActivityLogUncheckedCreateNestedManyWithoutUserInput;
+};
+
+export type UserCreateOrConnectWithoutAvatarFileInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutAvatarFileInput,
+    Prisma.UserUncheckedCreateWithoutAvatarFileInput
+  >;
+};
+
+export type UserCreateManyAvatarFileInputEnvelope = {
+  data:
+    | Prisma.UserCreateManyAvatarFileInput
+    | Prisma.UserCreateManyAvatarFileInput[];
+  skipDuplicates?: boolean;
+};
+
+export type UserUpsertWithWhereUniqueWithoutAvatarFileInput = {
+  where: Prisma.UserWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutAvatarFileInput,
+    Prisma.UserUncheckedUpdateWithoutAvatarFileInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutAvatarFileInput,
+    Prisma.UserUncheckedCreateWithoutAvatarFileInput
+  >;
+};
+
+export type UserUpdateWithWhereUniqueWithoutAvatarFileInput = {
+  where: Prisma.UserWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutAvatarFileInput,
+    Prisma.UserUncheckedUpdateWithoutAvatarFileInput
+  >;
+};
+
+export type UserUpdateManyWithWhereWithoutAvatarFileInput = {
+  where: Prisma.UserScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateManyMutationInput,
+    Prisma.UserUncheckedUpdateManyWithoutAvatarFileInput
+  >;
+};
+
+export type UserScalarWhereInput = {
+  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[];
+  OR?: Prisma.UserScalarWhereInput[];
+  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[];
+  id?: Prisma.StringFilter<'User'> | string;
+  name?: Prisma.StringFilter<'User'> | string;
+  email?: Prisma.StringFilter<'User'> | string;
+  password?: Prisma.StringFilter<'User'> | string;
+  role?: Prisma.EnumUserRoleFilter<'User'> | $Enums.UserRole;
+  isActive?: Prisma.BoolFilter<'User'> | boolean;
+  avatarFileId?: Prisma.StringNullableFilter<'User'> | string | null;
+  lastLoginAt?: Prisma.DateTimeNullableFilter<'User'> | Date | string | null;
+  createdAt?: Prisma.DateTimeFilter<'User'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'User'> | Date | string;
+};
+
+export type UserCreateManyAvatarFileInput = {
+  id?: string;
+  name: string;
+  email: string;
+  password: string;
+  role?: $Enums.UserRole;
+  isActive?: boolean;
+  lastLoginAt?: Date | string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type UserUpdateWithoutAvatarFileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  activityLogs?: Prisma.ActivityLogUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutAvatarFileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  activityLogs?: Prisma.ActivityLogUncheckedUpdateManyWithoutUserNestedInput;
+};
+
+export type UserUncheckedUpdateManyWithoutAvatarFileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -488,8 +887,13 @@ export type UserSelect<
     name?: boolean;
     email?: boolean;
     password?: boolean;
+    role?: boolean;
+    isActive?: boolean;
+    avatarFileId?: boolean;
+    lastLoginAt?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    avatarFile?: boolean | Prisma.User$avatarFileArgs<ExtArgs>;
     activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>;
     _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
   },
@@ -505,8 +909,13 @@ export type UserSelectCreateManyAndReturn<
     name?: boolean;
     email?: boolean;
     password?: boolean;
+    role?: boolean;
+    isActive?: boolean;
+    avatarFileId?: boolean;
+    lastLoginAt?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    avatarFile?: boolean | Prisma.User$avatarFileArgs<ExtArgs>;
   },
   ExtArgs['result']['user']
 >;
@@ -520,8 +929,13 @@ export type UserSelectUpdateManyAndReturn<
     name?: boolean;
     email?: boolean;
     password?: boolean;
+    role?: boolean;
+    isActive?: boolean;
+    avatarFileId?: boolean;
+    lastLoginAt?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    avatarFile?: boolean | Prisma.User$avatarFileArgs<ExtArgs>;
   },
   ExtArgs['result']['user']
 >;
@@ -531,6 +945,10 @@ export type UserSelectScalar = {
   name?: boolean;
   email?: boolean;
   password?: boolean;
+  role?: boolean;
+  isActive?: boolean;
+  avatarFileId?: boolean;
+  lastLoginAt?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -539,24 +957,38 @@ export type UserOmit<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  'id' | 'name' | 'email' | 'password' | 'createdAt' | 'updatedAt',
+  | 'id'
+  | 'name'
+  | 'email'
+  | 'password'
+  | 'role'
+  | 'isActive'
+  | 'avatarFileId'
+  | 'lastLoginAt'
+  | 'createdAt'
+  | 'updatedAt',
   ExtArgs['result']['user']
 >;
 export type UserInclude<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
+  avatarFile?: boolean | Prisma.User$avatarFileArgs<ExtArgs>;
   activityLogs?: boolean | Prisma.User$activityLogsArgs<ExtArgs>;
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
-> = {};
+> = {
+  avatarFile?: boolean | Prisma.User$avatarFileArgs<ExtArgs>;
+};
 export type UserIncludeUpdateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
-> = {};
+> = {
+  avatarFile?: boolean | Prisma.User$avatarFileArgs<ExtArgs>;
+};
 
 export type $UserPayload<
   ExtArgs extends
@@ -564,6 +996,7 @@ export type $UserPayload<
 > = {
   name: 'User';
   objects: {
+    avatarFile: Prisma.$FileInstancePayload<ExtArgs> | null;
     activityLogs: Prisma.$ActivityLogPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
@@ -572,6 +1005,10 @@ export type $UserPayload<
       name: string;
       email: string;
       password: string;
+      role: $Enums.UserRole;
+      isActive: boolean;
+      avatarFileId: string | null;
+      lastLoginAt: Date | null;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1124,6 +1561,19 @@ export interface Prisma__UserClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: 'PrismaPromise';
+  avatarFile<T extends Prisma.User$avatarFileArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$avatarFileArgs<ExtArgs>>,
+  ): Prisma.Prisma__FileInstanceClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$FileInstancePayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   activityLogs<T extends Prisma.User$activityLogsArgs<ExtArgs> = {}>(
     args?: Prisma.Subset<T, Prisma.User$activityLogsArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
@@ -1181,6 +1631,10 @@ export interface UserFieldRefs {
   readonly name: Prisma.FieldRef<'User', 'String'>;
   readonly email: Prisma.FieldRef<'User', 'String'>;
   readonly password: Prisma.FieldRef<'User', 'String'>;
+  readonly role: Prisma.FieldRef<'User', 'UserRole'>;
+  readonly isActive: Prisma.FieldRef<'User', 'Boolean'>;
+  readonly avatarFileId: Prisma.FieldRef<'User', 'String'>;
+  readonly lastLoginAt: Prisma.FieldRef<'User', 'DateTime'>;
   readonly createdAt: Prisma.FieldRef<'User', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'User', 'DateTime'>;
 }
@@ -1461,6 +1915,10 @@ export type UserCreateManyAndReturnArgs<
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[];
   skipDuplicates?: boolean;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeCreateManyAndReturn<ExtArgs> | null;
 };
 
 /**
@@ -1546,6 +2004,10 @@ export type UserUpdateManyAndReturnArgs<
    * Limit how many Users to update.
    */
   limit?: number;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeUpdateManyAndReturn<ExtArgs> | null;
 };
 
 /**
@@ -1621,6 +2083,28 @@ export type UserDeleteManyArgs<
    * Limit how many Users to delete.
    */
   limit?: number;
+};
+
+/**
+ * User.avatarFile
+ */
+export type User$avatarFileArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the FileInstance
+   */
+  select?: Prisma.FileInstanceSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the FileInstance
+   */
+  omit?: Prisma.FileInstanceOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FileInstanceInclude<ExtArgs> | null;
+  where?: Prisma.FileInstanceWhereInput;
 };
 
 /**

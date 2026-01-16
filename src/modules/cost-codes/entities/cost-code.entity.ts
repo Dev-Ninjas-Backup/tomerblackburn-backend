@@ -22,13 +22,16 @@ export class CostCodeEntity implements CostCode {
   basePrice: Decimal;
 
   @ApiProperty()
-  unitType: string | null;
+  unitType: CostCode['unitType'];
 
   @ApiProperty()
-  colorTag: string | null;
+  questionType: CostCode['questionType'];
 
   @ApiProperty()
-  calculationType: string | null;
+  displayOrder: number;
+
+  @ApiProperty()
+  isIncludedInBase: boolean;
 
   @ApiProperty()
   requiresQuantity: boolean;
@@ -38,18 +41,6 @@ export class CostCodeEntity implements CostCode {
 
   @ApiProperty()
   isActive: boolean;
-
-  @ApiProperty()
-  appliesToFp: boolean;
-
-  @ApiProperty()
-  appliesToTps: boolean;
-
-  @ApiProperty()
-  appliesToTpt: boolean;
-
-  @ApiProperty()
-  appliesToTp: boolean;
 
   @ApiProperty()
   createdAt: Date;

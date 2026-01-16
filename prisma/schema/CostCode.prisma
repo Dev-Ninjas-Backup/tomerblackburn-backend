@@ -1,33 +1,57 @@
 model CostCode {
-  id               String   @id @default(uuid())
-  categoryId       String
-  code             String   @unique // FP-D-1, FP-FL-2, etc.
-  name             String
-  description      String?
-  basePrice        Decimal  @default(0) @db.Decimal(10, 2)
-  unitType         String?  // per_lot, per_sqft, per_upgrade, per_each, per_set, fixed
-  colorTag         String?  // WHITE, ORANGE, BLUE, YELLOW, GREEN
-  calculationType  String?  // fixed, user_input, selection, toggle
-  requiresQuantity Boolean  @default(false)
-  isOptional       Boolean  @default(false)
-  isActive         Boolean  @default(true)
-  
-  appliesToFp      Boolean  @default(false) // Four Piece
-  appliesToTps     Boolean  @default(false) // Three Piece Shower
-  appliesToTpt     Boolean  @default(false) // Three Piece Tub
-  appliesToTp      Boolean  @default(false) // Two Piece
-  
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id          String  @id @default(uuid())
+  categoryId  String
+  code        String  @unique // FP-D-1, FP-FL-2, etc.
+  name        String // Display title (e.g., "Floor Tile Installation", "Heated Floor")
+  description String? // Detailed description of the work
 
-  category                CostCodeCategory          @relation(fields: [categoryId], references: [id])
-  options                 CostCodeOption[]
-  bathroomTypeCostCodes   BathroomTypeCostCode[]
-  submissionItems         SubmissionItem[]
+  // Pricing
+  basePrice Decimal  @default(0) @db.Decimal(10, 2) // Base/default price
+  unitType  UnitType @default(FIXED) // How the cost is calculated
+
+  // Question Type (color-coded in UI)
+  questionType QuestionType @default(WHITE) // Determines UI behavior
+
+  // Display & Behavior
+  displayOrder     Int     @default(0)
+  isIncludedInBase Boolean @default(false) // Shows "Included in base price"
+  requiresQuantity Boolean @default(false) // User must enter quantity
+  isOptional       Boolean @default(false) // Can be toggled on/off
+  isActive         Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  category              CostCodeCategory       @relation(fields: [categoryId], references: [id])
+  options               CostCodeOption[]
+  bathroomTypeCostCodes BathroomTypeCostCode[]
+  submissionItems       SubmissionItem[]
 
   @@index([code])
   @@index([categoryId])
   @@index([isActive])
-  @@index([colorTag])
+  @@index([questionType])
+  @@index([displayOrder])
   @@map("cost_codes")
+}
+
+// Question Type determines UI behavior (color-coded in admin)
+enum QuestionType {
+  WHITE // Fixed/Included in base price - no user interaction, just informational
+  BLUE // Toggle - on/off switch, adds fixed price when enabled
+  GREEN // Dropdown selection - user picks from options (per upgrade)
+  ORANGE // Dropdown with tiers - Standard/Mid-Range/Premium options
+  YELLOW // User input - numeric input (e.g., square footage)
+  RED // User input variant
+  PURPLE // User input variant
+}
+
+// How the cost is calculated
+enum UnitType {
+  FIXED // Fixed one-time cost
+  PER_SQFT // Price per square foot
+  PER_EACH // Price per unit/item
+  PER_LOT // Price per lot
+  PER_SET // Price per set
+  PER_UPGRADE // Price per upgrade selection
 }

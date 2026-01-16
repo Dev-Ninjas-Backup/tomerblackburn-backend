@@ -1,11 +1,21 @@
+// Junction table linking BathroomTypes to CostCodes
+// This allows different cost codes to apply to different bathroom types
+// with optional overrides for pricing and behavior
 model BathroomTypeCostCode {
-  id                  String   @id @default(uuid())
-  bathroomTypeId      String
-  costCodeId          String
-  isIncludedInBase    Boolean  @default(true)
-  isRequired          Boolean  @default(false)
-  defaultQuantity     Decimal? @db.Decimal(10, 2)
-  createdAt           DateTime @default(now())
+  id             String @id @default(uuid())
+  bathroomTypeId String
+  costCodeId     String
+
+  // Override settings specific to this bathroom type
+  isIncludedInBase Boolean  @default(false) // Override: included in base price for this type
+  isRequired       Boolean  @default(false) // Must be included in estimate
+  isVisible        Boolean  @default(true) // Show in estimator for this type
+  defaultQuantity  Decimal? @db.Decimal(10, 2) // Default quantity for this type
+  priceOverride    Decimal? @db.Decimal(10, 2) // Override base price for this type
+  displayOrder     Int      @default(0) // Order within category for this type
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   bathroomType BathroomType @relation(fields: [bathroomTypeId], references: [id], onDelete: Cascade)
   costCode     CostCode     @relation(fields: [costCodeId], references: [id], onDelete: Cascade)
@@ -13,5 +23,6 @@ model BathroomTypeCostCode {
   @@unique([bathroomTypeId, costCodeId])
   @@index([bathroomTypeId])
   @@index([costCodeId])
+  @@index([isVisible])
   @@map("bathroom_type_cost_codes")
 }

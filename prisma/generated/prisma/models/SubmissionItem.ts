@@ -46,9 +46,12 @@ export type SubmissionItemMinAggregateOutputType = {
   quantity: runtime.Decimal | null;
   unitPrice: runtime.Decimal | null;
   totalPrice: runtime.Decimal | null;
-  itemType: string | null;
+  questionType: $Enums.QuestionType | null;
   isEnabled: boolean | null;
   userInputValue: string | null;
+  itemName: string | null;
+  itemDescription: string | null;
+  selectedOptionName: string | null;
   notes: string | null;
   createdAt: Date | null;
 };
@@ -61,9 +64,12 @@ export type SubmissionItemMaxAggregateOutputType = {
   quantity: runtime.Decimal | null;
   unitPrice: runtime.Decimal | null;
   totalPrice: runtime.Decimal | null;
-  itemType: string | null;
+  questionType: $Enums.QuestionType | null;
   isEnabled: boolean | null;
   userInputValue: string | null;
+  itemName: string | null;
+  itemDescription: string | null;
+  selectedOptionName: string | null;
   notes: string | null;
   createdAt: Date | null;
 };
@@ -76,9 +82,12 @@ export type SubmissionItemCountAggregateOutputType = {
   quantity: number;
   unitPrice: number;
   totalPrice: number;
-  itemType: number;
+  questionType: number;
   isEnabled: number;
   userInputValue: number;
+  itemName: number;
+  itemDescription: number;
+  selectedOptionName: number;
   notes: number;
   createdAt: number;
   _all: number;
@@ -104,9 +113,12 @@ export type SubmissionItemMinAggregateInputType = {
   quantity?: true;
   unitPrice?: true;
   totalPrice?: true;
-  itemType?: true;
+  questionType?: true;
   isEnabled?: true;
   userInputValue?: true;
+  itemName?: true;
+  itemDescription?: true;
+  selectedOptionName?: true;
   notes?: true;
   createdAt?: true;
 };
@@ -119,9 +131,12 @@ export type SubmissionItemMaxAggregateInputType = {
   quantity?: true;
   unitPrice?: true;
   totalPrice?: true;
-  itemType?: true;
+  questionType?: true;
   isEnabled?: true;
   userInputValue?: true;
+  itemName?: true;
+  itemDescription?: true;
+  selectedOptionName?: true;
   notes?: true;
   createdAt?: true;
 };
@@ -134,9 +149,12 @@ export type SubmissionItemCountAggregateInputType = {
   quantity?: true;
   unitPrice?: true;
   totalPrice?: true;
-  itemType?: true;
+  questionType?: true;
   isEnabled?: true;
   userInputValue?: true;
+  itemName?: true;
+  itemDescription?: true;
+  selectedOptionName?: true;
   notes?: true;
   createdAt?: true;
   _all?: true;
@@ -247,9 +265,12 @@ export type SubmissionItemGroupByOutputType = {
   quantity: runtime.Decimal;
   unitPrice: runtime.Decimal;
   totalPrice: runtime.Decimal;
-  itemType: string | null;
+  questionType: $Enums.QuestionType | null;
   isEnabled: boolean;
   userInputValue: string | null;
+  itemName: string | null;
+  itemDescription: string | null;
+  selectedOptionName: string | null;
   notes: string | null;
   createdAt: Date;
   _count: SubmissionItemCountAggregateOutputType | null;
@@ -302,9 +323,21 @@ export type SubmissionItemWhereInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.StringNullableFilter<'SubmissionItem'> | string | null;
+  questionType?:
+    | Prisma.EnumQuestionTypeNullableFilter<'SubmissionItem'>
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFilter<'SubmissionItem'> | boolean;
   userInputValue?:
+    | Prisma.StringNullableFilter<'SubmissionItem'>
+    | string
+    | null;
+  itemName?: Prisma.StringNullableFilter<'SubmissionItem'> | string | null;
+  itemDescription?:
+    | Prisma.StringNullableFilter<'SubmissionItem'>
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.StringNullableFilter<'SubmissionItem'>
     | string
     | null;
@@ -332,9 +365,12 @@ export type SubmissionItemOrderByWithRelationInput = {
   quantity?: Prisma.SortOrder;
   unitPrice?: Prisma.SortOrder;
   totalPrice?: Prisma.SortOrder;
-  itemType?: Prisma.SortOrderInput | Prisma.SortOrder;
+  questionType?: Prisma.SortOrderInput | Prisma.SortOrder;
   isEnabled?: Prisma.SortOrder;
   userInputValue?: Prisma.SortOrderInput | Prisma.SortOrder;
+  itemName?: Prisma.SortOrderInput | Prisma.SortOrder;
+  itemDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
+  selectedOptionName?: Prisma.SortOrderInput | Prisma.SortOrder;
   notes?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   submission?: Prisma.SubmissionOrderByWithRelationInput;
@@ -372,9 +408,21 @@ export type SubmissionItemWhereUniqueInput = Prisma.AtLeast<
       | runtime.DecimalJsLike
       | number
       | string;
-    itemType?: Prisma.StringNullableFilter<'SubmissionItem'> | string | null;
+    questionType?:
+      | Prisma.EnumQuestionTypeNullableFilter<'SubmissionItem'>
+      | $Enums.QuestionType
+      | null;
     isEnabled?: Prisma.BoolFilter<'SubmissionItem'> | boolean;
     userInputValue?:
+      | Prisma.StringNullableFilter<'SubmissionItem'>
+      | string
+      | null;
+    itemName?: Prisma.StringNullableFilter<'SubmissionItem'> | string | null;
+    itemDescription?:
+      | Prisma.StringNullableFilter<'SubmissionItem'>
+      | string
+      | null;
+    selectedOptionName?:
       | Prisma.StringNullableFilter<'SubmissionItem'>
       | string
       | null;
@@ -404,9 +452,12 @@ export type SubmissionItemOrderByWithAggregationInput = {
   quantity?: Prisma.SortOrder;
   unitPrice?: Prisma.SortOrder;
   totalPrice?: Prisma.SortOrder;
-  itemType?: Prisma.SortOrderInput | Prisma.SortOrder;
+  questionType?: Prisma.SortOrderInput | Prisma.SortOrder;
   isEnabled?: Prisma.SortOrder;
   userInputValue?: Prisma.SortOrderInput | Prisma.SortOrder;
+  itemName?: Prisma.SortOrderInput | Prisma.SortOrder;
+  itemDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
+  selectedOptionName?: Prisma.SortOrderInput | Prisma.SortOrder;
   notes?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   _count?: Prisma.SubmissionItemCountOrderByAggregateInput;
@@ -449,12 +500,24 @@ export type SubmissionItemScalarWhereWithAggregatesInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?:
-    | Prisma.StringNullableWithAggregatesFilter<'SubmissionItem'>
-    | string
+  questionType?:
+    | Prisma.EnumQuestionTypeNullableWithAggregatesFilter<'SubmissionItem'>
+    | $Enums.QuestionType
     | null;
   isEnabled?: Prisma.BoolWithAggregatesFilter<'SubmissionItem'> | boolean;
   userInputValue?:
+    | Prisma.StringNullableWithAggregatesFilter<'SubmissionItem'>
+    | string
+    | null;
+  itemName?:
+    | Prisma.StringNullableWithAggregatesFilter<'SubmissionItem'>
+    | string
+    | null;
+  itemDescription?:
+    | Prisma.StringNullableWithAggregatesFilter<'SubmissionItem'>
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.StringNullableWithAggregatesFilter<'SubmissionItem'>
     | string
     | null;
@@ -473,9 +536,12 @@ export type SubmissionItemCreateInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
   submission: Prisma.SubmissionCreateNestedOneWithoutSubmissionItemsInput;
@@ -491,9 +557,12 @@ export type SubmissionItemUncheckedCreateInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
 };
@@ -518,9 +587,21 @@ export type SubmissionItemUpdateInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -557,9 +638,21 @@ export type SubmissionItemUncheckedUpdateInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -575,9 +668,12 @@ export type SubmissionItemCreateManyInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
 };
@@ -602,9 +698,21 @@ export type SubmissionItemUpdateManyMutationInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -638,9 +746,21 @@ export type SubmissionItemUncheckedUpdateManyInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -666,9 +786,12 @@ export type SubmissionItemCountOrderByAggregateInput = {
   quantity?: Prisma.SortOrder;
   unitPrice?: Prisma.SortOrder;
   totalPrice?: Prisma.SortOrder;
-  itemType?: Prisma.SortOrder;
+  questionType?: Prisma.SortOrder;
   isEnabled?: Prisma.SortOrder;
   userInputValue?: Prisma.SortOrder;
+  itemName?: Prisma.SortOrder;
+  itemDescription?: Prisma.SortOrder;
+  selectedOptionName?: Prisma.SortOrder;
   notes?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
 };
@@ -687,9 +810,12 @@ export type SubmissionItemMaxOrderByAggregateInput = {
   quantity?: Prisma.SortOrder;
   unitPrice?: Prisma.SortOrder;
   totalPrice?: Prisma.SortOrder;
-  itemType?: Prisma.SortOrder;
+  questionType?: Prisma.SortOrder;
   isEnabled?: Prisma.SortOrder;
   userInputValue?: Prisma.SortOrder;
+  itemName?: Prisma.SortOrder;
+  itemDescription?: Prisma.SortOrder;
+  selectedOptionName?: Prisma.SortOrder;
   notes?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
 };
@@ -702,9 +828,12 @@ export type SubmissionItemMinOrderByAggregateInput = {
   quantity?: Prisma.SortOrder;
   unitPrice?: Prisma.SortOrder;
   totalPrice?: Prisma.SortOrder;
-  itemType?: Prisma.SortOrder;
+  questionType?: Prisma.SortOrder;
   isEnabled?: Prisma.SortOrder;
   userInputValue?: Prisma.SortOrder;
+  itemName?: Prisma.SortOrder;
+  itemDescription?: Prisma.SortOrder;
+  selectedOptionName?: Prisma.SortOrder;
   notes?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
 };
@@ -1047,14 +1176,21 @@ export type SubmissionItemUncheckedUpdateManyWithoutSubmissionNestedInput = {
     | Prisma.SubmissionItemScalarWhereInput[];
 };
 
+export type NullableEnumQuestionTypeFieldUpdateOperationsInput = {
+  set?: $Enums.QuestionType | null;
+};
+
 export type SubmissionItemCreateWithoutCostCodeInput = {
   id?: string;
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
   submission: Prisma.SubmissionCreateNestedOneWithoutSubmissionItemsInput;
@@ -1068,9 +1204,12 @@ export type SubmissionItemUncheckedCreateWithoutCostCodeInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
 };
@@ -1151,9 +1290,21 @@ export type SubmissionItemScalarWhereInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.StringNullableFilter<'SubmissionItem'> | string | null;
+  questionType?:
+    | Prisma.EnumQuestionTypeNullableFilter<'SubmissionItem'>
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFilter<'SubmissionItem'> | boolean;
   userInputValue?:
+    | Prisma.StringNullableFilter<'SubmissionItem'>
+    | string
+    | null;
+  itemName?: Prisma.StringNullableFilter<'SubmissionItem'> | string | null;
+  itemDescription?:
+    | Prisma.StringNullableFilter<'SubmissionItem'>
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.StringNullableFilter<'SubmissionItem'>
     | string
     | null;
@@ -1166,9 +1317,12 @@ export type SubmissionItemCreateWithoutSelectedOptionInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
   submission: Prisma.SubmissionCreateNestedOneWithoutSubmissionItemsInput;
@@ -1182,9 +1336,12 @@ export type SubmissionItemUncheckedCreateWithoutSelectedOptionInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
 };
@@ -1237,9 +1394,12 @@ export type SubmissionItemCreateWithoutSubmissionInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
   costCode: Prisma.CostCodeCreateNestedOneWithoutSubmissionItemsInput;
@@ -1253,9 +1413,12 @@ export type SubmissionItemUncheckedCreateWithoutSubmissionInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
 };
@@ -1310,9 +1473,12 @@ export type SubmissionItemCreateManyCostCodeInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
 };
@@ -1337,9 +1503,21 @@ export type SubmissionItemUpdateWithoutCostCodeInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -1374,9 +1552,21 @@ export type SubmissionItemUncheckedUpdateWithoutCostCodeInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -1409,9 +1599,21 @@ export type SubmissionItemUncheckedUpdateManyWithoutCostCodeInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -1426,9 +1628,12 @@ export type SubmissionItemCreateManySelectedOptionInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
 };
@@ -1453,9 +1658,21 @@ export type SubmissionItemUpdateWithoutSelectedOptionInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -1487,9 +1704,21 @@ export type SubmissionItemUncheckedUpdateWithoutSelectedOptionInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -1519,9 +1748,21 @@ export type SubmissionItemUncheckedUpdateManyWithoutSelectedOptionInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -1536,9 +1777,12 @@ export type SubmissionItemCreateManySubmissionInput = {
   quantity?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   unitPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   totalPrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  itemType?: string | null;
+  questionType?: $Enums.QuestionType | null;
   isEnabled?: boolean;
   userInputValue?: string | null;
+  itemName?: string | null;
+  itemDescription?: string | null;
+  selectedOptionName?: string | null;
   notes?: string | null;
   createdAt?: Date | string;
 };
@@ -1563,9 +1807,21 @@ export type SubmissionItemUpdateWithoutSubmissionInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -1600,9 +1856,21 @@ export type SubmissionItemUncheckedUpdateWithoutSubmissionInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -1635,9 +1903,21 @@ export type SubmissionItemUncheckedUpdateManyWithoutSubmissionInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  itemType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  questionType?:
+    | Prisma.NullableEnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType
+    | null;
   isEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   userInputValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  itemName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  itemDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  selectedOptionName?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
@@ -1657,9 +1937,12 @@ export type SubmissionItemSelect<
     quantity?: boolean;
     unitPrice?: boolean;
     totalPrice?: boolean;
-    itemType?: boolean;
+    questionType?: boolean;
     isEnabled?: boolean;
     userInputValue?: boolean;
+    itemName?: boolean;
+    itemDescription?: boolean;
+    selectedOptionName?: boolean;
     notes?: boolean;
     createdAt?: boolean;
     submission?: boolean | Prisma.SubmissionDefaultArgs<ExtArgs>;
@@ -1683,9 +1966,12 @@ export type SubmissionItemSelectCreateManyAndReturn<
     quantity?: boolean;
     unitPrice?: boolean;
     totalPrice?: boolean;
-    itemType?: boolean;
+    questionType?: boolean;
     isEnabled?: boolean;
     userInputValue?: boolean;
+    itemName?: boolean;
+    itemDescription?: boolean;
+    selectedOptionName?: boolean;
     notes?: boolean;
     createdAt?: boolean;
     submission?: boolean | Prisma.SubmissionDefaultArgs<ExtArgs>;
@@ -1709,9 +1995,12 @@ export type SubmissionItemSelectUpdateManyAndReturn<
     quantity?: boolean;
     unitPrice?: boolean;
     totalPrice?: boolean;
-    itemType?: boolean;
+    questionType?: boolean;
     isEnabled?: boolean;
     userInputValue?: boolean;
+    itemName?: boolean;
+    itemDescription?: boolean;
+    selectedOptionName?: boolean;
     notes?: boolean;
     createdAt?: boolean;
     submission?: boolean | Prisma.SubmissionDefaultArgs<ExtArgs>;
@@ -1731,9 +2020,12 @@ export type SubmissionItemSelectScalar = {
   quantity?: boolean;
   unitPrice?: boolean;
   totalPrice?: boolean;
-  itemType?: boolean;
+  questionType?: boolean;
   isEnabled?: boolean;
   userInputValue?: boolean;
+  itemName?: boolean;
+  itemDescription?: boolean;
+  selectedOptionName?: boolean;
   notes?: boolean;
   createdAt?: boolean;
 };
@@ -1749,9 +2041,12 @@ export type SubmissionItemOmit<
   | 'quantity'
   | 'unitPrice'
   | 'totalPrice'
-  | 'itemType'
+  | 'questionType'
   | 'isEnabled'
   | 'userInputValue'
+  | 'itemName'
+  | 'itemDescription'
+  | 'selectedOptionName'
   | 'notes'
   | 'createdAt',
   ExtArgs['result']['submissionItem']
@@ -1800,9 +2095,12 @@ export type $SubmissionItemPayload<
       quantity: runtime.Decimal;
       unitPrice: runtime.Decimal;
       totalPrice: runtime.Decimal;
-      itemType: string | null;
+      questionType: $Enums.QuestionType | null;
       isEnabled: boolean;
       userInputValue: string | null;
+      itemName: string | null;
+      itemDescription: string | null;
+      selectedOptionName: string | null;
       notes: string | null;
       createdAt: Date;
     },
@@ -2459,9 +2757,12 @@ export interface SubmissionItemFieldRefs {
   readonly quantity: Prisma.FieldRef<'SubmissionItem', 'Decimal'>;
   readonly unitPrice: Prisma.FieldRef<'SubmissionItem', 'Decimal'>;
   readonly totalPrice: Prisma.FieldRef<'SubmissionItem', 'Decimal'>;
-  readonly itemType: Prisma.FieldRef<'SubmissionItem', 'String'>;
+  readonly questionType: Prisma.FieldRef<'SubmissionItem', 'QuestionType'>;
   readonly isEnabled: Prisma.FieldRef<'SubmissionItem', 'Boolean'>;
   readonly userInputValue: Prisma.FieldRef<'SubmissionItem', 'String'>;
+  readonly itemName: Prisma.FieldRef<'SubmissionItem', 'String'>;
+  readonly itemDescription: Prisma.FieldRef<'SubmissionItem', 'String'>;
+  readonly selectedOptionName: Prisma.FieldRef<'SubmissionItem', 'String'>;
   readonly notes: Prisma.FieldRef<'SubmissionItem', 'String'>;
   readonly createdAt: Prisma.FieldRef<'SubmissionItem', 'DateTime'>;
 }

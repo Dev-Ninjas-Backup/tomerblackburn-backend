@@ -1,11 +1,10 @@
-import { PartialType } from '@nestjs/swagger';
+import { PartialType, ApiProperty } from '@nestjs/swagger';
 import { CreateCostCodeCategoryDto } from './create-cost-code-category.dto';
+import { QuestionType, UnitType } from 'generated/prisma/enums';
 
 export class UpdateCostCodeCategoryDto extends PartialType(
   CreateCostCodeCategoryDto,
 ) {}
-
-import { ApiProperty } from '@nestjs/swagger';
 
 class CostCodeSummaryDto {
   @ApiProperty()
@@ -20,8 +19,11 @@ class CostCodeSummaryDto {
   @ApiProperty()
   basePrice: number;
 
-  @ApiProperty()
-  colorTag: string;
+  @ApiProperty({ enum: QuestionType })
+  questionType: QuestionType;
+
+  @ApiProperty({ enum: UnitType })
+  unitType: UnitType;
 }
 
 export class CostCodeCategoryResponseDto {
@@ -51,7 +53,13 @@ export class CostCodeCategoryResponseDto {
   description?: string;
 
   @ApiProperty({
-    description: 'Display order',
+    description: 'Step number in estimator flow',
+    example: 1,
+  })
+  stepNumber: number;
+
+  @ApiProperty({
+    description: 'Display order within step',
     example: 0,
   })
   displayOrder: number;

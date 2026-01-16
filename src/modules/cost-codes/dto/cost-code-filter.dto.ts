@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsBoolean, IsString, IsEnum } from 'class-validator';
 import { Type } from 'class-transformer';
+import { QuestionType, UnitType } from 'generated/prisma/enums';
 
 export class CostCodeFilterDto {
   @ApiProperty({
@@ -12,13 +13,22 @@ export class CostCodeFilterDto {
   categoryId?: string;
 
   @ApiProperty({
-    description: 'Filter by color tag',
+    description: 'Filter by question type (UI behavior)',
     required: false,
-    enum: ['WHITE', 'ORANGE', 'BLUE', 'YELLOW', 'GREEN'],
+    enum: QuestionType,
   })
-  @IsString()
+  @IsEnum(QuestionType)
   @IsOptional()
-  colorTag?: string;
+  questionType?: QuestionType;
+
+  @ApiProperty({
+    description: 'Filter by unit type',
+    required: false,
+    enum: UnitType,
+  })
+  @IsEnum(UnitType)
+  @IsOptional()
+  unitType?: UnitType;
 
   @ApiProperty({
     description: 'Filter by active status',
@@ -30,16 +40,16 @@ export class CostCodeFilterDto {
   isActive?: boolean;
 
   @ApiProperty({
-    description: 'Filter by calculation type',
+    description: 'Filter by included in base price',
     required: false,
-    enum: ['fixed', 'user_input', 'selection', 'toggle'],
   })
-  @IsString()
+  @IsBoolean()
+  @Type(() => Boolean)
   @IsOptional()
-  calculationType?: string;
+  isIncludedInBase?: boolean;
 
   @ApiProperty({
-    description: 'Include cost code options',
+    description: 'Include cost code options in response',
     required: false,
     default: true,
   })
@@ -49,7 +59,7 @@ export class CostCodeFilterDto {
   includeOptions?: boolean = true;
 
   @ApiProperty({
-    description: 'Include category details',
+    description: 'Include category details in response',
     required: false,
     default: true,
   })

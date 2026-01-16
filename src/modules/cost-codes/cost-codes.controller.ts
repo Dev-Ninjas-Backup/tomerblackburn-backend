@@ -42,9 +42,10 @@ export class CostCodesController {
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
           code: 'FP-D-1',
-          name: 'Demolition Item',
+          name: 'Floor Tile Installation',
           categoryId: 'cat-id-123',
-          colorTag: 'WHITE',
+          questionType: 'WHITE',
+          unitType: 'FIXED',
           isActive: true,
         },
       },
@@ -66,7 +67,7 @@ export class CostCodesController {
   @ApiOperation({
     summary: 'Get all cost codes with filters',
     description:
-      'Retrieve all cost codes with optional filtering by category, color tag, status, and calculation type',
+      'Retrieve all cost codes with optional filtering by category, question type, unit type, and status',
   })
   @ApiResponse({
     status: HttpStatus.OK,
@@ -80,8 +81,9 @@ export class CostCodesController {
           {
             id: '123e4567-e89b-12d3-a456-426614174000',
             code: 'FP-D-1',
-            name: 'Demolition Item',
-            colorTag: 'WHITE',
+            name: 'Floor Tile Installation',
+            questionType: 'WHITE',
+            unitType: 'FIXED',
             isActive: true,
           },
         ],
@@ -114,7 +116,7 @@ export class CostCodesController {
           {
             id: '123e4567-e89b-12d3-a456-426614174000',
             code: 'FP-D-1',
-            name: 'Demolition Item',
+            name: 'Floor Tile Installation',
             categoryId: 'cat-id-123',
             isActive: true,
           },
@@ -126,16 +128,16 @@ export class CostCodesController {
     return this.costCodesService.findByCategory(categoryId);
   }
 
-  @Get('bathroom-type/:bathroomTypeCode')
+  @Get('bathroom-type/:bathroomTypeId')
   @ApiOperation({
     summary: 'Get cost codes for bathroom type',
     description:
-      'Retrieve all active cost codes applicable to a specific bathroom type (FP, TPS, TPT, TP)',
+      'Retrieve all active cost codes applicable to a specific bathroom type via junction table',
   })
   @ApiParam({
-    name: 'bathroomTypeCode',
-    description: 'Bathroom type code (FP, TPS, TPT, TP)',
-    example: 'FP',
+    name: 'bathroomTypeId',
+    description: 'Bathroom type ID',
+    example: '123e4567-e89b-12d3-a456-426614174000',
   })
   @ApiQuery({
     name: 'includeOptions',
@@ -146,18 +148,19 @@ export class CostCodesController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: 'List of applicable cost codes',
+    description: 'List of applicable cost codes with overrides',
     type: [CostCodeResponseDto],
     schema: {
       example: {
-        message: 'Cost codes for FP retrieved successfully',
+        message: 'Cost codes for bathroom type retrieved successfully',
         count: 10,
         data: [
           {
             id: '123e4567-e89b-12d3-a456-426614174000',
             code: 'FP-D-1',
-            name: 'Demolition Item',
-            appliesToFp: true,
+            name: 'Floor Tile Installation',
+            isIncludedInBase: true,
+            priceOverride: 500,
             isActive: true,
           },
         ],
@@ -165,48 +168,50 @@ export class CostCodesController {
     },
   })
   findByBathroomType(
-    @Param('bathroomTypeCode') bathroomTypeCode: string,
+    @Param('bathroomTypeId') bathroomTypeId: string,
     @Query('includeOptions') includeOptions?: string,
   ) {
-    const includeOpts = includeOptions === 'true';
+    const includeOpts = includeOptions !== 'false';
     return this.costCodesService.findByBathroomType(
-      bathroomTypeCode,
+      bathroomTypeId,
       includeOpts,
     );
   }
 
-  @Get('color/:colorTag')
+  @Get('question-type/:questionType')
   @ApiOperation({
-    summary: 'Get cost codes by color tag',
-    description: 'Retrieve all active cost codes with a specific color tag',
+    summary: 'Get cost codes by question type',
+    description:
+      'Retrieve all active cost codes with a specific question type (WHITE, BLUE, GREEN, ORANGE, YELLOW, RED, PURPLE)',
   })
   @ApiParam({
-    name: 'colorTag',
-    description: 'Color tag (WHITE, ORANGE, BLUE, YELLOW, GREEN)',
+    name: 'questionType',
+    description:
+      'Question type (WHITE, BLUE, GREEN, ORANGE, YELLOW, RED, PURPLE)',
     example: 'WHITE',
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: 'List of cost codes with specified color tag',
+    description: 'List of cost codes with specified question type',
     type: [CostCodeResponseDto],
     schema: {
       example: {
-        message: 'Cost codes with WHITE color tag retrieved successfully',
+        message: 'Cost codes with WHITE question type retrieved successfully',
         count: 5,
         data: [
           {
             id: '123e4567-e89b-12d3-a456-426614174000',
             code: 'FP-D-1',
-            name: 'Demolition Item',
-            colorTag: 'WHITE',
+            name: 'Floor Tile Installation',
+            questionType: 'WHITE',
             isActive: true,
           },
         ],
       },
     },
   })
-  findByColorTag(@Param('colorTag') colorTag: string) {
-    return this.costCodesService.findByColorTag(colorTag.toUpperCase());
+  findByQuestionType(@Param('questionType') questionType: string) {
+    return this.costCodesService.findByQuestionType(questionType.toUpperCase());
   }
 
   @Get(':id')
@@ -229,7 +234,7 @@ export class CostCodesController {
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
           code: 'FP-D-1',
-          name: 'Demolition Item',
+          name: 'Floor Tile Installation',
           categoryId: 'cat-id-123',
           isActive: true,
         },
@@ -264,7 +269,7 @@ export class CostCodesController {
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
           code: 'FP-D-1',
-          name: 'Demolition Item',
+          name: 'Floor Tile Installation',
           categoryId: 'cat-id-123',
           isActive: true,
         },
@@ -299,7 +304,7 @@ export class CostCodesController {
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
           code: 'FP-D-1',
-          name: 'Updated Demolition Item',
+          name: 'Updated Floor Tile Installation',
           isActive: true,
         },
       },
@@ -337,7 +342,7 @@ export class CostCodesController {
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
           code: 'FP-D-1',
-          name: 'Demolition Item',
+          name: 'Floor Tile Installation',
           isActive: false,
         },
       },

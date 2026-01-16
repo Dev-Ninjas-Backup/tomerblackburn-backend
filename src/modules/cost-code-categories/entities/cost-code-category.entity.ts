@@ -15,6 +15,9 @@ export class CostCodeCategoryEntity implements CostCodeCategory {
   description: string | null;
 
   @ApiProperty()
+  stepNumber: number;
+
+  @ApiProperty()
   displayOrder: number;
 
   @ApiProperty()

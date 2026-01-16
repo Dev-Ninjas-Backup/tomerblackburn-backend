@@ -35,6 +35,7 @@ export type ContactUsMinAggregateOutputType = {
   state: string | null;
   zipCode: string | null;
   message: string | null;
+  isRead: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -50,6 +51,7 @@ export type ContactUsMaxAggregateOutputType = {
   state: string | null;
   zipCode: string | null;
   message: string | null;
+  isRead: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -65,6 +67,7 @@ export type ContactUsCountAggregateOutputType = {
   state: number;
   zipCode: number;
   message: number;
+  isRead: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -81,6 +84,7 @@ export type ContactUsMinAggregateInputType = {
   state?: true;
   zipCode?: true;
   message?: true;
+  isRead?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -96,6 +100,7 @@ export type ContactUsMaxAggregateInputType = {
   state?: true;
   zipCode?: true;
   message?: true;
+  isRead?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -111,6 +116,7 @@ export type ContactUsCountAggregateInputType = {
   state?: true;
   zipCode?: true;
   message?: true;
+  isRead?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -206,6 +212,7 @@ export type ContactUsGroupByOutputType = {
   state: string;
   zipCode: string;
   message: string;
+  isRead: boolean;
   createdAt: Date;
   updatedAt: Date;
   _count: ContactUsCountAggregateOutputType | null;
@@ -240,6 +247,7 @@ export type ContactUsWhereInput = {
   state?: Prisma.StringFilter<'ContactUs'> | string;
   zipCode?: Prisma.StringFilter<'ContactUs'> | string;
   message?: Prisma.StringFilter<'ContactUs'> | string;
+  isRead?: Prisma.BoolFilter<'ContactUs'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'ContactUs'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'ContactUs'> | Date | string;
 };
@@ -255,6 +263,7 @@ export type ContactUsOrderByWithRelationInput = {
   state?: Prisma.SortOrder;
   zipCode?: Prisma.SortOrder;
   message?: Prisma.SortOrder;
+  isRead?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -274,6 +283,7 @@ export type ContactUsWhereUniqueInput = Prisma.AtLeast<
     state?: Prisma.StringFilter<'ContactUs'> | string;
     zipCode?: Prisma.StringFilter<'ContactUs'> | string;
     message?: Prisma.StringFilter<'ContactUs'> | string;
+    isRead?: Prisma.BoolFilter<'ContactUs'> | boolean;
     createdAt?: Prisma.DateTimeFilter<'ContactUs'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'ContactUs'> | Date | string;
   },
@@ -291,6 +301,7 @@ export type ContactUsOrderByWithAggregationInput = {
   state?: Prisma.SortOrder;
   zipCode?: Prisma.SortOrder;
   message?: Prisma.SortOrder;
+  isRead?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.ContactUsCountOrderByAggregateInput;
@@ -316,6 +327,7 @@ export type ContactUsScalarWhereWithAggregatesInput = {
   state?: Prisma.StringWithAggregatesFilter<'ContactUs'> | string;
   zipCode?: Prisma.StringWithAggregatesFilter<'ContactUs'> | string;
   message?: Prisma.StringWithAggregatesFilter<'ContactUs'> | string;
+  isRead?: Prisma.BoolWithAggregatesFilter<'ContactUs'> | boolean;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'ContactUs'> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<'ContactUs'> | Date | string;
 };
@@ -331,6 +343,7 @@ export type ContactUsCreateInput = {
   state: string;
   zipCode: string;
   message: string;
+  isRead?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -346,6 +359,7 @@ export type ContactUsUncheckedCreateInput = {
   state: string;
   zipCode: string;
   message: string;
+  isRead?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -361,6 +375,7 @@ export type ContactUsUpdateInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string;
   zipCode?: Prisma.StringFieldUpdateOperationsInput | string;
   message?: Prisma.StringFieldUpdateOperationsInput | string;
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -376,6 +391,7 @@ export type ContactUsUncheckedUpdateInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string;
   zipCode?: Prisma.StringFieldUpdateOperationsInput | string;
   message?: Prisma.StringFieldUpdateOperationsInput | string;
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -391,6 +407,7 @@ export type ContactUsCreateManyInput = {
   state: string;
   zipCode: string;
   message: string;
+  isRead?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -406,6 +423,7 @@ export type ContactUsUpdateManyMutationInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string;
   zipCode?: Prisma.StringFieldUpdateOperationsInput | string;
   message?: Prisma.StringFieldUpdateOperationsInput | string;
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -421,6 +439,7 @@ export type ContactUsUncheckedUpdateManyInput = {
   state?: Prisma.StringFieldUpdateOperationsInput | string;
   zipCode?: Prisma.StringFieldUpdateOperationsInput | string;
   message?: Prisma.StringFieldUpdateOperationsInput | string;
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -436,6 +455,7 @@ export type ContactUsCountOrderByAggregateInput = {
   state?: Prisma.SortOrder;
   zipCode?: Prisma.SortOrder;
   message?: Prisma.SortOrder;
+  isRead?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -451,6 +471,7 @@ export type ContactUsMaxOrderByAggregateInput = {
   state?: Prisma.SortOrder;
   zipCode?: Prisma.SortOrder;
   message?: Prisma.SortOrder;
+  isRead?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -466,6 +487,7 @@ export type ContactUsMinOrderByAggregateInput = {
   state?: Prisma.SortOrder;
   zipCode?: Prisma.SortOrder;
   message?: Prisma.SortOrder;
+  isRead?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -485,6 +507,7 @@ export type ContactUsSelect<
     state?: boolean;
     zipCode?: boolean;
     message?: boolean;
+    isRead?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
   },
@@ -506,6 +529,7 @@ export type ContactUsSelectCreateManyAndReturn<
     state?: boolean;
     zipCode?: boolean;
     message?: boolean;
+    isRead?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
   },
@@ -527,6 +551,7 @@ export type ContactUsSelectUpdateManyAndReturn<
     state?: boolean;
     zipCode?: boolean;
     message?: boolean;
+    isRead?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
   },
@@ -544,6 +569,7 @@ export type ContactUsSelectScalar = {
   state?: boolean;
   zipCode?: boolean;
   message?: boolean;
+  isRead?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -562,6 +588,7 @@ export type ContactUsOmit<
   | 'state'
   | 'zipCode'
   | 'message'
+  | 'isRead'
   | 'createdAt'
   | 'updatedAt',
   ExtArgs['result']['contactUs']
@@ -585,6 +612,7 @@ export type $ContactUsPayload<
       state: string;
       zipCode: string;
       message: string;
+      isRead: boolean;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1189,6 +1217,7 @@ export interface ContactUsFieldRefs {
   readonly state: Prisma.FieldRef<'ContactUs', 'String'>;
   readonly zipCode: Prisma.FieldRef<'ContactUs', 'String'>;
   readonly message: Prisma.FieldRef<'ContactUs', 'String'>;
+  readonly isRead: Prisma.FieldRef<'ContactUs', 'Boolean'>;
   readonly createdAt: Prisma.FieldRef<'ContactUs', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'ContactUs', 'DateTime'>;
 }
