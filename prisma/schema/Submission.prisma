@@ -24,6 +24,9 @@ model Submission {
   projectNotes      String?
   additionalDetails String?
 
+  // PDF Estimate
+  pdfUrl String?
+
   // Tracking
   ipAddress   String?
   userAgent   String?

@@ -415,7 +415,6 @@ export const ModelName = {
   ActivityLog: 'ActivityLog',
   BathroomType: 'BathroomType',
   BathroomTypeCostCode: 'BathroomTypeCostCode',
-  CompanySetting: 'CompanySetting',
   CostCode: 'CostCode',
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
@@ -432,7 +431,6 @@ export const ModelName = {
   PortfolioImage: 'PortfolioImage',
   Portfolio: 'Portfolio',
   SiteSettings: 'SiteSettings',
-  settings: 'settings',
   User: 'User',
 } as const;
 
@@ -459,7 +457,6 @@ export type TypeMap<
       | 'activityLog'
       | 'bathroomType'
       | 'bathroomTypeCostCode'
-      | 'companySetting'
       | 'costCode'
       | 'costCodeCategory'
       | 'costCodeOption'
@@ -476,7 +473,6 @@ export type TypeMap<
       | 'portfolioImage'
       | 'portfolio'
       | 'siteSettings'
-      | 'settings'
       | 'user';
     txIsolationLevel: TransactionIsolationLevel;
   };
@@ -705,82 +701,6 @@ export type TypeMap<
           args: Prisma.BathroomTypeCostCodeCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.BathroomTypeCostCodeCountAggregateOutputType>
-            | number;
-        };
-      };
-    };
-    CompanySetting: {
-      payload: Prisma.$CompanySettingPayload<ExtArgs>;
-      fields: Prisma.CompanySettingFieldRefs;
-      operations: {
-        findUnique: {
-          args: Prisma.CompanySettingFindUniqueArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload> | null;
-        };
-        findUniqueOrThrow: {
-          args: Prisma.CompanySettingFindUniqueOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>;
-        };
-        findFirst: {
-          args: Prisma.CompanySettingFindFirstArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload> | null;
-        };
-        findFirstOrThrow: {
-          args: Prisma.CompanySettingFindFirstOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>;
-        };
-        findMany: {
-          args: Prisma.CompanySettingFindManyArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>[];
-        };
-        create: {
-          args: Prisma.CompanySettingCreateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>;
-        };
-        createMany: {
-          args: Prisma.CompanySettingCreateManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        createManyAndReturn: {
-          args: Prisma.CompanySettingCreateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>[];
-        };
-        delete: {
-          args: Prisma.CompanySettingDeleteArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>;
-        };
-        update: {
-          args: Prisma.CompanySettingUpdateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>;
-        };
-        deleteMany: {
-          args: Prisma.CompanySettingDeleteManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        updateMany: {
-          args: Prisma.CompanySettingUpdateManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        updateManyAndReturn: {
-          args: Prisma.CompanySettingUpdateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>[];
-        };
-        upsert: {
-          args: Prisma.CompanySettingUpsertArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanySettingPayload>;
-        };
-        aggregate: {
-          args: Prisma.CompanySettingAggregateArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.AggregateCompanySetting>;
-        };
-        groupBy: {
-          args: Prisma.CompanySettingGroupByArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.CompanySettingGroupByOutputType>[];
-        };
-        count: {
-          args: Prisma.CompanySettingCountArgs<ExtArgs>;
-          result:
-            | runtime.Types.Utils.Optional<Prisma.CompanySettingCountAggregateOutputType>
             | number;
         };
       };
@@ -2001,82 +1921,6 @@ export type TypeMap<
         };
       };
     };
-    settings: {
-      payload: Prisma.$settingsPayload<ExtArgs>;
-      fields: Prisma.settingsFieldRefs;
-      operations: {
-        findUnique: {
-          args: Prisma.settingsFindUniqueArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload> | null;
-        };
-        findUniqueOrThrow: {
-          args: Prisma.settingsFindUniqueOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload>;
-        };
-        findFirst: {
-          args: Prisma.settingsFindFirstArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload> | null;
-        };
-        findFirstOrThrow: {
-          args: Prisma.settingsFindFirstOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload>;
-        };
-        findMany: {
-          args: Prisma.settingsFindManyArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload>[];
-        };
-        create: {
-          args: Prisma.settingsCreateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload>;
-        };
-        createMany: {
-          args: Prisma.settingsCreateManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        createManyAndReturn: {
-          args: Prisma.settingsCreateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload>[];
-        };
-        delete: {
-          args: Prisma.settingsDeleteArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload>;
-        };
-        update: {
-          args: Prisma.settingsUpdateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload>;
-        };
-        deleteMany: {
-          args: Prisma.settingsDeleteManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        updateMany: {
-          args: Prisma.settingsUpdateManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        updateManyAndReturn: {
-          args: Prisma.settingsUpdateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload>[];
-        };
-        upsert: {
-          args: Prisma.settingsUpsertArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$settingsPayload>;
-        };
-        aggregate: {
-          args: Prisma.SettingsAggregateArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSettings>;
-        };
-        groupBy: {
-          args: Prisma.settingsGroupByArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.SettingsGroupByOutputType>[];
-        };
-        count: {
-          args: Prisma.settingsCountArgs<ExtArgs>;
-          result:
-            | runtime.Types.Utils.Optional<Prisma.SettingsCountAggregateOutputType>
-            | number;
-        };
-      };
-    };
     User: {
       payload: Prisma.$UserPayload<ExtArgs>;
       fields: Prisma.UserFieldRefs;
@@ -2242,23 +2086,6 @@ export const BathroomTypeCostCodeScalarFieldEnum = {
 export type BathroomTypeCostCodeScalarFieldEnum =
   (typeof BathroomTypeCostCodeScalarFieldEnum)[keyof typeof BathroomTypeCostCodeScalarFieldEnum];
 
-export const CompanySettingScalarFieldEnum = {
-  id: 'id',
-  companyName: 'companyName',
-  email: 'email',
-  phone: 'phone',
-  address: 'address',
-  logoFileId: 'logoFileId',
-  sendEmailOnSubmission: 'sendEmailOnSubmission',
-  sendConfirmationToClient: 'sendConfirmationToClient',
-  dailySummaryReport: 'dailySummaryReport',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type CompanySettingScalarFieldEnum =
-  (typeof CompanySettingScalarFieldEnum)[keyof typeof CompanySettingScalarFieldEnum];
-
 export const CostCodeScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
@@ -2343,6 +2170,7 @@ export const SubmissionScalarFieldEnum = {
   status: 'status',
   projectNotes: 'projectNotes',
   additionalDetails: 'additionalDetails',
+  pdfUrl: 'pdfUrl',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
   submittedAt: 'submittedAt',
@@ -2516,19 +2344,6 @@ export const SiteSettingsScalarFieldEnum = {
 
 export type SiteSettingsScalarFieldEnum =
   (typeof SiteSettingsScalarFieldEnum)[keyof typeof SiteSettingsScalarFieldEnum];
-
-export const SettingsScalarFieldEnum = {
-  id: 'id',
-  siteTitle: 'siteTitle',
-  siteDescription: 'siteDescription',
-  logoImageId: 'logoImageId',
-  contactNumber: 'contactNumber',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type SettingsScalarFieldEnum =
-  (typeof SettingsScalarFieldEnum)[keyof typeof SettingsScalarFieldEnum];
 
 export const UserScalarFieldEnum = {
   id: 'id',
@@ -2859,7 +2674,6 @@ export type GlobalOmitConfig = {
   activityLog?: Prisma.ActivityLogOmit;
   bathroomType?: Prisma.BathroomTypeOmit;
   bathroomTypeCostCode?: Prisma.BathroomTypeCostCodeOmit;
-  companySetting?: Prisma.CompanySettingOmit;
   costCode?: Prisma.CostCodeOmit;
   costCodeCategory?: Prisma.CostCodeCategoryOmit;
   costCodeOption?: Prisma.CostCodeOptionOmit;
@@ -2876,7 +2690,6 @@ export type GlobalOmitConfig = {
   portfolioImage?: Prisma.PortfolioImageOmit;
   portfolio?: Prisma.PortfolioOmit;
   siteSettings?: Prisma.SiteSettingsOmit;
-  settings?: Prisma.settingsOmit;
   user?: Prisma.UserOmit;
 };
 

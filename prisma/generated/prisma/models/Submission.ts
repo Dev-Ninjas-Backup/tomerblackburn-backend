@@ -53,6 +53,7 @@ export type SubmissionMinAggregateOutputType = {
   status: $Enums.SubmissionStatus | null;
   projectNotes: string | null;
   additionalDetails: string | null;
+  pdfUrl: string | null;
   ipAddress: string | null;
   userAgent: string | null;
   submittedAt: Date | null;
@@ -76,6 +77,7 @@ export type SubmissionMaxAggregateOutputType = {
   status: $Enums.SubmissionStatus | null;
   projectNotes: string | null;
   additionalDetails: string | null;
+  pdfUrl: string | null;
   ipAddress: string | null;
   userAgent: string | null;
   submittedAt: Date | null;
@@ -99,6 +101,7 @@ export type SubmissionCountAggregateOutputType = {
   status: number;
   projectNotes: number;
   additionalDetails: number;
+  pdfUrl: number;
   ipAddress: number;
   userAgent: number;
   submittedAt: number;
@@ -135,6 +138,7 @@ export type SubmissionMinAggregateInputType = {
   status?: true;
   projectNotes?: true;
   additionalDetails?: true;
+  pdfUrl?: true;
   ipAddress?: true;
   userAgent?: true;
   submittedAt?: true;
@@ -158,6 +162,7 @@ export type SubmissionMaxAggregateInputType = {
   status?: true;
   projectNotes?: true;
   additionalDetails?: true;
+  pdfUrl?: true;
   ipAddress?: true;
   userAgent?: true;
   submittedAt?: true;
@@ -181,6 +186,7 @@ export type SubmissionCountAggregateInputType = {
   status?: true;
   projectNotes?: true;
   additionalDetails?: true;
+  pdfUrl?: true;
   ipAddress?: true;
   userAgent?: true;
   submittedAt?: true;
@@ -298,6 +304,7 @@ export type SubmissionGroupByOutputType = {
   status: $Enums.SubmissionStatus;
   projectNotes: string | null;
   additionalDetails: string | null;
+  pdfUrl: string | null;
   ipAddress: string | null;
   userAgent: string | null;
   submittedAt: Date;
@@ -359,6 +366,7 @@ export type SubmissionWhereInput = {
     | $Enums.SubmissionStatus;
   projectNotes?: Prisma.StringNullableFilter<'Submission'> | string | null;
   additionalDetails?: Prisma.StringNullableFilter<'Submission'> | string | null;
+  pdfUrl?: Prisma.StringNullableFilter<'Submission'> | string | null;
   ipAddress?: Prisma.StringNullableFilter<'Submission'> | string | null;
   userAgent?: Prisma.StringNullableFilter<'Submission'> | string | null;
   submittedAt?: Prisma.DateTimeFilter<'Submission'> | Date | string;
@@ -397,6 +405,7 @@ export type SubmissionOrderByWithRelationInput = {
   status?: Prisma.SortOrder;
   projectNotes?: Prisma.SortOrderInput | Prisma.SortOrder;
   additionalDetails?: Prisma.SortOrderInput | Prisma.SortOrder;
+  pdfUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
   ipAddress?: Prisma.SortOrderInput | Prisma.SortOrder;
   userAgent?: Prisma.SortOrderInput | Prisma.SortOrder;
   submittedAt?: Prisma.SortOrder;
@@ -448,6 +457,7 @@ export type SubmissionWhereUniqueInput = Prisma.AtLeast<
       | Prisma.StringNullableFilter<'Submission'>
       | string
       | null;
+    pdfUrl?: Prisma.StringNullableFilter<'Submission'> | string | null;
     ipAddress?: Prisma.StringNullableFilter<'Submission'> | string | null;
     userAgent?: Prisma.StringNullableFilter<'Submission'> | string | null;
     submittedAt?: Prisma.DateTimeFilter<'Submission'> | Date | string;
@@ -488,6 +498,7 @@ export type SubmissionOrderByWithAggregationInput = {
   status?: Prisma.SortOrder;
   projectNotes?: Prisma.SortOrderInput | Prisma.SortOrder;
   additionalDetails?: Prisma.SortOrderInput | Prisma.SortOrder;
+  pdfUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
   ipAddress?: Prisma.SortOrderInput | Prisma.SortOrder;
   userAgent?: Prisma.SortOrderInput | Prisma.SortOrder;
   submittedAt?: Prisma.SortOrder;
@@ -549,6 +560,10 @@ export type SubmissionScalarWhereWithAggregatesInput = {
     | Prisma.StringNullableWithAggregatesFilter<'Submission'>
     | string
     | null;
+  pdfUrl?:
+    | Prisma.StringNullableWithAggregatesFilter<'Submission'>
+    | string
+    | null;
   ipAddress?:
     | Prisma.StringNullableWithAggregatesFilter<'Submission'>
     | string
@@ -592,6 +607,7 @@ export type SubmissionCreateInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -623,6 +639,7 @@ export type SubmissionUncheckedCreateInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -671,6 +688,7 @@ export type SubmissionUpdateInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -729,6 +747,7 @@ export type SubmissionUncheckedUpdateInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -767,6 +786,7 @@ export type SubmissionCreateManyInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -812,6 +832,7 @@ export type SubmissionUpdateManyMutationInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -866,6 +887,7 @@ export type SubmissionUncheckedUpdateManyInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -912,6 +934,7 @@ export type SubmissionCountOrderByAggregateInput = {
   status?: Prisma.SortOrder;
   projectNotes?: Prisma.SortOrder;
   additionalDetails?: Prisma.SortOrder;
+  pdfUrl?: Prisma.SortOrder;
   ipAddress?: Prisma.SortOrder;
   userAgent?: Prisma.SortOrder;
   submittedAt?: Prisma.SortOrder;
@@ -941,6 +964,7 @@ export type SubmissionMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder;
   projectNotes?: Prisma.SortOrder;
   additionalDetails?: Prisma.SortOrder;
+  pdfUrl?: Prisma.SortOrder;
   ipAddress?: Prisma.SortOrder;
   userAgent?: Prisma.SortOrder;
   submittedAt?: Prisma.SortOrder;
@@ -964,6 +988,7 @@ export type SubmissionMinOrderByAggregateInput = {
   status?: Prisma.SortOrder;
   projectNotes?: Prisma.SortOrder;
   additionalDetails?: Prisma.SortOrder;
+  pdfUrl?: Prisma.SortOrder;
   ipAddress?: Prisma.SortOrder;
   userAgent?: Prisma.SortOrder;
   submittedAt?: Prisma.SortOrder;
@@ -1191,6 +1216,7 @@ export type SubmissionCreateWithoutBathroomTypeInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -1220,6 +1246,7 @@ export type SubmissionUncheckedCreateWithoutBathroomTypeInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -1309,6 +1336,7 @@ export type SubmissionScalarWhereInput = {
     | $Enums.SubmissionStatus;
   projectNotes?: Prisma.StringNullableFilter<'Submission'> | string | null;
   additionalDetails?: Prisma.StringNullableFilter<'Submission'> | string | null;
+  pdfUrl?: Prisma.StringNullableFilter<'Submission'> | string | null;
   ipAddress?: Prisma.StringNullableFilter<'Submission'> | string | null;
   userAgent?: Prisma.StringNullableFilter<'Submission'> | string | null;
   submittedAt?: Prisma.DateTimeFilter<'Submission'> | Date | string;
@@ -1343,6 +1371,7 @@ export type SubmissionCreateWithoutEmailLogsInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -1373,6 +1402,7 @@ export type SubmissionUncheckedCreateWithoutEmailLogsInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -1448,6 +1478,7 @@ export type SubmissionUpdateWithoutEmailLogsInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1505,6 +1536,7 @@ export type SubmissionUncheckedUpdateWithoutEmailLogsInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1541,6 +1573,7 @@ export type SubmissionCreateWithoutSubmissionItemsInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -1571,6 +1604,7 @@ export type SubmissionUncheckedCreateWithoutSubmissionItemsInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -1646,6 +1680,7 @@ export type SubmissionUpdateWithoutSubmissionItemsInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1703,6 +1738,7 @@ export type SubmissionUncheckedUpdateWithoutSubmissionItemsInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1739,6 +1775,7 @@ export type SubmissionCreateWithoutSubmissionMediaInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -1769,6 +1806,7 @@ export type SubmissionUncheckedCreateWithoutSubmissionMediaInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -1844,6 +1882,7 @@ export type SubmissionUpdateWithoutSubmissionMediaInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1901,6 +1940,7 @@ export type SubmissionUncheckedUpdateWithoutSubmissionMediaInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1937,6 +1977,7 @@ export type SubmissionCreateManyBathroomTypeInput = {
   status?: $Enums.SubmissionStatus;
   projectNotes?: string | null;
   additionalDetails?: string | null;
+  pdfUrl?: string | null;
   ipAddress?: string | null;
   userAgent?: string | null;
   submittedAt?: Date | string;
@@ -1982,6 +2023,7 @@ export type SubmissionUpdateWithoutBathroomTypeInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -2038,6 +2080,7 @@ export type SubmissionUncheckedUpdateWithoutBathroomTypeInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -2094,6 +2137,7 @@ export type SubmissionUncheckedUpdateManyWithoutBathroomTypeInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  pdfUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   ipAddress?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   submittedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -2191,6 +2235,7 @@ export type SubmissionSelect<
     status?: boolean;
     projectNotes?: boolean;
     additionalDetails?: boolean;
+    pdfUrl?: boolean;
     ipAddress?: boolean;
     userAgent?: boolean;
     submittedAt?: boolean;
@@ -2225,6 +2270,7 @@ export type SubmissionSelectCreateManyAndReturn<
     status?: boolean;
     projectNotes?: boolean;
     additionalDetails?: boolean;
+    pdfUrl?: boolean;
     ipAddress?: boolean;
     userAgent?: boolean;
     submittedAt?: boolean;
@@ -2255,6 +2301,7 @@ export type SubmissionSelectUpdateManyAndReturn<
     status?: boolean;
     projectNotes?: boolean;
     additionalDetails?: boolean;
+    pdfUrl?: boolean;
     ipAddress?: boolean;
     userAgent?: boolean;
     submittedAt?: boolean;
@@ -2281,6 +2328,7 @@ export type SubmissionSelectScalar = {
   status?: boolean;
   projectNotes?: boolean;
   additionalDetails?: boolean;
+  pdfUrl?: boolean;
   ipAddress?: boolean;
   userAgent?: boolean;
   submittedAt?: boolean;
@@ -2307,6 +2355,7 @@ export type SubmissionOmit<
   | 'status'
   | 'projectNotes'
   | 'additionalDetails'
+  | 'pdfUrl'
   | 'ipAddress'
   | 'userAgent'
   | 'submittedAt'
@@ -2365,6 +2414,7 @@ export type $SubmissionPayload<
       status: $Enums.SubmissionStatus;
       projectNotes: string | null;
       additionalDetails: string | null;
+      pdfUrl: string | null;
       ipAddress: string | null;
       userAgent: string | null;
       submittedAt: Date;
@@ -3028,6 +3078,7 @@ export interface SubmissionFieldRefs {
   readonly status: Prisma.FieldRef<'Submission', 'SubmissionStatus'>;
   readonly projectNotes: Prisma.FieldRef<'Submission', 'String'>;
   readonly additionalDetails: Prisma.FieldRef<'Submission', 'String'>;
+  readonly pdfUrl: Prisma.FieldRef<'Submission', 'String'>;
   readonly ipAddress: Prisma.FieldRef<'Submission', 'String'>;
   readonly userAgent: Prisma.FieldRef<'Submission', 'String'>;
   readonly submittedAt: Prisma.FieldRef<'Submission', 'DateTime'>;

@@ -95,7 +95,7 @@ export class SiteSettingsService {
 
   async updateCurrent(updateDto: UpdateSiteSettingsDto) {
     try {
-      let settings = await this.prisma.siteSettings.findFirst();
+      const settings = await this.prisma.siteSettings.findFirst();
 
       if (!settings) {
         // Create new settings

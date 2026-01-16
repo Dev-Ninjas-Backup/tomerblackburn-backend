@@ -18,8 +18,6 @@ model FileInstance {
   portfolioImages         Portfolio[]
   portfolioCategoryImages PortfolioImage[]
   siteSettingsLogos       SiteSettings[]
-  settingLogos            settings[]         @relation("SettingsLogo")
-  companySettingsLogo     CompanySetting[]   @relation("CompanyLogo")
   bathroomTypeImages      BathroomType[]     @relation("BathroomTypeImage")
   submissionMedia         SubmissionMedia[]
   userAvatars             User[]             @relation("UserAvatar")

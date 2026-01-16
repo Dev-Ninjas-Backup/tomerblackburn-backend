@@ -20,18 +20,3 @@ model SiteSettings {
   @@map("site_settings")
 }
 
-// Keep backward compatibility - will be deprecated
-model settings {
-  id              String        @id @default(uuid())
-  siteTitle       String
-  siteDescription String
-  logoImageId     String?
-  logoImage       FileInstance? @relation("SettingsLogo", fields: [logoImageId], references: [id])
-
-  contactNumber String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("settings_old")
-}

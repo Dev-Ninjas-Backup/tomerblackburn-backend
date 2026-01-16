@@ -57,7 +57,6 @@ export const ModelName = {
   ActivityLog: 'ActivityLog',
   BathroomType: 'BathroomType',
   BathroomTypeCostCode: 'BathroomTypeCostCode',
-  CompanySetting: 'CompanySetting',
   CostCode: 'CostCode',
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
@@ -74,7 +73,6 @@ export const ModelName = {
   PortfolioImage: 'PortfolioImage',
   Portfolio: 'Portfolio',
   SiteSettings: 'SiteSettings',
-  settings: 'settings',
   User: 'User',
 } as const;
 
@@ -143,23 +141,6 @@ export const BathroomTypeCostCodeScalarFieldEnum = {
 
 export type BathroomTypeCostCodeScalarFieldEnum =
   (typeof BathroomTypeCostCodeScalarFieldEnum)[keyof typeof BathroomTypeCostCodeScalarFieldEnum];
-
-export const CompanySettingScalarFieldEnum = {
-  id: 'id',
-  companyName: 'companyName',
-  email: 'email',
-  phone: 'phone',
-  address: 'address',
-  logoFileId: 'logoFileId',
-  sendEmailOnSubmission: 'sendEmailOnSubmission',
-  sendConfirmationToClient: 'sendConfirmationToClient',
-  dailySummaryReport: 'dailySummaryReport',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type CompanySettingScalarFieldEnum =
-  (typeof CompanySettingScalarFieldEnum)[keyof typeof CompanySettingScalarFieldEnum];
 
 export const CostCodeScalarFieldEnum = {
   id: 'id',
@@ -245,6 +226,7 @@ export const SubmissionScalarFieldEnum = {
   status: 'status',
   projectNotes: 'projectNotes',
   additionalDetails: 'additionalDetails',
+  pdfUrl: 'pdfUrl',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
   submittedAt: 'submittedAt',
@@ -418,19 +400,6 @@ export const SiteSettingsScalarFieldEnum = {
 
 export type SiteSettingsScalarFieldEnum =
   (typeof SiteSettingsScalarFieldEnum)[keyof typeof SiteSettingsScalarFieldEnum];
-
-export const SettingsScalarFieldEnum = {
-  id: 'id',
-  siteTitle: 'siteTitle',
-  siteDescription: 'siteDescription',
-  logoImageId: 'logoImageId',
-  contactNumber: 'contactNumber',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type SettingsScalarFieldEnum =
-  (typeof SettingsScalarFieldEnum)[keyof typeof SettingsScalarFieldEnum];
 
 export const UserScalarFieldEnum = {
   id: 'id',
