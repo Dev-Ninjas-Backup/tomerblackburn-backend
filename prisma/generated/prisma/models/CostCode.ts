@@ -28,10 +28,12 @@ export type AggregateCostCode = {
 
 export type CostCodeAvgAggregateOutputType = {
   basePrice: runtime.Decimal | null;
+  displayOrder: number | null;
 };
 
 export type CostCodeSumAggregateOutputType = {
   basePrice: runtime.Decimal | null;
+  displayOrder: number | null;
 };
 
 export type CostCodeMinAggregateOutputType = {
@@ -41,16 +43,13 @@ export type CostCodeMinAggregateOutputType = {
   name: string | null;
   description: string | null;
   basePrice: runtime.Decimal | null;
-  unitType: string | null;
-  colorTag: string | null;
-  calculationType: string | null;
+  unitType: $Enums.UnitType | null;
+  questionType: $Enums.QuestionType | null;
+  displayOrder: number | null;
+  isIncludedInBase: boolean | null;
   requiresQuantity: boolean | null;
   isOptional: boolean | null;
   isActive: boolean | null;
-  appliesToFp: boolean | null;
-  appliesToTps: boolean | null;
-  appliesToTpt: boolean | null;
-  appliesToTp: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -62,16 +61,13 @@ export type CostCodeMaxAggregateOutputType = {
   name: string | null;
   description: string | null;
   basePrice: runtime.Decimal | null;
-  unitType: string | null;
-  colorTag: string | null;
-  calculationType: string | null;
+  unitType: $Enums.UnitType | null;
+  questionType: $Enums.QuestionType | null;
+  displayOrder: number | null;
+  isIncludedInBase: boolean | null;
   requiresQuantity: boolean | null;
   isOptional: boolean | null;
   isActive: boolean | null;
-  appliesToFp: boolean | null;
-  appliesToTps: boolean | null;
-  appliesToTpt: boolean | null;
-  appliesToTp: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -84,15 +80,12 @@ export type CostCodeCountAggregateOutputType = {
   description: number;
   basePrice: number;
   unitType: number;
-  colorTag: number;
-  calculationType: number;
+  questionType: number;
+  displayOrder: number;
+  isIncludedInBase: number;
   requiresQuantity: number;
   isOptional: number;
   isActive: number;
-  appliesToFp: number;
-  appliesToTps: number;
-  appliesToTpt: number;
-  appliesToTp: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -100,10 +93,12 @@ export type CostCodeCountAggregateOutputType = {
 
 export type CostCodeAvgAggregateInputType = {
   basePrice?: true;
+  displayOrder?: true;
 };
 
 export type CostCodeSumAggregateInputType = {
   basePrice?: true;
+  displayOrder?: true;
 };
 
 export type CostCodeMinAggregateInputType = {
@@ -114,15 +109,12 @@ export type CostCodeMinAggregateInputType = {
   description?: true;
   basePrice?: true;
   unitType?: true;
-  colorTag?: true;
-  calculationType?: true;
+  questionType?: true;
+  displayOrder?: true;
+  isIncludedInBase?: true;
   requiresQuantity?: true;
   isOptional?: true;
   isActive?: true;
-  appliesToFp?: true;
-  appliesToTps?: true;
-  appliesToTpt?: true;
-  appliesToTp?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -135,15 +127,12 @@ export type CostCodeMaxAggregateInputType = {
   description?: true;
   basePrice?: true;
   unitType?: true;
-  colorTag?: true;
-  calculationType?: true;
+  questionType?: true;
+  displayOrder?: true;
+  isIncludedInBase?: true;
   requiresQuantity?: true;
   isOptional?: true;
   isActive?: true;
-  appliesToFp?: true;
-  appliesToTps?: true;
-  appliesToTpt?: true;
-  appliesToTp?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -156,15 +145,12 @@ export type CostCodeCountAggregateInputType = {
   description?: true;
   basePrice?: true;
   unitType?: true;
-  colorTag?: true;
-  calculationType?: true;
+  questionType?: true;
+  displayOrder?: true;
+  isIncludedInBase?: true;
   requiresQuantity?: true;
   isOptional?: true;
   isActive?: true;
-  appliesToFp?: true;
-  appliesToTps?: true;
-  appliesToTpt?: true;
-  appliesToTp?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -270,16 +256,13 @@ export type CostCodeGroupByOutputType = {
   name: string;
   description: string | null;
   basePrice: runtime.Decimal;
-  unitType: string | null;
-  colorTag: string | null;
-  calculationType: string | null;
+  unitType: $Enums.UnitType;
+  questionType: $Enums.QuestionType;
+  displayOrder: number;
+  isIncludedInBase: boolean;
   requiresQuantity: boolean;
   isOptional: boolean;
   isActive: boolean;
-  appliesToFp: boolean;
-  appliesToTps: boolean;
-  appliesToTpt: boolean;
-  appliesToTp: boolean;
   createdAt: Date;
   updatedAt: Date;
   _count: CostCodeCountAggregateOutputType | null;
@@ -317,16 +300,15 @@ export type CostCodeWhereInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
-  colorTag?: Prisma.StringNullableFilter<'CostCode'> | string | null;
-  calculationType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  unitType?: Prisma.EnumUnitTypeFilter<'CostCode'> | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFilter<'CostCode'>
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFilter<'CostCode'> | number;
+  isIncludedInBase?: Prisma.BoolFilter<'CostCode'> | boolean;
   requiresQuantity?: Prisma.BoolFilter<'CostCode'> | boolean;
   isOptional?: Prisma.BoolFilter<'CostCode'> | boolean;
   isActive?: Prisma.BoolFilter<'CostCode'> | boolean;
-  appliesToFp?: Prisma.BoolFilter<'CostCode'> | boolean;
-  appliesToTps?: Prisma.BoolFilter<'CostCode'> | boolean;
-  appliesToTpt?: Prisma.BoolFilter<'CostCode'> | boolean;
-  appliesToTp?: Prisma.BoolFilter<'CostCode'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
   category?: Prisma.XOR<
@@ -345,16 +327,13 @@ export type CostCodeOrderByWithRelationInput = {
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
-  unitType?: Prisma.SortOrderInput | Prisma.SortOrder;
-  colorTag?: Prisma.SortOrderInput | Prisma.SortOrder;
-  calculationType?: Prisma.SortOrderInput | Prisma.SortOrder;
+  unitType?: Prisma.SortOrder;
+  questionType?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
+  isIncludedInBase?: Prisma.SortOrder;
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
-  appliesToFp?: Prisma.SortOrder;
-  appliesToTps?: Prisma.SortOrder;
-  appliesToTpt?: Prisma.SortOrder;
-  appliesToTp?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   category?: Prisma.CostCodeCategoryOrderByWithRelationInput;
@@ -379,16 +358,15 @@ export type CostCodeWhereUniqueInput = Prisma.AtLeast<
       | runtime.DecimalJsLike
       | number
       | string;
-    unitType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
-    colorTag?: Prisma.StringNullableFilter<'CostCode'> | string | null;
-    calculationType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+    unitType?: Prisma.EnumUnitTypeFilter<'CostCode'> | $Enums.UnitType;
+    questionType?:
+      | Prisma.EnumQuestionTypeFilter<'CostCode'>
+      | $Enums.QuestionType;
+    displayOrder?: Prisma.IntFilter<'CostCode'> | number;
+    isIncludedInBase?: Prisma.BoolFilter<'CostCode'> | boolean;
     requiresQuantity?: Prisma.BoolFilter<'CostCode'> | boolean;
     isOptional?: Prisma.BoolFilter<'CostCode'> | boolean;
     isActive?: Prisma.BoolFilter<'CostCode'> | boolean;
-    appliesToFp?: Prisma.BoolFilter<'CostCode'> | boolean;
-    appliesToTps?: Prisma.BoolFilter<'CostCode'> | boolean;
-    appliesToTpt?: Prisma.BoolFilter<'CostCode'> | boolean;
-    appliesToTp?: Prisma.BoolFilter<'CostCode'> | boolean;
     createdAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
     category?: Prisma.XOR<
@@ -409,16 +387,13 @@ export type CostCodeOrderByWithAggregationInput = {
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
-  unitType?: Prisma.SortOrderInput | Prisma.SortOrder;
-  colorTag?: Prisma.SortOrderInput | Prisma.SortOrder;
-  calculationType?: Prisma.SortOrderInput | Prisma.SortOrder;
+  unitType?: Prisma.SortOrder;
+  questionType?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
+  isIncludedInBase?: Prisma.SortOrder;
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
-  appliesToFp?: Prisma.SortOrder;
-  appliesToTps?: Prisma.SortOrder;
-  appliesToTpt?: Prisma.SortOrder;
-  appliesToTp?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.CostCodeCountOrderByAggregateInput;
@@ -451,24 +426,16 @@ export type CostCodeScalarWhereWithAggregatesInput = {
     | number
     | string;
   unitType?:
-    | Prisma.StringNullableWithAggregatesFilter<'CostCode'>
-    | string
-    | null;
-  colorTag?:
-    | Prisma.StringNullableWithAggregatesFilter<'CostCode'>
-    | string
-    | null;
-  calculationType?:
-    | Prisma.StringNullableWithAggregatesFilter<'CostCode'>
-    | string
-    | null;
+    | Prisma.EnumUnitTypeWithAggregatesFilter<'CostCode'>
+    | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeWithAggregatesFilter<'CostCode'>
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntWithAggregatesFilter<'CostCode'> | number;
+  isIncludedInBase?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
   requiresQuantity?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
   isOptional?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
   isActive?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
-  appliesToFp?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
-  appliesToTps?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
-  appliesToTpt?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
-  appliesToTp?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'CostCode'> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<'CostCode'> | Date | string;
 };
@@ -479,16 +446,13 @@ export type CostCodeCreateInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
@@ -504,16 +468,13 @@ export type CostCodeUncheckedCreateInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
@@ -532,19 +493,15 @@ export type CostCodeUpdateInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
@@ -565,19 +522,15 @@ export type CostCodeUncheckedUpdateInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
@@ -592,16 +545,13 @@ export type CostCodeCreateManyInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -617,19 +567,15 @@ export type CostCodeUpdateManyMutationInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -646,19 +592,15 @@ export type CostCodeUncheckedUpdateManyInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -676,21 +618,19 @@ export type CostCodeCountOrderByAggregateInput = {
   description?: Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   unitType?: Prisma.SortOrder;
-  colorTag?: Prisma.SortOrder;
-  calculationType?: Prisma.SortOrder;
+  questionType?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
+  isIncludedInBase?: Prisma.SortOrder;
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
-  appliesToFp?: Prisma.SortOrder;
-  appliesToTps?: Prisma.SortOrder;
-  appliesToTpt?: Prisma.SortOrder;
-  appliesToTp?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
 
 export type CostCodeAvgOrderByAggregateInput = {
   basePrice?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
 };
 
 export type CostCodeMaxOrderByAggregateInput = {
@@ -701,15 +641,12 @@ export type CostCodeMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   unitType?: Prisma.SortOrder;
-  colorTag?: Prisma.SortOrder;
-  calculationType?: Prisma.SortOrder;
+  questionType?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
+  isIncludedInBase?: Prisma.SortOrder;
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
-  appliesToFp?: Prisma.SortOrder;
-  appliesToTps?: Prisma.SortOrder;
-  appliesToTpt?: Prisma.SortOrder;
-  appliesToTp?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -722,21 +659,19 @@ export type CostCodeMinOrderByAggregateInput = {
   description?: Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   unitType?: Prisma.SortOrder;
-  colorTag?: Prisma.SortOrder;
-  calculationType?: Prisma.SortOrder;
+  questionType?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
+  isIncludedInBase?: Prisma.SortOrder;
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
-  appliesToFp?: Prisma.SortOrder;
-  appliesToTps?: Prisma.SortOrder;
-  appliesToTpt?: Prisma.SortOrder;
-  appliesToTp?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
 
 export type CostCodeSumOrderByAggregateInput = {
   basePrice?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
 };
 
 export type CostCodeListRelationFilter = {
@@ -773,6 +708,14 @@ export type CostCodeUpdateOneRequiredWithoutBathroomTypeCostCodesNestedInput = {
     >,
     Prisma.CostCodeUncheckedUpdateWithoutBathroomTypeCostCodesInput
   >;
+};
+
+export type EnumUnitTypeFieldUpdateOperationsInput = {
+  set?: $Enums.UnitType;
+};
+
+export type EnumQuestionTypeFieldUpdateOperationsInput = {
+  set?: $Enums.QuestionType;
 };
 
 export type CostCodeCreateNestedManyWithoutCategoryInput = {
@@ -927,16 +870,13 @@ export type CostCodeCreateWithoutBathroomTypeCostCodesInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
@@ -951,16 +891,13 @@ export type CostCodeUncheckedCreateWithoutBathroomTypeCostCodesInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
@@ -1006,19 +943,15 @@ export type CostCodeUpdateWithoutBathroomTypeCostCodesInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
@@ -1038,19 +971,15 @@ export type CostCodeUncheckedUpdateWithoutBathroomTypeCostCodesInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
@@ -1063,16 +992,13 @@ export type CostCodeCreateWithoutCategoryInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   options?: Prisma.CostCodeOptionCreateNestedManyWithoutCostCodeInput;
@@ -1086,16 +1012,13 @@ export type CostCodeUncheckedCreateWithoutCategoryInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
@@ -1161,16 +1084,15 @@ export type CostCodeScalarWhereInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
-  colorTag?: Prisma.StringNullableFilter<'CostCode'> | string | null;
-  calculationType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  unitType?: Prisma.EnumUnitTypeFilter<'CostCode'> | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFilter<'CostCode'>
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFilter<'CostCode'> | number;
+  isIncludedInBase?: Prisma.BoolFilter<'CostCode'> | boolean;
   requiresQuantity?: Prisma.BoolFilter<'CostCode'> | boolean;
   isOptional?: Prisma.BoolFilter<'CostCode'> | boolean;
   isActive?: Prisma.BoolFilter<'CostCode'> | boolean;
-  appliesToFp?: Prisma.BoolFilter<'CostCode'> | boolean;
-  appliesToTps?: Prisma.BoolFilter<'CostCode'> | boolean;
-  appliesToTpt?: Prisma.BoolFilter<'CostCode'> | boolean;
-  appliesToTp?: Prisma.BoolFilter<'CostCode'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
 };
@@ -1181,16 +1103,13 @@ export type CostCodeCreateWithoutOptionsInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
@@ -1205,16 +1124,13 @@ export type CostCodeUncheckedCreateWithoutOptionsInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   bathroomTypeCostCodes?: Prisma.BathroomTypeCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
@@ -1260,19 +1176,15 @@ export type CostCodeUpdateWithoutOptionsInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
@@ -1292,19 +1204,15 @@ export type CostCodeUncheckedUpdateWithoutOptionsInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   bathroomTypeCostCodes?: Prisma.BathroomTypeCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
@@ -1317,16 +1225,13 @@ export type CostCodeCreateWithoutSubmissionItemsInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
@@ -1341,16 +1246,13 @@ export type CostCodeUncheckedCreateWithoutSubmissionItemsInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
@@ -1396,19 +1298,15 @@ export type CostCodeUpdateWithoutSubmissionItemsInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
@@ -1428,19 +1326,15 @@ export type CostCodeUncheckedUpdateWithoutSubmissionItemsInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
@@ -1453,16 +1347,13 @@ export type CostCodeCreateManyCategoryInput = {
   name: string;
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  unitType?: string | null;
-  colorTag?: string | null;
-  calculationType?: string | null;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -1478,19 +1369,15 @@ export type CostCodeUpdateWithoutCategoryInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   options?: Prisma.CostCodeOptionUpdateManyWithoutCostCodeNestedInput;
@@ -1509,19 +1396,15 @@ export type CostCodeUncheckedUpdateWithoutCategoryInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
@@ -1540,19 +1423,15 @@ export type CostCodeUncheckedUpdateManyWithoutCategoryInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  unitType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  colorTag?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  calculationType?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToFp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTps?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTpt?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  appliesToTp?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -1633,15 +1512,12 @@ export type CostCodeSelect<
     description?: boolean;
     basePrice?: boolean;
     unitType?: boolean;
-    colorTag?: boolean;
-    calculationType?: boolean;
+    questionType?: boolean;
+    displayOrder?: boolean;
+    isIncludedInBase?: boolean;
     requiresQuantity?: boolean;
     isOptional?: boolean;
     isActive?: boolean;
-    appliesToFp?: boolean;
-    appliesToTps?: boolean;
-    appliesToTpt?: boolean;
-    appliesToTp?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     category?: boolean | Prisma.CostCodeCategoryDefaultArgs<ExtArgs>;
@@ -1667,15 +1543,12 @@ export type CostCodeSelectCreateManyAndReturn<
     description?: boolean;
     basePrice?: boolean;
     unitType?: boolean;
-    colorTag?: boolean;
-    calculationType?: boolean;
+    questionType?: boolean;
+    displayOrder?: boolean;
+    isIncludedInBase?: boolean;
     requiresQuantity?: boolean;
     isOptional?: boolean;
     isActive?: boolean;
-    appliesToFp?: boolean;
-    appliesToTps?: boolean;
-    appliesToTpt?: boolean;
-    appliesToTp?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     category?: boolean | Prisma.CostCodeCategoryDefaultArgs<ExtArgs>;
@@ -1695,15 +1568,12 @@ export type CostCodeSelectUpdateManyAndReturn<
     description?: boolean;
     basePrice?: boolean;
     unitType?: boolean;
-    colorTag?: boolean;
-    calculationType?: boolean;
+    questionType?: boolean;
+    displayOrder?: boolean;
+    isIncludedInBase?: boolean;
     requiresQuantity?: boolean;
     isOptional?: boolean;
     isActive?: boolean;
-    appliesToFp?: boolean;
-    appliesToTps?: boolean;
-    appliesToTpt?: boolean;
-    appliesToTp?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     category?: boolean | Prisma.CostCodeCategoryDefaultArgs<ExtArgs>;
@@ -1719,15 +1589,12 @@ export type CostCodeSelectScalar = {
   description?: boolean;
   basePrice?: boolean;
   unitType?: boolean;
-  colorTag?: boolean;
-  calculationType?: boolean;
+  questionType?: boolean;
+  displayOrder?: boolean;
+  isIncludedInBase?: boolean;
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
-  appliesToFp?: boolean;
-  appliesToTps?: boolean;
-  appliesToTpt?: boolean;
-  appliesToTp?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -1743,15 +1610,12 @@ export type CostCodeOmit<
   | 'description'
   | 'basePrice'
   | 'unitType'
-  | 'colorTag'
-  | 'calculationType'
+  | 'questionType'
+  | 'displayOrder'
+  | 'isIncludedInBase'
   | 'requiresQuantity'
   | 'isOptional'
   | 'isActive'
-  | 'appliesToFp'
-  | 'appliesToTps'
-  | 'appliesToTpt'
-  | 'appliesToTp'
   | 'createdAt'
   | 'updatedAt',
   ExtArgs['result']['costCode']
@@ -1800,16 +1664,13 @@ export type $CostCodePayload<
       name: string;
       description: string | null;
       basePrice: runtime.Decimal;
-      unitType: string | null;
-      colorTag: string | null;
-      calculationType: string | null;
+      unitType: $Enums.UnitType;
+      questionType: $Enums.QuestionType;
+      displayOrder: number;
+      isIncludedInBase: boolean;
       requiresQuantity: boolean;
       isOptional: boolean;
       isActive: boolean;
-      appliesToFp: boolean;
-      appliesToTps: boolean;
-      appliesToTpt: boolean;
-      appliesToTp: boolean;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -2459,16 +2320,13 @@ export interface CostCodeFieldRefs {
   readonly name: Prisma.FieldRef<'CostCode', 'String'>;
   readonly description: Prisma.FieldRef<'CostCode', 'String'>;
   readonly basePrice: Prisma.FieldRef<'CostCode', 'Decimal'>;
-  readonly unitType: Prisma.FieldRef<'CostCode', 'String'>;
-  readonly colorTag: Prisma.FieldRef<'CostCode', 'String'>;
-  readonly calculationType: Prisma.FieldRef<'CostCode', 'String'>;
+  readonly unitType: Prisma.FieldRef<'CostCode', 'UnitType'>;
+  readonly questionType: Prisma.FieldRef<'CostCode', 'QuestionType'>;
+  readonly displayOrder: Prisma.FieldRef<'CostCode', 'Int'>;
+  readonly isIncludedInBase: Prisma.FieldRef<'CostCode', 'Boolean'>;
   readonly requiresQuantity: Prisma.FieldRef<'CostCode', 'Boolean'>;
   readonly isOptional: Prisma.FieldRef<'CostCode', 'Boolean'>;
   readonly isActive: Prisma.FieldRef<'CostCode', 'Boolean'>;
-  readonly appliesToFp: Prisma.FieldRef<'CostCode', 'Boolean'>;
-  readonly appliesToTps: Prisma.FieldRef<'CostCode', 'Boolean'>;
-  readonly appliesToTpt: Prisma.FieldRef<'CostCode', 'Boolean'>;
-  readonly appliesToTp: Prisma.FieldRef<'CostCode', 'Boolean'>;
   readonly createdAt: Prisma.FieldRef<'CostCode', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'CostCode', 'DateTime'>;
 }

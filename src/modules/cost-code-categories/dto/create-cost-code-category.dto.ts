@@ -7,6 +7,8 @@ import {
   IsBoolean,
   MaxLength,
   Matches,
+  Min,
+  Max,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -44,7 +46,22 @@ export class CreateCostCodeCategoryDto {
   description?: string;
 
   @ApiProperty({
-    description: 'Display order for sorting',
+    description:
+      'Step number in the estimator flow (1: Demolition & Structural, 2: Core Fixtures, 3: Finishing)',
+    example: 1,
+    default: 1,
+    minimum: 1,
+    maximum: 10,
+  })
+  @IsNumber()
+  @Type(() => Number)
+  @Min(1)
+  @Max(10)
+  @IsOptional()
+  stepNumber?: number;
+
+  @ApiProperty({
+    description: 'Display order within the step for sorting',
     example: 0,
     default: 0,
   })

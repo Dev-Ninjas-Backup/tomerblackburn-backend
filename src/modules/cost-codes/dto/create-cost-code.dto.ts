@@ -10,30 +10,7 @@ import {
   Min,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-
-enum ColorTag {
-  WHITE = 'WHITE',
-  ORANGE = 'ORANGE',
-  BLUE = 'BLUE',
-  YELLOW = 'YELLOW',
-  GREEN = 'GREEN',
-}
-
-enum CalculationType {
-  FIXED = 'fixed',
-  USER_INPUT = 'user_input',
-  SELECTION = 'selection',
-  TOGGLE = 'toggle',
-}
-
-enum UnitType {
-  PER_LOT = 'per_lot',
-  PER_SQFT = 'per_sqft',
-  PER_UPGRADE = 'per_upgrade',
-  PER_EACH = 'per_each',
-  PER_SET = 'per_set',
-  FIXED = 'fixed',
-}
+import { QuestionType, UnitType } from 'generated/prisma/enums';
 
 export class CreateCostCodeDto {
   @ApiProperty({
@@ -47,16 +24,16 @@ export class CreateCostCodeDto {
   @ApiProperty({
     description: 'Unique cost code',
     example: 'FP-D-1',
-    maxLength: 20,
+    maxLength: 50,
   })
   @IsString()
   @IsNotEmpty()
-  @MaxLength(20)
+  @MaxLength(50)
   code: string;
 
   @ApiProperty({
-    description: 'Cost code name',
-    example: 'Demolition',
+    description: 'Cost code name/title',
+    example: 'Floor Tile Installation',
     maxLength: 255,
   })
   @IsString()
@@ -65,8 +42,8 @@ export class CreateCostCodeDto {
   name: string;
 
   @ApiProperty({
-    description: 'Cost code description',
-    example: 'Remove existing fixtures, tile, and prepare space for remodel',
+    description: 'Detailed description of the work',
+    example: 'Installation of floor tiles including mortar, grout, and labor',
     required: false,
   })
   @IsString()
@@ -85,34 +62,45 @@ export class CreateCostCodeDto {
   basePrice?: number;
 
   @ApiProperty({
-    description: 'Unit type for pricing',
+    description: 'Unit type for pricing calculation',
     enum: UnitType,
-    example: 'per_lot',
-    required: false,
+    enumName: 'UnitType',
+    example: UnitType.FIXED,
+    default: UnitType.FIXED,
   })
   @IsEnum(UnitType)
   @IsOptional()
-  unitType?: string;
+  unitType?: UnitType;
 
   @ApiProperty({
-    description: 'Color tag for UI categorization',
-    enum: ColorTag,
-    example: 'WHITE',
-    required: false,
+    description: 'Question type determines UI behavior (color-coded in admin)',
+    enum: QuestionType,
+    enumName: 'QuestionType',
+    example: QuestionType.WHITE,
+    default: QuestionType.WHITE,
   })
-  @IsEnum(ColorTag)
+  @IsEnum(QuestionType)
   @IsOptional()
-  colorTag?: string;
+  questionType?: QuestionType;
 
   @ApiProperty({
-    description: 'Calculation type for this cost code',
-    enum: CalculationType,
-    example: 'fixed',
-    required: false,
+    description: 'Display order within category',
+    example: 1,
+    default: 0,
   })
-  @IsEnum(CalculationType)
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0)
   @IsOptional()
-  calculationType?: string;
+  displayOrder?: number;
+
+  @ApiProperty({
+    description: 'Whether this cost is included in the base price',
+    default: false,
+  })
+  @IsBoolean()
+  @IsOptional()
+  isIncludedInBase?: boolean;
 
   @ApiProperty({
     description: 'Whether this cost code requires quantity input',
@@ -123,7 +111,7 @@ export class CreateCostCodeDto {
   requiresQuantity?: boolean;
 
   @ApiProperty({
-    description: 'Whether this cost code is optional',
+    description: 'Whether this cost code is optional (can be toggled on/off)',
     default: false,
   })
   @IsBoolean()
@@ -137,36 +125,4 @@ export class CreateCostCodeDto {
   @IsBoolean()
   @IsOptional()
   isActive?: boolean;
-
-  @ApiProperty({
-    description: 'Applies to Four Piece bathroom',
-    default: false,
-  })
-  @IsBoolean()
-  @IsOptional()
-  appliesToFp?: boolean;
-
-  @ApiProperty({
-    description: 'Applies to Three Piece Shower bathroom',
-    default: false,
-  })
-  @IsBoolean()
-  @IsOptional()
-  appliesToTps?: boolean;
-
-  @ApiProperty({
-    description: 'Applies to Three Piece Tub bathroom',
-    default: false,
-  })
-  @IsBoolean()
-  @IsOptional()
-  appliesToTpt?: boolean;
-
-  @ApiProperty({
-    description: 'Applies to Two Piece bathroom',
-    default: false,
-  })
-  @IsBoolean()
-  @IsOptional()
-  appliesToTp?: boolean;
 }

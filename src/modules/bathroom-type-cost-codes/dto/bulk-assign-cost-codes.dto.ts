@@ -6,7 +6,10 @@ import {
   ArrayMinSize,
   IsBoolean,
   IsOptional,
+  IsNumber,
+  Min,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class BulkAssignCostCodesDto {
   @ApiProperty({
@@ -31,7 +34,7 @@ export class BulkAssignCostCodesDto {
 
   @ApiProperty({
     description: 'Whether these cost codes are included in base price',
-    default: true,
+    default: false,
     required: false,
   })
   @IsBoolean()
@@ -46,4 +49,23 @@ export class BulkAssignCostCodesDto {
   @IsBoolean()
   @IsOptional()
   isRequired?: boolean;
+
+  @ApiProperty({
+    description: 'Whether these cost codes are visible in the estimator',
+    default: true,
+    required: false,
+  })
+  @IsBoolean()
+  @IsOptional()
+  isVisible?: boolean;
+
+  @ApiProperty({
+    description: 'Price override for all assigned cost codes',
+    required: false,
+  })
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0)
+  @IsOptional()
+  priceOverride?: number;
 }

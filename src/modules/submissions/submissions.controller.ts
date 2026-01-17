@@ -6,40 +6,102 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { SubmissionsService } from './submissions.service';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { UpdateSubmissionDto } from './dto/update-submission.dto';
+import { SubmissionStatus } from 'generated/prisma/enums';
 
+@ApiTags('Submissions')
 @Controller('submissions')
 export class SubmissionsController {
   constructor(private readonly submissionsService: SubmissionsService) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create a new estimate submission' })
   create(@Body() createSubmissionDto: CreateSubmissionDto) {
     return this.submissionsService.create(createSubmissionDto);
   }
 
   @Get()
-  findAll() {
-    return this.submissionsService.findAll();
+  @ApiOperation({ summary: 'Get all submissions' })
+  @ApiQuery({ name: 'status', required: false, enum: SubmissionStatus })
+  findAll(@Query('status') status?: SubmissionStatus) {
+    return this.submissionsService.findAll(status);
+  }
+
+  @Get('dashboard-stats')
+  @ApiOperation({ summary: 'Get dashboard statistics' })
+  getDashboardStats() {
+    return this.submissionsService.getDashboardStats();
+  }
+
+  @Get('by-number/:submissionNumber')
+  @ApiOperation({ summary: 'Get submission by submission number' })
+  findBySubmissionNumber(@Param('submissionNumber') submissionNumber: string) {
+    return this.submissionsService.findBySubmissionNumber(submissionNumber);
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get submission by ID' })
   findOne(@Param('id') id: string) {
-    return this.submissionsService.findOne(+id);
+    return this.submissionsService.findOne(id);
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Update submission' })
   update(
     @Param('id') id: string,
     @Body() updateSubmissionDto: UpdateSubmissionDto,
   ) {
-    return this.submissionsService.update(+id, updateSubmissionDto);
+    return this.submissionsService.update(id, updateSubmissionDto);
+  }
+
+  @Patch(':id/status')
+  @ApiOperation({ summary: 'Update submission status' })
+  updateStatus(
+    @Param('id') id: string,
+    @Body('status') status: SubmissionStatus,
+  ) {
+    return this.submissionsService.updateStatus(id, status);
+  }
+
+  @Post(':id/media')
+  @ApiOperation({ summary: 'Add media to submission' })
+  addMedia(
+    @Param('id') id: string,
+    @Body()
+    body: {
+      fileInstanceId: string;
+      mediaType: 'PHOTO' | 'VIDEO';
+      description?: string;
+    },
+  ) {
+    return this.submissionsService.addMedia(
+      id,
+      body.fileInstanceId,
+      body.mediaType,
+      body.description,
+    );
+  }
+
+  @Delete('media/:mediaId')
+  @ApiOperation({ summary: 'Remove media from submission' })
+  removeMedia(@Param('mediaId') mediaId: string) {
+    return this.submissionsService.removeMedia(mediaId);
+  }
+
+  @Post(':id/regenerate-pdf')
+  @ApiOperation({ summary: 'Regenerate PDF for submission' })
+  regeneratePdf(@Param('id') id: string) {
+    return this.submissionsService.regeneratePdf(id);
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Delete submission' })
   remove(@Param('id') id: string) {
-    return this.submissionsService.remove(+id);
+    return this.submissionsService.remove(id);
   }
 }

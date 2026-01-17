@@ -265,10 +265,11 @@ export type FileInstanceWhereInput = {
   serviceImages?: Prisma.ServiceStandsOutListRelationFilter;
   aboutUsImages?: Prisma.AboutUsListRelationFilter;
   portfolioImages?: Prisma.PortfolioListRelationFilter;
-  settingLogos?: Prisma.SettingsListRelationFilter;
-  companySettingsLogo?: Prisma.CompanySettingListRelationFilter;
+  portfolioCategoryImages?: Prisma.PortfolioImageListRelationFilter;
+  siteSettingsLogos?: Prisma.SiteSettingsListRelationFilter;
   bathroomTypeImages?: Prisma.BathroomTypeListRelationFilter;
   submissionMedia?: Prisma.SubmissionMediaListRelationFilter;
+  userAvatars?: Prisma.UserListRelationFilter;
 };
 
 export type FileInstanceOrderByWithRelationInput = {
@@ -286,10 +287,11 @@ export type FileInstanceOrderByWithRelationInput = {
   serviceImages?: Prisma.ServiceStandsOutOrderByRelationAggregateInput;
   aboutUsImages?: Prisma.AboutUsOrderByRelationAggregateInput;
   portfolioImages?: Prisma.PortfolioOrderByRelationAggregateInput;
-  settingLogos?: Prisma.settingsOrderByRelationAggregateInput;
-  companySettingsLogo?: Prisma.CompanySettingOrderByRelationAggregateInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageOrderByRelationAggregateInput;
+  siteSettingsLogos?: Prisma.SiteSettingsOrderByRelationAggregateInput;
   bathroomTypeImages?: Prisma.BathroomTypeOrderByRelationAggregateInput;
   submissionMedia?: Prisma.SubmissionMediaOrderByRelationAggregateInput;
+  userAvatars?: Prisma.UserOrderByRelationAggregateInput;
 };
 
 export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
@@ -311,10 +313,11 @@ export type FileInstanceWhereUniqueInput = Prisma.AtLeast<
     serviceImages?: Prisma.ServiceStandsOutListRelationFilter;
     aboutUsImages?: Prisma.AboutUsListRelationFilter;
     portfolioImages?: Prisma.PortfolioListRelationFilter;
-    settingLogos?: Prisma.SettingsListRelationFilter;
-    companySettingsLogo?: Prisma.CompanySettingListRelationFilter;
+    portfolioCategoryImages?: Prisma.PortfolioImageListRelationFilter;
+    siteSettingsLogos?: Prisma.SiteSettingsListRelationFilter;
     bathroomTypeImages?: Prisma.BathroomTypeListRelationFilter;
     submissionMedia?: Prisma.SubmissionMediaListRelationFilter;
+    userAvatars?: Prisma.UserListRelationFilter;
   },
   'id'
 >;
@@ -380,10 +383,11 @@ export type FileInstanceCreateInput = {
   serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceUncheckedCreateInput = {
@@ -401,10 +405,11 @@ export type FileInstanceUncheckedCreateInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserUncheckedCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceUpdateInput = {
@@ -422,10 +427,11 @@ export type FileInstanceUpdateInput = {
   serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateInput = {
@@ -443,10 +449,11 @@ export type FileInstanceUncheckedUpdateInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUncheckedUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceCreateManyInput = {
@@ -573,34 +580,6 @@ export type FileInstanceUpdateOneWithoutBathroomTypeImagesNestedInput = {
   >;
 };
 
-export type FileInstanceCreateNestedOneWithoutCompanySettingsLogoInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutCompanySettingsLogoInput,
-    Prisma.FileInstanceUncheckedCreateWithoutCompanySettingsLogoInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutCompanySettingsLogoInput;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-};
-
-export type FileInstanceUpdateOneWithoutCompanySettingsLogoNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutCompanySettingsLogoInput,
-    Prisma.FileInstanceUncheckedCreateWithoutCompanySettingsLogoInput
-  >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutCompanySettingsLogoInput;
-  upsert?: Prisma.FileInstanceUpsertWithoutCompanySettingsLogoInput;
-  disconnect?: Prisma.FileInstanceWhereInput | boolean;
-  delete?: Prisma.FileInstanceWhereInput | boolean;
-  connect?: Prisma.FileInstanceWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.FileInstanceUpdateToOneWithWhereWithoutCompanySettingsLogoInput,
-      Prisma.FileInstanceUpdateWithoutCompanySettingsLogoInput
-    >,
-    Prisma.FileInstanceUncheckedUpdateWithoutCompanySettingsLogoInput
-  >;
-};
-
 export type FileInstanceCreateNestedOneWithoutSubmissionMediaInput = {
   create?: Prisma.XOR<
     Prisma.FileInstanceCreateWithoutSubmissionMediaInput,
@@ -715,6 +694,33 @@ export type FileInstanceUpdateOneWithoutAboutUsImagesNestedInput = {
   >;
 };
 
+export type FileInstanceCreateNestedOneWithoutPortfolioCategoryImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPortfolioCategoryImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPortfolioCategoryImagesInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutPortfolioCategoryImagesInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneRequiredWithoutPortfolioCategoryImagesNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.FileInstanceCreateWithoutPortfolioCategoryImagesInput,
+      Prisma.FileInstanceUncheckedCreateWithoutPortfolioCategoryImagesInput
+    >;
+    connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutPortfolioCategoryImagesInput;
+    upsert?: Prisma.FileInstanceUpsertWithoutPortfolioCategoryImagesInput;
+    connect?: Prisma.FileInstanceWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.FileInstanceUpdateToOneWithWhereWithoutPortfolioCategoryImagesInput,
+        Prisma.FileInstanceUpdateWithoutPortfolioCategoryImagesInput
+      >,
+      Prisma.FileInstanceUncheckedUpdateWithoutPortfolioCategoryImagesInput
+    >;
+  };
+
 export type FileInstanceCreateNestedOneWithoutPortfolioImagesInput = {
   create?: Prisma.XOR<
     Prisma.FileInstanceCreateWithoutPortfolioImagesInput,
@@ -743,31 +749,59 @@ export type FileInstanceUpdateOneWithoutPortfolioImagesNestedInput = {
   >;
 };
 
-export type FileInstanceCreateNestedOneWithoutSettingLogosInput = {
+export type FileInstanceCreateNestedOneWithoutSiteSettingsLogosInput = {
   create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutSettingLogosInput,
-    Prisma.FileInstanceUncheckedCreateWithoutSettingLogosInput
+    Prisma.FileInstanceCreateWithoutSiteSettingsLogosInput,
+    Prisma.FileInstanceUncheckedCreateWithoutSiteSettingsLogosInput
   >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutSettingLogosInput;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutSiteSettingsLogosInput;
   connect?: Prisma.FileInstanceWhereUniqueInput;
 };
 
-export type FileInstanceUpdateOneWithoutSettingLogosNestedInput = {
+export type FileInstanceUpdateOneWithoutSiteSettingsLogosNestedInput = {
   create?: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutSettingLogosInput,
-    Prisma.FileInstanceUncheckedCreateWithoutSettingLogosInput
+    Prisma.FileInstanceCreateWithoutSiteSettingsLogosInput,
+    Prisma.FileInstanceUncheckedCreateWithoutSiteSettingsLogosInput
   >;
-  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutSettingLogosInput;
-  upsert?: Prisma.FileInstanceUpsertWithoutSettingLogosInput;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutSiteSettingsLogosInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutSiteSettingsLogosInput;
   disconnect?: Prisma.FileInstanceWhereInput | boolean;
   delete?: Prisma.FileInstanceWhereInput | boolean;
   connect?: Prisma.FileInstanceWhereUniqueInput;
   update?: Prisma.XOR<
     Prisma.XOR<
-      Prisma.FileInstanceUpdateToOneWithWhereWithoutSettingLogosInput,
-      Prisma.FileInstanceUpdateWithoutSettingLogosInput
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutSiteSettingsLogosInput,
+      Prisma.FileInstanceUpdateWithoutSiteSettingsLogosInput
     >,
-    Prisma.FileInstanceUncheckedUpdateWithoutSettingLogosInput
+    Prisma.FileInstanceUncheckedUpdateWithoutSiteSettingsLogosInput
+  >;
+};
+
+export type FileInstanceCreateNestedOneWithoutUserAvatarsInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutUserAvatarsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutUserAvatarsInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutUserAvatarsInput;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+};
+
+export type FileInstanceUpdateOneWithoutUserAvatarsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutUserAvatarsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutUserAvatarsInput
+  >;
+  connectOrCreate?: Prisma.FileInstanceCreateOrConnectWithoutUserAvatarsInput;
+  upsert?: Prisma.FileInstanceUpsertWithoutUserAvatarsInput;
+  disconnect?: Prisma.FileInstanceWhereInput | boolean;
+  delete?: Prisma.FileInstanceWhereInput | boolean;
+  connect?: Prisma.FileInstanceWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.FileInstanceUpdateToOneWithWhereWithoutUserAvatarsInput,
+      Prisma.FileInstanceUpdateWithoutUserAvatarsInput
+    >,
+    Prisma.FileInstanceUncheckedUpdateWithoutUserAvatarsInput
   >;
 };
 
@@ -786,9 +820,10 @@ export type FileInstanceCreateWithoutBathroomTypeImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsCreateNestedManyWithoutLogoImageInput;
   submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutBathroomTypeImagesInput = {
@@ -806,9 +841,10 @@ export type FileInstanceUncheckedCreateWithoutBathroomTypeImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserUncheckedCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutBathroomTypeImagesInput = {
@@ -854,9 +890,10 @@ export type FileInstanceUpdateWithoutBathroomTypeImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUpdateManyWithoutLogoImageNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutBathroomTypeImagesInput = {
@@ -874,117 +911,10 @@ export type FileInstanceUncheckedUpdateWithoutBathroomTypeImagesInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput;
-};
-
-export type FileInstanceCreateWithoutCompanySettingsLogoInput = {
-  id?: string;
-  filename: string;
-  originalFilename: string;
-  path: string;
-  url: string;
-  fileType?: $Enums.FileType;
-  mimeType: string;
-  size: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  homeBackgroundImage?: Prisma.HomePageCreateNestedManyWithoutHomeBackgroundImageInput;
-  serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput;
-  aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput;
-  portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput;
-  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput;
-  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput;
-};
-
-export type FileInstanceUncheckedCreateWithoutCompanySettingsLogoInput = {
-  id?: string;
-  filename: string;
-  originalFilename: string;
-  path: string;
-  url: string;
-  fileType?: $Enums.FileType;
-  mimeType: string;
-  size: number;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  homeBackgroundImage?: Prisma.HomePageUncheckedCreateNestedManyWithoutHomeBackgroundImageInput;
-  serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput;
-  aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput;
-  portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput;
-  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput;
-  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput;
-};
-
-export type FileInstanceCreateOrConnectWithoutCompanySettingsLogoInput = {
-  where: Prisma.FileInstanceWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutCompanySettingsLogoInput,
-    Prisma.FileInstanceUncheckedCreateWithoutCompanySettingsLogoInput
-  >;
-};
-
-export type FileInstanceUpsertWithoutCompanySettingsLogoInput = {
-  update: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutCompanySettingsLogoInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutCompanySettingsLogoInput
-  >;
-  create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutCompanySettingsLogoInput,
-    Prisma.FileInstanceUncheckedCreateWithoutCompanySettingsLogoInput
-  >;
-  where?: Prisma.FileInstanceWhereInput;
-};
-
-export type FileInstanceUpdateToOneWithWhereWithoutCompanySettingsLogoInput = {
-  where?: Prisma.FileInstanceWhereInput;
-  data: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutCompanySettingsLogoInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutCompanySettingsLogoInput
-  >;
-};
-
-export type FileInstanceUpdateWithoutCompanySettingsLogoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  filename?: Prisma.StringFieldUpdateOperationsInput | string;
-  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
-  path?: Prisma.StringFieldUpdateOperationsInput | string;
-  url?: Prisma.StringFieldUpdateOperationsInput | string;
-  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
-  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
-  size?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  homeBackgroundImage?: Prisma.HomePageUpdateManyWithoutHomeBackgroundImageNestedInput;
-  serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput;
-  aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput;
-  portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput;
-  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput;
-  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput;
-};
-
-export type FileInstanceUncheckedUpdateWithoutCompanySettingsLogoInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  filename?: Prisma.StringFieldUpdateOperationsInput | string;
-  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
-  path?: Prisma.StringFieldUpdateOperationsInput | string;
-  url?: Prisma.StringFieldUpdateOperationsInput | string;
-  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
-  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
-  size?: Prisma.IntFieldUpdateOperationsInput | number;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  homeBackgroundImage?: Prisma.HomePageUncheckedUpdateManyWithoutHomeBackgroundImageNestedInput;
-  serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput;
-  aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput;
-  portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput;
-  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput;
-  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUncheckedUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceCreateWithoutSubmissionMediaInput = {
@@ -1002,9 +932,10 @@ export type FileInstanceCreateWithoutSubmissionMediaInput = {
   serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput;
+  userAvatars?: Prisma.UserCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutSubmissionMediaInput = {
@@ -1022,9 +953,10 @@ export type FileInstanceUncheckedCreateWithoutSubmissionMediaInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput;
+  userAvatars?: Prisma.UserUncheckedCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutSubmissionMediaInput = {
@@ -1070,9 +1002,10 @@ export type FileInstanceUpdateWithoutSubmissionMediaInput = {
   serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput;
+  userAvatars?: Prisma.UserUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutSubmissionMediaInput = {
@@ -1090,9 +1023,10 @@ export type FileInstanceUncheckedUpdateWithoutSubmissionMediaInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput;
+  userAvatars?: Prisma.UserUncheckedUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceCreateWithoutHomeBackgroundImageInput = {
@@ -1109,10 +1043,11 @@ export type FileInstanceCreateWithoutHomeBackgroundImageInput = {
   serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutHomeBackgroundImageInput = {
@@ -1129,10 +1064,11 @@ export type FileInstanceUncheckedCreateWithoutHomeBackgroundImageInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserUncheckedCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutHomeBackgroundImageInput = {
@@ -1177,10 +1113,11 @@ export type FileInstanceUpdateWithoutHomeBackgroundImageInput = {
   serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutHomeBackgroundImageInput = {
@@ -1197,10 +1134,11 @@ export type FileInstanceUncheckedUpdateWithoutHomeBackgroundImageInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUncheckedUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceCreateWithoutServiceImagesInput = {
@@ -1217,10 +1155,11 @@ export type FileInstanceCreateWithoutServiceImagesInput = {
   homeBackgroundImage?: Prisma.HomePageCreateNestedManyWithoutHomeBackgroundImageInput;
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutServiceImagesInput = {
@@ -1237,10 +1176,11 @@ export type FileInstanceUncheckedCreateWithoutServiceImagesInput = {
   homeBackgroundImage?: Prisma.HomePageUncheckedCreateNestedManyWithoutHomeBackgroundImageInput;
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserUncheckedCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutServiceImagesInput = {
@@ -1285,10 +1225,11 @@ export type FileInstanceUpdateWithoutServiceImagesInput = {
   homeBackgroundImage?: Prisma.HomePageUpdateManyWithoutHomeBackgroundImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutServiceImagesInput = {
@@ -1305,10 +1246,11 @@ export type FileInstanceUncheckedUpdateWithoutServiceImagesInput = {
   homeBackgroundImage?: Prisma.HomePageUncheckedUpdateManyWithoutHomeBackgroundImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUncheckedUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceCreateWithoutAboutUsImagesInput = {
@@ -1325,10 +1267,11 @@ export type FileInstanceCreateWithoutAboutUsImagesInput = {
   homeBackgroundImage?: Prisma.HomePageCreateNestedManyWithoutHomeBackgroundImageInput;
   serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutAboutUsImagesInput = {
@@ -1345,10 +1288,11 @@ export type FileInstanceUncheckedCreateWithoutAboutUsImagesInput = {
   homeBackgroundImage?: Prisma.HomePageUncheckedCreateNestedManyWithoutHomeBackgroundImageInput;
   serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserUncheckedCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutAboutUsImagesInput = {
@@ -1393,10 +1337,11 @@ export type FileInstanceUpdateWithoutAboutUsImagesInput = {
   homeBackgroundImage?: Prisma.HomePageUpdateManyWithoutHomeBackgroundImageNestedInput;
   serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutAboutUsImagesInput = {
@@ -1413,10 +1358,124 @@ export type FileInstanceUncheckedUpdateWithoutAboutUsImagesInput = {
   homeBackgroundImage?: Prisma.HomePageUncheckedUpdateManyWithoutHomeBackgroundImageNestedInput;
   serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUncheckedUpdateManyWithoutAvatarFileNestedInput;
+};
+
+export type FileInstanceCreateWithoutPortfolioCategoryImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  homeBackgroundImage?: Prisma.HomePageCreateNestedManyWithoutHomeBackgroundImageInput;
+  serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput;
+  aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput;
+  portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput;
+  siteSettingsLogos?: Prisma.SiteSettingsCreateNestedManyWithoutLogoImageInput;
+  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput;
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserCreateNestedManyWithoutAvatarFileInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutPortfolioCategoryImagesInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  homeBackgroundImage?: Prisma.HomePageUncheckedCreateNestedManyWithoutHomeBackgroundImageInput;
+  serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput;
+  aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput;
+  portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput;
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput;
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserUncheckedCreateNestedManyWithoutAvatarFileInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutPortfolioCategoryImagesInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPortfolioCategoryImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPortfolioCategoryImagesInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutPortfolioCategoryImagesInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutPortfolioCategoryImagesInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutPortfolioCategoryImagesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutPortfolioCategoryImagesInput,
+    Prisma.FileInstanceUncheckedCreateWithoutPortfolioCategoryImagesInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutPortfolioCategoryImagesInput =
+  {
+    where?: Prisma.FileInstanceWhereInput;
+    data: Prisma.XOR<
+      Prisma.FileInstanceUpdateWithoutPortfolioCategoryImagesInput,
+      Prisma.FileInstanceUncheckedUpdateWithoutPortfolioCategoryImagesInput
+    >;
+  };
+
+export type FileInstanceUpdateWithoutPortfolioCategoryImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  homeBackgroundImage?: Prisma.HomePageUpdateManyWithoutHomeBackgroundImageNestedInput;
+  serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput;
+  aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput;
+  portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUpdateManyWithoutLogoImageNestedInput;
+  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput;
+  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUpdateManyWithoutAvatarFileNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutPortfolioCategoryImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  homeBackgroundImage?: Prisma.HomePageUncheckedUpdateManyWithoutHomeBackgroundImageNestedInput;
+  serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput;
+  aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput;
+  portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput;
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput;
+  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUncheckedUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceCreateWithoutPortfolioImagesInput = {
@@ -1433,10 +1492,11 @@ export type FileInstanceCreateWithoutPortfolioImagesInput = {
   homeBackgroundImage?: Prisma.HomePageCreateNestedManyWithoutHomeBackgroundImageInput;
   serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceUncheckedCreateWithoutPortfolioImagesInput = {
@@ -1453,10 +1513,11 @@ export type FileInstanceUncheckedCreateWithoutPortfolioImagesInput = {
   homeBackgroundImage?: Prisma.HomePageUncheckedCreateNestedManyWithoutHomeBackgroundImageInput;
   serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput;
-  settingLogos?: Prisma.settingsUncheckedCreateNestedManyWithoutLogoImageInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserUncheckedCreateNestedManyWithoutAvatarFileInput;
 };
 
 export type FileInstanceCreateOrConnectWithoutPortfolioImagesInput = {
@@ -1501,10 +1562,11 @@ export type FileInstanceUpdateWithoutPortfolioImagesInput = {
   homeBackgroundImage?: Prisma.HomePageUpdateManyWithoutHomeBackgroundImageNestedInput;
   serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUpdateManyWithoutAvatarFileNestedInput;
 };
 
 export type FileInstanceUncheckedUpdateWithoutPortfolioImagesInput = {
@@ -1521,13 +1583,14 @@ export type FileInstanceUncheckedUpdateWithoutPortfolioImagesInput = {
   homeBackgroundImage?: Prisma.HomePageUncheckedUpdateManyWithoutHomeBackgroundImageNestedInput;
   serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput;
-  settingLogos?: Prisma.settingsUncheckedUpdateManyWithoutLogoImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUncheckedUpdateManyWithoutAvatarFileNestedInput;
 };
 
-export type FileInstanceCreateWithoutSettingLogosInput = {
+export type FileInstanceCreateWithoutSiteSettingsLogosInput = {
   id?: string;
   filename: string;
   originalFilename: string;
@@ -1542,12 +1605,13 @@ export type FileInstanceCreateWithoutSettingLogosInput = {
   serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput;
-  companySettingsLogo?: Prisma.CompanySettingCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageCreateNestedManyWithoutFileInput;
   bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserCreateNestedManyWithoutAvatarFileInput;
 };
 
-export type FileInstanceUncheckedCreateWithoutSettingLogosInput = {
+export type FileInstanceUncheckedCreateWithoutSiteSettingsLogosInput = {
   id?: string;
   filename: string;
   originalFilename: string;
@@ -1562,40 +1626,41 @@ export type FileInstanceUncheckedCreateWithoutSettingLogosInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput;
   aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput;
   portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedCreateNestedManyWithoutLogoFileInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedCreateNestedManyWithoutFileInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput;
+  userAvatars?: Prisma.UserUncheckedCreateNestedManyWithoutAvatarFileInput;
 };
 
-export type FileInstanceCreateOrConnectWithoutSettingLogosInput = {
+export type FileInstanceCreateOrConnectWithoutSiteSettingsLogosInput = {
   where: Prisma.FileInstanceWhereUniqueInput;
   create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutSettingLogosInput,
-    Prisma.FileInstanceUncheckedCreateWithoutSettingLogosInput
+    Prisma.FileInstanceCreateWithoutSiteSettingsLogosInput,
+    Prisma.FileInstanceUncheckedCreateWithoutSiteSettingsLogosInput
   >;
 };
 
-export type FileInstanceUpsertWithoutSettingLogosInput = {
+export type FileInstanceUpsertWithoutSiteSettingsLogosInput = {
   update: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutSettingLogosInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutSettingLogosInput
+    Prisma.FileInstanceUpdateWithoutSiteSettingsLogosInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutSiteSettingsLogosInput
   >;
   create: Prisma.XOR<
-    Prisma.FileInstanceCreateWithoutSettingLogosInput,
-    Prisma.FileInstanceUncheckedCreateWithoutSettingLogosInput
+    Prisma.FileInstanceCreateWithoutSiteSettingsLogosInput,
+    Prisma.FileInstanceUncheckedCreateWithoutSiteSettingsLogosInput
   >;
   where?: Prisma.FileInstanceWhereInput;
 };
 
-export type FileInstanceUpdateToOneWithWhereWithoutSettingLogosInput = {
+export type FileInstanceUpdateToOneWithWhereWithoutSiteSettingsLogosInput = {
   where?: Prisma.FileInstanceWhereInput;
   data: Prisma.XOR<
-    Prisma.FileInstanceUpdateWithoutSettingLogosInput,
-    Prisma.FileInstanceUncheckedUpdateWithoutSettingLogosInput
+    Prisma.FileInstanceUpdateWithoutSiteSettingsLogosInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutSiteSettingsLogosInput
   >;
 };
 
-export type FileInstanceUpdateWithoutSettingLogosInput = {
+export type FileInstanceUpdateWithoutSiteSettingsLogosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   filename?: Prisma.StringFieldUpdateOperationsInput | string;
   originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1610,12 +1675,13 @@ export type FileInstanceUpdateWithoutSettingLogosInput = {
   serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUpdateManyWithoutFileNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUpdateManyWithoutAvatarFileNestedInput;
 };
 
-export type FileInstanceUncheckedUpdateWithoutSettingLogosInput = {
+export type FileInstanceUncheckedUpdateWithoutSiteSettingsLogosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   filename?: Prisma.StringFieldUpdateOperationsInput | string;
   originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1630,7 +1696,120 @@ export type FileInstanceUncheckedUpdateWithoutSettingLogosInput = {
   serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput;
   aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput;
   portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput;
-  companySettingsLogo?: Prisma.CompanySettingUncheckedUpdateManyWithoutLogoFileNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedUpdateManyWithoutFileNestedInput;
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput;
+  submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput;
+  userAvatars?: Prisma.UserUncheckedUpdateManyWithoutAvatarFileNestedInput;
+};
+
+export type FileInstanceCreateWithoutUserAvatarsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  homeBackgroundImage?: Prisma.HomePageCreateNestedManyWithoutHomeBackgroundImageInput;
+  serviceImages?: Prisma.ServiceStandsOutCreateNestedManyWithoutImageInput;
+  aboutUsImages?: Prisma.AboutUsCreateNestedManyWithoutImageInput;
+  portfolioImages?: Prisma.PortfolioCreateNestedManyWithoutImageInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsCreateNestedManyWithoutLogoImageInput;
+  bathroomTypeImages?: Prisma.BathroomTypeCreateNestedManyWithoutImageFileInput;
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutFileInstanceInput;
+};
+
+export type FileInstanceUncheckedCreateWithoutUserAvatarsInput = {
+  id?: string;
+  filename: string;
+  originalFilename: string;
+  path: string;
+  url: string;
+  fileType?: $Enums.FileType;
+  mimeType: string;
+  size: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  homeBackgroundImage?: Prisma.HomePageUncheckedCreateNestedManyWithoutHomeBackgroundImageInput;
+  serviceImages?: Prisma.ServiceStandsOutUncheckedCreateNestedManyWithoutImageInput;
+  aboutUsImages?: Prisma.AboutUsUncheckedCreateNestedManyWithoutImageInput;
+  portfolioImages?: Prisma.PortfolioUncheckedCreateNestedManyWithoutImageInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedCreateNestedManyWithoutFileInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput;
+  bathroomTypeImages?: Prisma.BathroomTypeUncheckedCreateNestedManyWithoutImageFileInput;
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutFileInstanceInput;
+};
+
+export type FileInstanceCreateOrConnectWithoutUserAvatarsInput = {
+  where: Prisma.FileInstanceWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutUserAvatarsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutUserAvatarsInput
+  >;
+};
+
+export type FileInstanceUpsertWithoutUserAvatarsInput = {
+  update: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutUserAvatarsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutUserAvatarsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.FileInstanceCreateWithoutUserAvatarsInput,
+    Prisma.FileInstanceUncheckedCreateWithoutUserAvatarsInput
+  >;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+export type FileInstanceUpdateToOneWithWhereWithoutUserAvatarsInput = {
+  where?: Prisma.FileInstanceWhereInput;
+  data: Prisma.XOR<
+    Prisma.FileInstanceUpdateWithoutUserAvatarsInput,
+    Prisma.FileInstanceUncheckedUpdateWithoutUserAvatarsInput
+  >;
+};
+
+export type FileInstanceUpdateWithoutUserAvatarsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  homeBackgroundImage?: Prisma.HomePageUpdateManyWithoutHomeBackgroundImageNestedInput;
+  serviceImages?: Prisma.ServiceStandsOutUpdateManyWithoutImageNestedInput;
+  aboutUsImages?: Prisma.AboutUsUpdateManyWithoutImageNestedInput;
+  portfolioImages?: Prisma.PortfolioUpdateManyWithoutImageNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUpdateManyWithoutLogoImageNestedInput;
+  bathroomTypeImages?: Prisma.BathroomTypeUpdateManyWithoutImageFileNestedInput;
+  submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutFileInstanceNestedInput;
+};
+
+export type FileInstanceUncheckedUpdateWithoutUserAvatarsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  filename?: Prisma.StringFieldUpdateOperationsInput | string;
+  originalFilename?: Prisma.StringFieldUpdateOperationsInput | string;
+  path?: Prisma.StringFieldUpdateOperationsInput | string;
+  url?: Prisma.StringFieldUpdateOperationsInput | string;
+  fileType?: Prisma.EnumFileTypeFieldUpdateOperationsInput | $Enums.FileType;
+  mimeType?: Prisma.StringFieldUpdateOperationsInput | string;
+  size?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  homeBackgroundImage?: Prisma.HomePageUncheckedUpdateManyWithoutHomeBackgroundImageNestedInput;
+  serviceImages?: Prisma.ServiceStandsOutUncheckedUpdateManyWithoutImageNestedInput;
+  aboutUsImages?: Prisma.AboutUsUncheckedUpdateManyWithoutImageNestedInput;
+  portfolioImages?: Prisma.PortfolioUncheckedUpdateManyWithoutImageNestedInput;
+  portfolioCategoryImages?: Prisma.PortfolioImageUncheckedUpdateManyWithoutFileNestedInput;
+  siteSettingsLogos?: Prisma.SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput;
   bathroomTypeImages?: Prisma.BathroomTypeUncheckedUpdateManyWithoutImageFileNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput;
 };
@@ -1644,10 +1823,11 @@ export type FileInstanceCountOutputType = {
   serviceImages: number;
   aboutUsImages: number;
   portfolioImages: number;
-  settingLogos: number;
-  companySettingsLogo: number;
+  portfolioCategoryImages: number;
+  siteSettingsLogos: number;
   bathroomTypeImages: number;
   submissionMedia: number;
+  userAvatars: number;
 };
 
 export type FileInstanceCountOutputTypeSelect<
@@ -1662,16 +1842,19 @@ export type FileInstanceCountOutputTypeSelect<
   portfolioImages?:
     | boolean
     | FileInstanceCountOutputTypeCountPortfolioImagesArgs;
-  settingLogos?: boolean | FileInstanceCountOutputTypeCountSettingLogosArgs;
-  companySettingsLogo?:
+  portfolioCategoryImages?:
     | boolean
-    | FileInstanceCountOutputTypeCountCompanySettingsLogoArgs;
+    | FileInstanceCountOutputTypeCountPortfolioCategoryImagesArgs;
+  siteSettingsLogos?:
+    | boolean
+    | FileInstanceCountOutputTypeCountSiteSettingsLogosArgs;
   bathroomTypeImages?:
     | boolean
     | FileInstanceCountOutputTypeCountBathroomTypeImagesArgs;
   submissionMedia?:
     | boolean
     | FileInstanceCountOutputTypeCountSubmissionMediaArgs;
+  userAvatars?: boolean | FileInstanceCountOutputTypeCountUserAvatarsArgs;
 };
 
 /**
@@ -1730,21 +1913,21 @@ export type FileInstanceCountOutputTypeCountPortfolioImagesArgs<
 /**
  * FileInstanceCountOutputType without action
  */
-export type FileInstanceCountOutputTypeCountSettingLogosArgs<
+export type FileInstanceCountOutputTypeCountPortfolioCategoryImagesArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.settingsWhereInput;
+  where?: Prisma.PortfolioImageWhereInput;
 };
 
 /**
  * FileInstanceCountOutputType without action
  */
-export type FileInstanceCountOutputTypeCountCompanySettingsLogoArgs<
+export type FileInstanceCountOutputTypeCountSiteSettingsLogosArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.CompanySettingWhereInput;
+  where?: Prisma.SiteSettingsWhereInput;
 };
 
 /**
@@ -1765,6 +1948,16 @@ export type FileInstanceCountOutputTypeCountSubmissionMediaArgs<
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   where?: Prisma.SubmissionMediaWhereInput;
+};
+
+/**
+ * FileInstanceCountOutputType without action
+ */
+export type FileInstanceCountOutputTypeCountUserAvatarsArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.UserWhereInput;
 };
 
 export type FileInstanceSelect<
@@ -1790,16 +1983,19 @@ export type FileInstanceSelect<
     portfolioImages?:
       | boolean
       | Prisma.FileInstance$portfolioImagesArgs<ExtArgs>;
-    settingLogos?: boolean | Prisma.FileInstance$settingLogosArgs<ExtArgs>;
-    companySettingsLogo?:
+    portfolioCategoryImages?:
       | boolean
-      | Prisma.FileInstance$companySettingsLogoArgs<ExtArgs>;
+      | Prisma.FileInstance$portfolioCategoryImagesArgs<ExtArgs>;
+    siteSettingsLogos?:
+      | boolean
+      | Prisma.FileInstance$siteSettingsLogosArgs<ExtArgs>;
     bathroomTypeImages?:
       | boolean
       | Prisma.FileInstance$bathroomTypeImagesArgs<ExtArgs>;
     submissionMedia?:
       | boolean
       | Prisma.FileInstance$submissionMediaArgs<ExtArgs>;
+    userAvatars?: boolean | Prisma.FileInstance$userAvatarsArgs<ExtArgs>;
     _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['fileInstance']
@@ -1882,14 +2078,17 @@ export type FileInstanceInclude<
   serviceImages?: boolean | Prisma.FileInstance$serviceImagesArgs<ExtArgs>;
   aboutUsImages?: boolean | Prisma.FileInstance$aboutUsImagesArgs<ExtArgs>;
   portfolioImages?: boolean | Prisma.FileInstance$portfolioImagesArgs<ExtArgs>;
-  settingLogos?: boolean | Prisma.FileInstance$settingLogosArgs<ExtArgs>;
-  companySettingsLogo?:
+  portfolioCategoryImages?:
     | boolean
-    | Prisma.FileInstance$companySettingsLogoArgs<ExtArgs>;
+    | Prisma.FileInstance$portfolioCategoryImagesArgs<ExtArgs>;
+  siteSettingsLogos?:
+    | boolean
+    | Prisma.FileInstance$siteSettingsLogosArgs<ExtArgs>;
   bathroomTypeImages?:
     | boolean
     | Prisma.FileInstance$bathroomTypeImagesArgs<ExtArgs>;
   submissionMedia?: boolean | Prisma.FileInstance$submissionMediaArgs<ExtArgs>;
+  userAvatars?: boolean | Prisma.FileInstance$userAvatarsArgs<ExtArgs>;
   _count?: boolean | Prisma.FileInstanceCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type FileInstanceIncludeCreateManyAndReturn<
@@ -1911,10 +2110,11 @@ export type $FileInstancePayload<
     serviceImages: Prisma.$ServiceStandsOutPayload<ExtArgs>[];
     aboutUsImages: Prisma.$AboutUsPayload<ExtArgs>[];
     portfolioImages: Prisma.$PortfolioPayload<ExtArgs>[];
-    settingLogos: Prisma.$settingsPayload<ExtArgs>[];
-    companySettingsLogo: Prisma.$CompanySettingPayload<ExtArgs>[];
+    portfolioCategoryImages: Prisma.$PortfolioImagePayload<ExtArgs>[];
+    siteSettingsLogos: Prisma.$SiteSettingsPayload<ExtArgs>[];
     bathroomTypeImages: Prisma.$BathroomTypePayload<ExtArgs>[];
     submissionMedia: Prisma.$SubmissionMediaPayload<ExtArgs>[];
+    userAvatars: Prisma.$UserPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -2535,27 +2735,29 @@ export interface Prisma__FileInstanceClient<
       >
     | Null
   >;
-  settingLogos<T extends Prisma.FileInstance$settingLogosArgs<ExtArgs> = {}>(
-    args?: Prisma.Subset<T, Prisma.FileInstance$settingLogosArgs<ExtArgs>>,
+  portfolioCategoryImages<
+    T extends Prisma.FileInstance$portfolioCategoryImagesArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.FileInstance$portfolioCategoryImagesArgs<ExtArgs>
+    >,
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
-        Prisma.$settingsPayload<ExtArgs>,
+        Prisma.$PortfolioImagePayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
       >
     | Null
   >;
-  companySettingsLogo<
-    T extends Prisma.FileInstance$companySettingsLogoArgs<ExtArgs> = {},
+  siteSettingsLogos<
+    T extends Prisma.FileInstance$siteSettingsLogosArgs<ExtArgs> = {},
   >(
-    args?: Prisma.Subset<
-      T,
-      Prisma.FileInstance$companySettingsLogoArgs<ExtArgs>
-    >,
+    args?: Prisma.Subset<T, Prisma.FileInstance$siteSettingsLogosArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
-        Prisma.$CompanySettingPayload<ExtArgs>,
+        Prisma.$SiteSettingsPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -2585,6 +2787,17 @@ export interface Prisma__FileInstanceClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$SubmissionMediaPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  userAvatars<T extends Prisma.FileInstance$userAvatarsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.FileInstance$userAvatarsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$UserPayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -3226,63 +3439,65 @@ export type FileInstance$portfolioImagesArgs<
 };
 
 /**
- * FileInstance.settingLogos
+ * FileInstance.portfolioCategoryImages
  */
-export type FileInstance$settingLogosArgs<
+export type FileInstance$portfolioCategoryImagesArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the settings
+   * Select specific fields to fetch from the PortfolioImage
    */
-  select?: Prisma.settingsSelect<ExtArgs> | null;
+  select?: Prisma.PortfolioImageSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the settings
+   * Omit specific fields from the PortfolioImage
    */
-  omit?: Prisma.settingsOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.settingsInclude<ExtArgs> | null;
-  where?: Prisma.settingsWhereInput;
-  orderBy?:
-    | Prisma.settingsOrderByWithRelationInput
-    | Prisma.settingsOrderByWithRelationInput[];
-  cursor?: Prisma.settingsWhereUniqueInput;
-  take?: number;
-  skip?: number;
-  distinct?: Prisma.SettingsScalarFieldEnum | Prisma.SettingsScalarFieldEnum[];
-};
-
-/**
- * FileInstance.companySettingsLogo
- */
-export type FileInstance$companySettingsLogoArgs<
-  ExtArgs extends
-    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
-> = {
-  /**
-   * Select specific fields to fetch from the CompanySetting
-   */
-  select?: Prisma.CompanySettingSelect<ExtArgs> | null;
-  /**
-   * Omit specific fields from the CompanySetting
-   */
-  omit?: Prisma.CompanySettingOmit<ExtArgs> | null;
+  omit?: Prisma.PortfolioImageOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CompanySettingInclude<ExtArgs> | null;
-  where?: Prisma.CompanySettingWhereInput;
+  include?: Prisma.PortfolioImageInclude<ExtArgs> | null;
+  where?: Prisma.PortfolioImageWhereInput;
   orderBy?:
-    | Prisma.CompanySettingOrderByWithRelationInput
-    | Prisma.CompanySettingOrderByWithRelationInput[];
-  cursor?: Prisma.CompanySettingWhereUniqueInput;
+    | Prisma.PortfolioImageOrderByWithRelationInput
+    | Prisma.PortfolioImageOrderByWithRelationInput[];
+  cursor?: Prisma.PortfolioImageWhereUniqueInput;
   take?: number;
   skip?: number;
   distinct?:
-    | Prisma.CompanySettingScalarFieldEnum
-    | Prisma.CompanySettingScalarFieldEnum[];
+    | Prisma.PortfolioImageScalarFieldEnum
+    | Prisma.PortfolioImageScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.siteSettingsLogos
+ */
+export type FileInstance$siteSettingsLogosArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the SiteSettings
+   */
+  select?: Prisma.SiteSettingsSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the SiteSettings
+   */
+  omit?: Prisma.SiteSettingsOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SiteSettingsInclude<ExtArgs> | null;
+  where?: Prisma.SiteSettingsWhereInput;
+  orderBy?:
+    | Prisma.SiteSettingsOrderByWithRelationInput
+    | Prisma.SiteSettingsOrderByWithRelationInput[];
+  cursor?: Prisma.SiteSettingsWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.SiteSettingsScalarFieldEnum
+    | Prisma.SiteSettingsScalarFieldEnum[];
 };
 
 /**
@@ -3345,6 +3560,35 @@ export type FileInstance$submissionMediaArgs<
   distinct?:
     | Prisma.SubmissionMediaScalarFieldEnum
     | Prisma.SubmissionMediaScalarFieldEnum[];
+};
+
+/**
+ * FileInstance.userAvatars
+ */
+export type FileInstance$userAvatarsArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null;
+  where?: Prisma.UserWhereInput;
+  orderBy?:
+    | Prisma.UserOrderByWithRelationInput
+    | Prisma.UserOrderByWithRelationInput[];
+  cursor?: Prisma.UserWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[];
 };
 
 /**

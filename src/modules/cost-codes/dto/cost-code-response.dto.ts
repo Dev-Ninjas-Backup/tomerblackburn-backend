@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { QuestionType, UnitType } from 'generated/prisma/enums';
 
 class CategoryDto {
   @ApiProperty()
@@ -9,6 +10,9 @@ class CategoryDto {
 
   @ApiProperty()
   slug: string;
+
+  @ApiProperty({ required: false })
+  stepNumber?: number;
 }
 
 class CostCodeOptionDto {
@@ -18,20 +22,20 @@ class CostCodeOptionDto {
   @ApiProperty()
   optionName: string;
 
-  @ApiProperty()
-  optionValue: string;
+  @ApiProperty({ required: false })
+  optionValue?: string;
 
   @ApiProperty()
   priceModifier: number;
-
-  @ApiProperty()
-  finalPrice: number;
 
   @ApiProperty()
   isDefault: boolean;
 
   @ApiProperty()
   displayOrder: number;
+
+  @ApiProperty()
+  isActive: boolean;
 }
 
 export class CostCodeResponseDto {
@@ -54,7 +58,7 @@ export class CostCodeResponseDto {
 
   @ApiProperty({
     description: 'Cost code name',
-    example: 'Demolition',
+    example: 'Floor Tile Installation',
   })
   name: string;
 
@@ -71,25 +75,33 @@ export class CostCodeResponseDto {
   basePrice: number;
 
   @ApiProperty({
-    description: 'Unit type',
-    example: 'per_lot',
+    description: 'Unit type for pricing calculation',
+    enum: UnitType,
+    example: UnitType.FIXED,
   })
-  unitType?: string;
+  unitType: UnitType;
 
   @ApiProperty({
-    description: 'Color tag',
-    example: 'WHITE',
+    description: 'Question type (determines UI behavior)',
+    enum: QuestionType,
+    example: QuestionType.WHITE,
   })
-  colorTag?: string;
+  questionType: QuestionType;
 
   @ApiProperty({
-    description: 'Calculation type',
-    example: 'fixed',
+    description: 'Display order within category',
+    example: 0,
   })
-  calculationType?: string;
+  displayOrder: number;
 
   @ApiProperty({
-    description: 'Requires quantity',
+    description: 'Whether included in base price',
+    example: false,
+  })
+  isIncludedInBase: boolean;
+
+  @ApiProperty({
+    description: 'Requires quantity input',
     example: false,
   })
   requiresQuantity: boolean;
@@ -105,26 +117,6 @@ export class CostCodeResponseDto {
     example: true,
   })
   isActive: boolean;
-
-  @ApiProperty({
-    description: 'Applies to Four Piece',
-  })
-  appliesToFp: boolean;
-
-  @ApiProperty({
-    description: 'Applies to Three Piece Shower',
-  })
-  appliesToTps: boolean;
-
-  @ApiProperty({
-    description: 'Applies to Three Piece Tub',
-  })
-  appliesToTpt: boolean;
-
-  @ApiProperty({
-    description: 'Applies to Two Piece',
-  })
-  appliesToTp: boolean;
 
   @ApiProperty({
     description: 'Category details',

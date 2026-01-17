@@ -57,7 +57,6 @@ export const ModelName = {
   ActivityLog: 'ActivityLog',
   BathroomType: 'BathroomType',
   BathroomTypeCostCode: 'BathroomTypeCostCode',
-  CompanySetting: 'CompanySetting',
   CostCode: 'CostCode',
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
@@ -70,8 +69,10 @@ export const ModelName = {
   HomePage: 'HomePage',
   ServiceStandsOut: 'ServiceStandsOut',
   AboutUs: 'AboutUs',
+  PortfolioCategory: 'PortfolioCategory',
+  PortfolioImage: 'PortfolioImage',
   Portfolio: 'Portfolio',
-  settings: 'settings',
+  SiteSettings: 'SiteSettings',
   User: 'User',
 } as const;
 
@@ -111,11 +112,12 @@ export const BathroomTypeScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
+  shortDescription: 'shortDescription',
   fullDescription: 'fullDescription',
   basePrice: 'basePrice',
   imageFileId: 'imageFileId',
-  isActive: 'isActive',
   displayOrder: 'displayOrder',
+  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
@@ -129,29 +131,16 @@ export const BathroomTypeCostCodeScalarFieldEnum = {
   costCodeId: 'costCodeId',
   isIncludedInBase: 'isIncludedInBase',
   isRequired: 'isRequired',
+  isVisible: 'isVisible',
   defaultQuantity: 'defaultQuantity',
-  createdAt: 'createdAt',
-} as const;
-
-export type BathroomTypeCostCodeScalarFieldEnum =
-  (typeof BathroomTypeCostCodeScalarFieldEnum)[keyof typeof BathroomTypeCostCodeScalarFieldEnum];
-
-export const CompanySettingScalarFieldEnum = {
-  id: 'id',
-  companyName: 'companyName',
-  email: 'email',
-  phone: 'phone',
-  address: 'address',
-  logoFileId: 'logoFileId',
-  sendEmailOnSubmission: 'sendEmailOnSubmission',
-  sendConfirmationToClient: 'sendConfirmationToClient',
-  dailySummaryReport: 'dailySummaryReport',
+  priceOverride: 'priceOverride',
+  displayOrder: 'displayOrder',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
 
-export type CompanySettingScalarFieldEnum =
-  (typeof CompanySettingScalarFieldEnum)[keyof typeof CompanySettingScalarFieldEnum];
+export type BathroomTypeCostCodeScalarFieldEnum =
+  (typeof BathroomTypeCostCodeScalarFieldEnum)[keyof typeof BathroomTypeCostCodeScalarFieldEnum];
 
 export const CostCodeScalarFieldEnum = {
   id: 'id',
@@ -161,15 +150,12 @@ export const CostCodeScalarFieldEnum = {
   description: 'description',
   basePrice: 'basePrice',
   unitType: 'unitType',
-  colorTag: 'colorTag',
-  calculationType: 'calculationType',
+  questionType: 'questionType',
+  displayOrder: 'displayOrder',
+  isIncludedInBase: 'isIncludedInBase',
   requiresQuantity: 'requiresQuantity',
   isOptional: 'isOptional',
   isActive: 'isActive',
-  appliesToFp: 'appliesToFp',
-  appliesToTps: 'appliesToTps',
-  appliesToTpt: 'appliesToTpt',
-  appliesToTp: 'appliesToTp',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
@@ -182,6 +168,7 @@ export const CostCodeCategoryScalarFieldEnum = {
   name: 'name',
   slug: 'slug',
   description: 'description',
+  stepNumber: 'stepNumber',
   displayOrder: 'displayOrder',
   isActive: 'isActive',
   createdAt: 'createdAt',
@@ -197,9 +184,9 @@ export const CostCodeOptionScalarFieldEnum = {
   optionName: 'optionName',
   optionValue: 'optionValue',
   priceModifier: 'priceModifier',
-  finalPrice: 'finalPrice',
   isDefault: 'isDefault',
   displayOrder: 'displayOrder',
+  isActive: 'isActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
@@ -239,6 +226,7 @@ export const SubmissionScalarFieldEnum = {
   status: 'status',
   projectNotes: 'projectNotes',
   additionalDetails: 'additionalDetails',
+  pdfUrl: 'pdfUrl',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
   submittedAt: 'submittedAt',
@@ -258,9 +246,12 @@ export const SubmissionItemScalarFieldEnum = {
   quantity: 'quantity',
   unitPrice: 'unitPrice',
   totalPrice: 'totalPrice',
-  itemType: 'itemType',
+  questionType: 'questionType',
   isEnabled: 'isEnabled',
   userInputValue: 'userInputValue',
+  itemName: 'itemName',
+  itemDescription: 'itemDescription',
+  selectedOptionName: 'selectedOptionName',
   notes: 'notes',
   createdAt: 'createdAt',
 } as const;
@@ -292,6 +283,7 @@ export const ContactUsScalarFieldEnum = {
   state: 'state',
   zipCode: 'zipCode',
   message: 'message',
+  isRead: 'isRead',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
@@ -354,6 +346,33 @@ export const AboutUsScalarFieldEnum = {
 export type AboutUsScalarFieldEnum =
   (typeof AboutUsScalarFieldEnum)[keyof typeof AboutUsScalarFieldEnum];
 
+export const PortfolioCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type PortfolioCategoryScalarFieldEnum =
+  (typeof PortfolioCategoryScalarFieldEnum)[keyof typeof PortfolioCategoryScalarFieldEnum];
+
+export const PortfolioImageScalarFieldEnum = {
+  id: 'id',
+  categoryId: 'categoryId',
+  fileId: 'fileId',
+  caption: 'caption',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type PortfolioImageScalarFieldEnum =
+  (typeof PortfolioImageScalarFieldEnum)[keyof typeof PortfolioImageScalarFieldEnum];
+
 export const PortfolioScalarFieldEnum = {
   id: 'id',
   category: 'category',
@@ -365,24 +384,32 @@ export const PortfolioScalarFieldEnum = {
 export type PortfolioScalarFieldEnum =
   (typeof PortfolioScalarFieldEnum)[keyof typeof PortfolioScalarFieldEnum];
 
-export const SettingsScalarFieldEnum = {
+export const SiteSettingsScalarFieldEnum = {
   id: 'id',
   siteTitle: 'siteTitle',
   siteDescription: 'siteDescription',
   logoImageId: 'logoImageId',
   contactNumber: 'contactNumber',
+  contactEmail: 'contactEmail',
+  facebookUrl: 'facebookUrl',
+  instagramUrl: 'instagramUrl',
+  twitterUrl: 'twitterUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
 
-export type SettingsScalarFieldEnum =
-  (typeof SettingsScalarFieldEnum)[keyof typeof SettingsScalarFieldEnum];
+export type SiteSettingsScalarFieldEnum =
+  (typeof SiteSettingsScalarFieldEnum)[keyof typeof SiteSettingsScalarFieldEnum];
 
 export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
   password: 'password',
+  role: 'role',
+  isActive: 'isActive',
+  avatarFileId: 'avatarFileId',
+  lastLoginAt: 'lastLoginAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;

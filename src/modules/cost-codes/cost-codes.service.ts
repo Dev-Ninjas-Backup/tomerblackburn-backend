@@ -63,9 +63,10 @@ export class CostCodesService {
     try {
       const {
         categoryId,
-        colorTag,
+        questionType,
+        unitType,
         isActive,
-        calculationType,
+        isIncludedInBase,
         includeOptions,
         includeCategory,
       } = filterDto;
@@ -73,9 +74,11 @@ export class CostCodesService {
       const where: any = {};
 
       if (categoryId) where.categoryId = categoryId;
-      if (colorTag) where.colorTag = colorTag;
+      if (questionType) where.questionType = questionType;
+      if (unitType) where.unitType = unitType;
       if (isActive !== undefined) where.isActive = isActive;
-      if (calculationType) where.calculationType = calculationType;
+      if (isIncludedInBase !== undefined)
+        where.isIncludedInBase = isIncludedInBase;
 
       const costCodes = await this.prisma.costCode.findMany({
         where,
@@ -87,7 +90,7 @@ export class CostCodesService {
               }
             : false,
         },
-        orderBy: { code: 'asc' },
+        orderBy: [{ displayOrder: 'asc' }, { code: 'asc' }],
       });
 
       return {
@@ -116,7 +119,7 @@ export class CostCodesService {
             orderBy: { displayOrder: 'asc' },
           },
         },
-        orderBy: { code: 'asc' },
+        orderBy: [{ displayOrder: 'asc' }, { code: 'asc' }],
       });
 
       return {
@@ -134,62 +137,64 @@ export class CostCodesService {
     }
   }
 
-  async findByBathroomType(bathroomTypeCode: string, includeOptions = true) {
+  async findByBathroomType(bathroomTypeId: string, includeOptions = true) {
     try {
-      const codeUpper = bathroomTypeCode.toUpperCase();
-      const fieldMap: Record<string, string> = {
-        FP: 'appliesToFp',
-        TPS: 'appliesToTps',
-        TPT: 'appliesToTpt',
-        TP: 'appliesToTp',
-      };
+      // Find bathroom type cost codes via junction table
+      const bathroomTypeCostCodes =
+        await this.prisma.bathroomTypeCostCode.findMany({
+          where: {
+            bathroomTypeId,
+            isVisible: true,
+            costCode: {
+              isActive: true,
+            },
+          },
+          include: {
+            costCode: {
+              include: {
+                category: true,
+                options: includeOptions
+                  ? {
+                      where: { isActive: true },
+                      orderBy: { displayOrder: 'asc' },
+                    }
+                  : false,
+              },
+            },
+          },
+          orderBy: [{ displayOrder: 'asc' }],
+        });
 
-      const field = fieldMap[codeUpper];
-      if (!field) {
-        throw new NotFoundException(
-          `Invalid bathroom type code: ${bathroomTypeCode}`,
-        );
-      }
-
-      const costCodes = await this.prisma.costCode.findMany({
-        where: {
-          [field]: true,
-          isActive: true,
-        },
-        include: {
-          category: true,
-          options: includeOptions
-            ? {
-                orderBy: { displayOrder: 'asc' },
-              }
-            : false,
-        },
-        orderBy: [{ category: { displayOrder: 'asc' } }, { code: 'asc' }],
-      });
+      const costCodes = bathroomTypeCostCodes.map((btcc) => ({
+        ...btcc.costCode,
+        // Include junction table overrides
+        isIncludedInBase: btcc.isIncludedInBase,
+        isRequired: btcc.isRequired,
+        defaultQuantity: btcc.defaultQuantity,
+        priceOverride: btcc.priceOverride,
+        displayOrder: btcc.displayOrder,
+      }));
 
       return {
         message:
           costCodes.length > 0
-            ? `Cost codes for ${codeUpper} retrieved successfully`
-            : `No cost codes found for bathroom type ${codeUpper}`,
+            ? 'Cost codes for bathroom type retrieved successfully'
+            : 'No cost codes found for this bathroom type',
         count: costCodes.length,
         data: costCodes,
       };
     } catch (error) {
-      if (error instanceof NotFoundException) {
-        throw error;
-      }
       throw new Error(
         `Failed to retrieve cost codes by bathroom type: ${error.message}`,
       );
     }
   }
 
-  async findByColorTag(colorTag: string) {
+  async findByQuestionType(questionType: string) {
     try {
       const costCodes = await this.prisma.costCode.findMany({
         where: {
-          colorTag,
+          questionType: questionType as any,
           isActive: true,
         },
         include: {
@@ -198,20 +203,20 @@ export class CostCodesService {
             orderBy: { displayOrder: 'asc' },
           },
         },
-        orderBy: { code: 'asc' },
+        orderBy: [{ displayOrder: 'asc' }, { code: 'asc' }],
       });
 
       return {
         message:
           costCodes.length > 0
-            ? `Cost codes with ${colorTag} color tag retrieved successfully`
-            : `No cost codes found with ${colorTag} color tag`,
+            ? `Cost codes with ${questionType} question type retrieved successfully`
+            : `No cost codes found with ${questionType} question type`,
         count: costCodes.length,
         data: costCodes,
       };
     } catch (error) {
       throw new Error(
-        `Failed to retrieve cost codes by color tag: ${error.message}`,
+        `Failed to retrieve cost codes by question type: ${error.message}`,
       );
     }
   }
@@ -224,6 +229,11 @@ export class CostCodesService {
           category: true,
           options: {
             orderBy: { displayOrder: 'asc' },
+          },
+          bathroomTypeCostCodes: {
+            include: {
+              bathroomType: true,
+            },
           },
         },
       });

@@ -1,8 +1,9 @@
 model CostCodeCategory {
   id           String   @id @default(uuid())
-  name         String
+  name         String // Demolition, Flooring, Vanity, Shower, Bathtub, Lighting, Fixtures & Hardware, Walls & Ceiling
   slug         String   @unique
   description  String?
+  stepNumber   Int      @default(1) // Which step in the estimator flow (1: Demolition & Structural, 2: Core Fixtures, 3: Finishing)
   displayOrder Int      @default(0)
   isActive     Boolean  @default(true)
   createdAt    DateTime @default(now())
@@ -11,5 +12,6 @@ model CostCodeCategory {
   costCodes CostCode[]
 
   @@index([slug])
+  @@index([stepNumber])
   @@map("cost_code_categories")
 }

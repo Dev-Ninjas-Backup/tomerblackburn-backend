@@ -1,19 +1,27 @@
 model CostCodeOption {
-  id            String   @id @default(uuid())
-  costCodeId    String
-  optionName    String
-  optionValue   String?  // Specific value like "24 inch", "Standard"
-  priceModifier Decimal  @default(0) @db.Decimal(10, 2)
-  finalPrice    Decimal  @db.Decimal(10, 2)
-  isDefault     Boolean  @default(false)
-  displayOrder  Int      @default(0)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id         String @id @default(uuid())
+  costCodeId String
 
-  costCode        CostCode          @relation(fields: [costCodeId], references: [id], onDelete: Cascade)
+  // Option Details
+  optionName  String // Display name: "Standard", "Mid-Range", "Premium", "24 inch", etc.
+  optionValue String? // Internal value or specification
+
+  // Pricing - supports both modifier and absolute pricing
+  priceModifier Decimal @default(0) @db.Decimal(10, 2) // Additional cost (+$500, +$1200)
+
+  // Display & Behavior
+  isDefault    Boolean @default(false) // Pre-selected option
+  displayOrder Int     @default(0)
+  isActive     Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  costCode        CostCode         @relation(fields: [costCodeId], references: [id], onDelete: Cascade)
   submissionItems SubmissionItem[]
 
   @@index([costCodeId])
   @@index([isDefault])
+  @@index([isActive])
   @@map("cost_code_options")
 }

@@ -40,11 +40,12 @@ export type BathroomTypeMinAggregateOutputType = {
   id: string | null;
   code: string | null;
   name: string | null;
+  shortDescription: string | null;
   fullDescription: string | null;
   basePrice: runtime.Decimal | null;
   imageFileId: string | null;
-  isActive: boolean | null;
   displayOrder: number | null;
+  isActive: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -53,11 +54,12 @@ export type BathroomTypeMaxAggregateOutputType = {
   id: string | null;
   code: string | null;
   name: string | null;
+  shortDescription: string | null;
   fullDescription: string | null;
   basePrice: runtime.Decimal | null;
   imageFileId: string | null;
-  isActive: boolean | null;
   displayOrder: number | null;
+  isActive: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -66,11 +68,12 @@ export type BathroomTypeCountAggregateOutputType = {
   id: number;
   code: number;
   name: number;
+  shortDescription: number;
   fullDescription: number;
   basePrice: number;
   imageFileId: number;
-  isActive: number;
   displayOrder: number;
+  isActive: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -90,11 +93,12 @@ export type BathroomTypeMinAggregateInputType = {
   id?: true;
   code?: true;
   name?: true;
+  shortDescription?: true;
   fullDescription?: true;
   basePrice?: true;
   imageFileId?: true;
-  isActive?: true;
   displayOrder?: true;
+  isActive?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -103,11 +107,12 @@ export type BathroomTypeMaxAggregateInputType = {
   id?: true;
   code?: true;
   name?: true;
+  shortDescription?: true;
   fullDescription?: true;
   basePrice?: true;
   imageFileId?: true;
-  isActive?: true;
   displayOrder?: true;
+  isActive?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -116,11 +121,12 @@ export type BathroomTypeCountAggregateInputType = {
   id?: true;
   code?: true;
   name?: true;
+  shortDescription?: true;
   fullDescription?: true;
   basePrice?: true;
   imageFileId?: true;
-  isActive?: true;
   displayOrder?: true;
+  isActive?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -224,11 +230,12 @@ export type BathroomTypeGroupByOutputType = {
   id: string;
   code: string;
   name: string;
+  shortDescription: string | null;
   fullDescription: string | null;
   basePrice: runtime.Decimal;
   imageFileId: string | null;
-  isActive: boolean;
   displayOrder: number;
+  isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
   _count: BathroomTypeCountAggregateOutputType | null;
@@ -258,6 +265,10 @@ export type BathroomTypeWhereInput = {
   id?: Prisma.StringFilter<'BathroomType'> | string;
   code?: Prisma.StringFilter<'BathroomType'> | string;
   name?: Prisma.StringFilter<'BathroomType'> | string;
+  shortDescription?:
+    | Prisma.StringNullableFilter<'BathroomType'>
+    | string
+    | null;
   fullDescription?: Prisma.StringNullableFilter<'BathroomType'> | string | null;
   basePrice?:
     | Prisma.DecimalFilter<'BathroomType'>
@@ -266,8 +277,8 @@ export type BathroomTypeWhereInput = {
     | number
     | string;
   imageFileId?: Prisma.StringNullableFilter<'BathroomType'> | string | null;
-  isActive?: Prisma.BoolFilter<'BathroomType'> | boolean;
   displayOrder?: Prisma.IntFilter<'BathroomType'> | number;
+  isActive?: Prisma.BoolFilter<'BathroomType'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'BathroomType'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'BathroomType'> | Date | string;
   imageFile?: Prisma.XOR<
@@ -282,11 +293,12 @@ export type BathroomTypeOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
+  shortDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
   fullDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   imageFileId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  isActive?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
+  isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   imageFile?: Prisma.FileInstanceOrderByWithRelationInput;
@@ -302,6 +314,10 @@ export type BathroomTypeWhereUniqueInput = Prisma.AtLeast<
     OR?: Prisma.BathroomTypeWhereInput[];
     NOT?: Prisma.BathroomTypeWhereInput | Prisma.BathroomTypeWhereInput[];
     name?: Prisma.StringFilter<'BathroomType'> | string;
+    shortDescription?:
+      | Prisma.StringNullableFilter<'BathroomType'>
+      | string
+      | null;
     fullDescription?:
       | Prisma.StringNullableFilter<'BathroomType'>
       | string
@@ -313,8 +329,8 @@ export type BathroomTypeWhereUniqueInput = Prisma.AtLeast<
       | number
       | string;
     imageFileId?: Prisma.StringNullableFilter<'BathroomType'> | string | null;
-    isActive?: Prisma.BoolFilter<'BathroomType'> | boolean;
     displayOrder?: Prisma.IntFilter<'BathroomType'> | number;
+    isActive?: Prisma.BoolFilter<'BathroomType'> | boolean;
     createdAt?: Prisma.DateTimeFilter<'BathroomType'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'BathroomType'> | Date | string;
     imageFile?: Prisma.XOR<
@@ -331,11 +347,12 @@ export type BathroomTypeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
+  shortDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
   fullDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   imageFileId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  isActive?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
+  isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.BathroomTypeCountOrderByAggregateInput;
@@ -356,6 +373,10 @@ export type BathroomTypeScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<'BathroomType'> | string;
   code?: Prisma.StringWithAggregatesFilter<'BathroomType'> | string;
   name?: Prisma.StringWithAggregatesFilter<'BathroomType'> | string;
+  shortDescription?:
+    | Prisma.StringNullableWithAggregatesFilter<'BathroomType'>
+    | string
+    | null;
   fullDescription?:
     | Prisma.StringNullableWithAggregatesFilter<'BathroomType'>
     | string
@@ -370,8 +391,8 @@ export type BathroomTypeScalarWhereWithAggregatesInput = {
     | Prisma.StringNullableWithAggregatesFilter<'BathroomType'>
     | string
     | null;
-  isActive?: Prisma.BoolWithAggregatesFilter<'BathroomType'> | boolean;
   displayOrder?: Prisma.IntWithAggregatesFilter<'BathroomType'> | number;
+  isActive?: Prisma.BoolWithAggregatesFilter<'BathroomType'> | boolean;
   createdAt?:
     | Prisma.DateTimeWithAggregatesFilter<'BathroomType'>
     | Date
@@ -386,10 +407,11 @@ export type BathroomTypeCreateInput = {
   id?: string;
   code: string;
   name: string;
+  shortDescription?: string | null;
   fullDescription?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  isActive?: boolean;
   displayOrder?: number;
+  isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   imageFile?: Prisma.FileInstanceCreateNestedOneWithoutBathroomTypeImagesInput;
@@ -401,11 +423,12 @@ export type BathroomTypeUncheckedCreateInput = {
   id?: string;
   code: string;
   name: string;
+  shortDescription?: string | null;
   fullDescription?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   imageFileId?: string | null;
-  isActive?: boolean;
   displayOrder?: number;
+  isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutBathroomTypeInput;
@@ -416,6 +439,10 @@ export type BathroomTypeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -426,8 +453,8 @@ export type BathroomTypeUpdateInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   imageFile?: Prisma.FileInstanceUpdateOneWithoutBathroomTypeImagesNestedInput;
@@ -439,6 +466,10 @@ export type BathroomTypeUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -450,8 +481,8 @@ export type BathroomTypeUncheckedUpdateInput = {
     | number
     | string;
   imageFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutBathroomTypeNestedInput;
@@ -462,11 +493,12 @@ export type BathroomTypeCreateManyInput = {
   id?: string;
   code: string;
   name: string;
+  shortDescription?: string | null;
   fullDescription?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   imageFileId?: string | null;
-  isActive?: boolean;
   displayOrder?: number;
+  isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -475,6 +507,10 @@ export type BathroomTypeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -485,8 +521,8 @@ export type BathroomTypeUpdateManyMutationInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -495,6 +531,10 @@ export type BathroomTypeUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -506,8 +546,8 @@ export type BathroomTypeUncheckedUpdateManyInput = {
     | number
     | string;
   imageFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -516,11 +556,12 @@ export type BathroomTypeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
+  shortDescription?: Prisma.SortOrder;
   fullDescription?: Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   imageFileId?: Prisma.SortOrder;
-  isActive?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
+  isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -534,11 +575,12 @@ export type BathroomTypeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
+  shortDescription?: Prisma.SortOrder;
   fullDescription?: Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   imageFileId?: Prisma.SortOrder;
-  isActive?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
+  isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -547,11 +589,12 @@ export type BathroomTypeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   code?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
+  shortDescription?: Prisma.SortOrder;
   fullDescription?: Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   imageFileId?: Prisma.SortOrder;
-  isActive?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
+  isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -584,16 +627,16 @@ export type DecimalFieldUpdateOperationsInput = {
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string;
 };
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean;
-};
-
 export type IntFieldUpdateOperationsInput = {
   set?: number;
   increment?: number;
   decrement?: number;
   multiply?: number;
   divide?: number;
+};
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean;
 };
 
 export type BathroomTypeCreateNestedOneWithoutBathroomTypeCostCodesInput = {
@@ -763,10 +806,11 @@ export type BathroomTypeCreateWithoutBathroomTypeCostCodesInput = {
   id?: string;
   code: string;
   name: string;
+  shortDescription?: string | null;
   fullDescription?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  isActive?: boolean;
   displayOrder?: number;
+  isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   imageFile?: Prisma.FileInstanceCreateNestedOneWithoutBathroomTypeImagesInput;
@@ -777,11 +821,12 @@ export type BathroomTypeUncheckedCreateWithoutBathroomTypeCostCodesInput = {
   id?: string;
   code: string;
   name: string;
+  shortDescription?: string | null;
   fullDescription?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   imageFileId?: string | null;
-  isActive?: boolean;
   displayOrder?: number;
+  isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutBathroomTypeInput;
@@ -820,6 +865,10 @@ export type BathroomTypeUpdateWithoutBathroomTypeCostCodesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -830,8 +879,8 @@ export type BathroomTypeUpdateWithoutBathroomTypeCostCodesInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   imageFile?: Prisma.FileInstanceUpdateOneWithoutBathroomTypeImagesNestedInput;
@@ -842,6 +891,10 @@ export type BathroomTypeUncheckedUpdateWithoutBathroomTypeCostCodesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -853,8 +906,8 @@ export type BathroomTypeUncheckedUpdateWithoutBathroomTypeCostCodesInput = {
     | number
     | string;
   imageFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutBathroomTypeNestedInput;
@@ -864,10 +917,11 @@ export type BathroomTypeCreateWithoutSubmissionsInput = {
   id?: string;
   code: string;
   name: string;
+  shortDescription?: string | null;
   fullDescription?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  isActive?: boolean;
   displayOrder?: number;
+  isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   imageFile?: Prisma.FileInstanceCreateNestedOneWithoutBathroomTypeImagesInput;
@@ -878,11 +932,12 @@ export type BathroomTypeUncheckedCreateWithoutSubmissionsInput = {
   id?: string;
   code: string;
   name: string;
+  shortDescription?: string | null;
   fullDescription?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   imageFileId?: string | null;
-  isActive?: boolean;
   displayOrder?: number;
+  isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   bathroomTypeCostCodes?: Prisma.BathroomTypeCostCodeUncheckedCreateNestedManyWithoutBathroomTypeInput;
@@ -920,6 +975,10 @@ export type BathroomTypeUpdateWithoutSubmissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -930,8 +989,8 @@ export type BathroomTypeUpdateWithoutSubmissionsInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   imageFile?: Prisma.FileInstanceUpdateOneWithoutBathroomTypeImagesNestedInput;
@@ -942,6 +1001,10 @@ export type BathroomTypeUncheckedUpdateWithoutSubmissionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -953,8 +1016,8 @@ export type BathroomTypeUncheckedUpdateWithoutSubmissionsInput = {
     | number
     | string;
   imageFileId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   bathroomTypeCostCodes?: Prisma.BathroomTypeCostCodeUncheckedUpdateManyWithoutBathroomTypeNestedInput;
@@ -964,10 +1027,11 @@ export type BathroomTypeCreateWithoutImageFileInput = {
   id?: string;
   code: string;
   name: string;
+  shortDescription?: string | null;
   fullDescription?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  isActive?: boolean;
   displayOrder?: number;
+  isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   submissions?: Prisma.SubmissionCreateNestedManyWithoutBathroomTypeInput;
@@ -978,10 +1042,11 @@ export type BathroomTypeUncheckedCreateWithoutImageFileInput = {
   id?: string;
   code: string;
   name: string;
+  shortDescription?: string | null;
   fullDescription?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  isActive?: boolean;
   displayOrder?: number;
+  isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutBathroomTypeInput;
@@ -1042,6 +1107,10 @@ export type BathroomTypeScalarWhereInput = {
   id?: Prisma.StringFilter<'BathroomType'> | string;
   code?: Prisma.StringFilter<'BathroomType'> | string;
   name?: Prisma.StringFilter<'BathroomType'> | string;
+  shortDescription?:
+    | Prisma.StringNullableFilter<'BathroomType'>
+    | string
+    | null;
   fullDescription?: Prisma.StringNullableFilter<'BathroomType'> | string | null;
   basePrice?:
     | Prisma.DecimalFilter<'BathroomType'>
@@ -1050,8 +1119,8 @@ export type BathroomTypeScalarWhereInput = {
     | number
     | string;
   imageFileId?: Prisma.StringNullableFilter<'BathroomType'> | string | null;
-  isActive?: Prisma.BoolFilter<'BathroomType'> | boolean;
   displayOrder?: Prisma.IntFilter<'BathroomType'> | number;
+  isActive?: Prisma.BoolFilter<'BathroomType'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'BathroomType'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'BathroomType'> | Date | string;
 };
@@ -1060,10 +1129,11 @@ export type BathroomTypeCreateManyImageFileInput = {
   id?: string;
   code: string;
   name: string;
+  shortDescription?: string | null;
   fullDescription?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  isActive?: boolean;
   displayOrder?: number;
+  isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -1072,6 +1142,10 @@ export type BathroomTypeUpdateWithoutImageFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1082,8 +1156,8 @@ export type BathroomTypeUpdateWithoutImageFileInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   submissions?: Prisma.SubmissionUpdateManyWithoutBathroomTypeNestedInput;
@@ -1094,6 +1168,10 @@ export type BathroomTypeUncheckedUpdateWithoutImageFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1104,8 +1182,8 @@ export type BathroomTypeUncheckedUpdateWithoutImageFileInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutBathroomTypeNestedInput;
@@ -1116,6 +1194,10 @@ export type BathroomTypeUncheckedUpdateManyWithoutImageFileInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
+  shortDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   fullDescription?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1126,8 +1208,8 @@ export type BathroomTypeUncheckedUpdateManyWithoutImageFileInput = {
     | runtime.DecimalJsLike
     | number
     | string;
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -1192,11 +1274,12 @@ export type BathroomTypeSelect<
     id?: boolean;
     code?: boolean;
     name?: boolean;
+    shortDescription?: boolean;
     fullDescription?: boolean;
     basePrice?: boolean;
     imageFileId?: boolean;
-    isActive?: boolean;
     displayOrder?: boolean;
+    isActive?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     imageFile?: boolean | Prisma.BathroomType$imageFileArgs<ExtArgs>;
@@ -1217,11 +1300,12 @@ export type BathroomTypeSelectCreateManyAndReturn<
     id?: boolean;
     code?: boolean;
     name?: boolean;
+    shortDescription?: boolean;
     fullDescription?: boolean;
     basePrice?: boolean;
     imageFileId?: boolean;
-    isActive?: boolean;
     displayOrder?: boolean;
+    isActive?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     imageFile?: boolean | Prisma.BathroomType$imageFileArgs<ExtArgs>;
@@ -1237,11 +1321,12 @@ export type BathroomTypeSelectUpdateManyAndReturn<
     id?: boolean;
     code?: boolean;
     name?: boolean;
+    shortDescription?: boolean;
     fullDescription?: boolean;
     basePrice?: boolean;
     imageFileId?: boolean;
-    isActive?: boolean;
     displayOrder?: boolean;
+    isActive?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     imageFile?: boolean | Prisma.BathroomType$imageFileArgs<ExtArgs>;
@@ -1253,11 +1338,12 @@ export type BathroomTypeSelectScalar = {
   id?: boolean;
   code?: boolean;
   name?: boolean;
+  shortDescription?: boolean;
   fullDescription?: boolean;
   basePrice?: boolean;
   imageFileId?: boolean;
-  isActive?: boolean;
   displayOrder?: boolean;
+  isActive?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -1269,11 +1355,12 @@ export type BathroomTypeOmit<
   | 'id'
   | 'code'
   | 'name'
+  | 'shortDescription'
   | 'fullDescription'
   | 'basePrice'
   | 'imageFileId'
-  | 'isActive'
   | 'displayOrder'
+  | 'isActive'
   | 'createdAt'
   | 'updatedAt',
   ExtArgs['result']['bathroomType']
@@ -1317,11 +1404,12 @@ export type $BathroomTypePayload<
       id: string;
       code: string;
       name: string;
+      shortDescription: string | null;
       fullDescription: string | null;
       basePrice: runtime.Decimal;
       imageFileId: string | null;
-      isActive: boolean;
       displayOrder: number;
+      isActive: boolean;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1965,11 +2053,12 @@ export interface BathroomTypeFieldRefs {
   readonly id: Prisma.FieldRef<'BathroomType', 'String'>;
   readonly code: Prisma.FieldRef<'BathroomType', 'String'>;
   readonly name: Prisma.FieldRef<'BathroomType', 'String'>;
+  readonly shortDescription: Prisma.FieldRef<'BathroomType', 'String'>;
   readonly fullDescription: Prisma.FieldRef<'BathroomType', 'String'>;
   readonly basePrice: Prisma.FieldRef<'BathroomType', 'Decimal'>;
   readonly imageFileId: Prisma.FieldRef<'BathroomType', 'String'>;
-  readonly isActive: Prisma.FieldRef<'BathroomType', 'Boolean'>;
   readonly displayOrder: Prisma.FieldRef<'BathroomType', 'Int'>;
+  readonly isActive: Prisma.FieldRef<'BathroomType', 'Boolean'>;
   readonly createdAt: Prisma.FieldRef<'BathroomType', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'BathroomType', 'DateTime'>;
 }

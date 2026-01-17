@@ -22,6 +22,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma:generate": "pnpx prisma generate",
     "prisma:validate": "pnpx prisma validate",
+    "seed": "ts-node -r tsconfig-paths/register prisma/seed.ts",
     "format:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "ci:check": "npm run format && npm run lint && npm run prisma:validate && npm run build && npm run start:prod",
     "deploy:check": "docker compsoe --profile prod build --no-cache",
@@ -64,6 +65,7 @@
     "@types/multer": "^2.0.0",
     "@types/node": "^22.19.1",
     "@types/passport-local": "^1.0.38",
+    "@types/pdfkit": "^0.17.4",
     "@types/supertest": "^6.0.3",
     "@types/uuid": "^11.0.0",
     "eslint": "^9.39.1",
@@ -71,6 +73,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.5.0",
     "jest": "^30.2.0",
+    "pdfkit": "^0.17.2",
     "prettier": "^3.6.2",
     "prisma": "^7.0.1",
     "source-map-support": "^0.5.21",
@@ -80,7 +83,8 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.48.0"
+    "typescript-eslint": "^8.48.0",
+    "xlsx": "^0.18.5"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -98,5 +102,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "prisma": {
+    "seed": "ts-node -r tsconfig-paths/register prisma/seed.ts"
   }
 }

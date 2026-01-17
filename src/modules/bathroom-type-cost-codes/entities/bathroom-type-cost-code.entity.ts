@@ -19,8 +19,20 @@ export class BathroomTypeCostCodeEntity implements BathroomTypeCostCode {
   isRequired: boolean;
 
   @ApiProperty()
+  isVisible: boolean;
+
+  @ApiProperty()
   defaultQuantity: Decimal | null;
 
   @ApiProperty()
+  priceOverride: Decimal | null;
+
+  @ApiProperty()
+  displayOrder: number;
+
+  @ApiProperty()
   createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 }

@@ -1,11 +1,26 @@
 model User {
-  id       String   @id @default(uuid())
-  name     String
-  email    String   @unique
-  password String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String    @id @default(uuid())
+  name         String
+  email        String    @unique
+  password     String
+  role         UserRole  @default(ADMIN)
+  isActive     Boolean   @default(true)
+  avatarFileId String?
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
+  avatarFile   FileInstance? @relation("UserAvatar", fields: [avatarFileId], references: [id])
   activityLogs ActivityLog[]
+
+  @@index([email])
+  @@index([role])
+  @@index([isActive])
   @@map("users")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  VIEW_ONLY
 }

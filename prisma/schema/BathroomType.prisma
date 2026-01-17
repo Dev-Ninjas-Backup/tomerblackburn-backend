@@ -1,21 +1,28 @@
 model BathroomType {
-  id              String   @id @default(uuid())
-  code            String   @unique // FP, TPS, TPT, TP
-  name            String
-  fullDescription String?
-  basePrice       Decimal  @default(0) @db.Decimal(10, 2)
-  imageFileId     String?
-  isActive        Boolean  @default(true)
-  displayOrder    Int      @default(0)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id               String  @id @default(uuid())
+  code             String  @unique // FP (Four Piece), TPS (Three Piece Shower), TPT (Three Piece Tub), TP (Two Piece)
+  name             String // "Four Piece", "Three Piece - Shower", "Three Piece - Tub", "Two Piece (Powder Room)"
+  shortDescription String? // "Toilet + Sink + Shower + Tub"
+  fullDescription  String? // Detailed description
 
-  imageFile FileInstance? @relation("BathroomTypeImage", fields: [imageFileId], references: [id])
+  // Pricing
+  basePrice Decimal @default(0) @db.Decimal(10, 2) // Starting price displayed on cards
 
-  submissions             Submission[]
-  bathroomTypeCostCodes   BathroomTypeCostCode[]
+  // Display
+  imageFileId  String?
+  displayOrder Int     @default(0)
+  isActive     Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  imageFile             FileInstance?          @relation("BathroomTypeImage", fields: [imageFileId], references: [id])
+  submissions           Submission[]
+  bathroomTypeCostCodes BathroomTypeCostCode[]
 
   @@index([code])
   @@index([isActive])
+  @@index([displayOrder])
   @@map("bathroom_types")
 }

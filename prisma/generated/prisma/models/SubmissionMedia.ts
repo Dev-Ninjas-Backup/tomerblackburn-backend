@@ -38,7 +38,7 @@ export type SubmissionMediaMinAggregateOutputType = {
   id: string | null;
   submissionId: string | null;
   fileInstanceId: string | null;
-  mediaType: string | null;
+  mediaType: $Enums.MediaType | null;
   description: string | null;
   displayOrder: number | null;
   uploadedAt: Date | null;
@@ -48,7 +48,7 @@ export type SubmissionMediaMaxAggregateOutputType = {
   id: string | null;
   submissionId: string | null;
   fileInstanceId: string | null;
-  mediaType: string | null;
+  mediaType: $Enums.MediaType | null;
   description: string | null;
   displayOrder: number | null;
   uploadedAt: Date | null;
@@ -205,7 +205,7 @@ export type SubmissionMediaGroupByOutputType = {
   id: string;
   submissionId: string;
   fileInstanceId: string;
-  mediaType: string;
+  mediaType: $Enums.MediaType;
   description: string | null;
   displayOrder: number;
   uploadedAt: Date;
@@ -237,7 +237,7 @@ export type SubmissionMediaWhereInput = {
   id?: Prisma.StringFilter<'SubmissionMedia'> | string;
   submissionId?: Prisma.StringFilter<'SubmissionMedia'> | string;
   fileInstanceId?: Prisma.StringFilter<'SubmissionMedia'> | string;
-  mediaType?: Prisma.StringFilter<'SubmissionMedia'> | string;
+  mediaType?: Prisma.EnumMediaTypeFilter<'SubmissionMedia'> | $Enums.MediaType;
   description?: Prisma.StringNullableFilter<'SubmissionMedia'> | string | null;
   displayOrder?: Prisma.IntFilter<'SubmissionMedia'> | number;
   uploadedAt?: Prisma.DateTimeFilter<'SubmissionMedia'> | Date | string;
@@ -271,7 +271,9 @@ export type SubmissionMediaWhereUniqueInput = Prisma.AtLeast<
     NOT?: Prisma.SubmissionMediaWhereInput | Prisma.SubmissionMediaWhereInput[];
     submissionId?: Prisma.StringFilter<'SubmissionMedia'> | string;
     fileInstanceId?: Prisma.StringFilter<'SubmissionMedia'> | string;
-    mediaType?: Prisma.StringFilter<'SubmissionMedia'> | string;
+    mediaType?:
+      | Prisma.EnumMediaTypeFilter<'SubmissionMedia'>
+      | $Enums.MediaType;
     description?:
       | Prisma.StringNullableFilter<'SubmissionMedia'>
       | string
@@ -318,7 +320,9 @@ export type SubmissionMediaScalarWhereWithAggregatesInput = {
   fileInstanceId?:
     | Prisma.StringWithAggregatesFilter<'SubmissionMedia'>
     | string;
-  mediaType?: Prisma.StringWithAggregatesFilter<'SubmissionMedia'> | string;
+  mediaType?:
+    | Prisma.EnumMediaTypeWithAggregatesFilter<'SubmissionMedia'>
+    | $Enums.MediaType;
   description?:
     | Prisma.StringNullableWithAggregatesFilter<'SubmissionMedia'>
     | string
@@ -332,7 +336,7 @@ export type SubmissionMediaScalarWhereWithAggregatesInput = {
 
 export type SubmissionMediaCreateInput = {
   id?: string;
-  mediaType: string;
+  mediaType?: $Enums.MediaType;
   description?: string | null;
   displayOrder?: number;
   uploadedAt?: Date | string;
@@ -344,7 +348,7 @@ export type SubmissionMediaUncheckedCreateInput = {
   id?: string;
   submissionId: string;
   fileInstanceId: string;
-  mediaType: string;
+  mediaType?: $Enums.MediaType;
   description?: string | null;
   displayOrder?: number;
   uploadedAt?: Date | string;
@@ -352,7 +356,7 @@ export type SubmissionMediaUncheckedCreateInput = {
 
 export type SubmissionMediaUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  mediaType?: Prisma.StringFieldUpdateOperationsInput | string;
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -364,7 +368,7 @@ export type SubmissionMediaUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionId?: Prisma.StringFieldUpdateOperationsInput | string;
   fileInstanceId?: Prisma.StringFieldUpdateOperationsInput | string;
-  mediaType?: Prisma.StringFieldUpdateOperationsInput | string;
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -374,7 +378,7 @@ export type SubmissionMediaCreateManyInput = {
   id?: string;
   submissionId: string;
   fileInstanceId: string;
-  mediaType: string;
+  mediaType?: $Enums.MediaType;
   description?: string | null;
   displayOrder?: number;
   uploadedAt?: Date | string;
@@ -382,7 +386,7 @@ export type SubmissionMediaCreateManyInput = {
 
 export type SubmissionMediaUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  mediaType?: Prisma.StringFieldUpdateOperationsInput | string;
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -392,7 +396,7 @@ export type SubmissionMediaUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionId?: Prisma.StringFieldUpdateOperationsInput | string;
   fileInstanceId?: Prisma.StringFieldUpdateOperationsInput | string;
-  mediaType?: Prisma.StringFieldUpdateOperationsInput | string;
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -556,6 +560,10 @@ export type SubmissionMediaUncheckedUpdateManyWithoutSubmissionNestedInput = {
     | Prisma.SubmissionMediaScalarWhereInput[];
 };
 
+export type EnumMediaTypeFieldUpdateOperationsInput = {
+  set?: $Enums.MediaType;
+};
+
 export type SubmissionMediaCreateNestedManyWithoutFileInstanceInput = {
   create?:
     | Prisma.XOR<
@@ -668,7 +676,7 @@ export type SubmissionMediaUncheckedUpdateManyWithoutFileInstanceNestedInput = {
 
 export type SubmissionMediaCreateWithoutSubmissionInput = {
   id?: string;
-  mediaType: string;
+  mediaType?: $Enums.MediaType;
   description?: string | null;
   displayOrder?: number;
   uploadedAt?: Date | string;
@@ -678,7 +686,7 @@ export type SubmissionMediaCreateWithoutSubmissionInput = {
 export type SubmissionMediaUncheckedCreateWithoutSubmissionInput = {
   id?: string;
   fileInstanceId: string;
-  mediaType: string;
+  mediaType?: $Enums.MediaType;
   description?: string | null;
   displayOrder?: number;
   uploadedAt?: Date | string;
@@ -738,7 +746,7 @@ export type SubmissionMediaScalarWhereInput = {
   id?: Prisma.StringFilter<'SubmissionMedia'> | string;
   submissionId?: Prisma.StringFilter<'SubmissionMedia'> | string;
   fileInstanceId?: Prisma.StringFilter<'SubmissionMedia'> | string;
-  mediaType?: Prisma.StringFilter<'SubmissionMedia'> | string;
+  mediaType?: Prisma.EnumMediaTypeFilter<'SubmissionMedia'> | $Enums.MediaType;
   description?: Prisma.StringNullableFilter<'SubmissionMedia'> | string | null;
   displayOrder?: Prisma.IntFilter<'SubmissionMedia'> | number;
   uploadedAt?: Prisma.DateTimeFilter<'SubmissionMedia'> | Date | string;
@@ -746,7 +754,7 @@ export type SubmissionMediaScalarWhereInput = {
 
 export type SubmissionMediaCreateWithoutFileInstanceInput = {
   id?: string;
-  mediaType: string;
+  mediaType?: $Enums.MediaType;
   description?: string | null;
   displayOrder?: number;
   uploadedAt?: Date | string;
@@ -756,7 +764,7 @@ export type SubmissionMediaCreateWithoutFileInstanceInput = {
 export type SubmissionMediaUncheckedCreateWithoutFileInstanceInput = {
   id?: string;
   submissionId: string;
-  mediaType: string;
+  mediaType?: $Enums.MediaType;
   description?: string | null;
   displayOrder?: number;
   uploadedAt?: Date | string;
@@ -808,7 +816,7 @@ export type SubmissionMediaUpdateManyWithWhereWithoutFileInstanceInput = {
 export type SubmissionMediaCreateManySubmissionInput = {
   id?: string;
   fileInstanceId: string;
-  mediaType: string;
+  mediaType?: $Enums.MediaType;
   description?: string | null;
   displayOrder?: number;
   uploadedAt?: Date | string;
@@ -816,7 +824,7 @@ export type SubmissionMediaCreateManySubmissionInput = {
 
 export type SubmissionMediaUpdateWithoutSubmissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  mediaType?: Prisma.StringFieldUpdateOperationsInput | string;
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -826,7 +834,7 @@ export type SubmissionMediaUpdateWithoutSubmissionInput = {
 export type SubmissionMediaUncheckedUpdateWithoutSubmissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   fileInstanceId?: Prisma.StringFieldUpdateOperationsInput | string;
-  mediaType?: Prisma.StringFieldUpdateOperationsInput | string;
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -835,7 +843,7 @@ export type SubmissionMediaUncheckedUpdateWithoutSubmissionInput = {
 export type SubmissionMediaUncheckedUpdateManyWithoutSubmissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   fileInstanceId?: Prisma.StringFieldUpdateOperationsInput | string;
-  mediaType?: Prisma.StringFieldUpdateOperationsInput | string;
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -844,7 +852,7 @@ export type SubmissionMediaUncheckedUpdateManyWithoutSubmissionInput = {
 export type SubmissionMediaCreateManyFileInstanceInput = {
   id?: string;
   submissionId: string;
-  mediaType: string;
+  mediaType?: $Enums.MediaType;
   description?: string | null;
   displayOrder?: number;
   uploadedAt?: Date | string;
@@ -852,7 +860,7 @@ export type SubmissionMediaCreateManyFileInstanceInput = {
 
 export type SubmissionMediaUpdateWithoutFileInstanceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  mediaType?: Prisma.StringFieldUpdateOperationsInput | string;
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -862,7 +870,7 @@ export type SubmissionMediaUpdateWithoutFileInstanceInput = {
 export type SubmissionMediaUncheckedUpdateWithoutFileInstanceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  mediaType?: Prisma.StringFieldUpdateOperationsInput | string;
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -871,7 +879,7 @@ export type SubmissionMediaUncheckedUpdateWithoutFileInstanceInput = {
 export type SubmissionMediaUncheckedUpdateManyWithoutFileInstanceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionId?: Prisma.StringFieldUpdateOperationsInput | string;
-  mediaType?: Prisma.StringFieldUpdateOperationsInput | string;
+  mediaType?: Prisma.EnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -990,7 +998,7 @@ export type $SubmissionMediaPayload<
       id: string;
       submissionId: string;
       fileInstanceId: string;
-      mediaType: string;
+      mediaType: $Enums.MediaType;
       description: string | null;
       displayOrder: number;
       uploadedAt: Date;
@@ -1629,7 +1637,7 @@ export interface SubmissionMediaFieldRefs {
   readonly id: Prisma.FieldRef<'SubmissionMedia', 'String'>;
   readonly submissionId: Prisma.FieldRef<'SubmissionMedia', 'String'>;
   readonly fileInstanceId: Prisma.FieldRef<'SubmissionMedia', 'String'>;
-  readonly mediaType: Prisma.FieldRef<'SubmissionMedia', 'String'>;
+  readonly mediaType: Prisma.FieldRef<'SubmissionMedia', 'MediaType'>;
   readonly description: Prisma.FieldRef<'SubmissionMedia', 'String'>;
   readonly displayOrder: Prisma.FieldRef<'SubmissionMedia', 'Int'>;
   readonly uploadedAt: Prisma.FieldRef<'SubmissionMedia', 'DateTime'>;

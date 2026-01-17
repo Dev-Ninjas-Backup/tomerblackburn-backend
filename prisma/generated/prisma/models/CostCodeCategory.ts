@@ -27,10 +27,12 @@ export type AggregateCostCodeCategory = {
 };
 
 export type CostCodeCategoryAvgAggregateOutputType = {
+  stepNumber: number | null;
   displayOrder: number | null;
 };
 
 export type CostCodeCategorySumAggregateOutputType = {
+  stepNumber: number | null;
   displayOrder: number | null;
 };
 
@@ -39,6 +41,7 @@ export type CostCodeCategoryMinAggregateOutputType = {
   name: string | null;
   slug: string | null;
   description: string | null;
+  stepNumber: number | null;
   displayOrder: number | null;
   isActive: boolean | null;
   createdAt: Date | null;
@@ -50,6 +53,7 @@ export type CostCodeCategoryMaxAggregateOutputType = {
   name: string | null;
   slug: string | null;
   description: string | null;
+  stepNumber: number | null;
   displayOrder: number | null;
   isActive: boolean | null;
   createdAt: Date | null;
@@ -61,6 +65,7 @@ export type CostCodeCategoryCountAggregateOutputType = {
   name: number;
   slug: number;
   description: number;
+  stepNumber: number;
   displayOrder: number;
   isActive: number;
   createdAt: number;
@@ -69,10 +74,12 @@ export type CostCodeCategoryCountAggregateOutputType = {
 };
 
 export type CostCodeCategoryAvgAggregateInputType = {
+  stepNumber?: true;
   displayOrder?: true;
 };
 
 export type CostCodeCategorySumAggregateInputType = {
+  stepNumber?: true;
   displayOrder?: true;
 };
 
@@ -81,6 +88,7 @@ export type CostCodeCategoryMinAggregateInputType = {
   name?: true;
   slug?: true;
   description?: true;
+  stepNumber?: true;
   displayOrder?: true;
   isActive?: true;
   createdAt?: true;
@@ -92,6 +100,7 @@ export type CostCodeCategoryMaxAggregateInputType = {
   name?: true;
   slug?: true;
   description?: true;
+  stepNumber?: true;
   displayOrder?: true;
   isActive?: true;
   createdAt?: true;
@@ -103,6 +112,7 @@ export type CostCodeCategoryCountAggregateInputType = {
   name?: true;
   slug?: true;
   description?: true;
+  stepNumber?: true;
   displayOrder?: true;
   isActive?: true;
   createdAt?: true;
@@ -212,6 +222,7 @@ export type CostCodeCategoryGroupByOutputType = {
   name: string;
   slug: string;
   description: string | null;
+  stepNumber: number;
   displayOrder: number;
   isActive: boolean;
   createdAt: Date;
@@ -245,6 +256,7 @@ export type CostCodeCategoryWhereInput = {
   name?: Prisma.StringFilter<'CostCodeCategory'> | string;
   slug?: Prisma.StringFilter<'CostCodeCategory'> | string;
   description?: Prisma.StringNullableFilter<'CostCodeCategory'> | string | null;
+  stepNumber?: Prisma.IntFilter<'CostCodeCategory'> | number;
   displayOrder?: Prisma.IntFilter<'CostCodeCategory'> | number;
   isActive?: Prisma.BoolFilter<'CostCodeCategory'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'CostCodeCategory'> | Date | string;
@@ -257,6 +269,7 @@ export type CostCodeCategoryOrderByWithRelationInput = {
   name?: Prisma.SortOrder;
   slug?: Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
+  stepNumber?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -280,6 +293,7 @@ export type CostCodeCategoryWhereUniqueInput = Prisma.AtLeast<
       | Prisma.StringNullableFilter<'CostCodeCategory'>
       | string
       | null;
+    stepNumber?: Prisma.IntFilter<'CostCodeCategory'> | number;
     displayOrder?: Prisma.IntFilter<'CostCodeCategory'> | number;
     isActive?: Prisma.BoolFilter<'CostCodeCategory'> | boolean;
     createdAt?: Prisma.DateTimeFilter<'CostCodeCategory'> | Date | string;
@@ -294,6 +308,7 @@ export type CostCodeCategoryOrderByWithAggregationInput = {
   name?: Prisma.SortOrder;
   slug?: Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
+  stepNumber?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -320,6 +335,7 @@ export type CostCodeCategoryScalarWhereWithAggregatesInput = {
     | Prisma.StringNullableWithAggregatesFilter<'CostCodeCategory'>
     | string
     | null;
+  stepNumber?: Prisma.IntWithAggregatesFilter<'CostCodeCategory'> | number;
   displayOrder?: Prisma.IntWithAggregatesFilter<'CostCodeCategory'> | number;
   isActive?: Prisma.BoolWithAggregatesFilter<'CostCodeCategory'> | boolean;
   createdAt?:
@@ -337,6 +353,7 @@ export type CostCodeCategoryCreateInput = {
   name: string;
   slug: string;
   description?: string | null;
+  stepNumber?: number;
   displayOrder?: number;
   isActive?: boolean;
   createdAt?: Date | string;
@@ -349,6 +366,7 @@ export type CostCodeCategoryUncheckedCreateInput = {
   name: string;
   slug: string;
   description?: string | null;
+  stepNumber?: number;
   displayOrder?: number;
   isActive?: boolean;
   createdAt?: Date | string;
@@ -361,6 +379,7 @@ export type CostCodeCategoryUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   slug?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  stepNumber?: Prisma.IntFieldUpdateOperationsInput | number;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -373,6 +392,7 @@ export type CostCodeCategoryUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   slug?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  stepNumber?: Prisma.IntFieldUpdateOperationsInput | number;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -385,6 +405,7 @@ export type CostCodeCategoryCreateManyInput = {
   name: string;
   slug: string;
   description?: string | null;
+  stepNumber?: number;
   displayOrder?: number;
   isActive?: boolean;
   createdAt?: Date | string;
@@ -396,6 +417,7 @@ export type CostCodeCategoryUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   slug?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  stepNumber?: Prisma.IntFieldUpdateOperationsInput | number;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -407,6 +429,7 @@ export type CostCodeCategoryUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   slug?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  stepNumber?: Prisma.IntFieldUpdateOperationsInput | number;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -423,6 +446,7 @@ export type CostCodeCategoryCountOrderByAggregateInput = {
   name?: Prisma.SortOrder;
   slug?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
+  stepNumber?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -430,6 +454,7 @@ export type CostCodeCategoryCountOrderByAggregateInput = {
 };
 
 export type CostCodeCategoryAvgOrderByAggregateInput = {
+  stepNumber?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
 };
 
@@ -438,6 +463,7 @@ export type CostCodeCategoryMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder;
   slug?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
+  stepNumber?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -449,6 +475,7 @@ export type CostCodeCategoryMinOrderByAggregateInput = {
   name?: Prisma.SortOrder;
   slug?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
+  stepNumber?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -456,6 +483,7 @@ export type CostCodeCategoryMinOrderByAggregateInput = {
 };
 
 export type CostCodeCategorySumOrderByAggregateInput = {
+  stepNumber?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
 };
 
@@ -490,6 +518,7 @@ export type CostCodeCategoryCreateWithoutCostCodesInput = {
   name: string;
   slug: string;
   description?: string | null;
+  stepNumber?: number;
   displayOrder?: number;
   isActive?: boolean;
   createdAt?: Date | string;
@@ -501,6 +530,7 @@ export type CostCodeCategoryUncheckedCreateWithoutCostCodesInput = {
   name: string;
   slug: string;
   description?: string | null;
+  stepNumber?: number;
   displayOrder?: number;
   isActive?: boolean;
   createdAt?: Date | string;
@@ -540,6 +570,7 @@ export type CostCodeCategoryUpdateWithoutCostCodesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   slug?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  stepNumber?: Prisma.IntFieldUpdateOperationsInput | number;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -551,6 +582,7 @@ export type CostCodeCategoryUncheckedUpdateWithoutCostCodesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   slug?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  stepNumber?: Prisma.IntFieldUpdateOperationsInput | number;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -604,6 +636,7 @@ export type CostCodeCategorySelect<
     name?: boolean;
     slug?: boolean;
     description?: boolean;
+    stepNumber?: boolean;
     displayOrder?: boolean;
     isActive?: boolean;
     createdAt?: boolean;
@@ -625,6 +658,7 @@ export type CostCodeCategorySelectCreateManyAndReturn<
     name?: boolean;
     slug?: boolean;
     description?: boolean;
+    stepNumber?: boolean;
     displayOrder?: boolean;
     isActive?: boolean;
     createdAt?: boolean;
@@ -642,6 +676,7 @@ export type CostCodeCategorySelectUpdateManyAndReturn<
     name?: boolean;
     slug?: boolean;
     description?: boolean;
+    stepNumber?: boolean;
     displayOrder?: boolean;
     isActive?: boolean;
     createdAt?: boolean;
@@ -655,6 +690,7 @@ export type CostCodeCategorySelectScalar = {
   name?: boolean;
   slug?: boolean;
   description?: boolean;
+  stepNumber?: boolean;
   displayOrder?: boolean;
   isActive?: boolean;
   createdAt?: boolean;
@@ -669,6 +705,7 @@ export type CostCodeCategoryOmit<
   | 'name'
   | 'slug'
   | 'description'
+  | 'stepNumber'
   | 'displayOrder'
   | 'isActive'
   | 'createdAt'
@@ -705,6 +742,7 @@ export type $CostCodeCategoryPayload<
       name: string;
       slug: string;
       description: string | null;
+      stepNumber: number;
       displayOrder: number;
       isActive: boolean;
       createdAt: Date;
@@ -1338,6 +1376,7 @@ export interface CostCodeCategoryFieldRefs {
   readonly name: Prisma.FieldRef<'CostCodeCategory', 'String'>;
   readonly slug: Prisma.FieldRef<'CostCodeCategory', 'String'>;
   readonly description: Prisma.FieldRef<'CostCodeCategory', 'String'>;
+  readonly stepNumber: Prisma.FieldRef<'CostCodeCategory', 'Int'>;
   readonly displayOrder: Prisma.FieldRef<'CostCodeCategory', 'Int'>;
   readonly isActive: Prisma.FieldRef<'CostCodeCategory', 'Boolean'>;
   readonly createdAt: Prisma.FieldRef<'CostCodeCategory', 'DateTime'>;

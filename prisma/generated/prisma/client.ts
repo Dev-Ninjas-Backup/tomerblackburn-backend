@@ -58,11 +58,6 @@ export type BathroomType = Prisma.BathroomTypeModel;
  */
 export type BathroomTypeCostCode = Prisma.BathroomTypeCostCodeModel;
 /**
- * Model CompanySetting
- *
- */
-export type CompanySetting = Prisma.CompanySettingModel;
-/**
  * Model CostCode
  *
  */
@@ -123,15 +118,25 @@ export type ServiceStandsOut = Prisma.ServiceStandsOutModel;
  */
 export type AboutUs = Prisma.AboutUsModel;
 /**
+ * Model PortfolioCategory
+ *
+ */
+export type PortfolioCategory = Prisma.PortfolioCategoryModel;
+/**
+ * Model PortfolioImage
+ *
+ */
+export type PortfolioImage = Prisma.PortfolioImageModel;
+/**
  * Model Portfolio
  *
  */
 export type Portfolio = Prisma.PortfolioModel;
 /**
- * Model settings
+ * Model SiteSettings
  *
  */
-export type settings = Prisma.settingsModel;
+export type SiteSettings = Prisma.SiteSettingsModel;
 /**
  * Model User
  *

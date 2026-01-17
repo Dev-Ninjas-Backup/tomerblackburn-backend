@@ -28,10 +28,14 @@ export type AggregateBathroomTypeCostCode = {
 
 export type BathroomTypeCostCodeAvgAggregateOutputType = {
   defaultQuantity: runtime.Decimal | null;
+  priceOverride: runtime.Decimal | null;
+  displayOrder: number | null;
 };
 
 export type BathroomTypeCostCodeSumAggregateOutputType = {
   defaultQuantity: runtime.Decimal | null;
+  priceOverride: runtime.Decimal | null;
+  displayOrder: number | null;
 };
 
 export type BathroomTypeCostCodeMinAggregateOutputType = {
@@ -40,8 +44,12 @@ export type BathroomTypeCostCodeMinAggregateOutputType = {
   costCodeId: string | null;
   isIncludedInBase: boolean | null;
   isRequired: boolean | null;
+  isVisible: boolean | null;
   defaultQuantity: runtime.Decimal | null;
+  priceOverride: runtime.Decimal | null;
+  displayOrder: number | null;
   createdAt: Date | null;
+  updatedAt: Date | null;
 };
 
 export type BathroomTypeCostCodeMaxAggregateOutputType = {
@@ -50,8 +58,12 @@ export type BathroomTypeCostCodeMaxAggregateOutputType = {
   costCodeId: string | null;
   isIncludedInBase: boolean | null;
   isRequired: boolean | null;
+  isVisible: boolean | null;
   defaultQuantity: runtime.Decimal | null;
+  priceOverride: runtime.Decimal | null;
+  displayOrder: number | null;
   createdAt: Date | null;
+  updatedAt: Date | null;
 };
 
 export type BathroomTypeCostCodeCountAggregateOutputType = {
@@ -60,17 +72,25 @@ export type BathroomTypeCostCodeCountAggregateOutputType = {
   costCodeId: number;
   isIncludedInBase: number;
   isRequired: number;
+  isVisible: number;
   defaultQuantity: number;
+  priceOverride: number;
+  displayOrder: number;
   createdAt: number;
+  updatedAt: number;
   _all: number;
 };
 
 export type BathroomTypeCostCodeAvgAggregateInputType = {
   defaultQuantity?: true;
+  priceOverride?: true;
+  displayOrder?: true;
 };
 
 export type BathroomTypeCostCodeSumAggregateInputType = {
   defaultQuantity?: true;
+  priceOverride?: true;
+  displayOrder?: true;
 };
 
 export type BathroomTypeCostCodeMinAggregateInputType = {
@@ -79,8 +99,12 @@ export type BathroomTypeCostCodeMinAggregateInputType = {
   costCodeId?: true;
   isIncludedInBase?: true;
   isRequired?: true;
+  isVisible?: true;
   defaultQuantity?: true;
+  priceOverride?: true;
+  displayOrder?: true;
   createdAt?: true;
+  updatedAt?: true;
 };
 
 export type BathroomTypeCostCodeMaxAggregateInputType = {
@@ -89,8 +113,12 @@ export type BathroomTypeCostCodeMaxAggregateInputType = {
   costCodeId?: true;
   isIncludedInBase?: true;
   isRequired?: true;
+  isVisible?: true;
   defaultQuantity?: true;
+  priceOverride?: true;
+  displayOrder?: true;
   createdAt?: true;
+  updatedAt?: true;
 };
 
 export type BathroomTypeCostCodeCountAggregateInputType = {
@@ -99,8 +127,12 @@ export type BathroomTypeCostCodeCountAggregateInputType = {
   costCodeId?: true;
   isIncludedInBase?: true;
   isRequired?: true;
+  isVisible?: true;
   defaultQuantity?: true;
+  priceOverride?: true;
+  displayOrder?: true;
   createdAt?: true;
+  updatedAt?: true;
   _all?: true;
 };
 
@@ -209,8 +241,12 @@ export type BathroomTypeCostCodeGroupByOutputType = {
   costCodeId: string;
   isIncludedInBase: boolean;
   isRequired: boolean;
+  isVisible: boolean;
   defaultQuantity: runtime.Decimal | null;
+  priceOverride: runtime.Decimal | null;
+  displayOrder: number;
   createdAt: Date;
+  updatedAt: Date;
   _count: BathroomTypeCostCodeCountAggregateOutputType | null;
   _avg: BathroomTypeCostCodeAvgAggregateOutputType | null;
   _sum: BathroomTypeCostCodeSumAggregateOutputType | null;
@@ -246,6 +282,7 @@ export type BathroomTypeCostCodeWhereInput = {
   costCodeId?: Prisma.StringFilter<'BathroomTypeCostCode'> | string;
   isIncludedInBase?: Prisma.BoolFilter<'BathroomTypeCostCode'> | boolean;
   isRequired?: Prisma.BoolFilter<'BathroomTypeCostCode'> | boolean;
+  isVisible?: Prisma.BoolFilter<'BathroomTypeCostCode'> | boolean;
   defaultQuantity?:
     | Prisma.DecimalNullableFilter<'BathroomTypeCostCode'>
     | runtime.Decimal
@@ -253,7 +290,16 @@ export type BathroomTypeCostCodeWhereInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.DecimalNullableFilter<'BathroomTypeCostCode'>
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFilter<'BathroomTypeCostCode'> | number;
   createdAt?: Prisma.DateTimeFilter<'BathroomTypeCostCode'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'BathroomTypeCostCode'> | Date | string;
   bathroomType?: Prisma.XOR<
     Prisma.BathroomTypeScalarRelationFilter,
     Prisma.BathroomTypeWhereInput
@@ -270,8 +316,12 @@ export type BathroomTypeCostCodeOrderByWithRelationInput = {
   costCodeId?: Prisma.SortOrder;
   isIncludedInBase?: Prisma.SortOrder;
   isRequired?: Prisma.SortOrder;
+  isVisible?: Prisma.SortOrder;
   defaultQuantity?: Prisma.SortOrderInput | Prisma.SortOrder;
+  priceOverride?: Prisma.SortOrderInput | Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
   bathroomType?: Prisma.BathroomTypeOrderByWithRelationInput;
   costCode?: Prisma.CostCodeOrderByWithRelationInput;
 };
@@ -291,6 +341,7 @@ export type BathroomTypeCostCodeWhereUniqueInput = Prisma.AtLeast<
     costCodeId?: Prisma.StringFilter<'BathroomTypeCostCode'> | string;
     isIncludedInBase?: Prisma.BoolFilter<'BathroomTypeCostCode'> | boolean;
     isRequired?: Prisma.BoolFilter<'BathroomTypeCostCode'> | boolean;
+    isVisible?: Prisma.BoolFilter<'BathroomTypeCostCode'> | boolean;
     defaultQuantity?:
       | Prisma.DecimalNullableFilter<'BathroomTypeCostCode'>
       | runtime.Decimal
@@ -298,7 +349,16 @@ export type BathroomTypeCostCodeWhereUniqueInput = Prisma.AtLeast<
       | number
       | string
       | null;
+    priceOverride?:
+      | Prisma.DecimalNullableFilter<'BathroomTypeCostCode'>
+      | runtime.Decimal
+      | runtime.DecimalJsLike
+      | number
+      | string
+      | null;
+    displayOrder?: Prisma.IntFilter<'BathroomTypeCostCode'> | number;
     createdAt?: Prisma.DateTimeFilter<'BathroomTypeCostCode'> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<'BathroomTypeCostCode'> | Date | string;
     bathroomType?: Prisma.XOR<
       Prisma.BathroomTypeScalarRelationFilter,
       Prisma.BathroomTypeWhereInput
@@ -317,8 +377,12 @@ export type BathroomTypeCostCodeOrderByWithAggregationInput = {
   costCodeId?: Prisma.SortOrder;
   isIncludedInBase?: Prisma.SortOrder;
   isRequired?: Prisma.SortOrder;
+  isVisible?: Prisma.SortOrder;
   defaultQuantity?: Prisma.SortOrderInput | Prisma.SortOrder;
+  priceOverride?: Prisma.SortOrderInput | Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
   _count?: Prisma.BathroomTypeCostCodeCountOrderByAggregateInput;
   _avg?: Prisma.BathroomTypeCostCodeAvgOrderByAggregateInput;
   _max?: Prisma.BathroomTypeCostCodeMaxOrderByAggregateInput;
@@ -347,6 +411,7 @@ export type BathroomTypeCostCodeScalarWhereWithAggregatesInput = {
   isRequired?:
     | Prisma.BoolWithAggregatesFilter<'BathroomTypeCostCode'>
     | boolean;
+  isVisible?: Prisma.BoolWithAggregatesFilter<'BathroomTypeCostCode'> | boolean;
   defaultQuantity?:
     | Prisma.DecimalNullableWithAggregatesFilter<'BathroomTypeCostCode'>
     | runtime.Decimal
@@ -354,7 +419,21 @@ export type BathroomTypeCostCodeScalarWhereWithAggregatesInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.DecimalNullableWithAggregatesFilter<'BathroomTypeCostCode'>
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?:
+    | Prisma.IntWithAggregatesFilter<'BathroomTypeCostCode'>
+    | number;
   createdAt?:
+    | Prisma.DateTimeWithAggregatesFilter<'BathroomTypeCostCode'>
+    | Date
+    | string;
+  updatedAt?:
     | Prisma.DateTimeWithAggregatesFilter<'BathroomTypeCostCode'>
     | Date
     | string;
@@ -364,13 +443,22 @@ export type BathroomTypeCostCodeCreateInput = {
   id?: string;
   isIncludedInBase?: boolean;
   isRequired?: boolean;
+  isVisible?: boolean;
   defaultQuantity?:
     | runtime.Decimal
     | runtime.DecimalJsLike
     | number
     | string
     | null;
+  priceOverride?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: number;
   createdAt?: Date | string;
+  updatedAt?: Date | string;
   bathroomType: Prisma.BathroomTypeCreateNestedOneWithoutBathroomTypeCostCodesInput;
   costCode: Prisma.CostCodeCreateNestedOneWithoutBathroomTypeCostCodesInput;
 };
@@ -381,19 +469,29 @@ export type BathroomTypeCostCodeUncheckedCreateInput = {
   costCodeId: string;
   isIncludedInBase?: boolean;
   isRequired?: boolean;
+  isVisible?: boolean;
   defaultQuantity?:
     | runtime.Decimal
     | runtime.DecimalJsLike
     | number
     | string
     | null;
+  priceOverride?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: number;
   createdAt?: Date | string;
+  updatedAt?: Date | string;
 };
 
 export type BathroomTypeCostCodeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   defaultQuantity?:
     | Prisma.NullableDecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -401,7 +499,16 @@ export type BathroomTypeCostCodeUpdateInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.NullableDecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   bathroomType?: Prisma.BathroomTypeUpdateOneRequiredWithoutBathroomTypeCostCodesNestedInput;
   costCode?: Prisma.CostCodeUpdateOneRequiredWithoutBathroomTypeCostCodesNestedInput;
 };
@@ -412,6 +519,7 @@ export type BathroomTypeCostCodeUncheckedUpdateInput = {
   costCodeId?: Prisma.StringFieldUpdateOperationsInput | string;
   isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   defaultQuantity?:
     | Prisma.NullableDecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -419,7 +527,16 @@ export type BathroomTypeCostCodeUncheckedUpdateInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.NullableDecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BathroomTypeCostCodeCreateManyInput = {
@@ -428,19 +545,29 @@ export type BathroomTypeCostCodeCreateManyInput = {
   costCodeId: string;
   isIncludedInBase?: boolean;
   isRequired?: boolean;
+  isVisible?: boolean;
   defaultQuantity?:
     | runtime.Decimal
     | runtime.DecimalJsLike
     | number
     | string
     | null;
+  priceOverride?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: number;
   createdAt?: Date | string;
+  updatedAt?: Date | string;
 };
 
 export type BathroomTypeCostCodeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   defaultQuantity?:
     | Prisma.NullableDecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -448,7 +575,16 @@ export type BathroomTypeCostCodeUpdateManyMutationInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.NullableDecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BathroomTypeCostCodeUncheckedUpdateManyInput = {
@@ -457,6 +593,7 @@ export type BathroomTypeCostCodeUncheckedUpdateManyInput = {
   costCodeId?: Prisma.StringFieldUpdateOperationsInput | string;
   isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   defaultQuantity?:
     | Prisma.NullableDecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -464,7 +601,16 @@ export type BathroomTypeCostCodeUncheckedUpdateManyInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.NullableDecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BathroomTypeCostCodeListRelationFilter = {
@@ -488,12 +634,18 @@ export type BathroomTypeCostCodeCountOrderByAggregateInput = {
   costCodeId?: Prisma.SortOrder;
   isIncludedInBase?: Prisma.SortOrder;
   isRequired?: Prisma.SortOrder;
+  isVisible?: Prisma.SortOrder;
   defaultQuantity?: Prisma.SortOrder;
+  priceOverride?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
 };
 
 export type BathroomTypeCostCodeAvgOrderByAggregateInput = {
   defaultQuantity?: Prisma.SortOrder;
+  priceOverride?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
 };
 
 export type BathroomTypeCostCodeMaxOrderByAggregateInput = {
@@ -502,8 +654,12 @@ export type BathroomTypeCostCodeMaxOrderByAggregateInput = {
   costCodeId?: Prisma.SortOrder;
   isIncludedInBase?: Prisma.SortOrder;
   isRequired?: Prisma.SortOrder;
+  isVisible?: Prisma.SortOrder;
   defaultQuantity?: Prisma.SortOrder;
+  priceOverride?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
 };
 
 export type BathroomTypeCostCodeMinOrderByAggregateInput = {
@@ -512,12 +668,18 @@ export type BathroomTypeCostCodeMinOrderByAggregateInput = {
   costCodeId?: Prisma.SortOrder;
   isIncludedInBase?: Prisma.SortOrder;
   isRequired?: Prisma.SortOrder;
+  isVisible?: Prisma.SortOrder;
   defaultQuantity?: Prisma.SortOrder;
+  priceOverride?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
+  updatedAt?: Prisma.SortOrder;
 };
 
 export type BathroomTypeCostCodeSumOrderByAggregateInput = {
   defaultQuantity?: Prisma.SortOrder;
+  priceOverride?: Prisma.SortOrder;
+  displayOrder?: Prisma.SortOrder;
 };
 
 export type BathroomTypeCostCodeCreateNestedManyWithoutBathroomTypeInput = {
@@ -756,13 +918,22 @@ export type BathroomTypeCostCodeCreateWithoutBathroomTypeInput = {
   id?: string;
   isIncludedInBase?: boolean;
   isRequired?: boolean;
+  isVisible?: boolean;
   defaultQuantity?:
     | runtime.Decimal
     | runtime.DecimalJsLike
     | number
     | string
     | null;
+  priceOverride?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: number;
   createdAt?: Date | string;
+  updatedAt?: Date | string;
   costCode: Prisma.CostCodeCreateNestedOneWithoutBathroomTypeCostCodesInput;
 };
 
@@ -771,13 +942,22 @@ export type BathroomTypeCostCodeUncheckedCreateWithoutBathroomTypeInput = {
   costCodeId: string;
   isIncludedInBase?: boolean;
   isRequired?: boolean;
+  isVisible?: boolean;
   defaultQuantity?:
     | runtime.Decimal
     | runtime.DecimalJsLike
     | number
     | string
     | null;
+  priceOverride?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: number;
   createdAt?: Date | string;
+  updatedAt?: Date | string;
 };
 
 export type BathroomTypeCostCodeCreateOrConnectWithoutBathroomTypeInput = {
@@ -838,6 +1018,7 @@ export type BathroomTypeCostCodeScalarWhereInput = {
   costCodeId?: Prisma.StringFilter<'BathroomTypeCostCode'> | string;
   isIncludedInBase?: Prisma.BoolFilter<'BathroomTypeCostCode'> | boolean;
   isRequired?: Prisma.BoolFilter<'BathroomTypeCostCode'> | boolean;
+  isVisible?: Prisma.BoolFilter<'BathroomTypeCostCode'> | boolean;
   defaultQuantity?:
     | Prisma.DecimalNullableFilter<'BathroomTypeCostCode'>
     | runtime.Decimal
@@ -845,20 +1026,38 @@ export type BathroomTypeCostCodeScalarWhereInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.DecimalNullableFilter<'BathroomTypeCostCode'>
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFilter<'BathroomTypeCostCode'> | number;
   createdAt?: Prisma.DateTimeFilter<'BathroomTypeCostCode'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'BathroomTypeCostCode'> | Date | string;
 };
 
 export type BathroomTypeCostCodeCreateWithoutCostCodeInput = {
   id?: string;
   isIncludedInBase?: boolean;
   isRequired?: boolean;
+  isVisible?: boolean;
   defaultQuantity?:
     | runtime.Decimal
     | runtime.DecimalJsLike
     | number
     | string
     | null;
+  priceOverride?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: number;
   createdAt?: Date | string;
+  updatedAt?: Date | string;
   bathroomType: Prisma.BathroomTypeCreateNestedOneWithoutBathroomTypeCostCodesInput;
 };
 
@@ -867,13 +1066,22 @@ export type BathroomTypeCostCodeUncheckedCreateWithoutCostCodeInput = {
   bathroomTypeId: string;
   isIncludedInBase?: boolean;
   isRequired?: boolean;
+  isVisible?: boolean;
   defaultQuantity?:
     | runtime.Decimal
     | runtime.DecimalJsLike
     | number
     | string
     | null;
+  priceOverride?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: number;
   createdAt?: Date | string;
+  updatedAt?: Date | string;
 };
 
 export type BathroomTypeCostCodeCreateOrConnectWithoutCostCodeInput = {
@@ -924,19 +1132,29 @@ export type BathroomTypeCostCodeCreateManyBathroomTypeInput = {
   costCodeId: string;
   isIncludedInBase?: boolean;
   isRequired?: boolean;
+  isVisible?: boolean;
   defaultQuantity?:
     | runtime.Decimal
     | runtime.DecimalJsLike
     | number
     | string
     | null;
+  priceOverride?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: number;
   createdAt?: Date | string;
+  updatedAt?: Date | string;
 };
 
 export type BathroomTypeCostCodeUpdateWithoutBathroomTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   defaultQuantity?:
     | Prisma.NullableDecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -944,7 +1162,16 @@ export type BathroomTypeCostCodeUpdateWithoutBathroomTypeInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.NullableDecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   costCode?: Prisma.CostCodeUpdateOneRequiredWithoutBathroomTypeCostCodesNestedInput;
 };
 
@@ -953,6 +1180,7 @@ export type BathroomTypeCostCodeUncheckedUpdateWithoutBathroomTypeInput = {
   costCodeId?: Prisma.StringFieldUpdateOperationsInput | string;
   isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   defaultQuantity?:
     | Prisma.NullableDecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -960,7 +1188,16 @@ export type BathroomTypeCostCodeUncheckedUpdateWithoutBathroomTypeInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.NullableDecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BathroomTypeCostCodeUncheckedUpdateManyWithoutBathroomTypeInput = {
@@ -968,6 +1205,7 @@ export type BathroomTypeCostCodeUncheckedUpdateManyWithoutBathroomTypeInput = {
   costCodeId?: Prisma.StringFieldUpdateOperationsInput | string;
   isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   defaultQuantity?:
     | Prisma.NullableDecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -975,7 +1213,16 @@ export type BathroomTypeCostCodeUncheckedUpdateManyWithoutBathroomTypeInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.NullableDecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BathroomTypeCostCodeCreateManyCostCodeInput = {
@@ -983,19 +1230,29 @@ export type BathroomTypeCostCodeCreateManyCostCodeInput = {
   bathroomTypeId: string;
   isIncludedInBase?: boolean;
   isRequired?: boolean;
+  isVisible?: boolean;
   defaultQuantity?:
     | runtime.Decimal
     | runtime.DecimalJsLike
     | number
     | string
     | null;
+  priceOverride?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: number;
   createdAt?: Date | string;
+  updatedAt?: Date | string;
 };
 
 export type BathroomTypeCostCodeUpdateWithoutCostCodeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   defaultQuantity?:
     | Prisma.NullableDecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -1003,7 +1260,16 @@ export type BathroomTypeCostCodeUpdateWithoutCostCodeInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.NullableDecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   bathroomType?: Prisma.BathroomTypeUpdateOneRequiredWithoutBathroomTypeCostCodesNestedInput;
 };
 
@@ -1012,6 +1278,7 @@ export type BathroomTypeCostCodeUncheckedUpdateWithoutCostCodeInput = {
   bathroomTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
   isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   defaultQuantity?:
     | Prisma.NullableDecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -1019,7 +1286,16 @@ export type BathroomTypeCostCodeUncheckedUpdateWithoutCostCodeInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.NullableDecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BathroomTypeCostCodeUncheckedUpdateManyWithoutCostCodeInput = {
@@ -1027,6 +1303,7 @@ export type BathroomTypeCostCodeUncheckedUpdateManyWithoutCostCodeInput = {
   bathroomTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
   isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   defaultQuantity?:
     | Prisma.NullableDecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -1034,7 +1311,16 @@ export type BathroomTypeCostCodeUncheckedUpdateManyWithoutCostCodeInput = {
     | number
     | string
     | null;
+  priceOverride?:
+    | Prisma.NullableDecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string
+    | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type BathroomTypeCostCodeSelect<
@@ -1047,8 +1333,12 @@ export type BathroomTypeCostCodeSelect<
     costCodeId?: boolean;
     isIncludedInBase?: boolean;
     isRequired?: boolean;
+    isVisible?: boolean;
     defaultQuantity?: boolean;
+    priceOverride?: boolean;
+    displayOrder?: boolean;
     createdAt?: boolean;
+    updatedAt?: boolean;
     bathroomType?: boolean | Prisma.BathroomTypeDefaultArgs<ExtArgs>;
     costCode?: boolean | Prisma.CostCodeDefaultArgs<ExtArgs>;
   },
@@ -1065,8 +1355,12 @@ export type BathroomTypeCostCodeSelectCreateManyAndReturn<
     costCodeId?: boolean;
     isIncludedInBase?: boolean;
     isRequired?: boolean;
+    isVisible?: boolean;
     defaultQuantity?: boolean;
+    priceOverride?: boolean;
+    displayOrder?: boolean;
     createdAt?: boolean;
+    updatedAt?: boolean;
     bathroomType?: boolean | Prisma.BathroomTypeDefaultArgs<ExtArgs>;
     costCode?: boolean | Prisma.CostCodeDefaultArgs<ExtArgs>;
   },
@@ -1083,8 +1377,12 @@ export type BathroomTypeCostCodeSelectUpdateManyAndReturn<
     costCodeId?: boolean;
     isIncludedInBase?: boolean;
     isRequired?: boolean;
+    isVisible?: boolean;
     defaultQuantity?: boolean;
+    priceOverride?: boolean;
+    displayOrder?: boolean;
     createdAt?: boolean;
+    updatedAt?: boolean;
     bathroomType?: boolean | Prisma.BathroomTypeDefaultArgs<ExtArgs>;
     costCode?: boolean | Prisma.CostCodeDefaultArgs<ExtArgs>;
   },
@@ -1097,8 +1395,12 @@ export type BathroomTypeCostCodeSelectScalar = {
   costCodeId?: boolean;
   isIncludedInBase?: boolean;
   isRequired?: boolean;
+  isVisible?: boolean;
   defaultQuantity?: boolean;
+  priceOverride?: boolean;
+  displayOrder?: boolean;
   createdAt?: boolean;
+  updatedAt?: boolean;
 };
 
 export type BathroomTypeCostCodeOmit<
@@ -1110,8 +1412,12 @@ export type BathroomTypeCostCodeOmit<
   | 'costCodeId'
   | 'isIncludedInBase'
   | 'isRequired'
+  | 'isVisible'
   | 'defaultQuantity'
-  | 'createdAt',
+  | 'priceOverride'
+  | 'displayOrder'
+  | 'createdAt'
+  | 'updatedAt',
   ExtArgs['result']['bathroomTypeCostCode']
 >;
 export type BathroomTypeCostCodeInclude<
@@ -1152,8 +1458,12 @@ export type $BathroomTypeCostCodePayload<
       costCodeId: string;
       isIncludedInBase: boolean;
       isRequired: boolean;
+      isVisible: boolean;
       defaultQuantity: runtime.Decimal | null;
+      priceOverride: runtime.Decimal | null;
+      displayOrder: number;
       createdAt: Date;
+      updatedAt: Date;
     },
     ExtArgs['result']['bathroomTypeCostCode']
   >;
@@ -1801,8 +2111,12 @@ export interface BathroomTypeCostCodeFieldRefs {
   readonly costCodeId: Prisma.FieldRef<'BathroomTypeCostCode', 'String'>;
   readonly isIncludedInBase: Prisma.FieldRef<'BathroomTypeCostCode', 'Boolean'>;
   readonly isRequired: Prisma.FieldRef<'BathroomTypeCostCode', 'Boolean'>;
+  readonly isVisible: Prisma.FieldRef<'BathroomTypeCostCode', 'Boolean'>;
   readonly defaultQuantity: Prisma.FieldRef<'BathroomTypeCostCode', 'Decimal'>;
+  readonly priceOverride: Prisma.FieldRef<'BathroomTypeCostCode', 'Decimal'>;
+  readonly displayOrder: Prisma.FieldRef<'BathroomTypeCostCode', 'Int'>;
   readonly createdAt: Prisma.FieldRef<'BathroomTypeCostCode', 'DateTime'>;
+  readonly updatedAt: Prisma.FieldRef<'BathroomTypeCostCode', 'DateTime'>;
 }
 
 // Custom InputTypes

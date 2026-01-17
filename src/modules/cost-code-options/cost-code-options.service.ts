@@ -25,14 +25,9 @@ export class CostCodeOptionsService {
         );
       }
 
-      const finalPrice =
-        Number(costCodeExists.basePrice) +
-        Number(createCostCodeOptionDto.priceModifier || 0);
-
       const option = await this.prisma.costCodeOption.create({
         data: {
           ...createCostCodeOptionDto,
-          finalPrice,
         },
         include: {
           costCode: {
@@ -76,7 +71,6 @@ export class CostCodeOptionsService {
         optionName: option.optionName,
         optionValue: option.optionValue,
         priceModifier: option.priceModifier || 0,
-        finalPrice: basePrice + Number(option.priceModifier || 0),
         isDefault: option.isDefault || false,
         displayOrder: option.displayOrder ?? index,
       }));
@@ -194,28 +188,12 @@ export class CostCodeOptionsService {
 
   async update(id: string, updateCostCodeOptionDto: UpdateCostCodeOptionDto) {
     try {
-      const result = await this.findOne(id);
-      const option = result.data;
-
-      let finalPrice = Number(option.finalPrice);
-
-      if (updateCostCodeOptionDto.priceModifier !== undefined) {
-        const costCode = await this.prisma.costCode.findUnique({
-          where: { id: option.costCodeId },
-        });
-
-        if (costCode) {
-          finalPrice =
-            Number(costCode.basePrice) +
-            Number(updateCostCodeOptionDto.priceModifier);
-        }
-      }
+      await this.findOne(id);
 
       const updated = await this.prisma.costCodeOption.update({
         where: { id },
         data: {
           ...updateCostCodeOptionDto,
-          finalPrice,
         },
         include: {
           costCode: {
