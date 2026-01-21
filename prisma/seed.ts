@@ -24,14 +24,16 @@ async function main() {
 
   // Seed Users
   console.log('👤 Seeding users...');
-  const hashedPassword = await bcrypt.hash('admin123', 10);
+  const superAdminEmail = process.env.SUPER_ADMIN_EMAIL || 'admin@example.com';
+  const superAdminPassword = process.env.SUPER_ADMIN_PASSWORD || 'admin123';
+  const hashedPassword = await bcrypt.hash(superAdminPassword, 10);
 
   const superAdmin = await prisma.user.upsert({
-    where: { email: 'superadmin@bburnbuilders.com' },
+    where: { email: superAdminEmail },
     update: {},
     create: {
       name: 'Super Admin',
-      email: 'superadmin@bburnbuilders.com',
+      email: superAdminEmail,
       password: hashedPassword,
       role: 'SUPER_ADMIN',
       isActive: true,
@@ -308,7 +310,7 @@ async function main() {
 
   console.log('\n✨ Seeding completed successfully!');
   console.log('\n📝 Default credentials:');
-  console.log('   Super Admin: superadmin@bburnbuilders.com / admin123');
+  console.log(`   Super Admin: ${superAdminEmail} / ${superAdminPassword}`);
   console.log('   Admin: admin@bburnbuilders.com / admin123');
 }
 
