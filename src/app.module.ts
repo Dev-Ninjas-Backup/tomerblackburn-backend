@@ -22,6 +22,7 @@ import { AboutUsModule } from './modules/about-us/about-us.module';
 import { PricingService } from './modules/pricing/pricing.service';
 import { EmailService } from './modules/notifications/email.service';
 import { PdfGeneratorService } from './modules/pdf/pdf-generator.service';
+import { InitModule } from './common/init/init.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { PdfGeneratorService } from './modules/pdf/pdf-generator.service';
       isGlobal: true,
       envFilePath: '.env',
     }),
+    InitModule,
     AuthModule,
     PrismaModule,
     BathroomTypesModule,
