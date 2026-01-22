@@ -79,9 +79,7 @@ export class InitService implements OnModuleInit {
               );
               break;
             case 'P2002':
-              this.logger.warn(
-                '⚠️ Super admin with this email already exists',
-              );
+              this.logger.warn('⚠️ Super admin with this email already exists');
               break;
             case 'P2025':
               this.logger.error('❌ Required record not found in database');
