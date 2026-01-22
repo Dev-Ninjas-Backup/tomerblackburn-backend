@@ -54,10 +54,47 @@ export class InitService implements OnModuleInit {
         `✅ Super admin created successfully with email: ${email}`,
       );
     } catch (error) {
-      this.logger.error(
-        `Failed to create super admin: ${error.message}`,
-        error.stack,
-      );
+      const errorName = error?.constructor?.name || error?.name;
+      const errorMessage =
+        typeof error?.message === 'string'
+          ? error.message.split('\n')[0]
+          : 'Unknown error';
+
+      // Handle different types of Prisma errors
+      if (errorName === 'PrismaClientValidationError') {
+        this.logger.error(
+          '❌ Invalid Prisma query. Please check your database schema and run: npx prisma generate && npx prisma migrate dev',
+        );
+      } else if (errorName === 'PrismaClientInitializationError') {
+        this.logger.error(
+          '❌ Failed to connect to database. Please check your DATABASE_URL in .env file',
+        );
+      } else if (error?.code && typeof error.code === 'string') {
+        // Handle Prisma error codes
+        if (error.code.startsWith('P')) {
+          switch (error.code) {
+            case 'P2021':
+              this.logger.error(
+                '❌ Database table does not exist. Please run: npx prisma migrate dev',
+              );
+              break;
+            case 'P2002':
+              this.logger.warn('⚠️ Super admin with this email already exists');
+              break;
+            case 'P2025':
+              this.logger.error('❌ Required record not found in database');
+              break;
+            default:
+              this.logger.error(
+                `❌ Database error (${error.code}): ${errorMessage}`,
+              );
+          }
+        } else {
+          this.logger.error(`❌ Failed to create super admin: ${errorMessage}`);
+        }
+      } else {
+        this.logger.error(`❌ Failed to create super admin: ${errorMessage}`);
+      }
     }
   }
 }
