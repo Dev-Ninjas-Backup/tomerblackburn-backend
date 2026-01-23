@@ -36,7 +36,10 @@ describe('AppController', () => {
 
       await appController.getHomePage(mockResponse);
 
-      expect(mockResponse.setHeader).toHaveBeenCalledWith('Content-Type', 'text/html');
+      expect(mockResponse.setHeader).toHaveBeenCalledWith(
+        'Content-Type',
+        'text/html',
+      );
       expect(mockResponse.send).toHaveBeenCalled();
       const htmlContent = (mockResponse.send as jest.Mock).mock.calls[0][0];
       expect(htmlContent).toContain('bburn_builders_api');
@@ -67,7 +70,9 @@ describe('AppController', () => {
         },
       };
 
-      jest.spyOn(appService, 'getHealthCheck').mockResolvedValue(mockHealthData);
+      jest
+        .spyOn(appService, 'getHealthCheck')
+        .mockResolvedValue(mockHealthData);
 
       const result = await appController.getHealthCheck();
 

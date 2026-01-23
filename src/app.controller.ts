@@ -13,12 +13,13 @@ export class AppController {
   @ApiOperation({ summary: 'Welcome message' })
   @ApiResponse({ status: 200, description: 'Returns welcome message' })
   async getHomePage(@Res() res: Response) {
-        const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 8080}`;
-        const environment = process.env.NODE_ENV || "development";
-        const isProduction = environment === "production";
-        const version = packageJson.version;
+    const baseUrl =
+      process.env.BASE_URL || `http://localhost:${process.env.PORT || 8080}`;
+    const environment = process.env.NODE_ENV || 'development';
+    const isProduction = environment === 'production';
+    const version = packageJson.version;
 
-        const html = `
+    const html = `
           <!DOCTYPE html>
           <html lang="en">
           <head>
@@ -274,9 +275,9 @@ export class AppController {
           </html>
         `;
 
-        res.setHeader("Content-Type", "text/html");
-        res.send(html);
-    }
+    res.setHeader('Content-Type', 'text/html');
+    res.send(html);
+  }
 
   @Get('health')
   @ApiOperation({ summary: 'Health check endpoint' })
