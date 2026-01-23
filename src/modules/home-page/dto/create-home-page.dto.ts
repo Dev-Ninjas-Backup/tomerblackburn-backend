@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsUUID } from 'class-validator';
 
 export class CreateHomePageDto {
   @ApiProperty({
@@ -20,10 +20,12 @@ export class CreateHomePageDto {
   subTitle: string;
 
   @ApiProperty({
-    description: 'Background image file ID',
+    description:
+      'Background image file ID (must be a valid UUID from file_instances)',
     required: false,
+    example: '123e4567-e89b-12d3-a456-426614174000',
   })
-  @IsString()
+  @IsUUID()
   @IsOptional()
   homeBackgroundImageId?: string;
 
@@ -64,10 +66,12 @@ export class CreateServiceStandsOutDto {
   description: string;
 
   @ApiProperty({
-    description: 'Service image file ID',
+    description:
+      'Service image file ID (must be a valid UUID from file_instances)',
     required: false,
+    example: '123e4567-e89b-12d3-a456-426614174000',
   })
-  @IsString()
+  @IsUUID()
   @IsOptional()
   imageId?: string;
 }
