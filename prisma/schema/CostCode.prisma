@@ -1,37 +1,36 @@
 model CostCode {
   id          String  @id @default(uuid())
   categoryId  String
-  code        String  @unique // FP-D-1, FP-FL-2, etc.
-  name        String // Display title (e.g., "Floor Tile Installation", "Heated Floor")
-  description String? // Detailed description of the work
+  code        String  @unique 
+  name        String 
+  description String? 
 
-  // Pricing
-  basePrice Decimal  @default(0) @db.Decimal(10, 2) // Base/default price
-  unitType  UnitType @default(FIXED) // How the cost is calculated
+  basePrice Decimal  @default(0) @db.Decimal(10, 2) 
+  unitType  UnitType @default(FIXED) 
 
-  // Question Type (color-coded in UI)
-  questionType QuestionType @default(WHITE) // Determines UI behavior
+  questionType QuestionType @default(WHITE) 
 
-  // Display & Behavior
+  step             Int     @default(1) 
   displayOrder     Int     @default(0)
-  isIncludedInBase Boolean @default(false) // Shows "Included in base price"
-  requiresQuantity Boolean @default(false) // User must enter quantity
-  isOptional       Boolean @default(false) // Can be toggled on/off
+  isIncludedInBase Boolean @default(false) 
+  requiresQuantity Boolean @default(false) 
+  isOptional       Boolean @default(false) 
   isActive         Boolean @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  category              CostCodeCategory       @relation(fields: [categoryId], references: [id])
-  options               CostCodeOption[]
-  bathroomTypeCostCodes BathroomTypeCostCode[]
-  submissionItems       SubmissionItem[]
+  category         CostCodeCategory  @relation(fields: [categoryId], references: [id])
+  options          CostCodeOption[]
+  serviceCostCodes ServiceCostCode[]
+  submissionItems  SubmissionItem[]
 
   @@index([code])
   @@index([categoryId])
   @@index([isActive])
   @@index([questionType])
   @@index([displayOrder])
+  @@index([step])
   @@map("cost_codes")
 }
 

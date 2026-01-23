@@ -4,14 +4,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from './common/prisma/prisma.module';
-import { BathroomTypesModule } from './modules/bathroom-types/bathroom-types.module';
+import { ServicesModule } from './modules/services/services.module';
+import { ServiceTypesModule } from './modules/service-types/service-types.module';
+import { ServiceCategoriesModule } from './modules/service-categories/service-categories.module';
 import { CostCodeCategoriesModule } from './modules/cost-code-categories/cost-code-categories.module';
 import { CostCodesModule } from './modules/cost-codes/cost-codes.module';
 import { CostCodeOptionsModule } from './modules/cost-code-options/cost-code-options.module';
 import { SubmissionsModule } from './modules/submissions/submissions.module';
 import { EmailLogsModule } from './modules/email-logs/email-logs.module';
 import { ActivityLogsModule } from './modules/activity-logs/activity-logs.module';
-import { BathroomTypeCostCodesModule } from './modules/bathroom-type-cost-codes/bathroom-type-cost-codes.module';
+import { ServiceCostCodesModule } from './modules/service-cost-codes/service-cost-codes.module';
 import { UploadModule } from './modules/upload/upload.module';
 import { UsersModule } from './modules/users/users.module';
 import { PortfolioModule } from './modules/portfolio/portfolio.module';
@@ -33,14 +35,16 @@ import { InitModule } from './common/init/init.module';
     InitModule,
     AuthModule,
     PrismaModule,
-    BathroomTypesModule,
+    ServicesModule,
+    ServiceTypesModule,
+    ServiceCategoriesModule,
     CostCodeCategoriesModule,
     CostCodesModule,
     CostCodeOptionsModule,
     SubmissionsModule,
     EmailLogsModule,
     ActivityLogsModule,
-    BathroomTypeCostCodesModule,
+    ServiceCostCodesModule,
     UploadModule,
     UsersModule,
     PortfolioModule,

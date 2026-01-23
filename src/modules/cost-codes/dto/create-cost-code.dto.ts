@@ -84,6 +84,17 @@ export class CreateCostCodeDto {
   questionType?: QuestionType;
 
   @ApiProperty({
+    description: 'Step number for organizing cost codes in workflow',
+    example: 1,
+    default: 1,
+  })
+  @IsNumber()
+  @Type(() => Number)
+  @Min(1)
+  @IsOptional()
+  step?: number;
+
+  @ApiProperty({
     description: 'Display order within category',
     example: 1,
     default: 0,

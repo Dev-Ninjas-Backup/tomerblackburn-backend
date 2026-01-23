@@ -9,7 +9,7 @@ export interface SubmissionPdfData {
   clientPhone: string;
   projectAddress: string;
   zipCode?: string;
-  bathroomType: {
+  service: {
     name: string;
     code: string;
   };
@@ -169,13 +169,13 @@ export class PdfGeneratorService {
       .fontSize(16)
       .font('Helvetica-Bold')
       .fillColor(this.accentColor)
-      .text(`${data.bathroomType.name} Bathroom Renovation`, 60, startY + 28);
+      .text(`${data.service.name} Bathroom Renovation`, 60, startY + 28);
 
     doc
       .fontSize(10)
       .font('Helvetica')
       .fillColor(this.secondaryColor)
-      .text(`Code: ${data.bathroomType.code}`, 450, startY + 20, {
+      .text(`Code: ${data.service.code}`, 450, startY + 20, {
         align: 'right',
       });
   }

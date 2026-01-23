@@ -1,0 +1,28 @@
+model Service {
+  id                String  @id @default(uuid())
+  serviceCategoryId String
+  code              String  @unique
+  name              String 
+  shortDescription  String?
+  fullDescription   String?
+
+  basePrice Decimal @default(0) @db.Decimal(10, 2)
+
+  imageFileId  String?
+  displayOrder Int     @default(0)
+  isActive     Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  serviceCategory ServiceCategory    @relation(fields: [serviceCategoryId], references: [id], onDelete: Cascade)
+  imageFile       FileInstance?      @relation("ServiceImage", fields: [imageFileId], references: [id])
+  submissions     Submission[]
+  serviceCostCodes ServiceCostCode[]
+
+  @@index([code])
+  @@index([serviceCategoryId])
+  @@index([isActive])
+  @@index([displayOrder])
+  @@map("services")
+}

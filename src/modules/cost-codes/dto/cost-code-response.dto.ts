@@ -89,6 +89,12 @@ export class CostCodeResponseDto {
   questionType: QuestionType;
 
   @ApiProperty({
+    description: 'Step number for organizing cost codes in workflow',
+    example: 1,
+  })
+  step: number;
+
+  @ApiProperty({
     description: 'Display order within category',
     example: 0,
   })

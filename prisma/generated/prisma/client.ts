@@ -30,7 +30,7 @@ export * from './enums';
  * const activityLogs = await prisma.activityLog.findMany()
  * ```
  *
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ * Read more in our [docs](https://pris.ly/d/client).
  */
 export const PrismaClient = $Class.getPrismaClientClass();
 export type PrismaClient<
@@ -47,16 +47,6 @@ export { Prisma };
  *
  */
 export type ActivityLog = Prisma.ActivityLogModel;
-/**
- * Model BathroomType
- *
- */
-export type BathroomType = Prisma.BathroomTypeModel;
-/**
- * Model BathroomTypeCostCode
- *
- */
-export type BathroomTypeCostCode = Prisma.BathroomTypeCostCodeModel;
 /**
  * Model CostCode
  *
@@ -77,6 +67,26 @@ export type CostCodeOption = Prisma.CostCodeOptionModel;
  *
  */
 export type EmailLog = Prisma.EmailLogModel;
+/**
+ * Model Service
+ *
+ */
+export type Service = Prisma.ServiceModel;
+/**
+ * Model ServiceCategory
+ *
+ */
+export type ServiceCategory = Prisma.ServiceCategoryModel;
+/**
+ * Model ServiceCostCode
+ *
+ */
+export type ServiceCostCode = Prisma.ServiceCostCodeModel;
+/**
+ * Model ServiceType
+ *
+ */
+export type ServiceType = Prisma.ServiceTypeModel;
 /**
  * Model Submission
  *

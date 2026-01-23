@@ -1,0 +1,20 @@
+model ServiceCategory {
+  id            String  @id @default(uuid())
+  serviceTypeId String
+  name          String
+  description   String?
+
+  displayOrder Int     @default(0)
+  isActive     Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  serviceType ServiceType @relation(fields: [serviceTypeId], references: [id], onDelete: Cascade)
+  services    Service[]
+
+  @@index([serviceTypeId])
+  @@index([isActive])
+  @@index([displayOrder])
+  @@map("service_categories")
+}

@@ -28,6 +28,9 @@ export class CostCodeEntity implements CostCode {
   questionType: CostCode['questionType'];
 
   @ApiProperty()
+  step: number;
+
+  @ApiProperty()
   displayOrder: number;
 
   @ApiProperty()

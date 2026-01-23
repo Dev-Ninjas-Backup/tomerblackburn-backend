@@ -93,12 +93,12 @@ export type PrismaVersion = {
 };
 
 /**
- * Prisma Client JS version: 7.0.1
- * Query Engine version: f09f2815f091dbba658cdcd2264306d88bb5bda6
+ * Prisma Client JS version: 7.3.0
+ * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
  */
 export const prismaVersion: PrismaVersion = {
-  client: '7.0.1',
-  engine: 'f09f2815f091dbba658cdcd2264306d88bb5bda6',
+  client: '7.3.0',
+  engine: '9d6ad21cbbceab97458517b147a6a09ff43aa735',
 };
 
 /**
@@ -413,12 +413,14 @@ type FieldRefInputType<Model, FieldType> = Model extends never
 
 export const ModelName = {
   ActivityLog: 'ActivityLog',
-  BathroomType: 'BathroomType',
-  BathroomTypeCostCode: 'BathroomTypeCostCode',
   CostCode: 'CostCode',
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
   EmailLog: 'EmailLog',
+  Service: 'Service',
+  ServiceCategory: 'ServiceCategory',
+  ServiceCostCode: 'ServiceCostCode',
+  ServiceType: 'ServiceType',
   Submission: 'Submission',
   SubmissionItem: 'SubmissionItem',
   SubmissionMedia: 'SubmissionMedia',
@@ -455,12 +457,14 @@ export type TypeMap<
   meta: {
     modelProps:
       | 'activityLog'
-      | 'bathroomType'
-      | 'bathroomTypeCostCode'
       | 'costCode'
       | 'costCodeCategory'
       | 'costCodeOption'
       | 'emailLog'
+      | 'service'
+      | 'serviceCategory'
+      | 'serviceCostCode'
+      | 'serviceType'
       | 'submission'
       | 'submissionItem'
       | 'submissionMedia'
@@ -549,158 +553,6 @@ export type TypeMap<
           args: Prisma.ActivityLogCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.ActivityLogCountAggregateOutputType>
-            | number;
-        };
-      };
-    };
-    BathroomType: {
-      payload: Prisma.$BathroomTypePayload<ExtArgs>;
-      fields: Prisma.BathroomTypeFieldRefs;
-      operations: {
-        findUnique: {
-          args: Prisma.BathroomTypeFindUniqueArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload> | null;
-        };
-        findUniqueOrThrow: {
-          args: Prisma.BathroomTypeFindUniqueOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>;
-        };
-        findFirst: {
-          args: Prisma.BathroomTypeFindFirstArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload> | null;
-        };
-        findFirstOrThrow: {
-          args: Prisma.BathroomTypeFindFirstOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>;
-        };
-        findMany: {
-          args: Prisma.BathroomTypeFindManyArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>[];
-        };
-        create: {
-          args: Prisma.BathroomTypeCreateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>;
-        };
-        createMany: {
-          args: Prisma.BathroomTypeCreateManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        createManyAndReturn: {
-          args: Prisma.BathroomTypeCreateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>[];
-        };
-        delete: {
-          args: Prisma.BathroomTypeDeleteArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>;
-        };
-        update: {
-          args: Prisma.BathroomTypeUpdateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>;
-        };
-        deleteMany: {
-          args: Prisma.BathroomTypeDeleteManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        updateMany: {
-          args: Prisma.BathroomTypeUpdateManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        updateManyAndReturn: {
-          args: Prisma.BathroomTypeUpdateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>[];
-        };
-        upsert: {
-          args: Prisma.BathroomTypeUpsertArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypePayload>;
-        };
-        aggregate: {
-          args: Prisma.BathroomTypeAggregateArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.AggregateBathroomType>;
-        };
-        groupBy: {
-          args: Prisma.BathroomTypeGroupByArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.BathroomTypeGroupByOutputType>[];
-        };
-        count: {
-          args: Prisma.BathroomTypeCountArgs<ExtArgs>;
-          result:
-            | runtime.Types.Utils.Optional<Prisma.BathroomTypeCountAggregateOutputType>
-            | number;
-        };
-      };
-    };
-    BathroomTypeCostCode: {
-      payload: Prisma.$BathroomTypeCostCodePayload<ExtArgs>;
-      fields: Prisma.BathroomTypeCostCodeFieldRefs;
-      operations: {
-        findUnique: {
-          args: Prisma.BathroomTypeCostCodeFindUniqueArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload> | null;
-        };
-        findUniqueOrThrow: {
-          args: Prisma.BathroomTypeCostCodeFindUniqueOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>;
-        };
-        findFirst: {
-          args: Prisma.BathroomTypeCostCodeFindFirstArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload> | null;
-        };
-        findFirstOrThrow: {
-          args: Prisma.BathroomTypeCostCodeFindFirstOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>;
-        };
-        findMany: {
-          args: Prisma.BathroomTypeCostCodeFindManyArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>[];
-        };
-        create: {
-          args: Prisma.BathroomTypeCostCodeCreateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>;
-        };
-        createMany: {
-          args: Prisma.BathroomTypeCostCodeCreateManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        createManyAndReturn: {
-          args: Prisma.BathroomTypeCostCodeCreateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>[];
-        };
-        delete: {
-          args: Prisma.BathroomTypeCostCodeDeleteArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>;
-        };
-        update: {
-          args: Prisma.BathroomTypeCostCodeUpdateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>;
-        };
-        deleteMany: {
-          args: Prisma.BathroomTypeCostCodeDeleteManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        updateMany: {
-          args: Prisma.BathroomTypeCostCodeUpdateManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        updateManyAndReturn: {
-          args: Prisma.BathroomTypeCostCodeUpdateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>[];
-        };
-        upsert: {
-          args: Prisma.BathroomTypeCostCodeUpsertArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BathroomTypeCostCodePayload>;
-        };
-        aggregate: {
-          args: Prisma.BathroomTypeCostCodeAggregateArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.AggregateBathroomTypeCostCode>;
-        };
-        groupBy: {
-          args: Prisma.BathroomTypeCostCodeGroupByArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.BathroomTypeCostCodeGroupByOutputType>[];
-        };
-        count: {
-          args: Prisma.BathroomTypeCostCodeCountArgs<ExtArgs>;
-          result:
-            | runtime.Types.Utils.Optional<Prisma.BathroomTypeCostCodeCountAggregateOutputType>
             | number;
         };
       };
@@ -1005,6 +857,310 @@ export type TypeMap<
           args: Prisma.EmailLogCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.EmailLogCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    Service: {
+      payload: Prisma.$ServicePayload<ExtArgs>;
+      fields: Prisma.ServiceFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ServiceFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ServiceFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload>;
+        };
+        findFirst: {
+          args: Prisma.ServiceFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ServiceFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload>;
+        };
+        findMany: {
+          args: Prisma.ServiceFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload>[];
+        };
+        create: {
+          args: Prisma.ServiceCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload>;
+        };
+        createMany: {
+          args: Prisma.ServiceCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ServiceCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload>[];
+        };
+        delete: {
+          args: Prisma.ServiceDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload>;
+        };
+        update: {
+          args: Prisma.ServiceUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload>;
+        };
+        deleteMany: {
+          args: Prisma.ServiceDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ServiceUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ServiceUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload>[];
+        };
+        upsert: {
+          args: Prisma.ServiceUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServicePayload>;
+        };
+        aggregate: {
+          args: Prisma.ServiceAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateService>;
+        };
+        groupBy: {
+          args: Prisma.ServiceGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ServiceGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ServiceCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ServiceCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    ServiceCategory: {
+      payload: Prisma.$ServiceCategoryPayload<ExtArgs>;
+      fields: Prisma.ServiceCategoryFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ServiceCategoryFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ServiceCategoryFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+        };
+        findFirst: {
+          args: Prisma.ServiceCategoryFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ServiceCategoryFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+        };
+        findMany: {
+          args: Prisma.ServiceCategoryFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>[];
+        };
+        create: {
+          args: Prisma.ServiceCategoryCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+        };
+        createMany: {
+          args: Prisma.ServiceCategoryCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ServiceCategoryCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>[];
+        };
+        delete: {
+          args: Prisma.ServiceCategoryDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+        };
+        update: {
+          args: Prisma.ServiceCategoryUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+        };
+        deleteMany: {
+          args: Prisma.ServiceCategoryDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ServiceCategoryUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ServiceCategoryUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>[];
+        };
+        upsert: {
+          args: Prisma.ServiceCategoryUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCategoryPayload>;
+        };
+        aggregate: {
+          args: Prisma.ServiceCategoryAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateServiceCategory>;
+        };
+        groupBy: {
+          args: Prisma.ServiceCategoryGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ServiceCategoryGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ServiceCategoryCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ServiceCategoryCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    ServiceCostCode: {
+      payload: Prisma.$ServiceCostCodePayload<ExtArgs>;
+      fields: Prisma.ServiceCostCodeFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ServiceCostCodeFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ServiceCostCodeFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload>;
+        };
+        findFirst: {
+          args: Prisma.ServiceCostCodeFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ServiceCostCodeFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload>;
+        };
+        findMany: {
+          args: Prisma.ServiceCostCodeFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload>[];
+        };
+        create: {
+          args: Prisma.ServiceCostCodeCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload>;
+        };
+        createMany: {
+          args: Prisma.ServiceCostCodeCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ServiceCostCodeCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload>[];
+        };
+        delete: {
+          args: Prisma.ServiceCostCodeDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload>;
+        };
+        update: {
+          args: Prisma.ServiceCostCodeUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload>;
+        };
+        deleteMany: {
+          args: Prisma.ServiceCostCodeDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ServiceCostCodeUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ServiceCostCodeUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload>[];
+        };
+        upsert: {
+          args: Prisma.ServiceCostCodeUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceCostCodePayload>;
+        };
+        aggregate: {
+          args: Prisma.ServiceCostCodeAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateServiceCostCode>;
+        };
+        groupBy: {
+          args: Prisma.ServiceCostCodeGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ServiceCostCodeGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ServiceCostCodeCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ServiceCostCodeCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    ServiceType: {
+      payload: Prisma.$ServiceTypePayload<ExtArgs>;
+      fields: Prisma.ServiceTypeFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ServiceTypeFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ServiceTypeFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
+        };
+        findFirst: {
+          args: Prisma.ServiceTypeFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ServiceTypeFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
+        };
+        findMany: {
+          args: Prisma.ServiceTypeFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>[];
+        };
+        create: {
+          args: Prisma.ServiceTypeCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
+        };
+        createMany: {
+          args: Prisma.ServiceTypeCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ServiceTypeCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>[];
+        };
+        delete: {
+          args: Prisma.ServiceTypeDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
+        };
+        update: {
+          args: Prisma.ServiceTypeUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
+        };
+        deleteMany: {
+          args: Prisma.ServiceTypeDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ServiceTypeUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ServiceTypeUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>[];
+        };
+        upsert: {
+          args: Prisma.ServiceTypeUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
+        };
+        aggregate: {
+          args: Prisma.ServiceTypeAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateServiceType>;
+        };
+        groupBy: {
+          args: Prisma.ServiceTypeGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ServiceTypeGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ServiceTypeCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ServiceTypeCountAggregateOutputType>
             | number;
         };
       };
@@ -2052,40 +2208,6 @@ export const ActivityLogScalarFieldEnum = {
 export type ActivityLogScalarFieldEnum =
   (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum];
 
-export const BathroomTypeScalarFieldEnum = {
-  id: 'id',
-  code: 'code',
-  name: 'name',
-  shortDescription: 'shortDescription',
-  fullDescription: 'fullDescription',
-  basePrice: 'basePrice',
-  imageFileId: 'imageFileId',
-  displayOrder: 'displayOrder',
-  isActive: 'isActive',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type BathroomTypeScalarFieldEnum =
-  (typeof BathroomTypeScalarFieldEnum)[keyof typeof BathroomTypeScalarFieldEnum];
-
-export const BathroomTypeCostCodeScalarFieldEnum = {
-  id: 'id',
-  bathroomTypeId: 'bathroomTypeId',
-  costCodeId: 'costCodeId',
-  isIncludedInBase: 'isIncludedInBase',
-  isRequired: 'isRequired',
-  isVisible: 'isVisible',
-  defaultQuantity: 'defaultQuantity',
-  priceOverride: 'priceOverride',
-  displayOrder: 'displayOrder',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type BathroomTypeCostCodeScalarFieldEnum =
-  (typeof BathroomTypeCostCodeScalarFieldEnum)[keyof typeof BathroomTypeCostCodeScalarFieldEnum];
-
 export const CostCodeScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
@@ -2095,6 +2217,7 @@ export const CostCodeScalarFieldEnum = {
   basePrice: 'basePrice',
   unitType: 'unitType',
   questionType: 'questionType',
+  step: 'step',
   displayOrder: 'displayOrder',
   isIncludedInBase: 'isIncludedInBase',
   requiresQuantity: 'requiresQuantity',
@@ -2155,10 +2278,72 @@ export const EmailLogScalarFieldEnum = {
 export type EmailLogScalarFieldEnum =
   (typeof EmailLogScalarFieldEnum)[keyof typeof EmailLogScalarFieldEnum];
 
+export const ServiceScalarFieldEnum = {
+  id: 'id',
+  serviceCategoryId: 'serviceCategoryId',
+  code: 'code',
+  name: 'name',
+  shortDescription: 'shortDescription',
+  fullDescription: 'fullDescription',
+  basePrice: 'basePrice',
+  imageFileId: 'imageFileId',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ServiceScalarFieldEnum =
+  (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum];
+
+export const ServiceCategoryScalarFieldEnum = {
+  id: 'id',
+  serviceTypeId: 'serviceTypeId',
+  name: 'name',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ServiceCategoryScalarFieldEnum =
+  (typeof ServiceCategoryScalarFieldEnum)[keyof typeof ServiceCategoryScalarFieldEnum];
+
+export const ServiceCostCodeScalarFieldEnum = {
+  id: 'id',
+  serviceId: 'serviceId',
+  costCodeId: 'costCodeId',
+  isIncludedInBase: 'isIncludedInBase',
+  isRequired: 'isRequired',
+  isVisible: 'isVisible',
+  defaultQuantity: 'defaultQuantity',
+  priceOverride: 'priceOverride',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ServiceCostCodeScalarFieldEnum =
+  (typeof ServiceCostCodeScalarFieldEnum)[keyof typeof ServiceCostCodeScalarFieldEnum];
+
+export const ServiceTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ServiceTypeScalarFieldEnum =
+  (typeof ServiceTypeScalarFieldEnum)[keyof typeof ServiceTypeScalarFieldEnum];
+
 export const SubmissionScalarFieldEnum = {
   id: 'id',
   submissionNumber: 'submissionNumber',
-  bathroomTypeId: 'bathroomTypeId',
+  serviceId: 'serviceId',
   clientName: 'clientName',
   clientEmail: 'clientEmail',
   clientPhone: 'clientPhone',
@@ -2435,30 +2620,6 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'Int'
->;
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'Int[]'
->;
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'Boolean'
->;
-
-/**
  * Reference to a field of type 'UnitType'
  */
 export type EnumUnitTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -2488,6 +2649,30 @@ export type EnumQuestionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
 export type ListEnumQuestionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
   'QuestionType[]'
+>;
+
+/**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Int'
+>;
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Int[]'
+>;
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Boolean'
 >;
 
 /**
@@ -2625,7 +2810,7 @@ export type PrismaClientOptions = (
    *  { emit: 'stdout', level: 'error' }
    *
    * ```
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
+   * Read more in our [docs](https://pris.ly/d/logging).
    */
   log?: (LogLevel | LogDefinition)[];
   /**
@@ -2653,15 +2838,33 @@ export type PrismaClientOptions = (
    * ```
    */
   omit?: GlobalOmitConfig;
+  /**
+   * SQL commenter plugins that add metadata to SQL queries as comments.
+   * Comments follow the sqlcommenter format: https://google.github.io/sqlcommenter/
+   *
+   * @example
+   * ```
+   * const prisma = new PrismaClient({
+   *   adapter,
+   *   comments: [
+   *     traceContext(),
+   *     queryInsights(),
+   *   ],
+   * })
+   * ```
+   */
+  comments?: runtime.SqlCommenterPlugin[];
 };
 export type GlobalOmitConfig = {
   activityLog?: Prisma.ActivityLogOmit;
-  bathroomType?: Prisma.BathroomTypeOmit;
-  bathroomTypeCostCode?: Prisma.BathroomTypeCostCodeOmit;
   costCode?: Prisma.CostCodeOmit;
   costCodeCategory?: Prisma.CostCodeCategoryOmit;
   costCodeOption?: Prisma.CostCodeOptionOmit;
   emailLog?: Prisma.EmailLogOmit;
+  service?: Prisma.ServiceOmit;
+  serviceCategory?: Prisma.ServiceCategoryOmit;
+  serviceCostCode?: Prisma.ServiceCostCodeOmit;
+  serviceType?: Prisma.ServiceTypeOmit;
   submission?: Prisma.SubmissionOmit;
   submissionItem?: Prisma.SubmissionItemOmit;
   submissionMedia?: Prisma.SubmissionMediaOmit;
