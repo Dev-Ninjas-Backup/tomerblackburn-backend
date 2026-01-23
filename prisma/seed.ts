@@ -228,11 +228,11 @@ async function main() {
 
       totalCostCodes++;
 
-      // Link cost code to bathroom type
-      await prisma.bathroomTypeCostCode.upsert({
+      // Link cost code to service
+      await prisma.serviceCostCode.upsert({
         where: {
-          bathroomTypeId_costCodeId: {
-            bathroomTypeId: bathroomType.id,
+          serviceId_costCodeId: {
+            serviceId: bathroomType.id,
             costCodeId: costCode.id,
           },
         },
@@ -243,7 +243,7 @@ async function main() {
             codeData.markedAs === 'Bid' && codeData.clientPrice === 0,
         },
         create: {
-          bathroomTypeId: bathroomType.id,
+          serviceId: bathroomType.id,
           costCodeId: costCode.id,
           isVisible: true,
           isRequired: !isOptional,
@@ -319,7 +319,7 @@ async function clearDatabase() {
   await prisma.submissionMedia.deleteMany();
   await prisma.submissionItem.deleteMany();
   await prisma.submission.deleteMany();
-  await prisma.bathroomTypeCostCode.deleteMany();
+  await prisma.serviceCostCode.deleteMany();
   await prisma.costCodeOption.deleteMany();
   await prisma.costCode.deleteMany();
   await prisma.costCodeCategory.deleteMany();

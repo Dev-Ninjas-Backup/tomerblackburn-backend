@@ -41,7 +41,7 @@ export type SubmissionSumAggregateOutputType = {
 export type SubmissionMinAggregateOutputType = {
   id: string | null;
   submissionNumber: string | null;
-  bathroomTypeId: string | null;
+  serviceId: string | null;
   clientName: string | null;
   clientEmail: string | null;
   clientPhone: string | null;
@@ -65,7 +65,7 @@ export type SubmissionMinAggregateOutputType = {
 export type SubmissionMaxAggregateOutputType = {
   id: string | null;
   submissionNumber: string | null;
-  bathroomTypeId: string | null;
+  serviceId: string | null;
   clientName: string | null;
   clientEmail: string | null;
   clientPhone: string | null;
@@ -89,7 +89,7 @@ export type SubmissionMaxAggregateOutputType = {
 export type SubmissionCountAggregateOutputType = {
   id: number;
   submissionNumber: number;
-  bathroomTypeId: number;
+  serviceId: number;
   clientName: number;
   clientEmail: number;
   clientPhone: number;
@@ -126,7 +126,7 @@ export type SubmissionSumAggregateInputType = {
 export type SubmissionMinAggregateInputType = {
   id?: true;
   submissionNumber?: true;
-  bathroomTypeId?: true;
+  serviceId?: true;
   clientName?: true;
   clientEmail?: true;
   clientPhone?: true;
@@ -150,7 +150,7 @@ export type SubmissionMinAggregateInputType = {
 export type SubmissionMaxAggregateInputType = {
   id?: true;
   submissionNumber?: true;
-  bathroomTypeId?: true;
+  serviceId?: true;
   clientName?: true;
   clientEmail?: true;
   clientPhone?: true;
@@ -174,7 +174,7 @@ export type SubmissionMaxAggregateInputType = {
 export type SubmissionCountAggregateInputType = {
   id?: true;
   submissionNumber?: true;
-  bathroomTypeId?: true;
+  serviceId?: true;
   clientName?: true;
   clientEmail?: true;
   clientPhone?: true;
@@ -292,7 +292,7 @@ export type SubmissionGroupByArgs<
 export type SubmissionGroupByOutputType = {
   id: string;
   submissionNumber: string;
-  bathroomTypeId: string;
+  serviceId: string;
   clientName: string;
   clientEmail: string;
   clientPhone: string;
@@ -337,7 +337,7 @@ export type SubmissionWhereInput = {
   NOT?: Prisma.SubmissionWhereInput | Prisma.SubmissionWhereInput[];
   id?: Prisma.StringFilter<'Submission'> | string;
   submissionNumber?: Prisma.StringFilter<'Submission'> | string;
-  bathroomTypeId?: Prisma.StringFilter<'Submission'> | string;
+  serviceId?: Prisma.StringFilter<'Submission'> | string;
   clientName?: Prisma.StringFilter<'Submission'> | string;
   clientEmail?: Prisma.StringFilter<'Submission'> | string;
   clientPhone?: Prisma.StringFilter<'Submission'> | string;
@@ -381,9 +381,9 @@ export type SubmissionWhereInput = {
     | Date
     | string
     | null;
-  bathroomType?: Prisma.XOR<
-    Prisma.BathroomTypeScalarRelationFilter,
-    Prisma.BathroomTypeWhereInput
+  service?: Prisma.XOR<
+    Prisma.ServiceScalarRelationFilter,
+    Prisma.ServiceWhereInput
   >;
   submissionItems?: Prisma.SubmissionItemListRelationFilter;
   submissionMedia?: Prisma.SubmissionMediaListRelationFilter;
@@ -393,7 +393,7 @@ export type SubmissionWhereInput = {
 export type SubmissionOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   submissionNumber?: Prisma.SortOrder;
-  bathroomTypeId?: Prisma.SortOrder;
+  serviceId?: Prisma.SortOrder;
   clientName?: Prisma.SortOrder;
   clientEmail?: Prisma.SortOrder;
   clientPhone?: Prisma.SortOrder;
@@ -412,7 +412,7 @@ export type SubmissionOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder;
   reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
-  bathroomType?: Prisma.BathroomTypeOrderByWithRelationInput;
+  service?: Prisma.ServiceOrderByWithRelationInput;
   submissionItems?: Prisma.SubmissionItemOrderByRelationAggregateInput;
   submissionMedia?: Prisma.SubmissionMediaOrderByRelationAggregateInput;
   emailLogs?: Prisma.EmailLogOrderByRelationAggregateInput;
@@ -425,7 +425,7 @@ export type SubmissionWhereUniqueInput = Prisma.AtLeast<
     AND?: Prisma.SubmissionWhereInput | Prisma.SubmissionWhereInput[];
     OR?: Prisma.SubmissionWhereInput[];
     NOT?: Prisma.SubmissionWhereInput | Prisma.SubmissionWhereInput[];
-    bathroomTypeId?: Prisma.StringFilter<'Submission'> | string;
+    serviceId?: Prisma.StringFilter<'Submission'> | string;
     clientName?: Prisma.StringFilter<'Submission'> | string;
     clientEmail?: Prisma.StringFilter<'Submission'> | string;
     clientPhone?: Prisma.StringFilter<'Submission'> | string;
@@ -472,9 +472,9 @@ export type SubmissionWhereUniqueInput = Prisma.AtLeast<
       | Date
       | string
       | null;
-    bathroomType?: Prisma.XOR<
-      Prisma.BathroomTypeScalarRelationFilter,
-      Prisma.BathroomTypeWhereInput
+    service?: Prisma.XOR<
+      Prisma.ServiceScalarRelationFilter,
+      Prisma.ServiceWhereInput
     >;
     submissionItems?: Prisma.SubmissionItemListRelationFilter;
     submissionMedia?: Prisma.SubmissionMediaListRelationFilter;
@@ -486,7 +486,7 @@ export type SubmissionWhereUniqueInput = Prisma.AtLeast<
 export type SubmissionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   submissionNumber?: Prisma.SortOrder;
-  bathroomTypeId?: Prisma.SortOrder;
+  serviceId?: Prisma.SortOrder;
   clientName?: Prisma.SortOrder;
   clientEmail?: Prisma.SortOrder;
   clientPhone?: Prisma.SortOrder;
@@ -522,7 +522,7 @@ export type SubmissionScalarWhereWithAggregatesInput = {
     | Prisma.SubmissionScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<'Submission'> | string;
   submissionNumber?: Prisma.StringWithAggregatesFilter<'Submission'> | string;
-  bathroomTypeId?: Prisma.StringWithAggregatesFilter<'Submission'> | string;
+  serviceId?: Prisma.StringWithAggregatesFilter<'Submission'> | string;
   clientName?: Prisma.StringWithAggregatesFilter<'Submission'> | string;
   clientEmail?: Prisma.StringWithAggregatesFilter<'Submission'> | string;
   clientPhone?: Prisma.StringWithAggregatesFilter<'Submission'> | string;
@@ -614,7 +614,7 @@ export type SubmissionCreateInput = {
   updatedAt?: Date | string;
   reviewedAt?: Date | string | null;
   completedAt?: Date | string | null;
-  bathroomType: Prisma.BathroomTypeCreateNestedOneWithoutSubmissionsInput;
+  service: Prisma.ServiceCreateNestedOneWithoutSubmissionsInput;
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutSubmissionInput;
   submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutSubmissionInput;
   emailLogs?: Prisma.EmailLogCreateNestedManyWithoutSubmissionInput;
@@ -623,7 +623,7 @@ export type SubmissionCreateInput = {
 export type SubmissionUncheckedCreateInput = {
   id?: string;
   submissionNumber: string;
-  bathroomTypeId: string;
+  serviceId: string;
   clientName: string;
   clientEmail: string;
   clientPhone: string;
@@ -703,7 +703,7 @@ export type SubmissionUpdateInput = {
     | Date
     | string
     | null;
-  bathroomType?: Prisma.BathroomTypeUpdateOneRequiredWithoutSubmissionsNestedInput;
+  service?: Prisma.ServiceUpdateOneRequiredWithoutSubmissionsNestedInput;
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutSubmissionNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutSubmissionNestedInput;
   emailLogs?: Prisma.EmailLogUpdateManyWithoutSubmissionNestedInput;
@@ -712,7 +712,7 @@ export type SubmissionUpdateInput = {
 export type SubmissionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionNumber?: Prisma.StringFieldUpdateOperationsInput | string;
-  bathroomTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
+  serviceId?: Prisma.StringFieldUpdateOperationsInput | string;
   clientName?: Prisma.StringFieldUpdateOperationsInput | string;
   clientEmail?: Prisma.StringFieldUpdateOperationsInput | string;
   clientPhone?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -770,7 +770,7 @@ export type SubmissionUncheckedUpdateInput = {
 export type SubmissionCreateManyInput = {
   id?: string;
   submissionNumber: string;
-  bathroomTypeId: string;
+  serviceId: string;
   clientName: string;
   clientEmail: string;
   clientPhone: string;
@@ -852,7 +852,7 @@ export type SubmissionUpdateManyMutationInput = {
 export type SubmissionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionNumber?: Prisma.StringFieldUpdateOperationsInput | string;
-  bathroomTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
+  serviceId?: Prisma.StringFieldUpdateOperationsInput | string;
   clientName?: Prisma.StringFieldUpdateOperationsInput | string;
   clientEmail?: Prisma.StringFieldUpdateOperationsInput | string;
   clientPhone?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -904,6 +904,11 @@ export type SubmissionUncheckedUpdateManyInput = {
     | null;
 };
 
+export type SubmissionNullableScalarRelationFilter = {
+  is?: Prisma.SubmissionWhereInput | null;
+  isNot?: Prisma.SubmissionWhereInput | null;
+};
+
 export type SubmissionListRelationFilter = {
   every?: Prisma.SubmissionWhereInput;
   some?: Prisma.SubmissionWhereInput;
@@ -914,15 +919,10 @@ export type SubmissionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder;
 };
 
-export type SubmissionNullableScalarRelationFilter = {
-  is?: Prisma.SubmissionWhereInput | null;
-  isNot?: Prisma.SubmissionWhereInput | null;
-};
-
 export type SubmissionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   submissionNumber?: Prisma.SortOrder;
-  bathroomTypeId?: Prisma.SortOrder;
+  serviceId?: Prisma.SortOrder;
   clientName?: Prisma.SortOrder;
   clientEmail?: Prisma.SortOrder;
   clientPhone?: Prisma.SortOrder;
@@ -952,7 +952,7 @@ export type SubmissionAvgOrderByAggregateInput = {
 export type SubmissionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   submissionNumber?: Prisma.SortOrder;
-  bathroomTypeId?: Prisma.SortOrder;
+  serviceId?: Prisma.SortOrder;
   clientName?: Prisma.SortOrder;
   clientEmail?: Prisma.SortOrder;
   clientPhone?: Prisma.SortOrder;
@@ -976,7 +976,7 @@ export type SubmissionMaxOrderByAggregateInput = {
 export type SubmissionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   submissionNumber?: Prisma.SortOrder;
-  bathroomTypeId?: Prisma.SortOrder;
+  serviceId?: Prisma.SortOrder;
   clientName?: Prisma.SortOrder;
   clientEmail?: Prisma.SortOrder;
   clientPhone?: Prisma.SortOrder;
@@ -1008,112 +1008,6 @@ export type SubmissionScalarRelationFilter = {
   isNot?: Prisma.SubmissionWhereInput;
 };
 
-export type SubmissionCreateNestedManyWithoutBathroomTypeInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.SubmissionCreateWithoutBathroomTypeInput,
-        Prisma.SubmissionUncheckedCreateWithoutBathroomTypeInput
-      >
-    | Prisma.SubmissionCreateWithoutBathroomTypeInput[]
-    | Prisma.SubmissionUncheckedCreateWithoutBathroomTypeInput[];
-  connectOrCreate?:
-    | Prisma.SubmissionCreateOrConnectWithoutBathroomTypeInput
-    | Prisma.SubmissionCreateOrConnectWithoutBathroomTypeInput[];
-  createMany?: Prisma.SubmissionCreateManyBathroomTypeInputEnvelope;
-  connect?:
-    | Prisma.SubmissionWhereUniqueInput
-    | Prisma.SubmissionWhereUniqueInput[];
-};
-
-export type SubmissionUncheckedCreateNestedManyWithoutBathroomTypeInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.SubmissionCreateWithoutBathroomTypeInput,
-        Prisma.SubmissionUncheckedCreateWithoutBathroomTypeInput
-      >
-    | Prisma.SubmissionCreateWithoutBathroomTypeInput[]
-    | Prisma.SubmissionUncheckedCreateWithoutBathroomTypeInput[];
-  connectOrCreate?:
-    | Prisma.SubmissionCreateOrConnectWithoutBathroomTypeInput
-    | Prisma.SubmissionCreateOrConnectWithoutBathroomTypeInput[];
-  createMany?: Prisma.SubmissionCreateManyBathroomTypeInputEnvelope;
-  connect?:
-    | Prisma.SubmissionWhereUniqueInput
-    | Prisma.SubmissionWhereUniqueInput[];
-};
-
-export type SubmissionUpdateManyWithoutBathroomTypeNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.SubmissionCreateWithoutBathroomTypeInput,
-        Prisma.SubmissionUncheckedCreateWithoutBathroomTypeInput
-      >
-    | Prisma.SubmissionCreateWithoutBathroomTypeInput[]
-    | Prisma.SubmissionUncheckedCreateWithoutBathroomTypeInput[];
-  connectOrCreate?:
-    | Prisma.SubmissionCreateOrConnectWithoutBathroomTypeInput
-    | Prisma.SubmissionCreateOrConnectWithoutBathroomTypeInput[];
-  upsert?:
-    | Prisma.SubmissionUpsertWithWhereUniqueWithoutBathroomTypeInput
-    | Prisma.SubmissionUpsertWithWhereUniqueWithoutBathroomTypeInput[];
-  createMany?: Prisma.SubmissionCreateManyBathroomTypeInputEnvelope;
-  set?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[];
-  disconnect?:
-    | Prisma.SubmissionWhereUniqueInput
-    | Prisma.SubmissionWhereUniqueInput[];
-  delete?:
-    | Prisma.SubmissionWhereUniqueInput
-    | Prisma.SubmissionWhereUniqueInput[];
-  connect?:
-    | Prisma.SubmissionWhereUniqueInput
-    | Prisma.SubmissionWhereUniqueInput[];
-  update?:
-    | Prisma.SubmissionUpdateWithWhereUniqueWithoutBathroomTypeInput
-    | Prisma.SubmissionUpdateWithWhereUniqueWithoutBathroomTypeInput[];
-  updateMany?:
-    | Prisma.SubmissionUpdateManyWithWhereWithoutBathroomTypeInput
-    | Prisma.SubmissionUpdateManyWithWhereWithoutBathroomTypeInput[];
-  deleteMany?:
-    | Prisma.SubmissionScalarWhereInput
-    | Prisma.SubmissionScalarWhereInput[];
-};
-
-export type SubmissionUncheckedUpdateManyWithoutBathroomTypeNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.SubmissionCreateWithoutBathroomTypeInput,
-        Prisma.SubmissionUncheckedCreateWithoutBathroomTypeInput
-      >
-    | Prisma.SubmissionCreateWithoutBathroomTypeInput[]
-    | Prisma.SubmissionUncheckedCreateWithoutBathroomTypeInput[];
-  connectOrCreate?:
-    | Prisma.SubmissionCreateOrConnectWithoutBathroomTypeInput
-    | Prisma.SubmissionCreateOrConnectWithoutBathroomTypeInput[];
-  upsert?:
-    | Prisma.SubmissionUpsertWithWhereUniqueWithoutBathroomTypeInput
-    | Prisma.SubmissionUpsertWithWhereUniqueWithoutBathroomTypeInput[];
-  createMany?: Prisma.SubmissionCreateManyBathroomTypeInputEnvelope;
-  set?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[];
-  disconnect?:
-    | Prisma.SubmissionWhereUniqueInput
-    | Prisma.SubmissionWhereUniqueInput[];
-  delete?:
-    | Prisma.SubmissionWhereUniqueInput
-    | Prisma.SubmissionWhereUniqueInput[];
-  connect?:
-    | Prisma.SubmissionWhereUniqueInput
-    | Prisma.SubmissionWhereUniqueInput[];
-  update?:
-    | Prisma.SubmissionUpdateWithWhereUniqueWithoutBathroomTypeInput
-    | Prisma.SubmissionUpdateWithWhereUniqueWithoutBathroomTypeInput[];
-  updateMany?:
-    | Prisma.SubmissionUpdateManyWithWhereWithoutBathroomTypeInput
-    | Prisma.SubmissionUpdateManyWithWhereWithoutBathroomTypeInput[];
-  deleteMany?:
-    | Prisma.SubmissionScalarWhereInput
-    | Prisma.SubmissionScalarWhereInput[];
-};
-
 export type SubmissionCreateNestedOneWithoutEmailLogsInput = {
   create?: Prisma.XOR<
     Prisma.SubmissionCreateWithoutEmailLogsInput,
@@ -1140,6 +1034,112 @@ export type SubmissionUpdateOneWithoutEmailLogsNestedInput = {
     >,
     Prisma.SubmissionUncheckedUpdateWithoutEmailLogsInput
   >;
+};
+
+export type SubmissionCreateNestedManyWithoutServiceInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.SubmissionCreateWithoutServiceInput,
+        Prisma.SubmissionUncheckedCreateWithoutServiceInput
+      >
+    | Prisma.SubmissionCreateWithoutServiceInput[]
+    | Prisma.SubmissionUncheckedCreateWithoutServiceInput[];
+  connectOrCreate?:
+    | Prisma.SubmissionCreateOrConnectWithoutServiceInput
+    | Prisma.SubmissionCreateOrConnectWithoutServiceInput[];
+  createMany?: Prisma.SubmissionCreateManyServiceInputEnvelope;
+  connect?:
+    | Prisma.SubmissionWhereUniqueInput
+    | Prisma.SubmissionWhereUniqueInput[];
+};
+
+export type SubmissionUncheckedCreateNestedManyWithoutServiceInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.SubmissionCreateWithoutServiceInput,
+        Prisma.SubmissionUncheckedCreateWithoutServiceInput
+      >
+    | Prisma.SubmissionCreateWithoutServiceInput[]
+    | Prisma.SubmissionUncheckedCreateWithoutServiceInput[];
+  connectOrCreate?:
+    | Prisma.SubmissionCreateOrConnectWithoutServiceInput
+    | Prisma.SubmissionCreateOrConnectWithoutServiceInput[];
+  createMany?: Prisma.SubmissionCreateManyServiceInputEnvelope;
+  connect?:
+    | Prisma.SubmissionWhereUniqueInput
+    | Prisma.SubmissionWhereUniqueInput[];
+};
+
+export type SubmissionUpdateManyWithoutServiceNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.SubmissionCreateWithoutServiceInput,
+        Prisma.SubmissionUncheckedCreateWithoutServiceInput
+      >
+    | Prisma.SubmissionCreateWithoutServiceInput[]
+    | Prisma.SubmissionUncheckedCreateWithoutServiceInput[];
+  connectOrCreate?:
+    | Prisma.SubmissionCreateOrConnectWithoutServiceInput
+    | Prisma.SubmissionCreateOrConnectWithoutServiceInput[];
+  upsert?:
+    | Prisma.SubmissionUpsertWithWhereUniqueWithoutServiceInput
+    | Prisma.SubmissionUpsertWithWhereUniqueWithoutServiceInput[];
+  createMany?: Prisma.SubmissionCreateManyServiceInputEnvelope;
+  set?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.SubmissionWhereUniqueInput
+    | Prisma.SubmissionWhereUniqueInput[];
+  delete?:
+    | Prisma.SubmissionWhereUniqueInput
+    | Prisma.SubmissionWhereUniqueInput[];
+  connect?:
+    | Prisma.SubmissionWhereUniqueInput
+    | Prisma.SubmissionWhereUniqueInput[];
+  update?:
+    | Prisma.SubmissionUpdateWithWhereUniqueWithoutServiceInput
+    | Prisma.SubmissionUpdateWithWhereUniqueWithoutServiceInput[];
+  updateMany?:
+    | Prisma.SubmissionUpdateManyWithWhereWithoutServiceInput
+    | Prisma.SubmissionUpdateManyWithWhereWithoutServiceInput[];
+  deleteMany?:
+    | Prisma.SubmissionScalarWhereInput
+    | Prisma.SubmissionScalarWhereInput[];
+};
+
+export type SubmissionUncheckedUpdateManyWithoutServiceNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.SubmissionCreateWithoutServiceInput,
+        Prisma.SubmissionUncheckedCreateWithoutServiceInput
+      >
+    | Prisma.SubmissionCreateWithoutServiceInput[]
+    | Prisma.SubmissionUncheckedCreateWithoutServiceInput[];
+  connectOrCreate?:
+    | Prisma.SubmissionCreateOrConnectWithoutServiceInput
+    | Prisma.SubmissionCreateOrConnectWithoutServiceInput[];
+  upsert?:
+    | Prisma.SubmissionUpsertWithWhereUniqueWithoutServiceInput
+    | Prisma.SubmissionUpsertWithWhereUniqueWithoutServiceInput[];
+  createMany?: Prisma.SubmissionCreateManyServiceInputEnvelope;
+  set?: Prisma.SubmissionWhereUniqueInput | Prisma.SubmissionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.SubmissionWhereUniqueInput
+    | Prisma.SubmissionWhereUniqueInput[];
+  delete?:
+    | Prisma.SubmissionWhereUniqueInput
+    | Prisma.SubmissionWhereUniqueInput[];
+  connect?:
+    | Prisma.SubmissionWhereUniqueInput
+    | Prisma.SubmissionWhereUniqueInput[];
+  update?:
+    | Prisma.SubmissionUpdateWithWhereUniqueWithoutServiceInput
+    | Prisma.SubmissionUpdateWithWhereUniqueWithoutServiceInput[];
+  updateMany?:
+    | Prisma.SubmissionUpdateManyWithWhereWithoutServiceInput
+    | Prisma.SubmissionUpdateManyWithWhereWithoutServiceInput[];
+  deleteMany?:
+    | Prisma.SubmissionScalarWhereInput
+    | Prisma.SubmissionScalarWhereInput[];
 };
 
 export type EnumSubmissionStatusFieldUpdateOperationsInput = {
@@ -1198,161 +1198,6 @@ export type SubmissionUpdateOneRequiredWithoutSubmissionMediaNestedInput = {
   >;
 };
 
-export type SubmissionCreateWithoutBathroomTypeInput = {
-  id?: string;
-  submissionNumber: string;
-  clientName: string;
-  clientEmail: string;
-  clientPhone: string;
-  projectAddress: string;
-  zipCode?: string | null;
-  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  additionalItemsTotal?:
-    | runtime.Decimal
-    | runtime.DecimalJsLike
-    | number
-    | string;
-  totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: $Enums.SubmissionStatus;
-  projectNotes?: string | null;
-  additionalDetails?: string | null;
-  pdfUrl?: string | null;
-  ipAddress?: string | null;
-  userAgent?: string | null;
-  submittedAt?: Date | string;
-  updatedAt?: Date | string;
-  reviewedAt?: Date | string | null;
-  completedAt?: Date | string | null;
-  submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutSubmissionInput;
-  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutSubmissionInput;
-  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutSubmissionInput;
-};
-
-export type SubmissionUncheckedCreateWithoutBathroomTypeInput = {
-  id?: string;
-  submissionNumber: string;
-  clientName: string;
-  clientEmail: string;
-  clientPhone: string;
-  projectAddress: string;
-  zipCode?: string | null;
-  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  additionalItemsTotal?:
-    | runtime.Decimal
-    | runtime.DecimalJsLike
-    | number
-    | string;
-  totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
-  status?: $Enums.SubmissionStatus;
-  projectNotes?: string | null;
-  additionalDetails?: string | null;
-  pdfUrl?: string | null;
-  ipAddress?: string | null;
-  userAgent?: string | null;
-  submittedAt?: Date | string;
-  updatedAt?: Date | string;
-  reviewedAt?: Date | string | null;
-  completedAt?: Date | string | null;
-  submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutSubmissionInput;
-  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutSubmissionInput;
-  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutSubmissionInput;
-};
-
-export type SubmissionCreateOrConnectWithoutBathroomTypeInput = {
-  where: Prisma.SubmissionWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.SubmissionCreateWithoutBathroomTypeInput,
-    Prisma.SubmissionUncheckedCreateWithoutBathroomTypeInput
-  >;
-};
-
-export type SubmissionCreateManyBathroomTypeInputEnvelope = {
-  data:
-    | Prisma.SubmissionCreateManyBathroomTypeInput
-    | Prisma.SubmissionCreateManyBathroomTypeInput[];
-  skipDuplicates?: boolean;
-};
-
-export type SubmissionUpsertWithWhereUniqueWithoutBathroomTypeInput = {
-  where: Prisma.SubmissionWhereUniqueInput;
-  update: Prisma.XOR<
-    Prisma.SubmissionUpdateWithoutBathroomTypeInput,
-    Prisma.SubmissionUncheckedUpdateWithoutBathroomTypeInput
-  >;
-  create: Prisma.XOR<
-    Prisma.SubmissionCreateWithoutBathroomTypeInput,
-    Prisma.SubmissionUncheckedCreateWithoutBathroomTypeInput
-  >;
-};
-
-export type SubmissionUpdateWithWhereUniqueWithoutBathroomTypeInput = {
-  where: Prisma.SubmissionWhereUniqueInput;
-  data: Prisma.XOR<
-    Prisma.SubmissionUpdateWithoutBathroomTypeInput,
-    Prisma.SubmissionUncheckedUpdateWithoutBathroomTypeInput
-  >;
-};
-
-export type SubmissionUpdateManyWithWhereWithoutBathroomTypeInput = {
-  where: Prisma.SubmissionScalarWhereInput;
-  data: Prisma.XOR<
-    Prisma.SubmissionUpdateManyMutationInput,
-    Prisma.SubmissionUncheckedUpdateManyWithoutBathroomTypeInput
-  >;
-};
-
-export type SubmissionScalarWhereInput = {
-  AND?: Prisma.SubmissionScalarWhereInput | Prisma.SubmissionScalarWhereInput[];
-  OR?: Prisma.SubmissionScalarWhereInput[];
-  NOT?: Prisma.SubmissionScalarWhereInput | Prisma.SubmissionScalarWhereInput[];
-  id?: Prisma.StringFilter<'Submission'> | string;
-  submissionNumber?: Prisma.StringFilter<'Submission'> | string;
-  bathroomTypeId?: Prisma.StringFilter<'Submission'> | string;
-  clientName?: Prisma.StringFilter<'Submission'> | string;
-  clientEmail?: Prisma.StringFilter<'Submission'> | string;
-  clientPhone?: Prisma.StringFilter<'Submission'> | string;
-  projectAddress?: Prisma.StringFilter<'Submission'> | string;
-  zipCode?: Prisma.StringNullableFilter<'Submission'> | string | null;
-  basePrice?:
-    | Prisma.DecimalFilter<'Submission'>
-    | runtime.Decimal
-    | runtime.DecimalJsLike
-    | number
-    | string;
-  additionalItemsTotal?:
-    | Prisma.DecimalFilter<'Submission'>
-    | runtime.Decimal
-    | runtime.DecimalJsLike
-    | number
-    | string;
-  totalAmount?:
-    | Prisma.DecimalFilter<'Submission'>
-    | runtime.Decimal
-    | runtime.DecimalJsLike
-    | number
-    | string;
-  status?:
-    | Prisma.EnumSubmissionStatusFilter<'Submission'>
-    | $Enums.SubmissionStatus;
-  projectNotes?: Prisma.StringNullableFilter<'Submission'> | string | null;
-  additionalDetails?: Prisma.StringNullableFilter<'Submission'> | string | null;
-  pdfUrl?: Prisma.StringNullableFilter<'Submission'> | string | null;
-  ipAddress?: Prisma.StringNullableFilter<'Submission'> | string | null;
-  userAgent?: Prisma.StringNullableFilter<'Submission'> | string | null;
-  submittedAt?: Prisma.DateTimeFilter<'Submission'> | Date | string;
-  updatedAt?: Prisma.DateTimeFilter<'Submission'> | Date | string;
-  reviewedAt?:
-    | Prisma.DateTimeNullableFilter<'Submission'>
-    | Date
-    | string
-    | null;
-  completedAt?:
-    | Prisma.DateTimeNullableFilter<'Submission'>
-    | Date
-    | string
-    | null;
-};
-
 export type SubmissionCreateWithoutEmailLogsInput = {
   id?: string;
   submissionNumber: string;
@@ -1378,7 +1223,7 @@ export type SubmissionCreateWithoutEmailLogsInput = {
   updatedAt?: Date | string;
   reviewedAt?: Date | string | null;
   completedAt?: Date | string | null;
-  bathroomType: Prisma.BathroomTypeCreateNestedOneWithoutSubmissionsInput;
+  service: Prisma.ServiceCreateNestedOneWithoutSubmissionsInput;
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutSubmissionInput;
   submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutSubmissionInput;
 };
@@ -1386,7 +1231,7 @@ export type SubmissionCreateWithoutEmailLogsInput = {
 export type SubmissionUncheckedCreateWithoutEmailLogsInput = {
   id?: string;
   submissionNumber: string;
-  bathroomTypeId: string;
+  serviceId: string;
   clientName: string;
   clientEmail: string;
   clientPhone: string;
@@ -1493,7 +1338,7 @@ export type SubmissionUpdateWithoutEmailLogsInput = {
     | Date
     | string
     | null;
-  bathroomType?: Prisma.BathroomTypeUpdateOneRequiredWithoutSubmissionsNestedInput;
+  service?: Prisma.ServiceUpdateOneRequiredWithoutSubmissionsNestedInput;
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutSubmissionNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutSubmissionNestedInput;
 };
@@ -1501,7 +1346,7 @@ export type SubmissionUpdateWithoutEmailLogsInput = {
 export type SubmissionUncheckedUpdateWithoutEmailLogsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionNumber?: Prisma.StringFieldUpdateOperationsInput | string;
-  bathroomTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
+  serviceId?: Prisma.StringFieldUpdateOperationsInput | string;
   clientName?: Prisma.StringFieldUpdateOperationsInput | string;
   clientEmail?: Prisma.StringFieldUpdateOperationsInput | string;
   clientPhone?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1555,6 +1400,161 @@ export type SubmissionUncheckedUpdateWithoutEmailLogsInput = {
   submissionMedia?: Prisma.SubmissionMediaUncheckedUpdateManyWithoutSubmissionNestedInput;
 };
 
+export type SubmissionCreateWithoutServiceInput = {
+  id?: string;
+  submissionNumber: string;
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
+  projectAddress: string;
+  zipCode?: string | null;
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  additionalItemsTotal?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  status?: $Enums.SubmissionStatus;
+  projectNotes?: string | null;
+  additionalDetails?: string | null;
+  pdfUrl?: string | null;
+  ipAddress?: string | null;
+  userAgent?: string | null;
+  submittedAt?: Date | string;
+  updatedAt?: Date | string;
+  reviewedAt?: Date | string | null;
+  completedAt?: Date | string | null;
+  submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutSubmissionInput;
+  submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutSubmissionInput;
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutSubmissionInput;
+};
+
+export type SubmissionUncheckedCreateWithoutServiceInput = {
+  id?: string;
+  submissionNumber: string;
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
+  projectAddress: string;
+  zipCode?: string | null;
+  basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  additionalItemsTotal?:
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  status?: $Enums.SubmissionStatus;
+  projectNotes?: string | null;
+  additionalDetails?: string | null;
+  pdfUrl?: string | null;
+  ipAddress?: string | null;
+  userAgent?: string | null;
+  submittedAt?: Date | string;
+  updatedAt?: Date | string;
+  reviewedAt?: Date | string | null;
+  completedAt?: Date | string | null;
+  submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutSubmissionInput;
+  submissionMedia?: Prisma.SubmissionMediaUncheckedCreateNestedManyWithoutSubmissionInput;
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutSubmissionInput;
+};
+
+export type SubmissionCreateOrConnectWithoutServiceInput = {
+  where: Prisma.SubmissionWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.SubmissionCreateWithoutServiceInput,
+    Prisma.SubmissionUncheckedCreateWithoutServiceInput
+  >;
+};
+
+export type SubmissionCreateManyServiceInputEnvelope = {
+  data:
+    | Prisma.SubmissionCreateManyServiceInput
+    | Prisma.SubmissionCreateManyServiceInput[];
+  skipDuplicates?: boolean;
+};
+
+export type SubmissionUpsertWithWhereUniqueWithoutServiceInput = {
+  where: Prisma.SubmissionWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.SubmissionUpdateWithoutServiceInput,
+    Prisma.SubmissionUncheckedUpdateWithoutServiceInput
+  >;
+  create: Prisma.XOR<
+    Prisma.SubmissionCreateWithoutServiceInput,
+    Prisma.SubmissionUncheckedCreateWithoutServiceInput
+  >;
+};
+
+export type SubmissionUpdateWithWhereUniqueWithoutServiceInput = {
+  where: Prisma.SubmissionWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.SubmissionUpdateWithoutServiceInput,
+    Prisma.SubmissionUncheckedUpdateWithoutServiceInput
+  >;
+};
+
+export type SubmissionUpdateManyWithWhereWithoutServiceInput = {
+  where: Prisma.SubmissionScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.SubmissionUpdateManyMutationInput,
+    Prisma.SubmissionUncheckedUpdateManyWithoutServiceInput
+  >;
+};
+
+export type SubmissionScalarWhereInput = {
+  AND?: Prisma.SubmissionScalarWhereInput | Prisma.SubmissionScalarWhereInput[];
+  OR?: Prisma.SubmissionScalarWhereInput[];
+  NOT?: Prisma.SubmissionScalarWhereInput | Prisma.SubmissionScalarWhereInput[];
+  id?: Prisma.StringFilter<'Submission'> | string;
+  submissionNumber?: Prisma.StringFilter<'Submission'> | string;
+  serviceId?: Prisma.StringFilter<'Submission'> | string;
+  clientName?: Prisma.StringFilter<'Submission'> | string;
+  clientEmail?: Prisma.StringFilter<'Submission'> | string;
+  clientPhone?: Prisma.StringFilter<'Submission'> | string;
+  projectAddress?: Prisma.StringFilter<'Submission'> | string;
+  zipCode?: Prisma.StringNullableFilter<'Submission'> | string | null;
+  basePrice?:
+    | Prisma.DecimalFilter<'Submission'>
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  additionalItemsTotal?:
+    | Prisma.DecimalFilter<'Submission'>
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  totalAmount?:
+    | Prisma.DecimalFilter<'Submission'>
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  status?:
+    | Prisma.EnumSubmissionStatusFilter<'Submission'>
+    | $Enums.SubmissionStatus;
+  projectNotes?: Prisma.StringNullableFilter<'Submission'> | string | null;
+  additionalDetails?: Prisma.StringNullableFilter<'Submission'> | string | null;
+  pdfUrl?: Prisma.StringNullableFilter<'Submission'> | string | null;
+  ipAddress?: Prisma.StringNullableFilter<'Submission'> | string | null;
+  userAgent?: Prisma.StringNullableFilter<'Submission'> | string | null;
+  submittedAt?: Prisma.DateTimeFilter<'Submission'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'Submission'> | Date | string;
+  reviewedAt?:
+    | Prisma.DateTimeNullableFilter<'Submission'>
+    | Date
+    | string
+    | null;
+  completedAt?:
+    | Prisma.DateTimeNullableFilter<'Submission'>
+    | Date
+    | string
+    | null;
+};
+
 export type SubmissionCreateWithoutSubmissionItemsInput = {
   id?: string;
   submissionNumber: string;
@@ -1580,7 +1580,7 @@ export type SubmissionCreateWithoutSubmissionItemsInput = {
   updatedAt?: Date | string;
   reviewedAt?: Date | string | null;
   completedAt?: Date | string | null;
-  bathroomType: Prisma.BathroomTypeCreateNestedOneWithoutSubmissionsInput;
+  service: Prisma.ServiceCreateNestedOneWithoutSubmissionsInput;
   submissionMedia?: Prisma.SubmissionMediaCreateNestedManyWithoutSubmissionInput;
   emailLogs?: Prisma.EmailLogCreateNestedManyWithoutSubmissionInput;
 };
@@ -1588,7 +1588,7 @@ export type SubmissionCreateWithoutSubmissionItemsInput = {
 export type SubmissionUncheckedCreateWithoutSubmissionItemsInput = {
   id?: string;
   submissionNumber: string;
-  bathroomTypeId: string;
+  serviceId: string;
   clientName: string;
   clientEmail: string;
   clientPhone: string;
@@ -1695,7 +1695,7 @@ export type SubmissionUpdateWithoutSubmissionItemsInput = {
     | Date
     | string
     | null;
-  bathroomType?: Prisma.BathroomTypeUpdateOneRequiredWithoutSubmissionsNestedInput;
+  service?: Prisma.ServiceUpdateOneRequiredWithoutSubmissionsNestedInput;
   submissionMedia?: Prisma.SubmissionMediaUpdateManyWithoutSubmissionNestedInput;
   emailLogs?: Prisma.EmailLogUpdateManyWithoutSubmissionNestedInput;
 };
@@ -1703,7 +1703,7 @@ export type SubmissionUpdateWithoutSubmissionItemsInput = {
 export type SubmissionUncheckedUpdateWithoutSubmissionItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionNumber?: Prisma.StringFieldUpdateOperationsInput | string;
-  bathroomTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
+  serviceId?: Prisma.StringFieldUpdateOperationsInput | string;
   clientName?: Prisma.StringFieldUpdateOperationsInput | string;
   clientEmail?: Prisma.StringFieldUpdateOperationsInput | string;
   clientPhone?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1782,7 +1782,7 @@ export type SubmissionCreateWithoutSubmissionMediaInput = {
   updatedAt?: Date | string;
   reviewedAt?: Date | string | null;
   completedAt?: Date | string | null;
-  bathroomType: Prisma.BathroomTypeCreateNestedOneWithoutSubmissionsInput;
+  service: Prisma.ServiceCreateNestedOneWithoutSubmissionsInput;
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutSubmissionInput;
   emailLogs?: Prisma.EmailLogCreateNestedManyWithoutSubmissionInput;
 };
@@ -1790,7 +1790,7 @@ export type SubmissionCreateWithoutSubmissionMediaInput = {
 export type SubmissionUncheckedCreateWithoutSubmissionMediaInput = {
   id?: string;
   submissionNumber: string;
-  bathroomTypeId: string;
+  serviceId: string;
   clientName: string;
   clientEmail: string;
   clientPhone: string;
@@ -1897,7 +1897,7 @@ export type SubmissionUpdateWithoutSubmissionMediaInput = {
     | Date
     | string
     | null;
-  bathroomType?: Prisma.BathroomTypeUpdateOneRequiredWithoutSubmissionsNestedInput;
+  service?: Prisma.ServiceUpdateOneRequiredWithoutSubmissionsNestedInput;
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutSubmissionNestedInput;
   emailLogs?: Prisma.EmailLogUpdateManyWithoutSubmissionNestedInput;
 };
@@ -1905,7 +1905,7 @@ export type SubmissionUpdateWithoutSubmissionMediaInput = {
 export type SubmissionUncheckedUpdateWithoutSubmissionMediaInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionNumber?: Prisma.StringFieldUpdateOperationsInput | string;
-  bathroomTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
+  serviceId?: Prisma.StringFieldUpdateOperationsInput | string;
   clientName?: Prisma.StringFieldUpdateOperationsInput | string;
   clientEmail?: Prisma.StringFieldUpdateOperationsInput | string;
   clientPhone?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1959,7 +1959,7 @@ export type SubmissionUncheckedUpdateWithoutSubmissionMediaInput = {
   emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutSubmissionNestedInput;
 };
 
-export type SubmissionCreateManyBathroomTypeInput = {
+export type SubmissionCreateManyServiceInput = {
   id?: string;
   submissionNumber: string;
   clientName: string;
@@ -1986,7 +1986,7 @@ export type SubmissionCreateManyBathroomTypeInput = {
   completedAt?: Date | string | null;
 };
 
-export type SubmissionUpdateWithoutBathroomTypeInput = {
+export type SubmissionUpdateWithoutServiceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionNumber?: Prisma.StringFieldUpdateOperationsInput | string;
   clientName?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -2043,7 +2043,7 @@ export type SubmissionUpdateWithoutBathroomTypeInput = {
   emailLogs?: Prisma.EmailLogUpdateManyWithoutSubmissionNestedInput;
 };
 
-export type SubmissionUncheckedUpdateWithoutBathroomTypeInput = {
+export type SubmissionUncheckedUpdateWithoutServiceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionNumber?: Prisma.StringFieldUpdateOperationsInput | string;
   clientName?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -2100,7 +2100,7 @@ export type SubmissionUncheckedUpdateWithoutBathroomTypeInput = {
   emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutSubmissionNestedInput;
 };
 
-export type SubmissionUncheckedUpdateManyWithoutBathroomTypeInput = {
+export type SubmissionUncheckedUpdateManyWithoutServiceInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   submissionNumber?: Prisma.StringFieldUpdateOperationsInput | string;
   clientName?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -2223,7 +2223,7 @@ export type SubmissionSelect<
   {
     id?: boolean;
     submissionNumber?: boolean;
-    bathroomTypeId?: boolean;
+    serviceId?: boolean;
     clientName?: boolean;
     clientEmail?: boolean;
     clientPhone?: boolean;
@@ -2242,7 +2242,7 @@ export type SubmissionSelect<
     updatedAt?: boolean;
     reviewedAt?: boolean;
     completedAt?: boolean;
-    bathroomType?: boolean | Prisma.BathroomTypeDefaultArgs<ExtArgs>;
+    service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>;
     submissionItems?: boolean | Prisma.Submission$submissionItemsArgs<ExtArgs>;
     submissionMedia?: boolean | Prisma.Submission$submissionMediaArgs<ExtArgs>;
     emailLogs?: boolean | Prisma.Submission$emailLogsArgs<ExtArgs>;
@@ -2258,7 +2258,7 @@ export type SubmissionSelectCreateManyAndReturn<
   {
     id?: boolean;
     submissionNumber?: boolean;
-    bathroomTypeId?: boolean;
+    serviceId?: boolean;
     clientName?: boolean;
     clientEmail?: boolean;
     clientPhone?: boolean;
@@ -2277,7 +2277,7 @@ export type SubmissionSelectCreateManyAndReturn<
     updatedAt?: boolean;
     reviewedAt?: boolean;
     completedAt?: boolean;
-    bathroomType?: boolean | Prisma.BathroomTypeDefaultArgs<ExtArgs>;
+    service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['submission']
 >;
@@ -2289,7 +2289,7 @@ export type SubmissionSelectUpdateManyAndReturn<
   {
     id?: boolean;
     submissionNumber?: boolean;
-    bathroomTypeId?: boolean;
+    serviceId?: boolean;
     clientName?: boolean;
     clientEmail?: boolean;
     clientPhone?: boolean;
@@ -2308,7 +2308,7 @@ export type SubmissionSelectUpdateManyAndReturn<
     updatedAt?: boolean;
     reviewedAt?: boolean;
     completedAt?: boolean;
-    bathroomType?: boolean | Prisma.BathroomTypeDefaultArgs<ExtArgs>;
+    service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['submission']
 >;
@@ -2316,7 +2316,7 @@ export type SubmissionSelectUpdateManyAndReturn<
 export type SubmissionSelectScalar = {
   id?: boolean;
   submissionNumber?: boolean;
-  bathroomTypeId?: boolean;
+  serviceId?: boolean;
   clientName?: boolean;
   clientEmail?: boolean;
   clientPhone?: boolean;
@@ -2343,7 +2343,7 @@ export type SubmissionOmit<
 > = runtime.Types.Extensions.GetOmit<
   | 'id'
   | 'submissionNumber'
-  | 'bathroomTypeId'
+  | 'serviceId'
   | 'clientName'
   | 'clientEmail'
   | 'clientPhone'
@@ -2368,7 +2368,7 @@ export type SubmissionInclude<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
-  bathroomType?: boolean | Prisma.BathroomTypeDefaultArgs<ExtArgs>;
+  service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>;
   submissionItems?: boolean | Prisma.Submission$submissionItemsArgs<ExtArgs>;
   submissionMedia?: boolean | Prisma.Submission$submissionMediaArgs<ExtArgs>;
   emailLogs?: boolean | Prisma.Submission$emailLogsArgs<ExtArgs>;
@@ -2378,13 +2378,13 @@ export type SubmissionIncludeCreateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
-  bathroomType?: boolean | Prisma.BathroomTypeDefaultArgs<ExtArgs>;
+  service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>;
 };
 export type SubmissionIncludeUpdateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
-  bathroomType?: boolean | Prisma.BathroomTypeDefaultArgs<ExtArgs>;
+  service?: boolean | Prisma.ServiceDefaultArgs<ExtArgs>;
 };
 
 export type $SubmissionPayload<
@@ -2393,7 +2393,7 @@ export type $SubmissionPayload<
 > = {
   name: 'Submission';
   objects: {
-    bathroomType: Prisma.$BathroomTypePayload<ExtArgs>;
+    service: Prisma.$ServicePayload<ExtArgs>;
     submissionItems: Prisma.$SubmissionItemPayload<ExtArgs>[];
     submissionMedia: Prisma.$SubmissionMediaPayload<ExtArgs>[];
     emailLogs: Prisma.$EmailLogPayload<ExtArgs>[];
@@ -2402,7 +2402,7 @@ export type $SubmissionPayload<
     {
       id: string;
       submissionNumber: string;
-      bathroomTypeId: string;
+      serviceId: string;
       clientName: string;
       clientEmail: string;
       clientPhone: string;
@@ -2971,11 +2971,11 @@ export interface Prisma__SubmissionClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: 'PrismaPromise';
-  bathroomType<T extends Prisma.BathroomTypeDefaultArgs<ExtArgs> = {}>(
-    args?: Prisma.Subset<T, Prisma.BathroomTypeDefaultArgs<ExtArgs>>,
-  ): Prisma.Prisma__BathroomTypeClient<
+  service<T extends Prisma.ServiceDefaultArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.ServiceDefaultArgs<ExtArgs>>,
+  ): Prisma.Prisma__ServiceClient<
     | runtime.Types.Result.GetResult<
-        Prisma.$BathroomTypePayload<ExtArgs>,
+        Prisma.$ServicePayload<ExtArgs>,
         T,
         'findUniqueOrThrow',
         GlobalOmitOptions
@@ -3066,7 +3066,7 @@ export interface Prisma__SubmissionClient<
 export interface SubmissionFieldRefs {
   readonly id: Prisma.FieldRef<'Submission', 'String'>;
   readonly submissionNumber: Prisma.FieldRef<'Submission', 'String'>;
-  readonly bathroomTypeId: Prisma.FieldRef<'Submission', 'String'>;
+  readonly serviceId: Prisma.FieldRef<'Submission', 'String'>;
   readonly clientName: Prisma.FieldRef<'Submission', 'String'>;
   readonly clientEmail: Prisma.FieldRef<'Submission', 'String'>;
   readonly clientPhone: Prisma.FieldRef<'Submission', 'String'>;

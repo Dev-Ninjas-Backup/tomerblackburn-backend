@@ -8,12 +8,14 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/ActivityLog';
-export type * from './models/BathroomType';
-export type * from './models/BathroomTypeCostCode';
 export type * from './models/CostCode';
 export type * from './models/CostCodeCategory';
 export type * from './models/CostCodeOption';
 export type * from './models/EmailLog';
+export type * from './models/Service';
+export type * from './models/ServiceCategory';
+export type * from './models/ServiceCostCode';
+export type * from './models/ServiceType';
 export type * from './models/Submission';
 export type * from './models/SubmissionItem';
 export type * from './models/SubmissionMedia';

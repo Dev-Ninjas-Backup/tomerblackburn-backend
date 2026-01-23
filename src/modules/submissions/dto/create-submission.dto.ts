@@ -75,12 +75,12 @@ export class SubmissionItemInputDto {
 
 export class CreateSubmissionDto {
   @ApiProperty({
-    description: 'Bathroom type ID',
+    description: 'Service ID',
     example: '123e4567-e89b-12d3-a456-426614174000',
   })
   @IsString()
   @IsNotEmpty()
-  bathroomTypeId: string;
+  serviceId: string;
 
   @ApiProperty({
     description: 'Client full name',
@@ -124,7 +124,7 @@ export class CreateSubmissionDto {
   zipCode?: string;
 
   @ApiProperty({
-    description: 'Base price for the bathroom type',
+    description: 'Base price for the service',
     example: 15000.0,
   })
   @IsNumber()

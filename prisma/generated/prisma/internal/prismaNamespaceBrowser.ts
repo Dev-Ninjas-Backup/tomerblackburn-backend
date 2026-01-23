@@ -55,12 +55,14 @@ export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
   ActivityLog: 'ActivityLog',
-  BathroomType: 'BathroomType',
-  BathroomTypeCostCode: 'BathroomTypeCostCode',
   CostCode: 'CostCode',
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
   EmailLog: 'EmailLog',
+  Service: 'Service',
+  ServiceCategory: 'ServiceCategory',
+  ServiceCostCode: 'ServiceCostCode',
+  ServiceType: 'ServiceType',
   Submission: 'Submission',
   SubmissionItem: 'SubmissionItem',
   SubmissionMedia: 'SubmissionMedia',
@@ -82,12 +84,12 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName];
  * Enums
  */
 
-export const TransactionIsolationLevel = {
+export const TransactionIsolationLevel = runtime.makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable',
-} as const;
+} as const);
 
 export type TransactionIsolationLevel =
   (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
@@ -108,40 +110,6 @@ export const ActivityLogScalarFieldEnum = {
 export type ActivityLogScalarFieldEnum =
   (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum];
 
-export const BathroomTypeScalarFieldEnum = {
-  id: 'id',
-  code: 'code',
-  name: 'name',
-  shortDescription: 'shortDescription',
-  fullDescription: 'fullDescription',
-  basePrice: 'basePrice',
-  imageFileId: 'imageFileId',
-  displayOrder: 'displayOrder',
-  isActive: 'isActive',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type BathroomTypeScalarFieldEnum =
-  (typeof BathroomTypeScalarFieldEnum)[keyof typeof BathroomTypeScalarFieldEnum];
-
-export const BathroomTypeCostCodeScalarFieldEnum = {
-  id: 'id',
-  bathroomTypeId: 'bathroomTypeId',
-  costCodeId: 'costCodeId',
-  isIncludedInBase: 'isIncludedInBase',
-  isRequired: 'isRequired',
-  isVisible: 'isVisible',
-  defaultQuantity: 'defaultQuantity',
-  priceOverride: 'priceOverride',
-  displayOrder: 'displayOrder',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type BathroomTypeCostCodeScalarFieldEnum =
-  (typeof BathroomTypeCostCodeScalarFieldEnum)[keyof typeof BathroomTypeCostCodeScalarFieldEnum];
-
 export const CostCodeScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
@@ -151,6 +119,7 @@ export const CostCodeScalarFieldEnum = {
   basePrice: 'basePrice',
   unitType: 'unitType',
   questionType: 'questionType',
+  step: 'step',
   displayOrder: 'displayOrder',
   isIncludedInBase: 'isIncludedInBase',
   requiresQuantity: 'requiresQuantity',
@@ -211,10 +180,72 @@ export const EmailLogScalarFieldEnum = {
 export type EmailLogScalarFieldEnum =
   (typeof EmailLogScalarFieldEnum)[keyof typeof EmailLogScalarFieldEnum];
 
+export const ServiceScalarFieldEnum = {
+  id: 'id',
+  serviceCategoryId: 'serviceCategoryId',
+  code: 'code',
+  name: 'name',
+  shortDescription: 'shortDescription',
+  fullDescription: 'fullDescription',
+  basePrice: 'basePrice',
+  imageFileId: 'imageFileId',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ServiceScalarFieldEnum =
+  (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum];
+
+export const ServiceCategoryScalarFieldEnum = {
+  id: 'id',
+  serviceTypeId: 'serviceTypeId',
+  name: 'name',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ServiceCategoryScalarFieldEnum =
+  (typeof ServiceCategoryScalarFieldEnum)[keyof typeof ServiceCategoryScalarFieldEnum];
+
+export const ServiceCostCodeScalarFieldEnum = {
+  id: 'id',
+  serviceId: 'serviceId',
+  costCodeId: 'costCodeId',
+  isIncludedInBase: 'isIncludedInBase',
+  isRequired: 'isRequired',
+  isVisible: 'isVisible',
+  defaultQuantity: 'defaultQuantity',
+  priceOverride: 'priceOverride',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ServiceCostCodeScalarFieldEnum =
+  (typeof ServiceCostCodeScalarFieldEnum)[keyof typeof ServiceCostCodeScalarFieldEnum];
+
+export const ServiceTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ServiceTypeScalarFieldEnum =
+  (typeof ServiceTypeScalarFieldEnum)[keyof typeof ServiceTypeScalarFieldEnum];
+
 export const SubmissionScalarFieldEnum = {
   id: 'id',
   submissionNumber: 'submissionNumber',
-  bathroomTypeId: 'bathroomTypeId',
+  serviceId: 'serviceId',
   clientName: 'clientName',
   clientEmail: 'clientEmail',
   clientPhone: 'clientPhone',

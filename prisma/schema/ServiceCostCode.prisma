@@ -1,0 +1,24 @@
+model ServiceCostCode {
+  id         String @id @default(uuid())
+  serviceId  String
+  costCodeId String
+
+  isIncludedInBase Boolean  @default(false)
+  isRequired       Boolean  @default(false)
+  isVisible        Boolean  @default(true)
+  defaultQuantity  Decimal? @db.Decimal(10, 2)
+  priceOverride    Decimal? @db.Decimal(10, 2)
+  displayOrder     Int      @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  service  Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  costCode CostCode @relation(fields: [costCodeId], references: [id], onDelete: Cascade)
+
+  @@unique([serviceId, costCodeId])
+  @@index([serviceId])
+  @@index([costCodeId])
+  @@index([isVisible])
+  @@map("service_cost_codes")
+}

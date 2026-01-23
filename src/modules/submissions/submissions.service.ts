@@ -60,7 +60,7 @@ export class SubmissionsService {
     const submission = await this.prisma.submission.findUnique({
       where: { id: submissionId },
       include: {
-        bathroomType: true,
+        service: true,
         submissionItems: {
           include: {
             costCode: true,
@@ -84,9 +84,9 @@ export class SubmissionsService {
       clientPhone: submission.clientPhone,
       projectAddress: submission.projectAddress,
       zipCode: submission.zipCode || undefined,
-      bathroomType: {
-        name: submission.bathroomType.name,
-        code: submission.bathroomType.code,
+      service: {
+        name: submission.service.name,
+        code: submission.service.code,
       },
       basePrice: Number(submission.basePrice),
       additionalItemsTotal: Number(submission.additionalItemsTotal),
@@ -129,7 +129,7 @@ export class SubmissionsService {
       const submissionNumber = await this.generateSubmissionNumber();
 
       const {
-        bathroomTypeId,
+        serviceId,
         clientName,
         clientEmail,
         clientPhone,
@@ -181,7 +181,7 @@ export class SubmissionsService {
       let submission = await this.prisma.submission.create({
         data: {
           submissionNumber,
-          bathroomTypeId,
+          serviceId,
           clientName,
           clientEmail,
           clientPhone,
@@ -198,7 +198,7 @@ export class SubmissionsService {
             : undefined,
         },
         include: {
-          bathroomType: true,
+          service: true,
           submissionItems: {
             include: {
               costCode: true,
@@ -223,7 +223,7 @@ export class SubmissionsService {
           where: { id: submission.id },
           data: { pdfUrl },
           include: {
-            bathroomType: true,
+            service: true,
             submissionItems: {
               include: {
                 costCode: true,
@@ -259,7 +259,7 @@ export class SubmissionsService {
       const submissions = await this.prisma.submission.findMany({
         where,
         include: {
-          bathroomType: true,
+          service: true,
           submissionItems: {
             include: {
               costCode: true,
@@ -295,7 +295,7 @@ export class SubmissionsService {
       const submission = await this.prisma.submission.findUnique({
         where: { id },
         include: {
-          bathroomType: true,
+          service: true,
           submissionItems: {
             include: {
               costCode: {
@@ -343,7 +343,7 @@ export class SubmissionsService {
       const submission = await this.prisma.submission.findUnique({
         where: { submissionNumber },
         include: {
-          bathroomType: true,
+          service: true,
           submissionItems: {
             include: {
               costCode: {
@@ -391,7 +391,7 @@ export class SubmissionsService {
         where: { id },
         data: updateSubmissionDto,
         include: {
-          bathroomType: true,
+          service: true,
           submissionItems: {
             include: {
               costCode: true,
@@ -434,7 +434,7 @@ export class SubmissionsService {
         where: { id },
         data: updateData,
         include: {
-          bathroomType: true,
+          service: true,
           submissionItems: {
             include: {
               costCode: true,
@@ -466,7 +466,7 @@ export class SubmissionsService {
         where: { id },
         data: { pdfUrl },
         include: {
-          bathroomType: true,
+          service: true,
           submissionItems: {
             include: {
               costCode: true,

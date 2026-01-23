@@ -22,16 +22,6 @@ export * from './enums';
  */
 export type ActivityLog = Prisma.ActivityLogModel;
 /**
- * Model BathroomType
- *
- */
-export type BathroomType = Prisma.BathroomTypeModel;
-/**
- * Model BathroomTypeCostCode
- *
- */
-export type BathroomTypeCostCode = Prisma.BathroomTypeCostCodeModel;
-/**
  * Model CostCode
  *
  */
@@ -51,6 +41,26 @@ export type CostCodeOption = Prisma.CostCodeOptionModel;
  *
  */
 export type EmailLog = Prisma.EmailLogModel;
+/**
+ * Model Service
+ *
+ */
+export type Service = Prisma.ServiceModel;
+/**
+ * Model ServiceCategory
+ *
+ */
+export type ServiceCategory = Prisma.ServiceCategoryModel;
+/**
+ * Model ServiceCostCode
+ *
+ */
+export type ServiceCostCode = Prisma.ServiceCostCodeModel;
+/**
+ * Model ServiceType
+ *
+ */
+export type ServiceType = Prisma.ServiceTypeModel;
 /**
  * Model Submission
  *

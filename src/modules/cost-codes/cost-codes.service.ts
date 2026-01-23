@@ -139,53 +139,52 @@ export class CostCodesService {
 
   async findByBathroomType(bathroomTypeId: string, includeOptions = true) {
     try {
-      // Find bathroom type cost codes via junction table
-      const bathroomTypeCostCodes =
-        await this.prisma.bathroomTypeCostCode.findMany({
-          where: {
-            bathroomTypeId,
-            isVisible: true,
-            costCode: {
-              isActive: true,
+      // Find service cost codes via junction table
+      const serviceCostCodes = await this.prisma.serviceCostCode.findMany({
+        where: {
+          serviceId: bathroomTypeId,
+          isVisible: true,
+          costCode: {
+            isActive: true,
+          },
+        },
+        include: {
+          costCode: {
+            include: {
+              category: true,
+              options: includeOptions
+                ? {
+                    where: { isActive: true },
+                    orderBy: { displayOrder: 'asc' },
+                  }
+                : false,
             },
           },
-          include: {
-            costCode: {
-              include: {
-                category: true,
-                options: includeOptions
-                  ? {
-                      where: { isActive: true },
-                      orderBy: { displayOrder: 'asc' },
-                    }
-                  : false,
-              },
-            },
-          },
-          orderBy: [{ displayOrder: 'asc' }],
-        });
+        },
+        orderBy: [{ displayOrder: 'asc' }],
+      });
 
-      const costCodes = bathroomTypeCostCodes.map((btcc) => ({
-        ...btcc.costCode,
+      const costCodes = serviceCostCodes.map((scc) => ({
+        ...scc.costCode,
         // Include junction table overrides
-        isIncludedInBase: btcc.isIncludedInBase,
-        isRequired: btcc.isRequired,
-        defaultQuantity: btcc.defaultQuantity,
-        priceOverride: btcc.priceOverride,
-        displayOrder: btcc.displayOrder,
+        isIncludedInBase: scc.isIncludedInBase,
+        isRequired: scc.isRequired,
+        defaultQuantity: scc.defaultQuantity,
+        priceOverride: scc.priceOverride,
+        displayOrder: scc.displayOrder,
       }));
 
       return {
         message:
           costCodes.length > 0
-            ? 'Cost codes for bathroom type retrieved successfully'
-            : 'No cost codes found for this bathroom type',
+            ? 'Cost codes for service retrieved successfully'
+            : 'No cost codes found for this service',
         count: costCodes.length,
         data: costCodes,
       };
     } catch (error) {
       throw new Error(
-        `Failed to retrieve cost codes by bathroom type: ${error.message}`,
+        `Failed to retrieve cost codes by service: ${error.message}`,
       );
     }
   }
@@ -230,9 +229,9 @@ export class CostCodesService {
           options: {
             orderBy: { displayOrder: 'asc' },
           },
-          bathroomTypeCostCodes: {
+          serviceCostCodes: {
             include: {
-              bathroomType: true,
+              service: true,
             },
           },
         },

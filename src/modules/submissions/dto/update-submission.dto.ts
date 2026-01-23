@@ -4,7 +4,7 @@ import { CreateSubmissionDto } from './create-submission.dto';
 import { QuestionType, SubmissionStatus } from 'generated/prisma/enums';
 
 export class UpdateSubmissionDto extends PartialType(
-  OmitType(CreateSubmissionDto, ['bathroomTypeId', 'items'] as const),
+  OmitType(CreateSubmissionDto, ['serviceId', 'items'] as const),
 ) {
   @ApiProperty({
     description: 'Submission status',
@@ -30,7 +30,7 @@ class FileInstanceDto {
   mimeType: string;
 }
 
-class BathroomTypeSummaryDto {
+class ServiceSummaryDto {
   @ApiProperty()
   id: string;
 
@@ -147,9 +147,9 @@ export class SubmissionResponseDto {
   submissionNumber: string;
 
   @ApiProperty({
-    description: 'Bathroom type ID',
+    description: 'Service ID',
   })
-  bathroomTypeId: string;
+  serviceId: string;
 
   @ApiProperty({
     description: 'Client name',
@@ -241,11 +241,11 @@ export class SubmissionResponseDto {
   completedAt?: Date;
 
   @ApiProperty({
-    description: 'Bathroom type details',
-    type: BathroomTypeSummaryDto,
+    description: 'Service details',
+    type: ServiceSummaryDto,
     required: false,
   })
-  bathroomType?: BathroomTypeSummaryDto;
+  service?: ServiceSummaryDto;
 
   @ApiProperty({
     description: 'Submission items',
