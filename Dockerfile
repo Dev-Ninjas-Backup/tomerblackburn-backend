@@ -47,10 +47,13 @@ COPY prisma ./prisma
 COPY prisma.config.ts ./
 COPY tsconfig.json ./
 
+# Copy generated Prisma client from builder
+COPY --from=builder /app/prisma/generated ./prisma/generated
+
 # Set dummy DATABASE_URL for Prisma generate
 ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
 
-# Generate Prisma Client
+# Generate Prisma Client (in case it's needed)
 RUN pnpx prisma generate
 
 # Verify migrations are copied
