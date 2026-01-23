@@ -6,8 +6,11 @@ import {
   Patch,
   Param,
   Delete,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiConsumes, ApiBody } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { HomePageService } from './home-page.service';
 import {
   CreateHomePageDto,
@@ -72,17 +75,74 @@ export class HomePageController {
 
   @Post('services')
   @ApiOperation({ summary: 'Create a new service' })
-  createService(@Body() createDto: CreateServiceStandsOutDto) {
-    return this.homePageService.createService(createDto);
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        title: {
+          type: 'string',
+          example: 'RESPONSIVE COMMUNICATION',
+          description: 'Service title',
+        },
+        description: {
+          type: 'string',
+          example:
+            "We follow up, follow through, and stay in touch, so you always know what's going on with your project.",
+          description: 'Service description',
+        },
+        image: {
+          type: 'string',
+          format: 'binary',
+          description:
+            'Image file (optional). If provided, will be uploaded and imageId will be automatically set.',
+        },
+      },
+      required: ['title', 'description'],
+    },
+  })
+  @UseInterceptors(FileInterceptor('image'))
+  createService(
+    @Body() createDto: CreateServiceStandsOutDto,
+    @UploadedFile() image?: Express.Multer.File,
+  ) {
+    return this.homePageService.createService(createDto, image);
   }
 
   @Patch('services/:id')
   @ApiOperation({ summary: 'Update service by ID' })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        title: {
+          type: 'string',
+          example: 'RESPONSIVE COMMUNICATION',
+          description: 'Service title',
+        },
+        description: {
+          type: 'string',
+          example:
+            "We follow up, follow through, and stay in touch, so you always know what's going on with your project.",
+          description: 'Service description',
+        },
+        image: {
+          type: 'string',
+          format: 'binary',
+          description:
+            'Image file (optional). If provided, will be uploaded and imageId will be automatically set.',
+        },
+      },
+    },
+  })
+  @UseInterceptors(FileInterceptor('image'))
   updateService(
     @Param('id') id: string,
     @Body() updateDto: UpdateServiceStandsOutDto,
+    @UploadedFile() image?: Express.Multer.File,
   ) {
-    return this.homePageService.updateService(id, updateDto);
+    return this.homePageService.updateService(id, updateDto, image);
   }
 
   @Delete('services/:id')

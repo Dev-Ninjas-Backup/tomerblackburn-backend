@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import {
   CreateHomePageDto,
   CreateServiceStandsOutDto,
@@ -8,10 +12,33 @@ import {
   UpdateServiceStandsOutDto,
 } from './dto/update-home-page.dto';
 import { PrismaService } from '@/common/prisma/prisma.service';
+import { UploadService } from '../upload/upload.service';
 
 @Injectable()
 export class HomePageService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly uploadService: UploadService,
+  ) {}
+
+  /**
+   * Validate if file exists in database
+   */
+  private async validateFileExists(fileId: string): Promise<void> {
+    if (!fileId || !fileId.trim()) {
+      return; // Optional field, allow empty
+    }
+
+    const fileExists = await this.prisma.fileInstance.findUnique({
+      where: { id: fileId },
+    });
+
+    if (!fileExists) {
+      throw new BadRequestException(
+        `File with ID '${fileId}' does not exist. Please upload the file first using the /upload endpoint.`,
+      );
+    }
+  }
 
   // HomePage methods
   async getHomePage() {
@@ -58,8 +85,29 @@ export class HomePageService {
         return this.updateHomePage(existing.id, createDto);
       }
 
+      // Validate homeBackgroundImageId if provided
+      if (createDto.homeBackgroundImageId) {
+        await this.validateFileExists(createDto.homeBackgroundImageId);
+      }
+
+      // Prepare data - exclude homeBackgroundImageId if it's not valid
+      const data: any = {
+        title: createDto.title,
+        subTitle: createDto.subTitle,
+        ourMissionTitle: createDto.ourMissionTitle,
+        ourMissionSubTitle: createDto.ourMissionSubTitle,
+      };
+
+      // Only add homeBackgroundImageId if it's provided and not empty
+      if (
+        createDto.homeBackgroundImageId &&
+        createDto.homeBackgroundImageId.trim()
+      ) {
+        data.homeBackgroundImageId = createDto.homeBackgroundImageId;
+      }
+
       const homePage = await this.prisma.homePage.create({
-        data: createDto,
+        data,
         include: {
           homeBackgroundImage: true,
         },
@@ -70,7 +118,12 @@ export class HomePageService {
         data: homePage,
       };
     } catch (error) {
-      throw new Error(`Failed to create home page: ${error.message}`);
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
+      throw new BadRequestException(
+        `Failed to create home page: ${error.message}`,
+      );
     }
   }
 
@@ -84,9 +137,46 @@ export class HomePageService {
         throw new NotFoundException(`Home page with ID ${id} not found`);
       }
 
+      // Validate homeBackgroundImageId if provided
+      if (
+        updateDto.homeBackgroundImageId &&
+        updateDto.homeBackgroundImageId.trim()
+      ) {
+        await this.validateFileExists(updateDto.homeBackgroundImageId);
+      }
+
+      // Prepare data - handle homeBackgroundImageId properly
+      const data: any = {};
+
+      if (updateDto.title !== undefined) {
+        data.title = updateDto.title;
+      }
+
+      if (updateDto.subTitle !== undefined) {
+        data.subTitle = updateDto.subTitle;
+      }
+
+      if (updateDto.ourMissionTitle !== undefined) {
+        data.ourMissionTitle = updateDto.ourMissionTitle;
+      }
+
+      if (updateDto.ourMissionSubTitle !== undefined) {
+        data.ourMissionSubTitle = updateDto.ourMissionSubTitle;
+      }
+
+      // Only add homeBackgroundImageId if it's provided and not empty
+      // Set to null if explicitly empty string to clear the relation
+      if (updateDto.homeBackgroundImageId !== undefined) {
+        data.homeBackgroundImageId =
+          updateDto.homeBackgroundImageId &&
+          updateDto.homeBackgroundImageId.trim()
+            ? updateDto.homeBackgroundImageId
+            : null;
+      }
+
       const homePage = await this.prisma.homePage.update({
         where: { id },
-        data: updateDto,
+        data,
         include: {
           homeBackgroundImage: true,
         },
@@ -97,10 +187,15 @@ export class HomePageService {
         data: homePage,
       };
     } catch (error) {
-      if (error instanceof NotFoundException) {
+      if (
+        error instanceof NotFoundException ||
+        error instanceof BadRequestException
+      ) {
         throw error;
       }
-      throw new Error(`Failed to update home page: ${error.message}`);
+      throw new BadRequestException(
+        `Failed to update home page: ${error.message}`,
+      );
     }
   }
 
@@ -168,10 +263,35 @@ export class HomePageService {
     }
   }
 
-  async createService(createDto: CreateServiceStandsOutDto) {
+  async createService(
+    createDto: CreateServiceStandsOutDto,
+    image?: Express.Multer.File,
+  ) {
     try {
+      let imageId = createDto.imageId;
+
+      // If image file is uploaded, upload it and get the file instance ID
+      if (image) {
+        const uploadedFile = await this.uploadService.uploadFile(image);
+        imageId = uploadedFile.id;
+      } else if (imageId) {
+        // Only validate imageId if it was provided in DTO (not from uploaded file)
+        await this.validateFileExists(imageId);
+      }
+
+      // Prepare data
+      const data: any = {
+        title: createDto.title,
+        description: createDto.description,
+      };
+
+      // Only add imageId if it's provided and not empty
+      if (imageId && imageId.trim()) {
+        data.imageId = imageId;
+      }
+
       const service = await this.prisma.serviceStandsOut.create({
-        data: createDto,
+        data,
         include: {
           image: true,
         },
@@ -182,17 +302,54 @@ export class HomePageService {
         data: service,
       };
     } catch (error) {
-      throw new Error(`Failed to create service: ${error.message}`);
+      if (error instanceof BadRequestException) {
+        throw error;
+      }
+      throw new BadRequestException(
+        `Failed to create service: ${error.message}`,
+      );
     }
   }
 
-  async updateService(id: string, updateDto: UpdateServiceStandsOutDto) {
+  async updateService(
+    id: string,
+    updateDto: UpdateServiceStandsOutDto,
+    image?: Express.Multer.File,
+  ) {
     try {
       await this.getServiceById(id);
 
+      let imageId = updateDto.imageId;
+
+      // If image file is uploaded, upload it and get the file instance ID
+      if (image) {
+        const uploadedFile = await this.uploadService.uploadFile(image);
+        imageId = uploadedFile.id;
+      } else if (imageId && imageId.trim()) {
+        // Only validate imageId if it was provided in DTO (not from uploaded file)
+        await this.validateFileExists(imageId);
+      }
+
+      // Prepare data - handle imageId properly
+      const data: any = {};
+
+      if (updateDto.title !== undefined) {
+        data.title = updateDto.title;
+      }
+
+      if (updateDto.description !== undefined) {
+        data.description = updateDto.description;
+      }
+
+      // Only add imageId if it's provided and not empty
+      // Set to null if explicitly empty string to clear the relation
+      if (imageId !== undefined) {
+        data.imageId = imageId && imageId.trim() ? imageId : null;
+      }
+
       const service = await this.prisma.serviceStandsOut.update({
         where: { id },
-        data: updateDto,
+        data,
         include: {
           image: true,
         },
@@ -203,10 +360,15 @@ export class HomePageService {
         data: service,
       };
     } catch (error) {
-      if (error instanceof NotFoundException) {
+      if (
+        error instanceof NotFoundException ||
+        error instanceof BadRequestException
+      ) {
         throw error;
       }
-      throw new Error(`Failed to update service: ${error.message}`);
+      throw new BadRequestException(
+        `Failed to update service: ${error.message}`,
+      );
     }
   }
 
