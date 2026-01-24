@@ -51,3 +51,6 @@ LICENSE
 *.md
 .editorconfig
 .prettierrc
+
+# Uploads (will be mounted as volume)
+uploads

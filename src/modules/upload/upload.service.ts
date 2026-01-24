@@ -1,9 +1,9 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { S3Service } from '@softvence/s3';
 import { PrismaService } from '@/common/prisma/prisma.service';
 import { FileType } from 'generated/prisma/client';
 import { ConfigService } from '@nestjs/config';
 import * as path from 'path';
+import * as fs from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface UploadedFileResponse {
@@ -18,23 +18,30 @@ export interface UploadedFileResponse {
 
 @Injectable()
 export class UploadService {
-  private s3Service: S3Service;
+  private readonly uploadsDir: string;
+  private readonly baseUrl: string;
 
   constructor(
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
   ) {
-    this.s3Service = new S3Service({
-      region: this.configService.get<string>('AWS_REGION')!,
-      accessKeyId: this.configService.get<string>('AWS_ACCESS_KEY_ID')!,
-      secretAccessKey: this.configService.get<string>('AWS_SECRET_ACCESS_KEY')!,
-      bucket: this.configService.get<string>('AWS_S3_BUCKET_NAME')!,
-    });
+    this.uploadsDir = path.join(process.cwd(), 'uploads');
+
+    const port = this.configService.get<string>('PORT') || '3000';
+    this.baseUrl =
+      this.configService.get<string>('BASE_URL') || `http://localhost:${port}`;
+
+    this.ensureUploadsDirectory();
   }
 
-  /**
-   * Upload a single file to S3 and store metadata in database
-   */
+  private async ensureUploadsDirectory(): Promise<void> {
+    try {
+      await fs.access(this.uploadsDir);
+    } catch {
+      await fs.mkdir(this.uploadsDir, { recursive: true });
+    }
+  }
+
   async uploadFile(
     file: Express.Multer.File,
     folder: string = 'uploads',
@@ -44,25 +51,32 @@ export class UploadService {
         throw new BadRequestException('No file provided');
       }
 
-      // Validate file
       this.validateFile(file);
 
-      // Upload to S3 - @softvence/s3 automatically organizes files by mime type
-      const uploadResult = await this.s3Service.uploadFile(file);
-
-      // Determine file type
       const fileType = this.determineFileType(file.mimetype);
 
-      // Store in database
+      const ext = path.extname(file.originalname);
+      const filename = `${uuidv4()}${ext}`;
+
+      const subfolder = path.join(this.uploadsDir, fileType);
+      await fs.mkdir(subfolder, { recursive: true });
+
+      const filePath = path.join(subfolder, filename);
+
+      await fs.writeFile(filePath, file.buffer);
+
+      const relativePath = path.join(fileType, filename).replace(/\\/g, '/');
+      const url = `${this.baseUrl}/uploads/${relativePath}`;
+
       const fileInstance = await this.prisma.fileInstance.create({
         data: {
-          filename: path.basename(uploadResult.url),
-          originalFilename: uploadResult.originalName,
-          path: `${uploadResult.folder}/${path.basename(uploadResult.url)}`,
-          url: uploadResult.url,
+          filename,
+          originalFilename: file.originalname,
+          path: relativePath,
+          url,
           fileType,
-          mimeType: uploadResult.mimeType,
-          size: uploadResult.size,
+          mimeType: file.mimetype,
+          size: file.size,
         },
       });
 
@@ -80,9 +94,6 @@ export class UploadService {
     }
   }
 
-  /**
-   * Upload multiple files
-   */
   async uploadFiles(
     files: Express.Multer.File[],
     folder: string = 'uploads',
@@ -102,9 +113,6 @@ export class UploadService {
     }
   }
 
-  /**
-   * Delete file from database (S3 deletion not supported by @softvence/s3)
-   */
   async deleteFile(fileId: string): Promise<void> {
     try {
       const fileInstance = await this.prisma.fileInstance.findUnique({
@@ -115,10 +123,13 @@ export class UploadService {
         throw new BadRequestException(`File with ID ${fileId} not found`);
       }
 
-      // Note: @softvence/s3 doesn't provide delete method
-      // You may need to manually delete from S3 console or implement AWS SDK directly
+      const filePath = path.join(this.uploadsDir, fileInstance.path);
+      try {
+        await fs.unlink(filePath);
+      } catch (error) {
+        console.error(`Failed to delete file from disk: ${error.message}`);
+      }
 
-      // Delete from database
       await this.prisma.fileInstance.delete({
         where: { id: fileId },
       });
@@ -127,9 +138,6 @@ export class UploadService {
     }
   }
 
-  /**
-   * Get file by ID
-   */
   async getFile(fileId: string) {
     try {
       const fileInstance = await this.prisma.fileInstance.findUnique({
@@ -148,11 +156,6 @@ export class UploadService {
     }
   }
 
-  /**
-   * Get signed URL for temporary access
-   * Note: @softvence/s3 doesn't provide signed URL method
-   * Files are publicly accessible via the URL
-   */
   async getSignedUrl(
     fileId: string,
     expiresIn: number = 3600,
@@ -160,16 +163,12 @@ export class UploadService {
     try {
       const fileInstance = await this.getFile(fileId);
 
-      // Return the public URL since @softvence/s3 doesn't support signed URLs
       return fileInstance.url;
     } catch (error) {
       throw new BadRequestException(`Failed to get file URL: ${error.message}`);
     }
   }
 
-  /**
-   * Validate file before upload
-   */
   private validateFile(file: Express.Multer.File): void {
     const maxSize = 10 * 1024 * 1024; // 10MB
     const allowedMimeTypes = [
@@ -202,9 +201,6 @@ export class UploadService {
     }
   }
 
-  /**
-   * Determine file type based on mime type
-   */
   private determineFileType(mimeType: string): FileType {
     if (mimeType.startsWith('image/')) {
       return FileType.image;

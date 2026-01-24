@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { S3Service } from '@softvence/s3';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { UpdateSubmissionDto } from './dto/update-submission.dto';
 import { PrismaService } from '@/common/prisma/prisma.service';
@@ -9,23 +8,35 @@ import {
   PdfGeneratorService,
   SubmissionPdfData,
 } from '../pdf/pdf-generator.service';
+import * as path from 'path';
+import * as fs from 'fs/promises';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class SubmissionsService {
-  private s3Service: S3Service;
+  private readonly uploadsDir: string;
+  private readonly baseUrl: string;
 
   constructor(
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
     private readonly pdfGeneratorService: PdfGeneratorService,
   ) {
-    this.s3Service = new S3Service({
-      region: this.configService.get<string>('AWS_REGION') || 'us-east-1',
-      accessKeyId: this.configService.get<string>('AWS_ACCESS_KEY_ID') || '',
-      secretAccessKey:
-        this.configService.get<string>('AWS_SECRET_ACCESS_KEY') || '',
-      bucket: this.configService.get<string>('AWS_S3_BUCKET_NAME') || '',
-    });
+    this.uploadsDir = path.join(process.cwd(), 'uploads');
+
+    const port = this.configService.get<string>('PORT') || '3000';
+    this.baseUrl =
+      this.configService.get<string>('BASE_URL') || `http://localhost:${port}`;
+
+    this.ensureUploadsDirectory();
+  }
+
+  private async ensureUploadsDirectory(): Promise<void> {
+    try {
+      await fs.access(this.uploadsDir);
+    } catch {
+      await fs.mkdir(this.uploadsDir, { recursive: true });
+    }
   }
 
   private async generateSubmissionNumber(): Promise<string> {
@@ -105,23 +116,22 @@ export class SubmissionsService {
       projectNotes: submission.projectNotes || undefined,
     };
 
-    // Generate PDF buffer
     const pdfBuffer =
       await this.pdfGeneratorService.generateSubmissionPdf(pdfData);
 
-    // Create a mock file object for S3 upload
-    const filename = `${submission.submissionNumber.replace(/\//g, '-')}.pdf`;
-    const file = {
-      buffer: pdfBuffer,
-      originalname: filename,
-      mimetype: 'application/pdf',
-      size: pdfBuffer.length,
-    } as Express.Multer.File;
+    const filename = `${submission.submissionNumber.replace(/\//g, '-')}-${uuidv4()}.pdf`;
 
-    // Upload to S3
-    const uploadResult = await this.s3Service.uploadFile(file);
+    const subfolder = path.join(this.uploadsDir, 'document');
+    await fs.mkdir(subfolder, { recursive: true });
 
-    return uploadResult.url;
+    const filePath = path.join(subfolder, filename);
+
+    await fs.writeFile(filePath, pdfBuffer);
+
+    const relativePath = path.join('document', filename).replace(/\\/g, '/');
+    const url = `${this.baseUrl}/uploads/${relativePath}`;
+
+    return url;
   }
 
   async create(createSubmissionDto: CreateSubmissionDto) {
@@ -213,12 +223,10 @@ export class SubmissionsService {
         },
       });
 
-      // Generate and upload PDF
       let pdfUrl: string | null = null;
       try {
         pdfUrl = await this.generateAndUploadPdf(submission.id);
 
-        // Update submission with PDF URL
         submission = await this.prisma.submission.update({
           where: { id: submission.id },
           data: { pdfUrl },
@@ -239,7 +247,6 @@ export class SubmissionsService {
         });
       } catch (pdfError) {
         console.error('Failed to generate PDF:', pdfError);
-        // Continue without PDF - don't fail the submission
       }
 
       return {
