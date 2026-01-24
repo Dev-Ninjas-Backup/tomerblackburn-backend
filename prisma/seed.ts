@@ -308,6 +308,99 @@ async function main() {
       }));
   console.log('✅ Created/updated about us page');
 
+  // Seed Estimator Page
+  console.log('📊 Seeding estimator page...');
+  const estimatorPage = await prisma.estimatorPage.upsert({
+    where: { id: '00000000-0000-0000-0000-000000000001' },
+    update: {
+      title: 'Estimate Your Bathroom Remodel Cost',
+      description:
+        'Professional bathroom remodels - real quotes, competitive pricing, 15 verified steps',
+      howItWorksTitle: 'How It Works',
+      whyChooseUsTitle: 'Why Choose Us',
+    },
+    create: {
+      id: '00000000-0000-0000-0000-000000000001',
+      title: 'Estimate Your Bathroom Remodel Cost',
+      description:
+        'Professional bathroom remodels - real quotes, competitive pricing, 15 verified steps',
+      howItWorksTitle: 'How It Works',
+      whyChooseUsTitle: 'Why Choose Us',
+    },
+  });
+  console.log('✅ Created/updated estimator page');
+
+  // Seed How It Works steps
+  console.log('📝 Seeding How It Works steps...');
+  const howItWorksSteps = [
+    {
+      id: 'step-1',
+      stepNumber: 1,
+      title: 'Select Type',
+      description: 'Choose your bathroom type',
+    },
+    {
+      id: 'step-2',
+      stepNumber: 2,
+      title: 'Answer Questions',
+      description: 'Provide specific details',
+    },
+    {
+      id: 'step-3',
+      stepNumber: 3,
+      title: 'Get Estimate',
+      description: 'Receive detailed proposed estimate',
+    },
+  ];
+
+  for (const step of howItWorksSteps) {
+    await prisma.howItWorksStep.upsert({
+      where: { id: step.id },
+      update: step,
+      create: step,
+    });
+  }
+  console.log('✅ Created/updated How It Works steps');
+
+  // Seed Why Choose Us features
+  console.log('⭐ Seeding Why Choose Us features...');
+  const whyChooseUsFeatures = [
+    {
+      id: 'feature-0',
+      order: 0,
+      title: 'Transparent Pricing',
+      description: "See exactly what you're paying for with itemized estimates",
+    },
+    {
+      id: 'feature-1',
+      order: 1,
+      title: 'Fast & Easy',
+      description: 'Get your estimate within 15 minutes',
+    },
+    {
+      id: 'feature-2',
+      order: 2,
+      title: 'No Hidden Fees',
+      description: 'What you see is what you get, no surprises',
+    },
+    {
+      id: 'feature-3',
+      order: 3,
+      title: 'Expert Team',
+      description:
+        'Work with experienced professionals with years of experience',
+    },
+  ];
+
+  for (const feature of whyChooseUsFeatures) {
+    await prisma.whyChooseUsFeature.upsert({
+      where: { id: feature.id },
+      update: feature,
+      create: feature,
+    });
+  }
+  console.log('✅ Created/updated Why Choose Us features');
+
   console.log('\n✨ Seeding completed successfully!');
   console.log('\n📝 Default credentials:');
   console.log(`   Super Admin: ${superAdminEmail} / ${superAdminPassword}`);
@@ -328,6 +421,9 @@ async function clearDatabase() {
   await prisma.siteSettings.deleteMany();
   await prisma.homePage.deleteMany();
   await prisma.aboutUs.deleteMany();
+  await prisma.whyChooseUsFeature.deleteMany();
+  await prisma.howItWorksStep.deleteMany();
+  await prisma.estimatorPage.deleteMany();
   console.log('✅ Database cleared');
 }
 
