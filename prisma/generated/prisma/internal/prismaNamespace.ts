@@ -425,6 +425,9 @@ export const ModelName = {
   SubmissionItem: 'SubmissionItem',
   SubmissionMedia: 'SubmissionMedia',
   ContactUs: 'ContactUs',
+  EstimatorPage: 'EstimatorPage',
+  HowItWorksStep: 'HowItWorksStep',
+  WhyChooseUsFeature: 'WhyChooseUsFeature',
   FileInstance: 'FileInstance',
   HomePage: 'HomePage',
   ServiceStandsOut: 'ServiceStandsOut',
@@ -469,6 +472,9 @@ export type TypeMap<
       | 'submissionItem'
       | 'submissionMedia'
       | 'contactUs'
+      | 'estimatorPage'
+      | 'howItWorksStep'
+      | 'whyChooseUsFeature'
       | 'fileInstance'
       | 'homePage'
       | 'serviceStandsOut'
@@ -1469,6 +1475,234 @@ export type TypeMap<
         };
       };
     };
+    EstimatorPage: {
+      payload: Prisma.$EstimatorPagePayload<ExtArgs>;
+      fields: Prisma.EstimatorPageFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.EstimatorPageFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.EstimatorPageFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload>;
+        };
+        findFirst: {
+          args: Prisma.EstimatorPageFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.EstimatorPageFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload>;
+        };
+        findMany: {
+          args: Prisma.EstimatorPageFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload>[];
+        };
+        create: {
+          args: Prisma.EstimatorPageCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload>;
+        };
+        createMany: {
+          args: Prisma.EstimatorPageCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.EstimatorPageCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload>[];
+        };
+        delete: {
+          args: Prisma.EstimatorPageDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload>;
+        };
+        update: {
+          args: Prisma.EstimatorPageUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload>;
+        };
+        deleteMany: {
+          args: Prisma.EstimatorPageDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.EstimatorPageUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.EstimatorPageUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload>[];
+        };
+        upsert: {
+          args: Prisma.EstimatorPageUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EstimatorPagePayload>;
+        };
+        aggregate: {
+          args: Prisma.EstimatorPageAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEstimatorPage>;
+        };
+        groupBy: {
+          args: Prisma.EstimatorPageGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.EstimatorPageGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.EstimatorPageCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.EstimatorPageCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    HowItWorksStep: {
+      payload: Prisma.$HowItWorksStepPayload<ExtArgs>;
+      fields: Prisma.HowItWorksStepFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.HowItWorksStepFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.HowItWorksStepFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload>;
+        };
+        findFirst: {
+          args: Prisma.HowItWorksStepFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.HowItWorksStepFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload>;
+        };
+        findMany: {
+          args: Prisma.HowItWorksStepFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload>[];
+        };
+        create: {
+          args: Prisma.HowItWorksStepCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload>;
+        };
+        createMany: {
+          args: Prisma.HowItWorksStepCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.HowItWorksStepCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload>[];
+        };
+        delete: {
+          args: Prisma.HowItWorksStepDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload>;
+        };
+        update: {
+          args: Prisma.HowItWorksStepUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload>;
+        };
+        deleteMany: {
+          args: Prisma.HowItWorksStepDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.HowItWorksStepUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.HowItWorksStepUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload>[];
+        };
+        upsert: {
+          args: Prisma.HowItWorksStepUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HowItWorksStepPayload>;
+        };
+        aggregate: {
+          args: Prisma.HowItWorksStepAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHowItWorksStep>;
+        };
+        groupBy: {
+          args: Prisma.HowItWorksStepGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.HowItWorksStepGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.HowItWorksStepCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.HowItWorksStepCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    WhyChooseUsFeature: {
+      payload: Prisma.$WhyChooseUsFeaturePayload<ExtArgs>;
+      fields: Prisma.WhyChooseUsFeatureFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.WhyChooseUsFeatureFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.WhyChooseUsFeatureFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload>;
+        };
+        findFirst: {
+          args: Prisma.WhyChooseUsFeatureFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.WhyChooseUsFeatureFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload>;
+        };
+        findMany: {
+          args: Prisma.WhyChooseUsFeatureFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload>[];
+        };
+        create: {
+          args: Prisma.WhyChooseUsFeatureCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload>;
+        };
+        createMany: {
+          args: Prisma.WhyChooseUsFeatureCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.WhyChooseUsFeatureCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload>[];
+        };
+        delete: {
+          args: Prisma.WhyChooseUsFeatureDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload>;
+        };
+        update: {
+          args: Prisma.WhyChooseUsFeatureUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload>;
+        };
+        deleteMany: {
+          args: Prisma.WhyChooseUsFeatureDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.WhyChooseUsFeatureUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.WhyChooseUsFeatureUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload>[];
+        };
+        upsert: {
+          args: Prisma.WhyChooseUsFeatureUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WhyChooseUsFeaturePayload>;
+        };
+        aggregate: {
+          args: Prisma.WhyChooseUsFeatureAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWhyChooseUsFeature>;
+        };
+        groupBy: {
+          args: Prisma.WhyChooseUsFeatureGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.WhyChooseUsFeatureGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.WhyChooseUsFeatureCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.WhyChooseUsFeatureCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     FileInstance: {
       payload: Prisma.$FileInstancePayload<ExtArgs>;
       fields: Prisma.FileInstanceFieldRefs;
@@ -2420,6 +2654,45 @@ export const ContactUsScalarFieldEnum = {
 export type ContactUsScalarFieldEnum =
   (typeof ContactUsScalarFieldEnum)[keyof typeof ContactUsScalarFieldEnum];
 
+export const EstimatorPageScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  backgroundImageId: 'backgroundImageId',
+  howItWorksTitle: 'howItWorksTitle',
+  whyChooseUsTitle: 'whyChooseUsTitle',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type EstimatorPageScalarFieldEnum =
+  (typeof EstimatorPageScalarFieldEnum)[keyof typeof EstimatorPageScalarFieldEnum];
+
+export const HowItWorksStepScalarFieldEnum = {
+  id: 'id',
+  stepNumber: 'stepNumber',
+  title: 'title',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type HowItWorksStepScalarFieldEnum =
+  (typeof HowItWorksStepScalarFieldEnum)[keyof typeof HowItWorksStepScalarFieldEnum];
+
+export const WhyChooseUsFeatureScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  iconId: 'iconId',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type WhyChooseUsFeatureScalarFieldEnum =
+  (typeof WhyChooseUsFeatureScalarFieldEnum)[keyof typeof WhyChooseUsFeatureScalarFieldEnum];
+
 export const FileInstanceScalarFieldEnum = {
   id: 'id',
   filename: 'filename',
@@ -2869,6 +3142,9 @@ export type GlobalOmitConfig = {
   submissionItem?: Prisma.SubmissionItemOmit;
   submissionMedia?: Prisma.SubmissionMediaOmit;
   contactUs?: Prisma.ContactUsOmit;
+  estimatorPage?: Prisma.EstimatorPageOmit;
+  howItWorksStep?: Prisma.HowItWorksStepOmit;
+  whyChooseUsFeature?: Prisma.WhyChooseUsFeatureOmit;
   fileInstance?: Prisma.FileInstanceOmit;
   homePage?: Prisma.HomePageOmit;
   serviceStandsOut?: Prisma.ServiceStandsOutOmit;

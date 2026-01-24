@@ -1,0 +1,39 @@
+model EstimatorPage {
+  id                   String        @id @default(uuid())
+  title                String
+  description          String
+  backgroundImageId    String?
+  backgroundImage      FileInstance? @relation("EstimatorBackground", fields: [backgroundImageId], references: [id])
+
+  howItWorksTitle      String        @default("How It Works")
+  whyChooseUsTitle     String        @default("Why Choose Us")
+
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+}
+
+model HowItWorksStep {
+  id          String   @id @default(uuid())
+  stepNumber  Int
+  title       String
+  description String
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([stepNumber])
+}
+
+model WhyChooseUsFeature {
+  id          String        @id @default(uuid())
+  title       String
+  description String
+  iconId      String?
+  icon        FileInstance? @relation("WhyChooseUsIcon", fields: [iconId], references: [id])
+  order       Int           @default(0)
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([order])
+}

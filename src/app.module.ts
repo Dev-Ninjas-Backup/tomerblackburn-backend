@@ -21,6 +21,7 @@ import { SiteSettingsModule } from './modules/site-settings/site-settings.module
 import { ContactUsModule } from './modules/contact-us/contact-us.module';
 import { HomePageModule } from './modules/home-page/home-page.module';
 import { AboutUsModule } from './modules/about-us/about-us.module';
+import { EstimatorPageModule } from './modules/estimator-page/estimator-page.module';
 import { PricingService } from './modules/pricing/pricing.service';
 import { EmailService } from './modules/notifications/email.service';
 import { PdfGeneratorService } from './modules/pdf/pdf-generator.service';
@@ -52,6 +53,7 @@ import { InitModule } from './common/init/init.module';
     ContactUsModule,
     HomePageModule,
     AboutUsModule,
+    EstimatorPageModule,
   ],
   controllers: [AppController],
   providers: [AppService, PricingService, EmailService, PdfGeneratorService],

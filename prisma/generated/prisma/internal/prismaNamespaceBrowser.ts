@@ -67,6 +67,9 @@ export const ModelName = {
   SubmissionItem: 'SubmissionItem',
   SubmissionMedia: 'SubmissionMedia',
   ContactUs: 'ContactUs',
+  EstimatorPage: 'EstimatorPage',
+  HowItWorksStep: 'HowItWorksStep',
+  WhyChooseUsFeature: 'WhyChooseUsFeature',
   FileInstance: 'FileInstance',
   HomePage: 'HomePage',
   ServiceStandsOut: 'ServiceStandsOut',
@@ -321,6 +324,45 @@ export const ContactUsScalarFieldEnum = {
 
 export type ContactUsScalarFieldEnum =
   (typeof ContactUsScalarFieldEnum)[keyof typeof ContactUsScalarFieldEnum];
+
+export const EstimatorPageScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  backgroundImageId: 'backgroundImageId',
+  howItWorksTitle: 'howItWorksTitle',
+  whyChooseUsTitle: 'whyChooseUsTitle',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type EstimatorPageScalarFieldEnum =
+  (typeof EstimatorPageScalarFieldEnum)[keyof typeof EstimatorPageScalarFieldEnum];
+
+export const HowItWorksStepScalarFieldEnum = {
+  id: 'id',
+  stepNumber: 'stepNumber',
+  title: 'title',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type HowItWorksStepScalarFieldEnum =
+  (typeof HowItWorksStepScalarFieldEnum)[keyof typeof HowItWorksStepScalarFieldEnum];
+
+export const WhyChooseUsFeatureScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  iconId: 'iconId',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type WhyChooseUsFeatureScalarFieldEnum =
+  (typeof WhyChooseUsFeatureScalarFieldEnum)[keyof typeof WhyChooseUsFeatureScalarFieldEnum];
 
 export const FileInstanceScalarFieldEnum = {
   id: 'id',

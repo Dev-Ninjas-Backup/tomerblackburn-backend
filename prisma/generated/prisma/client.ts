@@ -108,6 +108,21 @@ export type SubmissionMedia = Prisma.SubmissionMediaModel;
  */
 export type ContactUs = Prisma.ContactUsModel;
 /**
+ * Model EstimatorPage
+ *
+ */
+export type EstimatorPage = Prisma.EstimatorPageModel;
+/**
+ * Model HowItWorksStep
+ *
+ */
+export type HowItWorksStep = Prisma.HowItWorksStepModel;
+/**
+ * Model WhyChooseUsFeature
+ *
+ */
+export type WhyChooseUsFeature = Prisma.WhyChooseUsFeatureModel;
+/**
  * Model FileInstance
  *
  */
