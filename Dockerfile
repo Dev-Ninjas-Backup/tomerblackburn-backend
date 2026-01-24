@@ -63,9 +63,10 @@ RUN ls -la prisma/ && ls -la prisma/migrations/ || echo "Migrations directory ch
 COPY --from=builder /app/dist ./dist
 
 # Create uploads directory structure with proper permissions
-RUN mkdir -p /app/uploads/image /app/uploads/video /app/uploads/audio /app/uploads/document /app/uploads/any && \
-    chown -R node:node /app/uploads && \
-    chmod -R 755 /app/uploads
+RUN mkdir -p /app/uploads/image /app/uploads/video /app/uploads/audio /app/uploads/document /app/uploads/any
+
+# Set proper ownership of all app files to node user before switching
+RUN chown -R node:node /app
 
 # Unset dummy DATABASE_URL
 ENV DATABASE_URL=""
