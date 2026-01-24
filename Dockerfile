@@ -62,8 +62,16 @@ RUN ls -la prisma/ && ls -la prisma/migrations/ || echo "Migrations directory ch
 # Copy built application from builder
 COPY --from=builder /app/dist ./dist
 
+# Create uploads directory structure with proper permissions
+RUN mkdir -p /app/uploads/image /app/uploads/video /app/uploads/audio /app/uploads/document /app/uploads/any && \
+    chown -R node:node /app/uploads && \
+    chmod -R 755 /app/uploads
+
 # Unset dummy DATABASE_URL
 ENV DATABASE_URL=""
+
+# Switch to non-root user for security
+USER node
 
 # Expose port
 EXPOSE 5058

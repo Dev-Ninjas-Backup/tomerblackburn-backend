@@ -41,9 +41,6 @@ importers:
       '@softvence/mail':
         specifier: ^0.0.5
         version: 0.0.5(class-transformer@0.5.1)(class-validator@0.14.3)
-      '@softvence/s3':
-        specifier: ^0.0.5
-        version: 0.0.5(class-transformer@0.5.1)(class-validator@0.14.3)
       bcrypt:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1343,9 +1340,6 @@ packages:
 
   '@softvence/mail@0.0.5':
     resolution: {integrity: sha512-BxmawUHw9u4OPalp/E9Q41sQ/Ct55JAwUvFo4NbKPs+Zg/gVGPmRd2anfD8SCRFLUALnPQ7DD9C+mf8e2VD1Mw==}
-
-  '@softvence/s3@0.0.5':
-    resolution: {integrity: sha512-bL/gh7VIc2m9zDPOJCl+uL7uUfSL0XUHuHYizd2ZO5IEeCcpSJEMLoAEb2UJEBktmaes3dIN09iTS6MTbEXpQQ==}
 
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
@@ -5921,26 +5915,6 @@ snapshots:
       reflect-metadata: 0.2.2
       rxjs: 7.8.2
       type-fest: 5.3.1
-      uuid: 13.0.0
-    transitivePeerDependencies:
-      - '@nestjs/microservices'
-      - '@nestjs/websockets'
-      - aws-crt
-      - class-transformer
-      - class-validator
-      - supports-color
-
-  '@softvence/s3@0.0.5(class-transformer@0.5.1)(class-validator@0.14.3)':
-    dependencies:
-      '@aws-sdk/client-s3': 3.962.0
-      '@nestjs/common': 11.1.9(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core': 11.1.9(@nestjs/common@11.1.9(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.9)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/platform-express': 11.1.9(@nestjs/common@11.1.9(class-transformer@0.5.1)(class-validator@0.14.3)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.9)
-      express: 5.1.0
-      multer: 2.0.2
-      node-cache: 5.1.2
-      reflect-metadata: 0.2.2
-      rxjs: 7.8.2
       uuid: 13.0.0
     transitivePeerDependencies:
       - '@nestjs/microservices'

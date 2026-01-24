@@ -61,3 +61,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 /public/
 cost-codes-data.json
 /scripts/
+
+# Uploaded files (keep directory structure but ignore files)
+/uploads/*
+!/uploads/**/.gitkeep
