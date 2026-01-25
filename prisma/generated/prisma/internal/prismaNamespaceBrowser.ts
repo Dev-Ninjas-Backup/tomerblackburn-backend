@@ -59,6 +59,7 @@ export const ModelName = {
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
   EmailLog: 'EmailLog',
+  NextStep: 'NextStep',
   Service: 'Service',
   ServiceCategory: 'ServiceCategory',
   ServiceCostCode: 'ServiceCostCode',
@@ -87,12 +88,12 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName];
  * Enums
  */
 
-export const TransactionIsolationLevel = runtime.makeStrictEnum({
+export const TransactionIsolationLevel = {
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable',
-} as const);
+} as const;
 
 export type TransactionIsolationLevel =
   (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
@@ -182,6 +183,20 @@ export const EmailLogScalarFieldEnum = {
 
 export type EmailLogScalarFieldEnum =
   (typeof EmailLogScalarFieldEnum)[keyof typeof EmailLogScalarFieldEnum];
+
+export const NextStepScalarFieldEnum = {
+  id: 'id',
+  stepNumber: 'stepNumber',
+  title: 'title',
+  description: 'description',
+  isActive: 'isActive',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type NextStepScalarFieldEnum =
+  (typeof NextStepScalarFieldEnum)[keyof typeof NextStepScalarFieldEnum];
 
 export const ServiceScalarFieldEnum = {
   id: 'id',

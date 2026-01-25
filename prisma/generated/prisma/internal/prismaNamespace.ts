@@ -93,12 +93,12 @@ export type PrismaVersion = {
 };
 
 /**
- * Prisma Client JS version: 7.3.0
- * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
+ * Prisma Client JS version: 7.0.1
+ * Query Engine version: f09f2815f091dbba658cdcd2264306d88bb5bda6
  */
 export const prismaVersion: PrismaVersion = {
-  client: '7.3.0',
-  engine: '9d6ad21cbbceab97458517b147a6a09ff43aa735',
+  client: '7.0.1',
+  engine: 'f09f2815f091dbba658cdcd2264306d88bb5bda6',
 };
 
 /**
@@ -417,6 +417,7 @@ export const ModelName = {
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
   EmailLog: 'EmailLog',
+  NextStep: 'NextStep',
   Service: 'Service',
   ServiceCategory: 'ServiceCategory',
   ServiceCostCode: 'ServiceCostCode',
@@ -464,6 +465,7 @@ export type TypeMap<
       | 'costCodeCategory'
       | 'costCodeOption'
       | 'emailLog'
+      | 'nextStep'
       | 'service'
       | 'serviceCategory'
       | 'serviceCostCode'
@@ -863,6 +865,82 @@ export type TypeMap<
           args: Prisma.EmailLogCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.EmailLogCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    NextStep: {
+      payload: Prisma.$NextStepPayload<ExtArgs>;
+      fields: Prisma.NextStepFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.NextStepFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.NextStepFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload>;
+        };
+        findFirst: {
+          args: Prisma.NextStepFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.NextStepFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload>;
+        };
+        findMany: {
+          args: Prisma.NextStepFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload>[];
+        };
+        create: {
+          args: Prisma.NextStepCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload>;
+        };
+        createMany: {
+          args: Prisma.NextStepCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.NextStepCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload>[];
+        };
+        delete: {
+          args: Prisma.NextStepDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload>;
+        };
+        update: {
+          args: Prisma.NextStepUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload>;
+        };
+        deleteMany: {
+          args: Prisma.NextStepDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.NextStepUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.NextStepUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload>[];
+        };
+        upsert: {
+          args: Prisma.NextStepUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NextStepPayload>;
+        };
+        aggregate: {
+          args: Prisma.NextStepAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNextStep>;
+        };
+        groupBy: {
+          args: Prisma.NextStepGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.NextStepGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.NextStepCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.NextStepCountAggregateOutputType>
             | number;
         };
       };
@@ -2512,6 +2590,20 @@ export const EmailLogScalarFieldEnum = {
 export type EmailLogScalarFieldEnum =
   (typeof EmailLogScalarFieldEnum)[keyof typeof EmailLogScalarFieldEnum];
 
+export const NextStepScalarFieldEnum = {
+  id: 'id',
+  stepNumber: 'stepNumber',
+  title: 'title',
+  description: 'description',
+  isActive: 'isActive',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type NextStepScalarFieldEnum =
+  (typeof NextStepScalarFieldEnum)[keyof typeof NextStepScalarFieldEnum];
+
 export const ServiceScalarFieldEnum = {
   id: 'id',
   serviceCategoryId: 'serviceCategoryId',
@@ -3083,7 +3175,7 @@ export type PrismaClientOptions = (
    *  { emit: 'stdout', level: 'error' }
    *
    * ```
-   * Read more in our [docs](https://pris.ly/d/logging).
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
    */
   log?: (LogLevel | LogDefinition)[];
   /**
@@ -3111,22 +3203,6 @@ export type PrismaClientOptions = (
    * ```
    */
   omit?: GlobalOmitConfig;
-  /**
-   * SQL commenter plugins that add metadata to SQL queries as comments.
-   * Comments follow the sqlcommenter format: https://google.github.io/sqlcommenter/
-   *
-   * @example
-   * ```
-   * const prisma = new PrismaClient({
-   *   adapter,
-   *   comments: [
-   *     traceContext(),
-   *     queryInsights(),
-   *   ],
-   * })
-   * ```
-   */
-  comments?: runtime.SqlCommenterPlugin[];
 };
 export type GlobalOmitConfig = {
   activityLog?: Prisma.ActivityLogOmit;
@@ -3134,6 +3210,7 @@ export type GlobalOmitConfig = {
   costCodeCategory?: Prisma.CostCodeCategoryOmit;
   costCodeOption?: Prisma.CostCodeOptionOmit;
   emailLog?: Prisma.EmailLogOmit;
+  nextStep?: Prisma.NextStepOmit;
   service?: Prisma.ServiceOmit;
   serviceCategory?: Prisma.ServiceCategoryOmit;
   serviceCostCode?: Prisma.ServiceCostCodeOmit;

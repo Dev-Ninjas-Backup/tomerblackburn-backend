@@ -30,7 +30,7 @@ export * from './enums';
  * const activityLogs = await prisma.activityLog.findMany()
  * ```
  *
- * Read more in our [docs](https://pris.ly/d/client).
+ * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
  */
 export const PrismaClient = $Class.getPrismaClientClass();
 export type PrismaClient<
@@ -67,6 +67,11 @@ export type CostCodeOption = Prisma.CostCodeOptionModel;
  *
  */
 export type EmailLog = Prisma.EmailLogModel;
+/**
+ * Model NextStep
+ *
+ */
+export type NextStep = Prisma.NextStepModel;
 /**
  * Model Service
  *

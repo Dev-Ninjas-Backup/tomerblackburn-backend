@@ -2,6 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { UpdateSubmissionDto } from './dto/update-submission.dto';
+import { CreateNextStepDto } from './dto/create-next-step.dto';
+import { UpdateNextStepDto } from './dto/update-next-step.dto';
 import { PrismaService } from '@/common/prisma/prisma.service';
 import { SubmissionStatus } from 'generated/prisma/enums';
 import {
@@ -633,6 +635,163 @@ export class SubmissionsService {
         throw error;
       }
       throw new Error(`Failed to delete submission: ${error.message}`);
+    }
+  }
+
+  async getWhatHappensNext() {
+    try {
+      const steps = await this.prisma.nextStep.findMany({
+        where: { isActive: true },
+        orderBy: [{ displayOrder: 'asc' }, { stepNumber: 'asc' }],
+      });
+
+      return {
+        message: 'Next steps retrieved successfully',
+        data: {
+          title: 'What happens next?',
+          steps: steps.map((step) => ({
+            id: step.id,
+            stepNumber: step.stepNumber,
+            title: step.title,
+            description: step.description,
+          })),
+        },
+      };
+    } catch (error) {
+      throw new Error(`Failed to retrieve next steps: ${error.message}`);
+    }
+  }
+
+  async createNextStep(createNextStepDto: CreateNextStepDto) {
+    try {
+      const existingStep = await this.prisma.nextStep.findUnique({
+        where: { stepNumber: createNextStepDto.stepNumber },
+      });
+
+      if (existingStep) {
+        throw new Error(
+          `Step with number ${createNextStepDto.stepNumber} already exists`,
+        );
+      }
+
+      const nextStep = await this.prisma.nextStep.create({
+        data: createNextStepDto,
+      });
+
+      return {
+        message: 'Next step created successfully',
+        data: nextStep,
+      };
+    } catch (error) {
+      throw new Error(`Failed to create next step: ${error.message}`);
+    }
+  }
+
+  async getAllNextSteps(includeInactive: boolean = false) {
+    try {
+      const where = includeInactive ? {} : { isActive: true };
+
+      const steps = await this.prisma.nextStep.findMany({
+        where,
+        orderBy: [{ displayOrder: 'asc' }, { stepNumber: 'asc' }],
+      });
+
+      return {
+        message: 'Next steps retrieved successfully',
+        count: steps.length,
+        data: steps,
+      };
+    } catch (error) {
+      throw new Error(`Failed to retrieve next steps: ${error.message}`);
+    }
+  }
+
+  async getNextStepById(id: string) {
+    try {
+      const nextStep = await this.prisma.nextStep.findUnique({
+        where: { id },
+      });
+
+      if (!nextStep) {
+        throw new NotFoundException(`Next step with ID ${id} not found`);
+      }
+
+      return {
+        message: 'Next step retrieved successfully',
+        data: nextStep,
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new Error(`Failed to retrieve next step: ${error.message}`);
+    }
+  }
+
+  async updateNextStep(id: string, updateNextStepDto: UpdateNextStepDto) {
+    try {
+      const existingStep = await this.prisma.nextStep.findUnique({
+        where: { id },
+      });
+
+      if (!existingStep) {
+        throw new NotFoundException(`Next step with ID ${id} not found`);
+      }
+
+      if (
+        updateNextStepDto.stepNumber &&
+        updateNextStepDto.stepNumber !== existingStep.stepNumber
+      ) {
+        const duplicateStep = await this.prisma.nextStep.findUnique({
+          where: { stepNumber: updateNextStepDto.stepNumber },
+        });
+
+        if (duplicateStep) {
+          throw new Error(
+            `Step with number ${updateNextStepDto.stepNumber} already exists`,
+          );
+        }
+      }
+
+      const updatedStep = await this.prisma.nextStep.update({
+        where: { id },
+        data: updateNextStepDto,
+      });
+
+      return {
+        message: 'Next step updated successfully',
+        data: updatedStep,
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new Error(`Failed to update next step: ${error.message}`);
+    }
+  }
+
+  async deleteNextStep(id: string) {
+    try {
+      const existingStep = await this.prisma.nextStep.findUnique({
+        where: { id },
+      });
+
+      if (!existingStep) {
+        throw new NotFoundException(`Next step with ID ${id} not found`);
+      }
+
+      await this.prisma.nextStep.delete({
+        where: { id },
+      });
+
+      return {
+        message: 'Next step deleted successfully',
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+      throw new Error(`Failed to delete next step: ${error.message}`);
     }
   }
 }
