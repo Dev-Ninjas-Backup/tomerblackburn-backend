@@ -12,6 +12,7 @@ export type * from './models/CostCode';
 export type * from './models/CostCodeCategory';
 export type * from './models/CostCodeOption';
 export type * from './models/EmailLog';
+export type * from './models/NextStep';
 export type * from './models/Service';
 export type * from './models/ServiceCategory';
 export type * from './models/ServiceCostCode';

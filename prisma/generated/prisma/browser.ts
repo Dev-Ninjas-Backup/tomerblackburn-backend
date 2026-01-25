@@ -42,6 +42,11 @@ export type CostCodeOption = Prisma.CostCodeOptionModel;
  */
 export type EmailLog = Prisma.EmailLogModel;
 /**
+ * Model NextStep
+ *
+ */
+export type NextStep = Prisma.NextStepModel;
+/**
  * Model Service
  *
  */

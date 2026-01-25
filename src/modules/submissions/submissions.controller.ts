@@ -12,6 +12,8 @@ import { ApiTags, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { SubmissionsService } from './submissions.service';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { UpdateSubmissionDto } from './dto/update-submission.dto';
+import { CreateNextStepDto } from './dto/create-next-step.dto';
+import { UpdateNextStepDto } from './dto/update-next-step.dto';
 import { SubmissionStatus } from 'generated/prisma/enums';
 
 @ApiTags('Submissions')
@@ -36,6 +38,12 @@ export class SubmissionsController {
   @ApiOperation({ summary: 'Get dashboard statistics' })
   getDashboardStats() {
     return this.submissionsService.getDashboardStats();
+  }
+
+  @Get('what-happens-next')
+  @ApiOperation({ summary: 'Get what happens next steps after submission' })
+  getWhatHappensNext() {
+    return this.submissionsService.getWhatHappensNext();
   }
 
   @Get('by-number/:submissionNumber')
@@ -103,5 +111,47 @@ export class SubmissionsController {
   @ApiOperation({ summary: 'Delete submission' })
   remove(@Param('id') id: string) {
     return this.submissionsService.remove(id);
+  }
+
+  // Next Steps CRUD endpoints
+  @Post('next-steps')
+  @ApiOperation({ summary: 'Create a new next step' })
+  createNextStep(@Body() createNextStepDto: CreateNextStepDto) {
+    return this.submissionsService.createNextStep(createNextStepDto);
+  }
+
+  @Get('next-steps')
+  @ApiOperation({ summary: 'Get all next steps' })
+  @ApiQuery({
+    name: 'includeInactive',
+    required: false,
+    type: Boolean,
+    description: 'Include inactive steps',
+  })
+  getAllNextSteps(@Query('includeInactive') includeInactive: string | boolean) {
+    const shouldIncludeInactive =
+      includeInactive === 'true' || includeInactive === true;
+    return this.submissionsService.getAllNextSteps(shouldIncludeInactive);
+  }
+
+  @Get('next-steps/:id')
+  @ApiOperation({ summary: 'Get a next step by ID' })
+  getNextStepById(@Param('id') id: string) {
+    return this.submissionsService.getNextStepById(id);
+  }
+
+  @Patch('next-steps/:id')
+  @ApiOperation({ summary: 'Update a next step' })
+  updateNextStep(
+    @Param('id') id: string,
+    @Body() updateNextStepDto: UpdateNextStepDto,
+  ) {
+    return this.submissionsService.updateNextStep(id, updateNextStepDto);
+  }
+
+  @Delete('next-steps/:id')
+  @ApiOperation({ summary: 'Delete a next step' })
+  deleteNextStep(@Param('id') id: string) {
+    return this.submissionsService.deleteNextStep(id);
   }
 }
