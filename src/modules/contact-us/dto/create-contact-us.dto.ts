@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, IsEmail, MaxLength } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsEmail,
+  MaxLength,
+  IsOptional,
+  IsDateString,
+} from 'class-validator';
 
 export class CreateContactUsDto {
   @ApiProperty({
@@ -87,4 +94,15 @@ export class CreateContactUsDto {
   @IsString()
   @IsNotEmpty()
   message: string;
+
+  @ApiProperty({
+    description: 'Project start date',
+    example: '2024-03-15T00:00:00.000Z',
+    required: false,
+    type: String,
+    format: 'date-time',
+  })
+  @IsOptional()
+  @IsDateString()
+  projectStartDate?: string;
 }

@@ -74,6 +74,13 @@ export class ContactUsResponseDto {
   message: string;
 
   @ApiProperty({
+    description: 'Project start date',
+    example: '2024-03-15T00:00:00.000Z',
+    required: false,
+  })
+  projectStartDate?: Date;
+
+  @ApiProperty({
     description: 'Whether the message has been read',
     example: false,
   })

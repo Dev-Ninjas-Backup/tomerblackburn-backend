@@ -2918,6 +2918,7 @@ export const ContactUsScalarFieldEnum = {
   state: 'state',
   zipCode: 'zipCode',
   message: 'message',
+  projectStartDate: 'projectStartDate',
   isRead: 'isRead',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
