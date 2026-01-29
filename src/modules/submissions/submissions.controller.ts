@@ -14,6 +14,7 @@ import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { UpdateSubmissionDto } from './dto/update-submission.dto';
 import { CreateNextStepDto } from './dto/create-next-step.dto';
 import { UpdateNextStepDto } from './dto/update-next-step.dto';
+import { UpdateWhatHappensNextDto } from './dto/update-what-happens-next.dto';
 import { SubmissionStatus } from 'generated/prisma/enums';
 
 @ApiTags('Submissions')
@@ -44,6 +45,18 @@ export class SubmissionsController {
   @ApiOperation({ summary: 'Get what happens next steps after submission' })
   getWhatHappensNext() {
     return this.submissionsService.getWhatHappensNext();
+  }
+
+  @Post('what-happens-next')
+  @ApiOperation({
+    summary: 'Create or update what happens next steps in bulk',
+  })
+  updateWhatHappensNext(
+    @Body() updateWhatHappensNextDto: UpdateWhatHappensNextDto,
+  ) {
+    return this.submissionsService.updateWhatHappensNextSteps(
+      updateWhatHappensNextDto,
+    );
   }
 
   @Get('by-number/:submissionNumber')

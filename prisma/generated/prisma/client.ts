@@ -30,7 +30,7 @@ export * from './enums';
  * const activityLogs = await prisma.activityLog.findMany()
  * ```
  *
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ * Read more in our [docs](https://pris.ly/d/client).
  */
 export const PrismaClient = $Class.getPrismaClientClass();
 export type PrismaClient<
@@ -73,6 +73,11 @@ export type EmailLog = Prisma.EmailLogModel;
  */
 export type NextStep = Prisma.NextStepModel;
 /**
+ * Model PrivacyPolicy
+ *
+ */
+export type PrivacyPolicy = Prisma.PrivacyPolicyModel;
+/**
  * Model Service
  *
  */
@@ -107,6 +112,11 @@ export type SubmissionItem = Prisma.SubmissionItemModel;
  *
  */
 export type SubmissionMedia = Prisma.SubmissionMediaModel;
+/**
+ * Model TermsOfService
+ *
+ */
+export type TermsOfService = Prisma.TermsOfServiceModel;
 /**
  * Model ContactUs
  *
