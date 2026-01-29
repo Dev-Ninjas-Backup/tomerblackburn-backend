@@ -60,6 +60,7 @@ export const ModelName = {
   CostCodeOption: 'CostCodeOption',
   EmailLog: 'EmailLog',
   NextStep: 'NextStep',
+  PrivacyPolicy: 'PrivacyPolicy',
   Service: 'Service',
   ServiceCategory: 'ServiceCategory',
   ServiceCostCode: 'ServiceCostCode',
@@ -67,6 +68,7 @@ export const ModelName = {
   Submission: 'Submission',
   SubmissionItem: 'SubmissionItem',
   SubmissionMedia: 'SubmissionMedia',
+  TermsOfService: 'TermsOfService',
   ContactUs: 'ContactUs',
   EstimatorPage: 'EstimatorPage',
   HowItWorksStep: 'HowItWorksStep',
@@ -88,12 +90,12 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName];
  * Enums
  */
 
-export const TransactionIsolationLevel = {
+export const TransactionIsolationLevel = runtime.makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable',
-} as const;
+} as const);
 
 export type TransactionIsolationLevel =
   (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
@@ -197,6 +199,18 @@ export const NextStepScalarFieldEnum = {
 
 export type NextStepScalarFieldEnum =
   (typeof NextStepScalarFieldEnum)[keyof typeof NextStepScalarFieldEnum];
+
+export const PrivacyPolicyScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  effectiveDate: 'effectiveDate',
+  body: 'body',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type PrivacyPolicyScalarFieldEnum =
+  (typeof PrivacyPolicyScalarFieldEnum)[keyof typeof PrivacyPolicyScalarFieldEnum];
 
 export const ServiceScalarFieldEnum = {
   id: 'id',
@@ -320,6 +334,18 @@ export const SubmissionMediaScalarFieldEnum = {
 
 export type SubmissionMediaScalarFieldEnum =
   (typeof SubmissionMediaScalarFieldEnum)[keyof typeof SubmissionMediaScalarFieldEnum];
+
+export const TermsOfServiceScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  effectiveDate: 'effectiveDate',
+  body: 'body',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type TermsOfServiceScalarFieldEnum =
+  (typeof TermsOfServiceScalarFieldEnum)[keyof typeof TermsOfServiceScalarFieldEnum];
 
 export const ContactUsScalarFieldEnum = {
   id: 'id',

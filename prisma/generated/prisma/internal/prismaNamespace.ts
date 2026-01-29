@@ -93,12 +93,12 @@ export type PrismaVersion = {
 };
 
 /**
- * Prisma Client JS version: 7.0.1
- * Query Engine version: f09f2815f091dbba658cdcd2264306d88bb5bda6
+ * Prisma Client JS version: 7.3.0
+ * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
  */
 export const prismaVersion: PrismaVersion = {
-  client: '7.0.1',
-  engine: 'f09f2815f091dbba658cdcd2264306d88bb5bda6',
+  client: '7.3.0',
+  engine: '9d6ad21cbbceab97458517b147a6a09ff43aa735',
 };
 
 /**
@@ -418,6 +418,7 @@ export const ModelName = {
   CostCodeOption: 'CostCodeOption',
   EmailLog: 'EmailLog',
   NextStep: 'NextStep',
+  PrivacyPolicy: 'PrivacyPolicy',
   Service: 'Service',
   ServiceCategory: 'ServiceCategory',
   ServiceCostCode: 'ServiceCostCode',
@@ -425,6 +426,7 @@ export const ModelName = {
   Submission: 'Submission',
   SubmissionItem: 'SubmissionItem',
   SubmissionMedia: 'SubmissionMedia',
+  TermsOfService: 'TermsOfService',
   ContactUs: 'ContactUs',
   EstimatorPage: 'EstimatorPage',
   HowItWorksStep: 'HowItWorksStep',
@@ -466,6 +468,7 @@ export type TypeMap<
       | 'costCodeOption'
       | 'emailLog'
       | 'nextStep'
+      | 'privacyPolicy'
       | 'service'
       | 'serviceCategory'
       | 'serviceCostCode'
@@ -473,6 +476,7 @@ export type TypeMap<
       | 'submission'
       | 'submissionItem'
       | 'submissionMedia'
+      | 'termsOfService'
       | 'contactUs'
       | 'estimatorPage'
       | 'howItWorksStep'
@@ -941,6 +945,82 @@ export type TypeMap<
           args: Prisma.NextStepCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.NextStepCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    PrivacyPolicy: {
+      payload: Prisma.$PrivacyPolicyPayload<ExtArgs>;
+      fields: Prisma.PrivacyPolicyFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.PrivacyPolicyFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.PrivacyPolicyFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload>;
+        };
+        findFirst: {
+          args: Prisma.PrivacyPolicyFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.PrivacyPolicyFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload>;
+        };
+        findMany: {
+          args: Prisma.PrivacyPolicyFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload>[];
+        };
+        create: {
+          args: Prisma.PrivacyPolicyCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload>;
+        };
+        createMany: {
+          args: Prisma.PrivacyPolicyCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.PrivacyPolicyCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload>[];
+        };
+        delete: {
+          args: Prisma.PrivacyPolicyDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload>;
+        };
+        update: {
+          args: Prisma.PrivacyPolicyUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload>;
+        };
+        deleteMany: {
+          args: Prisma.PrivacyPolicyDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.PrivacyPolicyUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.PrivacyPolicyUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload>[];
+        };
+        upsert: {
+          args: Prisma.PrivacyPolicyUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PrivacyPolicyPayload>;
+        };
+        aggregate: {
+          args: Prisma.PrivacyPolicyAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePrivacyPolicy>;
+        };
+        groupBy: {
+          args: Prisma.PrivacyPolicyGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.PrivacyPolicyGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.PrivacyPolicyCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.PrivacyPolicyCountAggregateOutputType>
             | number;
         };
       };
@@ -1473,6 +1553,82 @@ export type TypeMap<
           args: Prisma.SubmissionMediaCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.SubmissionMediaCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    TermsOfService: {
+      payload: Prisma.$TermsOfServicePayload<ExtArgs>;
+      fields: Prisma.TermsOfServiceFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.TermsOfServiceFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.TermsOfServiceFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload>;
+        };
+        findFirst: {
+          args: Prisma.TermsOfServiceFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.TermsOfServiceFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload>;
+        };
+        findMany: {
+          args: Prisma.TermsOfServiceFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload>[];
+        };
+        create: {
+          args: Prisma.TermsOfServiceCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload>;
+        };
+        createMany: {
+          args: Prisma.TermsOfServiceCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.TermsOfServiceCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload>[];
+        };
+        delete: {
+          args: Prisma.TermsOfServiceDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload>;
+        };
+        update: {
+          args: Prisma.TermsOfServiceUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload>;
+        };
+        deleteMany: {
+          args: Prisma.TermsOfServiceDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.TermsOfServiceUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.TermsOfServiceUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload>[];
+        };
+        upsert: {
+          args: Prisma.TermsOfServiceUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TermsOfServicePayload>;
+        };
+        aggregate: {
+          args: Prisma.TermsOfServiceAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTermsOfService>;
+        };
+        groupBy: {
+          args: Prisma.TermsOfServiceGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.TermsOfServiceGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.TermsOfServiceCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.TermsOfServiceCountAggregateOutputType>
             | number;
         };
       };
@@ -2604,6 +2760,18 @@ export const NextStepScalarFieldEnum = {
 export type NextStepScalarFieldEnum =
   (typeof NextStepScalarFieldEnum)[keyof typeof NextStepScalarFieldEnum];
 
+export const PrivacyPolicyScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  effectiveDate: 'effectiveDate',
+  body: 'body',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type PrivacyPolicyScalarFieldEnum =
+  (typeof PrivacyPolicyScalarFieldEnum)[keyof typeof PrivacyPolicyScalarFieldEnum];
+
 export const ServiceScalarFieldEnum = {
   id: 'id',
   serviceCategoryId: 'serviceCategoryId',
@@ -2726,6 +2894,18 @@ export const SubmissionMediaScalarFieldEnum = {
 
 export type SubmissionMediaScalarFieldEnum =
   (typeof SubmissionMediaScalarFieldEnum)[keyof typeof SubmissionMediaScalarFieldEnum];
+
+export const TermsOfServiceScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  effectiveDate: 'effectiveDate',
+  body: 'body',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type TermsOfServiceScalarFieldEnum =
+  (typeof TermsOfServiceScalarFieldEnum)[keyof typeof TermsOfServiceScalarFieldEnum];
 
 export const ContactUsScalarFieldEnum = {
   id: 'id',
@@ -3175,7 +3355,7 @@ export type PrismaClientOptions = (
    *  { emit: 'stdout', level: 'error' }
    *
    * ```
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
+   * Read more in our [docs](https://pris.ly/d/logging).
    */
   log?: (LogLevel | LogDefinition)[];
   /**
@@ -3203,6 +3383,22 @@ export type PrismaClientOptions = (
    * ```
    */
   omit?: GlobalOmitConfig;
+  /**
+   * SQL commenter plugins that add metadata to SQL queries as comments.
+   * Comments follow the sqlcommenter format: https://google.github.io/sqlcommenter/
+   *
+   * @example
+   * ```
+   * const prisma = new PrismaClient({
+   *   adapter,
+   *   comments: [
+   *     traceContext(),
+   *     queryInsights(),
+   *   ],
+   * })
+   * ```
+   */
+  comments?: runtime.SqlCommenterPlugin[];
 };
 export type GlobalOmitConfig = {
   activityLog?: Prisma.ActivityLogOmit;
@@ -3211,6 +3407,7 @@ export type GlobalOmitConfig = {
   costCodeOption?: Prisma.CostCodeOptionOmit;
   emailLog?: Prisma.EmailLogOmit;
   nextStep?: Prisma.NextStepOmit;
+  privacyPolicy?: Prisma.PrivacyPolicyOmit;
   service?: Prisma.ServiceOmit;
   serviceCategory?: Prisma.ServiceCategoryOmit;
   serviceCostCode?: Prisma.ServiceCostCodeOmit;
@@ -3218,6 +3415,7 @@ export type GlobalOmitConfig = {
   submission?: Prisma.SubmissionOmit;
   submissionItem?: Prisma.SubmissionItemOmit;
   submissionMedia?: Prisma.SubmissionMediaOmit;
+  termsOfService?: Prisma.TermsOfServiceOmit;
   contactUs?: Prisma.ContactUsOmit;
   estimatorPage?: Prisma.EstimatorPageOmit;
   howItWorksStep?: Prisma.HowItWorksStepOmit;

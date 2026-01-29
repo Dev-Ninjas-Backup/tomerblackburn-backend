@@ -47,6 +47,11 @@ export type EmailLog = Prisma.EmailLogModel;
  */
 export type NextStep = Prisma.NextStepModel;
 /**
+ * Model PrivacyPolicy
+ *
+ */
+export type PrivacyPolicy = Prisma.PrivacyPolicyModel;
+/**
  * Model Service
  *
  */
@@ -81,6 +86,11 @@ export type SubmissionItem = Prisma.SubmissionItemModel;
  *
  */
 export type SubmissionMedia = Prisma.SubmissionMediaModel;
+/**
+ * Model TermsOfService
+ *
+ */
+export type TermsOfService = Prisma.TermsOfServiceModel;
 /**
  * Model ContactUs
  *

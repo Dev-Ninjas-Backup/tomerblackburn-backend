@@ -4,6 +4,7 @@ import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { UpdateSubmissionDto } from './dto/update-submission.dto';
 import { CreateNextStepDto } from './dto/create-next-step.dto';
 import { UpdateNextStepDto } from './dto/update-next-step.dto';
+import { UpdateWhatHappensNextDto } from './dto/update-what-happens-next.dto';
 import { PrismaService } from '@/common/prisma/prisma.service';
 import { SubmissionStatus } from 'generated/prisma/enums';
 import {
@@ -792,6 +793,80 @@ export class SubmissionsService {
         throw error;
       }
       throw new Error(`Failed to delete next step: ${error.message}`);
+    }
+  }
+
+  async updateWhatHappensNextSteps(dto: UpdateWhatHappensNextDto) {
+    try {
+      const existingSteps = await this.prisma.nextStep.findMany({
+        where: { isActive: true },
+      });
+
+      const incomingStepNumbers = new Set(dto.steps.map((s) => s.stepNumber));
+
+      const stepsToDeactivate = existingSteps.filter(
+        (step) => !incomingStepNumbers.has(step.stepNumber),
+      );
+
+      if (stepsToDeactivate.length > 0) {
+        await this.prisma.nextStep.updateMany({
+          where: {
+            id: {
+              in: stepsToDeactivate.map((s) => s.id),
+            },
+          },
+          data: {
+            isActive: false,
+          },
+        });
+      }
+
+      const updatedSteps = await Promise.all(
+        dto.steps.map(async (step, index) => {
+          const existingStep = existingSteps.find(
+            (s) => s.stepNumber === step.stepNumber,
+          );
+
+          if (existingStep) {
+            return this.prisma.nextStep.update({
+              where: { id: existingStep.id },
+              data: {
+                title: step.title,
+                description: step.description,
+                isActive: step.isActive ?? true,
+                displayOrder: step.displayOrder ?? index,
+              },
+            });
+          } else {
+            return this.prisma.nextStep.create({
+              data: {
+                stepNumber: step.stepNumber,
+                title: step.title,
+                description: step.description,
+                isActive: step.isActive ?? true,
+                displayOrder: step.displayOrder ?? index,
+              },
+            });
+          }
+        }),
+      );
+
+      return {
+        message: 'What happens next steps updated successfully',
+        data: {
+          title: dto.title || 'What happens next?',
+          steps: updatedSteps.map((step) => ({
+            id: step.id,
+            stepNumber: step.stepNumber,
+            title: step.title,
+            description: step.description,
+          })),
+        },
+      };
+    } catch (error) {
+      throw new Error(
+        `Failed to update what happens next steps: ${error.message}`,
+      );
     }
   }
 }
