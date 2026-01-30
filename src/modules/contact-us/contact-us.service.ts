@@ -3,6 +3,8 @@ import { CreateContactUsDto } from './dto/create-contact-us.dto';
 import { UpdateContactUsDto } from './dto/update-contact-us.dto';
 import { PrismaService } from '@/common/prisma/prisma.service';
 import puppeteer from 'puppeteer';
+import * as ExcelJS from 'exceljs';
+import * as path from 'path';
 
 @Injectable()
 export class ContactUsService {
@@ -286,22 +288,40 @@ export class ContactUsService {
     }
   }
 
-  async findAll(isRead?: boolean) {
+  async findAll(isRead?: boolean, page: number = 1, limit: number = 10) {
     try {
       const where = isRead !== undefined ? { isRead } : {};
 
-      const contacts = await this.prisma.contactUs.findMany({
-        where,
-        orderBy: { createdAt: 'desc' },
-      });
+      const skip = (page - 1) * limit;
+
+      const [contacts, total] = await Promise.all([
+        this.prisma.contactUs.findMany({
+          where,
+          orderBy: { createdAt: 'desc' },
+          skip,
+          take: limit,
+        }),
+        this.prisma.contactUs.count({ where }),
+      ]);
+
+      const totalPages = Math.ceil(total / limit);
+      const hasNextPage = page < totalPages;
+      const hasPreviousPage = page > 1;
 
       return {
         message:
           contacts.length > 0
             ? 'Contact submissions retrieved successfully'
             : 'No contact submissions found',
-        count: contacts.length,
         data: contacts,
+        pagination: {
+          total,
+          page,
+          limit,
+          totalPages,
+          hasNextPage,
+          hasPreviousPage,
+        },
       };
     } catch (error) {
       throw new Error(
@@ -452,6 +472,72 @@ export class ContactUsService {
         throw error;
       }
       throw new Error(`Failed to delete contact submission: ${error.message}`);
+    }
+  }
+
+  async exportToExcel(isRead?: boolean): Promise<ExcelJS.Buffer> {
+    try {
+      const workbook = new ExcelJS.Workbook();
+      const templatePath = path.join(process.cwd(), 'Leads Template.xlsx');
+
+      await workbook.xlsx.readFile(templatePath);
+
+      const worksheet = workbook.getWorksheet('Blank Template');
+      if (!worksheet) {
+        throw new Error('Template worksheet not found');
+      }
+
+      const where = isRead !== undefined ? { isRead } : {};
+      const contacts = await this.prisma.contactUs.findMany({
+        where,
+        orderBy: { createdAt: 'desc' },
+      });
+
+      let currentRow = 2;
+
+      for (const contact of contacts) {
+        const row = worksheet.getRow(currentRow);
+
+        const displayName = `${contact.firstName} ${contact.lastName}`;
+
+        row.values = [
+          displayName,
+          displayName,
+          contact.firstName,
+          contact.lastName,
+          contact.address,
+          contact.city,
+          contact.state,
+          contact.zipCode,
+          contact.address,
+          contact.city,
+          contact.state,
+          contact.zipCode,
+          'Open',
+          null,
+          'Contact Form',
+          contact.phone,
+          null,
+          contact.email,
+          contact.message,
+          null,
+          null,
+          null,
+          null,
+        ];
+
+        row.commit();
+        currentRow++;
+      }
+
+      const buffer = await workbook.xlsx.writeBuffer();
+      return buffer;
+    } catch (error) {
+      this.logger.error(
+        `Failed to export contacts to Excel: ${error.message}`,
+        error.stack,
+      );
+      throw new Error(`Failed to export contacts to Excel: ${error.message}`);
     }
   }
 }

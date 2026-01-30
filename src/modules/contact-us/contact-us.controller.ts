@@ -8,7 +8,10 @@ import {
   Delete,
   Query,
   HttpStatus,
+  Res,
+  Header,
 } from '@nestjs/common';
+import { Response } from 'express';
 import {
   ApiTags,
   ApiOperation,
@@ -23,6 +26,7 @@ import {
   UpdateContactUsDto,
   ContactUsResponseDto,
 } from './dto/update-contact-us.dto';
+import { PaginationQueryDto } from './dto/pagination-query.dto';
 
 @ApiTags('Contact Us')
 @Controller('contact-us')
@@ -47,7 +51,30 @@ export class ContactUsController {
   @ApiBearerAuth()
   @ApiOperation({
     summary: 'Get all contact submissions',
-    description: 'Retrieve all contact form submissions with optional filter',
+    description:
+      'Retrieve all contact form submissions with pagination and optional filter',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Contact submissions retrieved successfully',
+    type: [ContactUsResponseDto],
+  })
+  findAll(@Query() query: PaginationQueryDto) {
+    const readFilter =
+      query.isRead === 'true'
+        ? true
+        : query.isRead === 'false'
+          ? false
+          : undefined;
+    return this.contactUsService.findAll(readFilter, query.page, query.limit);
+  }
+
+  @Get('export')
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Export contact submissions to Excel',
+    description:
+      'Export all contact form submissions as an Excel file in BuilderTrend format',
   })
   @ApiQuery({
     name: 'isRead',
@@ -57,13 +84,31 @@ export class ContactUsController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: 'Contact submissions retrieved successfully',
-    type: [ContactUsResponseDto],
+    description: 'Contact submissions exported successfully',
+    headers: {
+      'Content-Type': {
+        description:
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      },
+      'Content-Disposition': {
+        description: 'attachment; filename=contact-submissions.xlsx',
+      },
+    },
   })
-  findAll(@Query('isRead') isRead?: string) {
+  @Header(
+    'Content-Type',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  )
+  async exportToExcel(@Res() res: Response, @Query('isRead') isRead?: string) {
     const readFilter =
       isRead === 'true' ? true : isRead === 'false' ? false : undefined;
-    return this.contactUsService.findAll(readFilter);
+
+    const buffer = await this.contactUsService.exportToExcel(readFilter);
+
+    const filename = `contact-submissions-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
+
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.send(buffer);
   }
 
   @Get('unread-count')
