@@ -78,6 +78,11 @@ export type NextStep = Prisma.NextStepModel;
  */
 export type PrivacyPolicy = Prisma.PrivacyPolicyModel;
 /**
+ * Model ProjectType
+ *
+ */
+export type ProjectType = Prisma.ProjectTypeModel;
+/**
  * Model Service
  *
  */
@@ -92,11 +97,6 @@ export type ServiceCategory = Prisma.ServiceCategoryModel;
  *
  */
 export type ServiceCostCode = Prisma.ServiceCostCodeModel;
-/**
- * Model ServiceType
- *
- */
-export type ServiceType = Prisma.ServiceTypeModel;
 /**
  * Model Submission
  *

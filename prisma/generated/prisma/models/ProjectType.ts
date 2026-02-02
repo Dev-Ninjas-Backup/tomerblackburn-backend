@@ -3,7 +3,7 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck
 /*
- * This file exports the `ServiceType` model and its related types.
+ * This file exports the `ProjectType` model and its related types.
  *
  * 🟢 You can import this file directly.
  */
@@ -12,29 +12,29 @@ import type * as $Enums from '../enums';
 import type * as Prisma from '../internal/prismaNamespace';
 
 /**
- * Model ServiceType
+ * Model ProjectType
  *
  */
-export type ServiceTypeModel =
-  runtime.Types.Result.DefaultSelection<Prisma.$ServiceTypePayload>;
+export type ProjectTypeModel =
+  runtime.Types.Result.DefaultSelection<Prisma.$ProjectTypePayload>;
 
-export type AggregateServiceType = {
-  _count: ServiceTypeCountAggregateOutputType | null;
-  _avg: ServiceTypeAvgAggregateOutputType | null;
-  _sum: ServiceTypeSumAggregateOutputType | null;
-  _min: ServiceTypeMinAggregateOutputType | null;
-  _max: ServiceTypeMaxAggregateOutputType | null;
+export type AggregateProjectType = {
+  _count: ProjectTypeCountAggregateOutputType | null;
+  _avg: ProjectTypeAvgAggregateOutputType | null;
+  _sum: ProjectTypeSumAggregateOutputType | null;
+  _min: ProjectTypeMinAggregateOutputType | null;
+  _max: ProjectTypeMaxAggregateOutputType | null;
 };
 
-export type ServiceTypeAvgAggregateOutputType = {
+export type ProjectTypeAvgAggregateOutputType = {
   displayOrder: number | null;
 };
 
-export type ServiceTypeSumAggregateOutputType = {
+export type ProjectTypeSumAggregateOutputType = {
   displayOrder: number | null;
 };
 
-export type ServiceTypeMinAggregateOutputType = {
+export type ProjectTypeMinAggregateOutputType = {
   id: string | null;
   name: string | null;
   description: string | null;
@@ -44,7 +44,7 @@ export type ServiceTypeMinAggregateOutputType = {
   updatedAt: Date | null;
 };
 
-export type ServiceTypeMaxAggregateOutputType = {
+export type ProjectTypeMaxAggregateOutputType = {
   id: string | null;
   name: string | null;
   description: string | null;
@@ -54,7 +54,7 @@ export type ServiceTypeMaxAggregateOutputType = {
   updatedAt: Date | null;
 };
 
-export type ServiceTypeCountAggregateOutputType = {
+export type ProjectTypeCountAggregateOutputType = {
   id: number;
   name: number;
   description: number;
@@ -65,15 +65,15 @@ export type ServiceTypeCountAggregateOutputType = {
   _all: number;
 };
 
-export type ServiceTypeAvgAggregateInputType = {
+export type ProjectTypeAvgAggregateInputType = {
   displayOrder?: true;
 };
 
-export type ServiceTypeSumAggregateInputType = {
+export type ProjectTypeSumAggregateInputType = {
   displayOrder?: true;
 };
 
-export type ServiceTypeMinAggregateInputType = {
+export type ProjectTypeMinAggregateInputType = {
   id?: true;
   name?: true;
   description?: true;
@@ -83,7 +83,7 @@ export type ServiceTypeMinAggregateInputType = {
   updatedAt?: true;
 };
 
-export type ServiceTypeMaxAggregateInputType = {
+export type ProjectTypeMaxAggregateInputType = {
   id?: true;
   name?: true;
   description?: true;
@@ -93,7 +93,7 @@ export type ServiceTypeMaxAggregateInputType = {
   updatedAt?: true;
 };
 
-export type ServiceTypeCountAggregateInputType = {
+export type ProjectTypeCountAggregateInputType = {
   id?: true;
   name?: true;
   description?: true;
@@ -104,100 +104,100 @@ export type ServiceTypeCountAggregateInputType = {
   _all?: true;
 };
 
-export type ServiceTypeAggregateArgs<
+export type ProjectTypeAggregateArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Filter which ServiceType to aggregate.
+   * Filter which ProjectType to aggregate.
    */
-  where?: Prisma.ServiceTypeWhereInput;
+  where?: Prisma.ProjectTypeWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
-   * Determine the order of ServiceTypes to fetch.
+   * Determine the order of ProjectTypes to fetch.
    */
   orderBy?:
-    | Prisma.ServiceTypeOrderByWithRelationInput
-    | Prisma.ServiceTypeOrderByWithRelationInput[];
+    | Prisma.ProjectTypeOrderByWithRelationInput
+    | Prisma.ProjectTypeOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
    * Sets the start position
    */
-  cursor?: Prisma.ServiceTypeWhereUniqueInput;
+  cursor?: Prisma.ProjectTypeWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
-   * Take `±n` ServiceTypes from the position of the cursor.
+   * Take `±n` ProjectTypes from the position of the cursor.
    */
   take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
-   * Skip the first `n` ServiceTypes.
+   * Skip the first `n` ProjectTypes.
    */
   skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
-   * Count returned ServiceTypes
+   * Count returned ProjectTypes
    **/
-  _count?: true | ServiceTypeCountAggregateInputType;
+  _count?: true | ProjectTypeCountAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to average
    **/
-  _avg?: ServiceTypeAvgAggregateInputType;
+  _avg?: ProjectTypeAvgAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to sum
    **/
-  _sum?: ServiceTypeSumAggregateInputType;
+  _sum?: ProjectTypeSumAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the minimum value
    **/
-  _min?: ServiceTypeMinAggregateInputType;
+  _min?: ProjectTypeMinAggregateInputType;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
    * Select which fields to find the maximum value
    **/
-  _max?: ServiceTypeMaxAggregateInputType;
+  _max?: ProjectTypeMaxAggregateInputType;
 };
 
-export type GetServiceTypeAggregateType<T extends ServiceTypeAggregateArgs> = {
-  [P in keyof T & keyof AggregateServiceType]: P extends '_count' | 'count'
+export type GetProjectTypeAggregateType<T extends ProjectTypeAggregateArgs> = {
+  [P in keyof T & keyof AggregateProjectType]: P extends '_count' | 'count'
     ? T[P] extends true
       ? number
-      : Prisma.GetScalarType<T[P], AggregateServiceType[P]>
-    : Prisma.GetScalarType<T[P], AggregateServiceType[P]>;
+      : Prisma.GetScalarType<T[P], AggregateProjectType[P]>
+    : Prisma.GetScalarType<T[P], AggregateProjectType[P]>;
 };
 
-export type ServiceTypeGroupByArgs<
+export type ProjectTypeGroupByArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
-  where?: Prisma.ServiceTypeWhereInput;
+  where?: Prisma.ProjectTypeWhereInput;
   orderBy?:
-    | Prisma.ServiceTypeOrderByWithAggregationInput
-    | Prisma.ServiceTypeOrderByWithAggregationInput[];
-  by: Prisma.ServiceTypeScalarFieldEnum[] | Prisma.ServiceTypeScalarFieldEnum;
-  having?: Prisma.ServiceTypeScalarWhereWithAggregatesInput;
+    | Prisma.ProjectTypeOrderByWithAggregationInput
+    | Prisma.ProjectTypeOrderByWithAggregationInput[];
+  by: Prisma.ProjectTypeScalarFieldEnum[] | Prisma.ProjectTypeScalarFieldEnum;
+  having?: Prisma.ProjectTypeScalarWhereWithAggregatesInput;
   take?: number;
   skip?: number;
-  _count?: ServiceTypeCountAggregateInputType | true;
-  _avg?: ServiceTypeAvgAggregateInputType;
-  _sum?: ServiceTypeSumAggregateInputType;
-  _min?: ServiceTypeMinAggregateInputType;
-  _max?: ServiceTypeMaxAggregateInputType;
+  _count?: ProjectTypeCountAggregateInputType | true;
+  _avg?: ProjectTypeAvgAggregateInputType;
+  _sum?: ProjectTypeSumAggregateInputType;
+  _min?: ProjectTypeMinAggregateInputType;
+  _max?: ProjectTypeMaxAggregateInputType;
 };
 
-export type ServiceTypeGroupByOutputType = {
+export type ProjectTypeGroupByOutputType = {
   id: string;
   name: string;
   description: string | null;
@@ -205,41 +205,41 @@ export type ServiceTypeGroupByOutputType = {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
-  _count: ServiceTypeCountAggregateOutputType | null;
-  _avg: ServiceTypeAvgAggregateOutputType | null;
-  _sum: ServiceTypeSumAggregateOutputType | null;
-  _min: ServiceTypeMinAggregateOutputType | null;
-  _max: ServiceTypeMaxAggregateOutputType | null;
+  _count: ProjectTypeCountAggregateOutputType | null;
+  _avg: ProjectTypeAvgAggregateOutputType | null;
+  _sum: ProjectTypeSumAggregateOutputType | null;
+  _min: ProjectTypeMinAggregateOutputType | null;
+  _max: ProjectTypeMaxAggregateOutputType | null;
 };
 
-type GetServiceTypeGroupByPayload<T extends ServiceTypeGroupByArgs> =
+type GetProjectTypeGroupByPayload<T extends ProjectTypeGroupByArgs> =
   Prisma.PrismaPromise<
     Array<
-      Prisma.PickEnumerable<ServiceTypeGroupByOutputType, T['by']> & {
-        [P in keyof T & keyof ServiceTypeGroupByOutputType]: P extends '_count'
+      Prisma.PickEnumerable<ProjectTypeGroupByOutputType, T['by']> & {
+        [P in keyof T & keyof ProjectTypeGroupByOutputType]: P extends '_count'
           ? T[P] extends boolean
             ? number
-            : Prisma.GetScalarType<T[P], ServiceTypeGroupByOutputType[P]>
-          : Prisma.GetScalarType<T[P], ServiceTypeGroupByOutputType[P]>;
+            : Prisma.GetScalarType<T[P], ProjectTypeGroupByOutputType[P]>
+          : Prisma.GetScalarType<T[P], ProjectTypeGroupByOutputType[P]>;
       }
     >
   >;
 
-export type ServiceTypeWhereInput = {
-  AND?: Prisma.ServiceTypeWhereInput | Prisma.ServiceTypeWhereInput[];
-  OR?: Prisma.ServiceTypeWhereInput[];
-  NOT?: Prisma.ServiceTypeWhereInput | Prisma.ServiceTypeWhereInput[];
-  id?: Prisma.StringFilter<'ServiceType'> | string;
-  name?: Prisma.StringFilter<'ServiceType'> | string;
-  description?: Prisma.StringNullableFilter<'ServiceType'> | string | null;
-  displayOrder?: Prisma.IntFilter<'ServiceType'> | number;
-  isActive?: Prisma.BoolFilter<'ServiceType'> | boolean;
-  createdAt?: Prisma.DateTimeFilter<'ServiceType'> | Date | string;
-  updatedAt?: Prisma.DateTimeFilter<'ServiceType'> | Date | string;
+export type ProjectTypeWhereInput = {
+  AND?: Prisma.ProjectTypeWhereInput | Prisma.ProjectTypeWhereInput[];
+  OR?: Prisma.ProjectTypeWhereInput[];
+  NOT?: Prisma.ProjectTypeWhereInput | Prisma.ProjectTypeWhereInput[];
+  id?: Prisma.StringFilter<'ProjectType'> | string;
+  name?: Prisma.StringFilter<'ProjectType'> | string;
+  description?: Prisma.StringNullableFilter<'ProjectType'> | string | null;
+  displayOrder?: Prisma.IntFilter<'ProjectType'> | number;
+  isActive?: Prisma.BoolFilter<'ProjectType'> | boolean;
+  createdAt?: Prisma.DateTimeFilter<'ProjectType'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'ProjectType'> | Date | string;
   serviceCategories?: Prisma.ServiceCategoryListRelationFilter;
 };
 
-export type ServiceTypeOrderByWithRelationInput = {
+export type ProjectTypeOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -250,24 +250,24 @@ export type ServiceTypeOrderByWithRelationInput = {
   serviceCategories?: Prisma.ServiceCategoryOrderByRelationAggregateInput;
 };
 
-export type ServiceTypeWhereUniqueInput = Prisma.AtLeast<
+export type ProjectTypeWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
-    AND?: Prisma.ServiceTypeWhereInput | Prisma.ServiceTypeWhereInput[];
-    OR?: Prisma.ServiceTypeWhereInput[];
-    NOT?: Prisma.ServiceTypeWhereInput | Prisma.ServiceTypeWhereInput[];
-    name?: Prisma.StringFilter<'ServiceType'> | string;
-    description?: Prisma.StringNullableFilter<'ServiceType'> | string | null;
-    displayOrder?: Prisma.IntFilter<'ServiceType'> | number;
-    isActive?: Prisma.BoolFilter<'ServiceType'> | boolean;
-    createdAt?: Prisma.DateTimeFilter<'ServiceType'> | Date | string;
-    updatedAt?: Prisma.DateTimeFilter<'ServiceType'> | Date | string;
+    AND?: Prisma.ProjectTypeWhereInput | Prisma.ProjectTypeWhereInput[];
+    OR?: Prisma.ProjectTypeWhereInput[];
+    NOT?: Prisma.ProjectTypeWhereInput | Prisma.ProjectTypeWhereInput[];
+    name?: Prisma.StringFilter<'ProjectType'> | string;
+    description?: Prisma.StringNullableFilter<'ProjectType'> | string | null;
+    displayOrder?: Prisma.IntFilter<'ProjectType'> | number;
+    isActive?: Prisma.BoolFilter<'ProjectType'> | boolean;
+    createdAt?: Prisma.DateTimeFilter<'ProjectType'> | Date | string;
+    updatedAt?: Prisma.DateTimeFilter<'ProjectType'> | Date | string;
     serviceCategories?: Prisma.ServiceCategoryListRelationFilter;
   },
   'id'
 >;
 
-export type ServiceTypeOrderByWithAggregationInput = {
+export type ProjectTypeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -275,40 +275,40 @@ export type ServiceTypeOrderByWithAggregationInput = {
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  _count?: Prisma.ServiceTypeCountOrderByAggregateInput;
-  _avg?: Prisma.ServiceTypeAvgOrderByAggregateInput;
-  _max?: Prisma.ServiceTypeMaxOrderByAggregateInput;
-  _min?: Prisma.ServiceTypeMinOrderByAggregateInput;
-  _sum?: Prisma.ServiceTypeSumOrderByAggregateInput;
+  _count?: Prisma.ProjectTypeCountOrderByAggregateInput;
+  _avg?: Prisma.ProjectTypeAvgOrderByAggregateInput;
+  _max?: Prisma.ProjectTypeMaxOrderByAggregateInput;
+  _min?: Prisma.ProjectTypeMinOrderByAggregateInput;
+  _sum?: Prisma.ProjectTypeSumOrderByAggregateInput;
 };
 
-export type ServiceTypeScalarWhereWithAggregatesInput = {
+export type ProjectTypeScalarWhereWithAggregatesInput = {
   AND?:
-    | Prisma.ServiceTypeScalarWhereWithAggregatesInput
-    | Prisma.ServiceTypeScalarWhereWithAggregatesInput[];
-  OR?: Prisma.ServiceTypeScalarWhereWithAggregatesInput[];
+    | Prisma.ProjectTypeScalarWhereWithAggregatesInput
+    | Prisma.ProjectTypeScalarWhereWithAggregatesInput[];
+  OR?: Prisma.ProjectTypeScalarWhereWithAggregatesInput[];
   NOT?:
-    | Prisma.ServiceTypeScalarWhereWithAggregatesInput
-    | Prisma.ServiceTypeScalarWhereWithAggregatesInput[];
-  id?: Prisma.StringWithAggregatesFilter<'ServiceType'> | string;
-  name?: Prisma.StringWithAggregatesFilter<'ServiceType'> | string;
+    | Prisma.ProjectTypeScalarWhereWithAggregatesInput
+    | Prisma.ProjectTypeScalarWhereWithAggregatesInput[];
+  id?: Prisma.StringWithAggregatesFilter<'ProjectType'> | string;
+  name?: Prisma.StringWithAggregatesFilter<'ProjectType'> | string;
   description?:
-    | Prisma.StringNullableWithAggregatesFilter<'ServiceType'>
+    | Prisma.StringNullableWithAggregatesFilter<'ProjectType'>
     | string
     | null;
-  displayOrder?: Prisma.IntWithAggregatesFilter<'ServiceType'> | number;
-  isActive?: Prisma.BoolWithAggregatesFilter<'ServiceType'> | boolean;
+  displayOrder?: Prisma.IntWithAggregatesFilter<'ProjectType'> | number;
+  isActive?: Prisma.BoolWithAggregatesFilter<'ProjectType'> | boolean;
   createdAt?:
-    | Prisma.DateTimeWithAggregatesFilter<'ServiceType'>
+    | Prisma.DateTimeWithAggregatesFilter<'ProjectType'>
     | Date
     | string;
   updatedAt?:
-    | Prisma.DateTimeWithAggregatesFilter<'ServiceType'>
+    | Prisma.DateTimeWithAggregatesFilter<'ProjectType'>
     | Date
     | string;
 };
 
-export type ServiceTypeCreateInput = {
+export type ProjectTypeCreateInput = {
   id?: string;
   name: string;
   description?: string | null;
@@ -316,10 +316,10 @@ export type ServiceTypeCreateInput = {
   isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  serviceCategories?: Prisma.ServiceCategoryCreateNestedManyWithoutServiceTypeInput;
+  serviceCategories?: Prisma.ServiceCategoryCreateNestedManyWithoutProjectTypeInput;
 };
 
-export type ServiceTypeUncheckedCreateInput = {
+export type ProjectTypeUncheckedCreateInput = {
   id?: string;
   name: string;
   description?: string | null;
@@ -327,10 +327,10 @@ export type ServiceTypeUncheckedCreateInput = {
   isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  serviceCategories?: Prisma.ServiceCategoryUncheckedCreateNestedManyWithoutServiceTypeInput;
+  serviceCategories?: Prisma.ServiceCategoryUncheckedCreateNestedManyWithoutProjectTypeInput;
 };
 
-export type ServiceTypeUpdateInput = {
+export type ProjectTypeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -338,10 +338,10 @@ export type ServiceTypeUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  serviceCategories?: Prisma.ServiceCategoryUpdateManyWithoutServiceTypeNestedInput;
+  serviceCategories?: Prisma.ServiceCategoryUpdateManyWithoutProjectTypeNestedInput;
 };
 
-export type ServiceTypeUncheckedUpdateInput = {
+export type ProjectTypeUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -349,10 +349,10 @@ export type ServiceTypeUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  serviceCategories?: Prisma.ServiceCategoryUncheckedUpdateManyWithoutServiceTypeNestedInput;
+  serviceCategories?: Prisma.ServiceCategoryUncheckedUpdateManyWithoutProjectTypeNestedInput;
 };
 
-export type ServiceTypeCreateManyInput = {
+export type ProjectTypeCreateManyInput = {
   id?: string;
   name: string;
   description?: string | null;
@@ -362,7 +362,7 @@ export type ServiceTypeCreateManyInput = {
   updatedAt?: Date | string;
 };
 
-export type ServiceTypeUpdateManyMutationInput = {
+export type ProjectTypeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -372,7 +372,7 @@ export type ServiceTypeUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type ServiceTypeUncheckedUpdateManyInput = {
+export type ProjectTypeUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -382,12 +382,7 @@ export type ServiceTypeUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type ServiceTypeScalarRelationFilter = {
-  is?: Prisma.ServiceTypeWhereInput;
-  isNot?: Prisma.ServiceTypeWhereInput;
-};
-
-export type ServiceTypeCountOrderByAggregateInput = {
+export type ProjectTypeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
@@ -397,11 +392,11 @@ export type ServiceTypeCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder;
 };
 
-export type ServiceTypeAvgOrderByAggregateInput = {
+export type ProjectTypeAvgOrderByAggregateInput = {
   displayOrder?: Prisma.SortOrder;
 };
 
-export type ServiceTypeMaxOrderByAggregateInput = {
+export type ProjectTypeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
@@ -411,7 +406,7 @@ export type ServiceTypeMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder;
 };
 
-export type ServiceTypeMinOrderByAggregateInput = {
+export type ProjectTypeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
@@ -421,37 +416,42 @@ export type ServiceTypeMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder;
 };
 
-export type ServiceTypeSumOrderByAggregateInput = {
+export type ProjectTypeSumOrderByAggregateInput = {
   displayOrder?: Prisma.SortOrder;
 };
 
-export type ServiceTypeCreateNestedOneWithoutServiceCategoriesInput = {
+export type ProjectTypeScalarRelationFilter = {
+  is?: Prisma.ProjectTypeWhereInput;
+  isNot?: Prisma.ProjectTypeWhereInput;
+};
+
+export type ProjectTypeCreateNestedOneWithoutServiceCategoriesInput = {
   create?: Prisma.XOR<
-    Prisma.ServiceTypeCreateWithoutServiceCategoriesInput,
-    Prisma.ServiceTypeUncheckedCreateWithoutServiceCategoriesInput
+    Prisma.ProjectTypeCreateWithoutServiceCategoriesInput,
+    Prisma.ProjectTypeUncheckedCreateWithoutServiceCategoriesInput
   >;
-  connectOrCreate?: Prisma.ServiceTypeCreateOrConnectWithoutServiceCategoriesInput;
-  connect?: Prisma.ServiceTypeWhereUniqueInput;
+  connectOrCreate?: Prisma.ProjectTypeCreateOrConnectWithoutServiceCategoriesInput;
+  connect?: Prisma.ProjectTypeWhereUniqueInput;
 };
 
-export type ServiceTypeUpdateOneRequiredWithoutServiceCategoriesNestedInput = {
+export type ProjectTypeUpdateOneRequiredWithoutServiceCategoriesNestedInput = {
   create?: Prisma.XOR<
-    Prisma.ServiceTypeCreateWithoutServiceCategoriesInput,
-    Prisma.ServiceTypeUncheckedCreateWithoutServiceCategoriesInput
+    Prisma.ProjectTypeCreateWithoutServiceCategoriesInput,
+    Prisma.ProjectTypeUncheckedCreateWithoutServiceCategoriesInput
   >;
-  connectOrCreate?: Prisma.ServiceTypeCreateOrConnectWithoutServiceCategoriesInput;
-  upsert?: Prisma.ServiceTypeUpsertWithoutServiceCategoriesInput;
-  connect?: Prisma.ServiceTypeWhereUniqueInput;
+  connectOrCreate?: Prisma.ProjectTypeCreateOrConnectWithoutServiceCategoriesInput;
+  upsert?: Prisma.ProjectTypeUpsertWithoutServiceCategoriesInput;
+  connect?: Prisma.ProjectTypeWhereUniqueInput;
   update?: Prisma.XOR<
     Prisma.XOR<
-      Prisma.ServiceTypeUpdateToOneWithWhereWithoutServiceCategoriesInput,
-      Prisma.ServiceTypeUpdateWithoutServiceCategoriesInput
+      Prisma.ProjectTypeUpdateToOneWithWhereWithoutServiceCategoriesInput,
+      Prisma.ProjectTypeUpdateWithoutServiceCategoriesInput
     >,
-    Prisma.ServiceTypeUncheckedUpdateWithoutServiceCategoriesInput
+    Prisma.ProjectTypeUncheckedUpdateWithoutServiceCategoriesInput
   >;
 };
 
-export type ServiceTypeCreateWithoutServiceCategoriesInput = {
+export type ProjectTypeCreateWithoutServiceCategoriesInput = {
   id?: string;
   name: string;
   description?: string | null;
@@ -461,7 +461,7 @@ export type ServiceTypeCreateWithoutServiceCategoriesInput = {
   updatedAt?: Date | string;
 };
 
-export type ServiceTypeUncheckedCreateWithoutServiceCategoriesInput = {
+export type ProjectTypeUncheckedCreateWithoutServiceCategoriesInput = {
   id?: string;
   name: string;
   description?: string | null;
@@ -471,35 +471,35 @@ export type ServiceTypeUncheckedCreateWithoutServiceCategoriesInput = {
   updatedAt?: Date | string;
 };
 
-export type ServiceTypeCreateOrConnectWithoutServiceCategoriesInput = {
-  where: Prisma.ServiceTypeWhereUniqueInput;
+export type ProjectTypeCreateOrConnectWithoutServiceCategoriesInput = {
+  where: Prisma.ProjectTypeWhereUniqueInput;
   create: Prisma.XOR<
-    Prisma.ServiceTypeCreateWithoutServiceCategoriesInput,
-    Prisma.ServiceTypeUncheckedCreateWithoutServiceCategoriesInput
+    Prisma.ProjectTypeCreateWithoutServiceCategoriesInput,
+    Prisma.ProjectTypeUncheckedCreateWithoutServiceCategoriesInput
   >;
 };
 
-export type ServiceTypeUpsertWithoutServiceCategoriesInput = {
+export type ProjectTypeUpsertWithoutServiceCategoriesInput = {
   update: Prisma.XOR<
-    Prisma.ServiceTypeUpdateWithoutServiceCategoriesInput,
-    Prisma.ServiceTypeUncheckedUpdateWithoutServiceCategoriesInput
+    Prisma.ProjectTypeUpdateWithoutServiceCategoriesInput,
+    Prisma.ProjectTypeUncheckedUpdateWithoutServiceCategoriesInput
   >;
   create: Prisma.XOR<
-    Prisma.ServiceTypeCreateWithoutServiceCategoriesInput,
-    Prisma.ServiceTypeUncheckedCreateWithoutServiceCategoriesInput
+    Prisma.ProjectTypeCreateWithoutServiceCategoriesInput,
+    Prisma.ProjectTypeUncheckedCreateWithoutServiceCategoriesInput
   >;
-  where?: Prisma.ServiceTypeWhereInput;
+  where?: Prisma.ProjectTypeWhereInput;
 };
 
-export type ServiceTypeUpdateToOneWithWhereWithoutServiceCategoriesInput = {
-  where?: Prisma.ServiceTypeWhereInput;
+export type ProjectTypeUpdateToOneWithWhereWithoutServiceCategoriesInput = {
+  where?: Prisma.ProjectTypeWhereInput;
   data: Prisma.XOR<
-    Prisma.ServiceTypeUpdateWithoutServiceCategoriesInput,
-    Prisma.ServiceTypeUncheckedUpdateWithoutServiceCategoriesInput
+    Prisma.ProjectTypeUpdateWithoutServiceCategoriesInput,
+    Prisma.ProjectTypeUncheckedUpdateWithoutServiceCategoriesInput
   >;
 };
 
-export type ServiceTypeUpdateWithoutServiceCategoriesInput = {
+export type ProjectTypeUpdateWithoutServiceCategoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -509,7 +509,7 @@ export type ServiceTypeUpdateWithoutServiceCategoriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type ServiceTypeUncheckedUpdateWithoutServiceCategoriesInput = {
+export type ProjectTypeUncheckedUpdateWithoutServiceCategoriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -520,46 +520,46 @@ export type ServiceTypeUncheckedUpdateWithoutServiceCategoriesInput = {
 };
 
 /**
- * Count Type ServiceTypeCountOutputType
+ * Count Type ProjectTypeCountOutputType
  */
 
-export type ServiceTypeCountOutputType = {
+export type ProjectTypeCountOutputType = {
   serviceCategories: number;
 };
 
-export type ServiceTypeCountOutputTypeSelect<
+export type ProjectTypeCountOutputTypeSelect<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   serviceCategories?:
     | boolean
-    | ServiceTypeCountOutputTypeCountServiceCategoriesArgs;
+    | ProjectTypeCountOutputTypeCountServiceCategoriesArgs;
 };
 
 /**
- * ServiceTypeCountOutputType without action
+ * ProjectTypeCountOutputType without action
  */
-export type ServiceTypeCountOutputTypeDefaultArgs<
+export type ProjectTypeCountOutputTypeDefaultArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceTypeCountOutputType
+   * Select specific fields to fetch from the ProjectTypeCountOutputType
    */
-  select?: Prisma.ServiceTypeCountOutputTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeCountOutputTypeSelect<ExtArgs> | null;
 };
 
 /**
- * ServiceTypeCountOutputType without action
+ * ProjectTypeCountOutputType without action
  */
-export type ServiceTypeCountOutputTypeCountServiceCategoriesArgs<
+export type ProjectTypeCountOutputTypeCountServiceCategoriesArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   where?: Prisma.ServiceCategoryWhereInput;
 };
 
-export type ServiceTypeSelect<
+export type ProjectTypeSelect<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
@@ -573,13 +573,13 @@ export type ServiceTypeSelect<
     updatedAt?: boolean;
     serviceCategories?:
       | boolean
-      | Prisma.ServiceType$serviceCategoriesArgs<ExtArgs>;
-    _count?: boolean | Prisma.ServiceTypeCountOutputTypeDefaultArgs<ExtArgs>;
+      | Prisma.ProjectType$serviceCategoriesArgs<ExtArgs>;
+    _count?: boolean | Prisma.ProjectTypeCountOutputTypeDefaultArgs<ExtArgs>;
   },
-  ExtArgs['result']['serviceType']
+  ExtArgs['result']['projectType']
 >;
 
-export type ServiceTypeSelectCreateManyAndReturn<
+export type ProjectTypeSelectCreateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
@@ -592,10 +592,10 @@ export type ServiceTypeSelectCreateManyAndReturn<
     createdAt?: boolean;
     updatedAt?: boolean;
   },
-  ExtArgs['result']['serviceType']
+  ExtArgs['result']['projectType']
 >;
 
-export type ServiceTypeSelectUpdateManyAndReturn<
+export type ProjectTypeSelectUpdateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetSelect<
@@ -608,10 +608,10 @@ export type ServiceTypeSelectUpdateManyAndReturn<
     createdAt?: boolean;
     updatedAt?: boolean;
   },
-  ExtArgs['result']['serviceType']
+  ExtArgs['result']['projectType']
 >;
 
-export type ServiceTypeSelectScalar = {
+export type ProjectTypeSelectScalar = {
   id?: boolean;
   name?: boolean;
   description?: boolean;
@@ -621,7 +621,7 @@ export type ServiceTypeSelectScalar = {
   updatedAt?: boolean;
 };
 
-export type ServiceTypeOmit<
+export type ProjectTypeOmit<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
@@ -632,31 +632,31 @@ export type ServiceTypeOmit<
   | 'isActive'
   | 'createdAt'
   | 'updatedAt',
-  ExtArgs['result']['serviceType']
+  ExtArgs['result']['projectType']
 >;
-export type ServiceTypeInclude<
+export type ProjectTypeInclude<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   serviceCategories?:
     | boolean
-    | Prisma.ServiceType$serviceCategoriesArgs<ExtArgs>;
-  _count?: boolean | Prisma.ServiceTypeCountOutputTypeDefaultArgs<ExtArgs>;
+    | Prisma.ProjectType$serviceCategoriesArgs<ExtArgs>;
+  _count?: boolean | Prisma.ProjectTypeCountOutputTypeDefaultArgs<ExtArgs>;
 };
-export type ServiceTypeIncludeCreateManyAndReturn<
+export type ProjectTypeIncludeCreateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {};
-export type ServiceTypeIncludeUpdateManyAndReturn<
+export type ProjectTypeIncludeUpdateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {};
 
-export type $ServiceTypePayload<
+export type $ProjectTypePayload<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
-  name: 'ServiceType';
+  name: 'ProjectType';
   objects: {
     serviceCategories: Prisma.$ServiceCategoryPayload<ExtArgs>[];
   };
@@ -670,50 +670,50 @@ export type $ServiceTypePayload<
       createdAt: Date;
       updatedAt: Date;
     },
-    ExtArgs['result']['serviceType']
+    ExtArgs['result']['projectType']
   >;
   composites: {};
 };
 
-export type ServiceTypeGetPayload<
-  S extends boolean | null | undefined | ServiceTypeDefaultArgs,
-> = runtime.Types.Result.GetResult<Prisma.$ServiceTypePayload, S>;
+export type ProjectTypeGetPayload<
+  S extends boolean | null | undefined | ProjectTypeDefaultArgs,
+> = runtime.Types.Result.GetResult<Prisma.$ProjectTypePayload, S>;
 
-export type ServiceTypeCountArgs<
+export type ProjectTypeCountArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = Omit<
-  ServiceTypeFindManyArgs,
+  ProjectTypeFindManyArgs,
   'select' | 'include' | 'distinct' | 'omit'
 > & {
-  select?: ServiceTypeCountAggregateInputType | true;
+  select?: ProjectTypeCountAggregateInputType | true;
 };
 
-export interface ServiceTypeDelegate<
+export interface ProjectTypeDelegate<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
   GlobalOmitOptions = {},
 > {
   [K: symbol]: {
-    types: Prisma.TypeMap<ExtArgs>['model']['ServiceType'];
-    meta: { name: 'ServiceType' };
+    types: Prisma.TypeMap<ExtArgs>['model']['ProjectType'];
+    meta: { name: 'ProjectType' };
   };
   /**
-   * Find zero or one ServiceType that matches the filter.
-   * @param {ServiceTypeFindUniqueArgs} args - Arguments to find a ServiceType
+   * Find zero or one ProjectType that matches the filter.
+   * @param {ProjectTypeFindUniqueArgs} args - Arguments to find a ProjectType
    * @example
-   * // Get one ServiceType
-   * const serviceType = await prisma.serviceType.findUnique({
+   * // Get one ProjectType
+   * const projectType = await prisma.projectType.findUnique({
    *   where: {
    *     // ... provide filter here
    *   }
    * })
    */
-  findUnique<T extends ServiceTypeFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, ServiceTypeFindUniqueArgs<ExtArgs>>,
-  ): Prisma.Prisma__ServiceTypeClient<
+  findUnique<T extends ProjectTypeFindUniqueArgs>(
+    args: Prisma.SelectSubset<T, ProjectTypeFindUniqueArgs<ExtArgs>>,
+  ): Prisma.Prisma__ProjectTypeClient<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'findUnique',
       GlobalOmitOptions
@@ -724,22 +724,22 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Find one ServiceType that matches the filter or throw an error with `error.code='P2025'`
+   * Find one ProjectType that matches the filter or throw an error with `error.code='P2025'`
    * if no matches were found.
-   * @param {ServiceTypeFindUniqueOrThrowArgs} args - Arguments to find a ServiceType
+   * @param {ProjectTypeFindUniqueOrThrowArgs} args - Arguments to find a ProjectType
    * @example
-   * // Get one ServiceType
-   * const serviceType = await prisma.serviceType.findUniqueOrThrow({
+   * // Get one ProjectType
+   * const projectType = await prisma.projectType.findUniqueOrThrow({
    *   where: {
    *     // ... provide filter here
    *   }
    * })
    */
-  findUniqueOrThrow<T extends ServiceTypeFindUniqueOrThrowArgs>(
-    args: Prisma.SelectSubset<T, ServiceTypeFindUniqueOrThrowArgs<ExtArgs>>,
-  ): Prisma.Prisma__ServiceTypeClient<
+  findUniqueOrThrow<T extends ProjectTypeFindUniqueOrThrowArgs>(
+    args: Prisma.SelectSubset<T, ProjectTypeFindUniqueOrThrowArgs<ExtArgs>>,
+  ): Prisma.Prisma__ProjectTypeClient<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'findUniqueOrThrow',
       GlobalOmitOptions
@@ -750,23 +750,23 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Find the first ServiceType that matches the filter.
+   * Find the first ProjectType that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {ServiceTypeFindFirstArgs} args - Arguments to find a ServiceType
+   * @param {ProjectTypeFindFirstArgs} args - Arguments to find a ProjectType
    * @example
-   * // Get one ServiceType
-   * const serviceType = await prisma.serviceType.findFirst({
+   * // Get one ProjectType
+   * const projectType = await prisma.projectType.findFirst({
    *   where: {
    *     // ... provide filter here
    *   }
    * })
    */
-  findFirst<T extends ServiceTypeFindFirstArgs>(
-    args?: Prisma.SelectSubset<T, ServiceTypeFindFirstArgs<ExtArgs>>,
-  ): Prisma.Prisma__ServiceTypeClient<
+  findFirst<T extends ProjectTypeFindFirstArgs>(
+    args?: Prisma.SelectSubset<T, ProjectTypeFindFirstArgs<ExtArgs>>,
+  ): Prisma.Prisma__ProjectTypeClient<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'findFirst',
       GlobalOmitOptions
@@ -777,24 +777,24 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Find the first ServiceType that matches the filter or
+   * Find the first ProjectType that matches the filter or
    * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {ServiceTypeFindFirstOrThrowArgs} args - Arguments to find a ServiceType
+   * @param {ProjectTypeFindFirstOrThrowArgs} args - Arguments to find a ProjectType
    * @example
-   * // Get one ServiceType
-   * const serviceType = await prisma.serviceType.findFirstOrThrow({
+   * // Get one ProjectType
+   * const projectType = await prisma.projectType.findFirstOrThrow({
    *   where: {
    *     // ... provide filter here
    *   }
    * })
    */
-  findFirstOrThrow<T extends ServiceTypeFindFirstOrThrowArgs>(
-    args?: Prisma.SelectSubset<T, ServiceTypeFindFirstOrThrowArgs<ExtArgs>>,
-  ): Prisma.Prisma__ServiceTypeClient<
+  findFirstOrThrow<T extends ProjectTypeFindFirstOrThrowArgs>(
+    args?: Prisma.SelectSubset<T, ProjectTypeFindFirstOrThrowArgs<ExtArgs>>,
+  ): Prisma.Prisma__ProjectTypeClient<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'findFirstOrThrow',
       GlobalOmitOptions
@@ -805,26 +805,26 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Find zero or more ServiceTypes that matches the filter.
+   * Find zero or more ProjectTypes that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {ServiceTypeFindManyArgs} args - Arguments to filter and select certain fields only.
+   * @param {ProjectTypeFindManyArgs} args - Arguments to filter and select certain fields only.
    * @example
-   * // Get all ServiceTypes
-   * const serviceTypes = await prisma.serviceType.findMany()
+   * // Get all ProjectTypes
+   * const projectTypes = await prisma.projectType.findMany()
    *
-   * // Get first 10 ServiceTypes
-   * const serviceTypes = await prisma.serviceType.findMany({ take: 10 })
+   * // Get first 10 ProjectTypes
+   * const projectTypes = await prisma.projectType.findMany({ take: 10 })
    *
    * // Only select the `id`
-   * const serviceTypeWithIdOnly = await prisma.serviceType.findMany({ select: { id: true } })
+   * const projectTypeWithIdOnly = await prisma.projectType.findMany({ select: { id: true } })
    *
    */
-  findMany<T extends ServiceTypeFindManyArgs>(
-    args?: Prisma.SelectSubset<T, ServiceTypeFindManyArgs<ExtArgs>>,
+  findMany<T extends ProjectTypeFindManyArgs>(
+    args?: Prisma.SelectSubset<T, ProjectTypeFindManyArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'findMany',
       GlobalOmitOptions
@@ -832,22 +832,22 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Create a ServiceType.
-   * @param {ServiceTypeCreateArgs} args - Arguments to create a ServiceType.
+   * Create a ProjectType.
+   * @param {ProjectTypeCreateArgs} args - Arguments to create a ProjectType.
    * @example
-   * // Create one ServiceType
-   * const ServiceType = await prisma.serviceType.create({
+   * // Create one ProjectType
+   * const ProjectType = await prisma.projectType.create({
    *   data: {
-   *     // ... data to create a ServiceType
+   *     // ... data to create a ProjectType
    *   }
    * })
    *
    */
-  create<T extends ServiceTypeCreateArgs>(
-    args: Prisma.SelectSubset<T, ServiceTypeCreateArgs<ExtArgs>>,
-  ): Prisma.Prisma__ServiceTypeClient<
+  create<T extends ProjectTypeCreateArgs>(
+    args: Prisma.SelectSubset<T, ProjectTypeCreateArgs<ExtArgs>>,
+  ): Prisma.Prisma__ProjectTypeClient<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'create',
       GlobalOmitOptions
@@ -858,34 +858,34 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Create many ServiceTypes.
-   * @param {ServiceTypeCreateManyArgs} args - Arguments to create many ServiceTypes.
+   * Create many ProjectTypes.
+   * @param {ProjectTypeCreateManyArgs} args - Arguments to create many ProjectTypes.
    * @example
-   * // Create many ServiceTypes
-   * const serviceType = await prisma.serviceType.createMany({
+   * // Create many ProjectTypes
+   * const projectType = await prisma.projectType.createMany({
    *   data: [
    *     // ... provide data here
    *   ]
    * })
    *
    */
-  createMany<T extends ServiceTypeCreateManyArgs>(
-    args?: Prisma.SelectSubset<T, ServiceTypeCreateManyArgs<ExtArgs>>,
+  createMany<T extends ProjectTypeCreateManyArgs>(
+    args?: Prisma.SelectSubset<T, ProjectTypeCreateManyArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
-   * Create many ServiceTypes and returns the data saved in the database.
-   * @param {ServiceTypeCreateManyAndReturnArgs} args - Arguments to create many ServiceTypes.
+   * Create many ProjectTypes and returns the data saved in the database.
+   * @param {ProjectTypeCreateManyAndReturnArgs} args - Arguments to create many ProjectTypes.
    * @example
-   * // Create many ServiceTypes
-   * const serviceType = await prisma.serviceType.createManyAndReturn({
+   * // Create many ProjectTypes
+   * const projectType = await prisma.projectType.createManyAndReturn({
    *   data: [
    *     // ... provide data here
    *   ]
    * })
    *
-   * // Create many ServiceTypes and only return the `id`
-   * const serviceTypeWithIdOnly = await prisma.serviceType.createManyAndReturn({
+   * // Create many ProjectTypes and only return the `id`
+   * const projectTypeWithIdOnly = await prisma.projectType.createManyAndReturn({
    *   select: { id: true },
    *   data: [
    *     // ... provide data here
@@ -895,11 +895,11 @@ export interface ServiceTypeDelegate<
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  createManyAndReturn<T extends ServiceTypeCreateManyAndReturnArgs>(
-    args?: Prisma.SelectSubset<T, ServiceTypeCreateManyAndReturnArgs<ExtArgs>>,
+  createManyAndReturn<T extends ProjectTypeCreateManyAndReturnArgs>(
+    args?: Prisma.SelectSubset<T, ProjectTypeCreateManyAndReturnArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'createManyAndReturn',
       GlobalOmitOptions
@@ -907,22 +907,22 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Delete a ServiceType.
-   * @param {ServiceTypeDeleteArgs} args - Arguments to delete one ServiceType.
+   * Delete a ProjectType.
+   * @param {ProjectTypeDeleteArgs} args - Arguments to delete one ProjectType.
    * @example
-   * // Delete one ServiceType
-   * const ServiceType = await prisma.serviceType.delete({
+   * // Delete one ProjectType
+   * const ProjectType = await prisma.projectType.delete({
    *   where: {
-   *     // ... filter to delete one ServiceType
+   *     // ... filter to delete one ProjectType
    *   }
    * })
    *
    */
-  delete<T extends ServiceTypeDeleteArgs>(
-    args: Prisma.SelectSubset<T, ServiceTypeDeleteArgs<ExtArgs>>,
-  ): Prisma.Prisma__ServiceTypeClient<
+  delete<T extends ProjectTypeDeleteArgs>(
+    args: Prisma.SelectSubset<T, ProjectTypeDeleteArgs<ExtArgs>>,
+  ): Prisma.Prisma__ProjectTypeClient<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'delete',
       GlobalOmitOptions
@@ -933,11 +933,11 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Update one ServiceType.
-   * @param {ServiceTypeUpdateArgs} args - Arguments to update one ServiceType.
+   * Update one ProjectType.
+   * @param {ProjectTypeUpdateArgs} args - Arguments to update one ProjectType.
    * @example
-   * // Update one ServiceType
-   * const serviceType = await prisma.serviceType.update({
+   * // Update one ProjectType
+   * const projectType = await prisma.projectType.update({
    *   where: {
    *     // ... provide filter here
    *   },
@@ -947,11 +947,11 @@ export interface ServiceTypeDelegate<
    * })
    *
    */
-  update<T extends ServiceTypeUpdateArgs>(
-    args: Prisma.SelectSubset<T, ServiceTypeUpdateArgs<ExtArgs>>,
-  ): Prisma.Prisma__ServiceTypeClient<
+  update<T extends ProjectTypeUpdateArgs>(
+    args: Prisma.SelectSubset<T, ProjectTypeUpdateArgs<ExtArgs>>,
+  ): Prisma.Prisma__ProjectTypeClient<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'update',
       GlobalOmitOptions
@@ -962,29 +962,29 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Delete zero or more ServiceTypes.
-   * @param {ServiceTypeDeleteManyArgs} args - Arguments to filter ServiceTypes to delete.
+   * Delete zero or more ProjectTypes.
+   * @param {ProjectTypeDeleteManyArgs} args - Arguments to filter ProjectTypes to delete.
    * @example
-   * // Delete a few ServiceTypes
-   * const { count } = await prisma.serviceType.deleteMany({
+   * // Delete a few ProjectTypes
+   * const { count } = await prisma.projectType.deleteMany({
    *   where: {
    *     // ... provide filter here
    *   }
    * })
    *
    */
-  deleteMany<T extends ServiceTypeDeleteManyArgs>(
-    args?: Prisma.SelectSubset<T, ServiceTypeDeleteManyArgs<ExtArgs>>,
+  deleteMany<T extends ProjectTypeDeleteManyArgs>(
+    args?: Prisma.SelectSubset<T, ProjectTypeDeleteManyArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
-   * Update zero or more ServiceTypes.
+   * Update zero or more ProjectTypes.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {ServiceTypeUpdateManyArgs} args - Arguments to update one or more rows.
+   * @param {ProjectTypeUpdateManyArgs} args - Arguments to update one or more rows.
    * @example
-   * // Update many ServiceTypes
-   * const serviceType = await prisma.serviceType.updateMany({
+   * // Update many ProjectTypes
+   * const projectType = await prisma.projectType.updateMany({
    *   where: {
    *     // ... provide filter here
    *   },
@@ -994,16 +994,16 @@ export interface ServiceTypeDelegate<
    * })
    *
    */
-  updateMany<T extends ServiceTypeUpdateManyArgs>(
-    args: Prisma.SelectSubset<T, ServiceTypeUpdateManyArgs<ExtArgs>>,
+  updateMany<T extends ProjectTypeUpdateManyArgs>(
+    args: Prisma.SelectSubset<T, ProjectTypeUpdateManyArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<Prisma.BatchPayload>;
 
   /**
-   * Update zero or more ServiceTypes and returns the data updated in the database.
-   * @param {ServiceTypeUpdateManyAndReturnArgs} args - Arguments to update many ServiceTypes.
+   * Update zero or more ProjectTypes and returns the data updated in the database.
+   * @param {ProjectTypeUpdateManyAndReturnArgs} args - Arguments to update many ProjectTypes.
    * @example
-   * // Update many ServiceTypes
-   * const serviceType = await prisma.serviceType.updateManyAndReturn({
+   * // Update many ProjectTypes
+   * const projectType = await prisma.projectType.updateManyAndReturn({
    *   where: {
    *     // ... provide filter here
    *   },
@@ -1012,8 +1012,8 @@ export interface ServiceTypeDelegate<
    *   ]
    * })
    *
-   * // Update zero or more ServiceTypes and only return the `id`
-   * const serviceTypeWithIdOnly = await prisma.serviceType.updateManyAndReturn({
+   * // Update zero or more ProjectTypes and only return the `id`
+   * const projectTypeWithIdOnly = await prisma.projectType.updateManyAndReturn({
    *   select: { id: true },
    *   where: {
    *     // ... provide filter here
@@ -1026,11 +1026,11 @@ export interface ServiceTypeDelegate<
    * Read more here: https://pris.ly/d/null-undefined
    *
    */
-  updateManyAndReturn<T extends ServiceTypeUpdateManyAndReturnArgs>(
-    args: Prisma.SelectSubset<T, ServiceTypeUpdateManyAndReturnArgs<ExtArgs>>,
+  updateManyAndReturn<T extends ProjectTypeUpdateManyAndReturnArgs>(
+    args: Prisma.SelectSubset<T, ProjectTypeUpdateManyAndReturnArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'updateManyAndReturn',
       GlobalOmitOptions
@@ -1038,27 +1038,27 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Create or update one ServiceType.
-   * @param {ServiceTypeUpsertArgs} args - Arguments to update or create a ServiceType.
+   * Create or update one ProjectType.
+   * @param {ProjectTypeUpsertArgs} args - Arguments to update or create a ProjectType.
    * @example
-   * // Update or create a ServiceType
-   * const serviceType = await prisma.serviceType.upsert({
+   * // Update or create a ProjectType
+   * const projectType = await prisma.projectType.upsert({
    *   create: {
-   *     // ... data to create a ServiceType
+   *     // ... data to create a ProjectType
    *   },
    *   update: {
    *     // ... in case it already exists, update
    *   },
    *   where: {
-   *     // ... the filter for the ServiceType we want to update
+   *     // ... the filter for the ProjectType we want to update
    *   }
    * })
    */
-  upsert<T extends ServiceTypeUpsertArgs>(
-    args: Prisma.SelectSubset<T, ServiceTypeUpsertArgs<ExtArgs>>,
-  ): Prisma.Prisma__ServiceTypeClient<
+  upsert<T extends ProjectTypeUpsertArgs>(
+    args: Prisma.SelectSubset<T, ProjectTypeUpsertArgs<ExtArgs>>,
+  ): Prisma.Prisma__ProjectTypeClient<
     runtime.Types.Result.GetResult<
-      Prisma.$ServiceTypePayload<ExtArgs>,
+      Prisma.$ProjectTypePayload<ExtArgs>,
       T,
       'upsert',
       GlobalOmitOptions
@@ -1069,33 +1069,33 @@ export interface ServiceTypeDelegate<
   >;
 
   /**
-   * Count the number of ServiceTypes.
+   * Count the number of ProjectTypes.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {ServiceTypeCountArgs} args - Arguments to filter ServiceTypes to count.
+   * @param {ProjectTypeCountArgs} args - Arguments to filter ProjectTypes to count.
    * @example
-   * // Count the number of ServiceTypes
-   * const count = await prisma.serviceType.count({
+   * // Count the number of ProjectTypes
+   * const count = await prisma.projectType.count({
    *   where: {
-   *     // ... the filter for the ServiceTypes we want to count
+   *     // ... the filter for the ProjectTypes we want to count
    *   }
    * })
    **/
-  count<T extends ServiceTypeCountArgs>(
-    args?: Prisma.Subset<T, ServiceTypeCountArgs>,
+  count<T extends ProjectTypeCountArgs>(
+    args?: Prisma.Subset<T, ProjectTypeCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
         ? number
-        : Prisma.GetScalarType<T['select'], ServiceTypeCountAggregateOutputType>
+        : Prisma.GetScalarType<T['select'], ProjectTypeCountAggregateOutputType>
       : number
   >;
 
   /**
-   * Allows you to perform aggregations operations on a ServiceType.
+   * Allows you to perform aggregations operations on a ProjectType.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {ServiceTypeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+   * @param {ProjectTypeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
    * @example
    * // Ordered by age ascending
    * // Where email contains prisma.io
@@ -1115,15 +1115,15 @@ export interface ServiceTypeDelegate<
    *   take: 10,
    * })
    **/
-  aggregate<T extends ServiceTypeAggregateArgs>(
-    args: Prisma.Subset<T, ServiceTypeAggregateArgs>,
-  ): Prisma.PrismaPromise<GetServiceTypeAggregateType<T>>;
+  aggregate<T extends ProjectTypeAggregateArgs>(
+    args: Prisma.Subset<T, ProjectTypeAggregateArgs>,
+  ): Prisma.PrismaPromise<GetProjectTypeAggregateType<T>>;
 
   /**
-   * Group by ServiceType.
+   * Group by ProjectType.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {ServiceTypeGroupByArgs} args - Group by arguments.
+   * @param {ProjectTypeGroupByArgs} args - Group by arguments.
    * @example
    * // Group by city, order by createdAt, get count
    * const result = await prisma.user.groupBy({
@@ -1138,14 +1138,14 @@ export interface ServiceTypeDelegate<
    *
    **/
   groupBy<
-    T extends ServiceTypeGroupByArgs,
+    T extends ProjectTypeGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
     OrderByArg extends Prisma.True extends HasSelectOrTake
-      ? { orderBy: ServiceTypeGroupByArgs['orderBy'] }
-      : { orderBy?: ServiceTypeGroupByArgs['orderBy'] },
+      ? { orderBy: ProjectTypeGroupByArgs['orderBy'] }
+      : { orderBy?: ProjectTypeGroupByArgs['orderBy'] },
     OrderFields extends Prisma.ExcludeUnderscoreKeys<
       Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>
     >,
@@ -1197,24 +1197,24 @@ export interface ServiceTypeDelegate<
                     : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
                 }[OrderFields],
   >(
-    args: Prisma.SubsetIntersection<T, ServiceTypeGroupByArgs, OrderByArg> &
+    args: Prisma.SubsetIntersection<T, ProjectTypeGroupByArgs, OrderByArg> &
       InputErrors,
   ): {} extends InputErrors
-    ? GetServiceTypeGroupByPayload<T>
+    ? GetProjectTypeGroupByPayload<T>
     : Prisma.PrismaPromise<InputErrors>;
   /**
-   * Fields of the ServiceType model
+   * Fields of the ProjectType model
    */
-  readonly fields: ServiceTypeFieldRefs;
+  readonly fields: ProjectTypeFieldRefs;
 }
 
 /**
- * The delegate class that acts as a "Promise-like" for ServiceType.
+ * The delegate class that acts as a "Promise-like" for ProjectType.
  * Why is this prefixed with `Prisma__`?
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__ServiceTypeClient<
+export interface Prisma__ProjectTypeClient<
   T,
   Null = never,
   ExtArgs extends
@@ -1223,9 +1223,9 @@ export interface Prisma__ServiceTypeClient<
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: 'PrismaPromise';
   serviceCategories<
-    T extends Prisma.ServiceType$serviceCategoriesArgs<ExtArgs> = {},
+    T extends Prisma.ProjectType$serviceCategoriesArgs<ExtArgs> = {},
   >(
-    args?: Prisma.Subset<T, Prisma.ServiceType$serviceCategoriesArgs<ExtArgs>>,
+    args?: Prisma.Subset<T, Prisma.ProjectType$serviceCategoriesArgs<ExtArgs>>,
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$ServiceCategoryPayload<ExtArgs>,
@@ -1274,478 +1274,478 @@ export interface Prisma__ServiceTypeClient<
 }
 
 /**
- * Fields of the ServiceType model
+ * Fields of the ProjectType model
  */
-export interface ServiceTypeFieldRefs {
-  readonly id: Prisma.FieldRef<'ServiceType', 'String'>;
-  readonly name: Prisma.FieldRef<'ServiceType', 'String'>;
-  readonly description: Prisma.FieldRef<'ServiceType', 'String'>;
-  readonly displayOrder: Prisma.FieldRef<'ServiceType', 'Int'>;
-  readonly isActive: Prisma.FieldRef<'ServiceType', 'Boolean'>;
-  readonly createdAt: Prisma.FieldRef<'ServiceType', 'DateTime'>;
-  readonly updatedAt: Prisma.FieldRef<'ServiceType', 'DateTime'>;
+export interface ProjectTypeFieldRefs {
+  readonly id: Prisma.FieldRef<'ProjectType', 'String'>;
+  readonly name: Prisma.FieldRef<'ProjectType', 'String'>;
+  readonly description: Prisma.FieldRef<'ProjectType', 'String'>;
+  readonly displayOrder: Prisma.FieldRef<'ProjectType', 'Int'>;
+  readonly isActive: Prisma.FieldRef<'ProjectType', 'Boolean'>;
+  readonly createdAt: Prisma.FieldRef<'ProjectType', 'DateTime'>;
+  readonly updatedAt: Prisma.FieldRef<'ProjectType', 'DateTime'>;
 }
 
 // Custom InputTypes
 /**
- * ServiceType findUnique
+ * ProjectType findUnique
  */
-export type ServiceTypeFindUniqueArgs<
+export type ProjectTypeFindUniqueArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServiceTypeInclude<ExtArgs> | null;
+  include?: Prisma.ProjectTypeInclude<ExtArgs> | null;
   /**
-   * Filter, which ServiceType to fetch.
+   * Filter, which ProjectType to fetch.
    */
-  where: Prisma.ServiceTypeWhereUniqueInput;
+  where: Prisma.ProjectTypeWhereUniqueInput;
 };
 
 /**
- * ServiceType findUniqueOrThrow
+ * ProjectType findUniqueOrThrow
  */
-export type ServiceTypeFindUniqueOrThrowArgs<
+export type ProjectTypeFindUniqueOrThrowArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServiceTypeInclude<ExtArgs> | null;
+  include?: Prisma.ProjectTypeInclude<ExtArgs> | null;
   /**
-   * Filter, which ServiceType to fetch.
+   * Filter, which ProjectType to fetch.
    */
-  where: Prisma.ServiceTypeWhereUniqueInput;
+  where: Prisma.ProjectTypeWhereUniqueInput;
 };
 
 /**
- * ServiceType findFirst
+ * ProjectType findFirst
  */
-export type ServiceTypeFindFirstArgs<
+export type ProjectTypeFindFirstArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServiceTypeInclude<ExtArgs> | null;
+  include?: Prisma.ProjectTypeInclude<ExtArgs> | null;
   /**
-   * Filter, which ServiceType to fetch.
+   * Filter, which ProjectType to fetch.
    */
-  where?: Prisma.ServiceTypeWhereInput;
+  where?: Prisma.ProjectTypeWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
-   * Determine the order of ServiceTypes to fetch.
+   * Determine the order of ProjectTypes to fetch.
    */
   orderBy?:
-    | Prisma.ServiceTypeOrderByWithRelationInput
-    | Prisma.ServiceTypeOrderByWithRelationInput[];
+    | Prisma.ProjectTypeOrderByWithRelationInput
+    | Prisma.ProjectTypeOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
-   * Sets the position for searching for ServiceTypes.
+   * Sets the position for searching for ProjectTypes.
    */
-  cursor?: Prisma.ServiceTypeWhereUniqueInput;
+  cursor?: Prisma.ProjectTypeWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
-   * Take `±n` ServiceTypes from the position of the cursor.
+   * Take `±n` ProjectTypes from the position of the cursor.
    */
   take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
-   * Skip the first `n` ServiceTypes.
+   * Skip the first `n` ProjectTypes.
    */
   skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
-   * Filter by unique combinations of ServiceTypes.
+   * Filter by unique combinations of ProjectTypes.
    */
   distinct?:
-    | Prisma.ServiceTypeScalarFieldEnum
-    | Prisma.ServiceTypeScalarFieldEnum[];
+    | Prisma.ProjectTypeScalarFieldEnum
+    | Prisma.ProjectTypeScalarFieldEnum[];
 };
 
 /**
- * ServiceType findFirstOrThrow
+ * ProjectType findFirstOrThrow
  */
-export type ServiceTypeFindFirstOrThrowArgs<
+export type ProjectTypeFindFirstOrThrowArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServiceTypeInclude<ExtArgs> | null;
+  include?: Prisma.ProjectTypeInclude<ExtArgs> | null;
   /**
-   * Filter, which ServiceType to fetch.
+   * Filter, which ProjectType to fetch.
    */
-  where?: Prisma.ServiceTypeWhereInput;
+  where?: Prisma.ProjectTypeWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
-   * Determine the order of ServiceTypes to fetch.
+   * Determine the order of ProjectTypes to fetch.
    */
   orderBy?:
-    | Prisma.ServiceTypeOrderByWithRelationInput
-    | Prisma.ServiceTypeOrderByWithRelationInput[];
+    | Prisma.ProjectTypeOrderByWithRelationInput
+    | Prisma.ProjectTypeOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
-   * Sets the position for searching for ServiceTypes.
+   * Sets the position for searching for ProjectTypes.
    */
-  cursor?: Prisma.ServiceTypeWhereUniqueInput;
+  cursor?: Prisma.ProjectTypeWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
-   * Take `±n` ServiceTypes from the position of the cursor.
+   * Take `±n` ProjectTypes from the position of the cursor.
    */
   take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
-   * Skip the first `n` ServiceTypes.
+   * Skip the first `n` ProjectTypes.
    */
   skip?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    *
-   * Filter by unique combinations of ServiceTypes.
+   * Filter by unique combinations of ProjectTypes.
    */
   distinct?:
-    | Prisma.ServiceTypeScalarFieldEnum
-    | Prisma.ServiceTypeScalarFieldEnum[];
+    | Prisma.ProjectTypeScalarFieldEnum
+    | Prisma.ProjectTypeScalarFieldEnum[];
 };
 
 /**
- * ServiceType findMany
+ * ProjectType findMany
  */
-export type ServiceTypeFindManyArgs<
+export type ProjectTypeFindManyArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServiceTypeInclude<ExtArgs> | null;
+  include?: Prisma.ProjectTypeInclude<ExtArgs> | null;
   /**
-   * Filter, which ServiceTypes to fetch.
+   * Filter, which ProjectTypes to fetch.
    */
-  where?: Prisma.ServiceTypeWhereInput;
+  where?: Prisma.ProjectTypeWhereInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    *
-   * Determine the order of ServiceTypes to fetch.
+   * Determine the order of ProjectTypes to fetch.
    */
   orderBy?:
-    | Prisma.ServiceTypeOrderByWithRelationInput
-    | Prisma.ServiceTypeOrderByWithRelationInput[];
+    | Prisma.ProjectTypeOrderByWithRelationInput
+    | Prisma.ProjectTypeOrderByWithRelationInput[];
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    *
-   * Sets the position for listing ServiceTypes.
+   * Sets the position for listing ProjectTypes.
    */
-  cursor?: Prisma.ServiceTypeWhereUniqueInput;
+  cursor?: Prisma.ProjectTypeWhereUniqueInput;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
-   * Take `±n` ServiceTypes from the position of the cursor.
+   * Take `±n` ProjectTypes from the position of the cursor.
    */
   take?: number;
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    *
-   * Skip the first `n` ServiceTypes.
+   * Skip the first `n` ProjectTypes.
    */
   skip?: number;
   distinct?:
-    | Prisma.ServiceTypeScalarFieldEnum
-    | Prisma.ServiceTypeScalarFieldEnum[];
+    | Prisma.ProjectTypeScalarFieldEnum
+    | Prisma.ProjectTypeScalarFieldEnum[];
 };
 
 /**
- * ServiceType create
+ * ProjectType create
  */
-export type ServiceTypeCreateArgs<
+export type ProjectTypeCreateArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServiceTypeInclude<ExtArgs> | null;
+  include?: Prisma.ProjectTypeInclude<ExtArgs> | null;
   /**
-   * The data needed to create a ServiceType.
+   * The data needed to create a ProjectType.
    */
   data: Prisma.XOR<
-    Prisma.ServiceTypeCreateInput,
-    Prisma.ServiceTypeUncheckedCreateInput
+    Prisma.ProjectTypeCreateInput,
+    Prisma.ProjectTypeUncheckedCreateInput
   >;
 };
 
 /**
- * ServiceType createMany
+ * ProjectType createMany
  */
-export type ServiceTypeCreateManyArgs<
+export type ProjectTypeCreateManyArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * The data used to create many ServiceTypes.
+   * The data used to create many ProjectTypes.
    */
-  data: Prisma.ServiceTypeCreateManyInput | Prisma.ServiceTypeCreateManyInput[];
+  data: Prisma.ProjectTypeCreateManyInput | Prisma.ProjectTypeCreateManyInput[];
   skipDuplicates?: boolean;
 };
 
 /**
- * ServiceType createManyAndReturn
+ * ProjectType createManyAndReturn
  */
-export type ServiceTypeCreateManyAndReturnArgs<
+export type ProjectTypeCreateManyAndReturnArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelectCreateManyAndReturn<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelectCreateManyAndReturn<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
-   * The data used to create many ServiceTypes.
+   * The data used to create many ProjectTypes.
    */
-  data: Prisma.ServiceTypeCreateManyInput | Prisma.ServiceTypeCreateManyInput[];
+  data: Prisma.ProjectTypeCreateManyInput | Prisma.ProjectTypeCreateManyInput[];
   skipDuplicates?: boolean;
 };
 
 /**
- * ServiceType update
+ * ProjectType update
  */
-export type ServiceTypeUpdateArgs<
+export type ProjectTypeUpdateArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServiceTypeInclude<ExtArgs> | null;
+  include?: Prisma.ProjectTypeInclude<ExtArgs> | null;
   /**
-   * The data needed to update a ServiceType.
+   * The data needed to update a ProjectType.
    */
   data: Prisma.XOR<
-    Prisma.ServiceTypeUpdateInput,
-    Prisma.ServiceTypeUncheckedUpdateInput
+    Prisma.ProjectTypeUpdateInput,
+    Prisma.ProjectTypeUncheckedUpdateInput
   >;
   /**
-   * Choose, which ServiceType to update.
+   * Choose, which ProjectType to update.
    */
-  where: Prisma.ServiceTypeWhereUniqueInput;
+  where: Prisma.ProjectTypeWhereUniqueInput;
 };
 
 /**
- * ServiceType updateMany
+ * ProjectType updateMany
  */
-export type ServiceTypeUpdateManyArgs<
+export type ProjectTypeUpdateManyArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * The data used to update ServiceTypes.
+   * The data used to update ProjectTypes.
    */
   data: Prisma.XOR<
-    Prisma.ServiceTypeUpdateManyMutationInput,
-    Prisma.ServiceTypeUncheckedUpdateManyInput
+    Prisma.ProjectTypeUpdateManyMutationInput,
+    Prisma.ProjectTypeUncheckedUpdateManyInput
   >;
   /**
-   * Filter which ServiceTypes to update
+   * Filter which ProjectTypes to update
    */
-  where?: Prisma.ServiceTypeWhereInput;
+  where?: Prisma.ProjectTypeWhereInput;
   /**
-   * Limit how many ServiceTypes to update.
+   * Limit how many ProjectTypes to update.
    */
   limit?: number;
 };
 
 /**
- * ServiceType updateManyAndReturn
+ * ProjectType updateManyAndReturn
  */
-export type ServiceTypeUpdateManyAndReturnArgs<
+export type ProjectTypeUpdateManyAndReturnArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelectUpdateManyAndReturn<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelectUpdateManyAndReturn<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
-   * The data used to update ServiceTypes.
+   * The data used to update ProjectTypes.
    */
   data: Prisma.XOR<
-    Prisma.ServiceTypeUpdateManyMutationInput,
-    Prisma.ServiceTypeUncheckedUpdateManyInput
+    Prisma.ProjectTypeUpdateManyMutationInput,
+    Prisma.ProjectTypeUncheckedUpdateManyInput
   >;
   /**
-   * Filter which ServiceTypes to update
+   * Filter which ProjectTypes to update
    */
-  where?: Prisma.ServiceTypeWhereInput;
+  where?: Prisma.ProjectTypeWhereInput;
   /**
-   * Limit how many ServiceTypes to update.
+   * Limit how many ProjectTypes to update.
    */
   limit?: number;
 };
 
 /**
- * ServiceType upsert
+ * ProjectType upsert
  */
-export type ServiceTypeUpsertArgs<
+export type ProjectTypeUpsertArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServiceTypeInclude<ExtArgs> | null;
+  include?: Prisma.ProjectTypeInclude<ExtArgs> | null;
   /**
-   * The filter to search for the ServiceType to update in case it exists.
+   * The filter to search for the ProjectType to update in case it exists.
    */
-  where: Prisma.ServiceTypeWhereUniqueInput;
+  where: Prisma.ProjectTypeWhereUniqueInput;
   /**
-   * In case the ServiceType found by the `where` argument doesn't exist, create a new ServiceType with this data.
+   * In case the ProjectType found by the `where` argument doesn't exist, create a new ProjectType with this data.
    */
   create: Prisma.XOR<
-    Prisma.ServiceTypeCreateInput,
-    Prisma.ServiceTypeUncheckedCreateInput
+    Prisma.ProjectTypeCreateInput,
+    Prisma.ProjectTypeUncheckedCreateInput
   >;
   /**
-   * In case the ServiceType was found with the provided `where` argument, update it with this data.
+   * In case the ProjectType was found with the provided `where` argument, update it with this data.
    */
   update: Prisma.XOR<
-    Prisma.ServiceTypeUpdateInput,
-    Prisma.ServiceTypeUncheckedUpdateInput
+    Prisma.ProjectTypeUpdateInput,
+    Prisma.ProjectTypeUncheckedUpdateInput
   >;
 };
 
 /**
- * ServiceType delete
+ * ProjectType delete
  */
-export type ServiceTypeDeleteArgs<
+export type ProjectTypeDeleteArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServiceTypeInclude<ExtArgs> | null;
+  include?: Prisma.ProjectTypeInclude<ExtArgs> | null;
   /**
-   * Filter which ServiceType to delete.
+   * Filter which ProjectType to delete.
    */
-  where: Prisma.ServiceTypeWhereUniqueInput;
+  where: Prisma.ProjectTypeWhereUniqueInput;
 };
 
 /**
- * ServiceType deleteMany
+ * ProjectType deleteMany
  */
-export type ServiceTypeDeleteManyArgs<
+export type ProjectTypeDeleteManyArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Filter which ServiceTypes to delete
+   * Filter which ProjectTypes to delete
    */
-  where?: Prisma.ServiceTypeWhereInput;
+  where?: Prisma.ProjectTypeWhereInput;
   /**
-   * Limit how many ServiceTypes to delete.
+   * Limit how many ProjectTypes to delete.
    */
   limit?: number;
 };
 
 /**
- * ServiceType.serviceCategories
+ * ProjectType.serviceCategories
  */
-export type ServiceType$serviceCategoriesArgs<
+export type ProjectType$serviceCategoriesArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
@@ -1774,22 +1774,22 @@ export type ServiceType$serviceCategoriesArgs<
 };
 
 /**
- * ServiceType without action
+ * ProjectType without action
  */
-export type ServiceTypeDefaultArgs<
+export type ProjectTypeDefaultArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   /**
-   * Select specific fields to fetch from the ServiceType
+   * Select specific fields to fetch from the ProjectType
    */
-  select?: Prisma.ServiceTypeSelect<ExtArgs> | null;
+  select?: Prisma.ProjectTypeSelect<ExtArgs> | null;
   /**
-   * Omit specific fields from the ServiceType
+   * Omit specific fields from the ProjectType
    */
-  omit?: Prisma.ServiceTypeOmit<ExtArgs> | null;
+  omit?: Prisma.ProjectTypeOmit<ExtArgs> | null;
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ServiceTypeInclude<ExtArgs> | null;
+  include?: Prisma.ProjectTypeInclude<ExtArgs> | null;
 };

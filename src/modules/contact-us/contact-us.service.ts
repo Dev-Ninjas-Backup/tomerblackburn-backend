@@ -5,6 +5,7 @@ import { PrismaService } from '@/common/prisma/prisma.service';
 import puppeteer from 'puppeteer';
 import * as ExcelJS from 'exceljs';
 import * as path from 'path';
+import * as fs from 'fs';
 
 @Injectable()
 export class ContactUsService {
@@ -478,13 +479,41 @@ export class ContactUsService {
   async exportToExcel(isRead?: boolean): Promise<ExcelJS.Buffer> {
     try {
       const workbook = new ExcelJS.Workbook();
-      const templatePath = path.join(process.cwd(), 'Leads Template.xlsx');
+
+      // Try multiple possible paths for the template
+      const possiblePaths = [
+        path.join(process.cwd(), 'Leads Template.xlsx'),
+        path.join(process.cwd(), 'dist', 'Leads Template.xlsx'),
+        path.join(__dirname, '..', '..', '..', 'Leads Template.xlsx'),
+        '/app/Leads Template.xlsx', // Common path in Docker containers
+      ];
+
+      let templatePath: string | null = null;
+      for (const testPath of possiblePaths) {
+        if (fs.existsSync(testPath)) {
+          templatePath = testPath;
+          this.logger.log(`Found template at: ${templatePath}`);
+          break;
+        }
+      }
+
+      if (!templatePath) {
+        const searchedPaths = possiblePaths.join('\n  - ');
+        this.logger.error(
+          `Template file not found. Searched in:\n  - ${searchedPaths}\nCurrent working directory: ${process.cwd()}`,
+        );
+        throw new Error(
+          `Template file "Leads Template.xlsx" not found. Please ensure the file exists in the project root directory.`,
+        );
+      }
 
       await workbook.xlsx.readFile(templatePath);
 
       const worksheet = workbook.getWorksheet('Blank Template');
       if (!worksheet) {
-        throw new Error('Template worksheet not found');
+        throw new Error(
+          'Template worksheet "Blank Template" not found in the Excel file',
+        );
       }
 
       const where = isRead !== undefined ? { isRead } : {};

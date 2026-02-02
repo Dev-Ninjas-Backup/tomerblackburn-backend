@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { ServicesModule } from './modules/services/services.module';
-import { ServiceTypesModule } from './modules/service-types/service-types.module';
+import { ProjectTypesModule } from './modules/project-types/project-types.module';
 import { ServiceCategoriesModule } from './modules/service-categories/service-categories.module';
 import { CostCodeCategoriesModule } from './modules/cost-code-categories/cost-code-categories.module';
 import { CostCodesModule } from './modules/cost-codes/cost-codes.module';
@@ -39,7 +39,7 @@ import { InitModule } from './common/init/init.module';
     AuthModule,
     PrismaModule,
     ServicesModule,
-    ServiceTypesModule,
+    ProjectTypesModule,
     ServiceCategoriesModule,
     CostCodeCategoriesModule,
     CostCodesModule,

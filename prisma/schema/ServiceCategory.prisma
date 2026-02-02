@@ -1,6 +1,6 @@
 model ServiceCategory {
   id            String  @id @default(uuid())
-  serviceTypeId String
+  projectTypeId String
   name          String
   description   String?
 
@@ -10,10 +10,11 @@ model ServiceCategory {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  serviceType ServiceType @relation(fields: [serviceTypeId], references: [id], onDelete: Cascade)
+  projectType ProjectType @relation(fields: [projectTypeId], references: [id], onDelete: Cascade)
   services    Service[]
+  costCodes   CostCode[]
 
-  @@index([serviceTypeId])
+  @@index([projectTypeId])
   @@index([isActive])
   @@index([displayOrder])
   @@map("service_categories")

@@ -16,29 +16,29 @@ import {
   ApiParam,
   ApiQuery,
 } from '@nestjs/swagger';
-import { ServiceTypesService } from './service-types.service';
-import { CreateServiceTypeDto } from './dto/create-service-type.dto';
-import { UpdateServiceTypeDto } from './dto/update-service-type.dto';
-import { ServiceTypeEntity } from './entities/service-type.entity';
+import { ProjectTypesService } from './project-types.service';
+import { CreateProjectTypeDto } from './dto/create-project-type.dto';
+import { UpdateProjectTypeDto } from './dto/update-project-type.dto';
+import { ProjectTypeEntity } from './entities/project-type.entity';
 
-@ApiTags('Service Types')
-@Controller('service-types')
-export class ServiceTypesController {
-  constructor(private readonly serviceTypesService: ServiceTypesService) {}
+@ApiTags('Project Types')
+@Controller('project-types')
+export class ProjectTypesController {
+  constructor(private readonly projectTypesService: ProjectTypesService) {}
 
   @Post()
   @ApiOperation({
-    summary: 'Create a new service type',
+    summary: 'Create a new project type',
     description:
-      'Create a new service type (e.g., Bathroom Renovation, Kitchen Renovation)',
+      'Create a new project type (e.g., Bathroom Renovation, Kitchen Renovation)',
   })
   @ApiResponse({
     status: HttpStatus.CREATED,
-    description: 'Service type created successfully',
-    type: ServiceTypeEntity,
+    description: 'Project type created successfully',
+    type: ProjectTypeEntity,
     schema: {
       example: {
-        message: 'Service type created successfully',
+        message: 'Project type created successfully',
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
           name: 'Bathroom Renovation',
@@ -57,16 +57,16 @@ export class ServiceTypesController {
   })
   @ApiResponse({
     status: HttpStatus.CONFLICT,
-    description: 'Service type with this name already exists',
+    description: 'Project type with this name already exists',
   })
-  create(@Body() createServiceTypeDto: CreateServiceTypeDto) {
-    return this.serviceTypesService.create(createServiceTypeDto);
+  create(@Body() createProjectTypeDto: CreateProjectTypeDto) {
+    return this.projectTypesService.create(createProjectTypeDto);
   }
 
   @Get()
   @ApiOperation({
-    summary: 'Get all service types',
-    description: 'Retrieve all service types with optional filtering by status',
+    summary: 'Get all project types',
+    description: 'Retrieve all project types with optional filtering by status',
   })
   @ApiQuery({
     name: 'isActive',
@@ -77,11 +77,11 @@ export class ServiceTypesController {
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: 'List of service types retrieved successfully',
-    type: [ServiceTypeEntity],
+    description: 'List of project types retrieved successfully',
+    type: [ProjectTypeEntity],
     schema: {
       example: {
-        message: 'Service types retrieved successfully',
+        message: 'Project types retrieved successfully',
         count: 2,
         data: [
           {
@@ -109,22 +109,22 @@ export class ServiceTypesController {
   findAll(@Query('isActive') isActive?: string) {
     const isActiveBool =
       isActive === undefined ? undefined : isActive === 'true';
-    return this.serviceTypesService.findAll(isActiveBool);
+    return this.projectTypesService.findAll(isActiveBool);
   }
 
   @Get('active')
   @ApiOperation({
-    summary: 'Get only active service types',
+    summary: 'Get only active project types',
     description:
-      'Retrieve all active service types with their active service categories',
+      'Retrieve all active project types with their active service categories',
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: 'List of active service types retrieved successfully',
-    type: [ServiceTypeEntity],
+    description: 'List of active project types retrieved successfully',
+    type: [ProjectTypeEntity],
     schema: {
       example: {
-        message: 'Active service types retrieved successfully',
+        message: 'Active project types retrieved successfully',
         count: 2,
         data: [
           {
@@ -146,26 +146,26 @@ export class ServiceTypesController {
     },
   })
   findActive() {
-    return this.serviceTypesService.findActive();
+    return this.projectTypesService.findActive();
   }
 
   @Get(':id')
   @ApiOperation({
-    summary: 'Get service type by ID',
-    description: 'Retrieve a specific service type by its unique identifier',
+    summary: 'Get project type by ID',
+    description: 'Retrieve a specific project type by its unique identifier',
   })
   @ApiParam({
     name: 'id',
-    description: 'Service type unique identifier',
+    description: 'Project type unique identifier',
     example: '123e4567-e89b-12d3-a456-426614174000',
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: 'Service type found',
-    type: ServiceTypeEntity,
+    description: 'Project type found',
+    type: ProjectTypeEntity,
     schema: {
       example: {
-        message: 'Service type retrieved successfully',
+        message: 'Project type retrieved successfully',
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
           name: 'Bathroom Renovation',
@@ -180,29 +180,29 @@ export class ServiceTypesController {
   })
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
-    description: 'Service type not found',
+    description: 'Project type not found',
   })
   findOne(@Param('id') id: string) {
-    return this.serviceTypesService.findOne(id);
+    return this.projectTypesService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOperation({
-    summary: 'Update service type',
-    description: 'Update an existing service type by its ID',
+    summary: 'Update project type',
+    description: 'Update an existing project type by its ID',
   })
   @ApiParam({
     name: 'id',
-    description: 'Service type unique identifier',
+    description: 'Project type unique identifier',
     example: '123e4567-e89b-12d3-a456-426614174000',
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: 'Service type updated successfully',
-    type: ServiceTypeEntity,
+    description: 'Project type updated successfully',
+    type: ProjectTypeEntity,
     schema: {
       example: {
-        message: 'Service type updated successfully',
+        message: 'Project type updated successfully',
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
           name: 'Updated Bathroom Renovation',
@@ -217,48 +217,48 @@ export class ServiceTypesController {
   })
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
-    description: 'Service type not found',
+    description: 'Project type not found',
   })
   @ApiResponse({
     status: HttpStatus.CONFLICT,
-    description: 'Service type with this name already exists',
+    description: 'Project type with this name already exists',
   })
   update(
     @Param('id') id: string,
-    @Body() updateServiceTypeDto: UpdateServiceTypeDto,
+    @Body() updateProjectTypeDto: UpdateProjectTypeDto,
   ) {
-    return this.serviceTypesService.update(id, updateServiceTypeDto);
+    return this.projectTypesService.update(id, updateProjectTypeDto);
   }
 
   @Delete(':id')
   @ApiOperation({
-    summary: 'Delete service type',
+    summary: 'Delete project type',
     description:
-      'Permanently delete a service type. Cannot delete if there are existing service categories.',
+      'Permanently delete a project type. Cannot delete if there are existing service categories.',
   })
   @ApiParam({
     name: 'id',
-    description: 'Service type unique identifier',
+    description: 'Project type unique identifier',
     example: '123e4567-e89b-12d3-a456-426614174000',
   })
   @ApiResponse({
     status: HttpStatus.OK,
-    description: 'Service type deleted successfully',
+    description: 'Project type deleted successfully',
     schema: {
       example: {
-        message: 'Service type deleted successfully',
+        message: 'Project type deleted successfully',
       },
     },
   })
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
-    description: 'Service type not found',
+    description: 'Project type not found',
   })
   @ApiResponse({
     status: HttpStatus.CONFLICT,
-    description: 'Cannot delete service type with existing service categories',
+    description: 'Cannot delete project type with existing service categories',
   })
   remove(@Param('id') id: string) {
-    return this.serviceTypesService.remove(id);
+    return this.projectTypesService.remove(id);
   }
 }

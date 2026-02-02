@@ -10,9 +10,9 @@ import {
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
-export class CreateServiceTypeDto {
+export class CreateProjectTypeDto {
   @ApiProperty({
-    description: 'Service type name',
+    description: 'Project type name',
     example: 'Bathroom Renovation',
     maxLength: 255,
   })
@@ -22,7 +22,7 @@ export class CreateServiceTypeDto {
   name: string;
 
   @ApiProperty({
-    description: 'Detailed description of the service type',
+    description: 'Detailed description of the project type',
     example:
       'Complete bathroom renovation services including design and installation',
     required: false,
@@ -44,7 +44,7 @@ export class CreateServiceTypeDto {
   displayOrder?: number;
 
   @ApiProperty({
-    description: 'Whether this service type is active',
+    description: 'Whether this project type is active',
     default: true,
     required: false,
   })
