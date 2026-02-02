@@ -8,10 +8,10 @@ export class ServiceCategoryEntity {
   id: string;
 
   @ApiProperty({
-    description: 'Service type ID (foreign key)',
+    description: 'Project type ID (foreign key)',
     example: '123e4567-e89b-12d3-a456-426614174001',
   })
-  serviceTypeId: string;
+  projectTypeId: string;
 
   @ApiProperty({
     description: 'Service category name',

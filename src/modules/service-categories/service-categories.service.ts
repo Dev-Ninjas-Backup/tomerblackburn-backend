@@ -13,35 +13,35 @@ export class ServiceCategoriesService {
 
   async create(createServiceCategoryDto: CreateServiceCategoryDto) {
     try {
-      // Validate that serviceTypeId exists
-      const serviceType = await this.prisma.serviceType.findUnique({
-        where: { id: createServiceCategoryDto.serviceTypeId },
+      // Validate that projectTypeId exists
+      const projectType = await this.prisma.projectType.findUnique({
+        where: { id: createServiceCategoryDto.projectTypeId },
       });
 
-      if (!serviceType) {
+      if (!projectType) {
         throw new NotFoundException(
-          `Service type with ID ${createServiceCategoryDto.serviceTypeId} not found`,
+          `Project type with ID ${createServiceCategoryDto.projectTypeId} not found`,
         );
       }
 
-      // Check for duplicate name within the same service type
+      // Check for duplicate name within the same project type
       const existingCategory = await this.prisma.serviceCategory.findFirst({
         where: {
           name: createServiceCategoryDto.name,
-          serviceTypeId: createServiceCategoryDto.serviceTypeId,
+          projectTypeId: createServiceCategoryDto.projectTypeId,
         },
       });
 
       if (existingCategory) {
         throw new ConflictException(
-          `Service category with name "${createServiceCategoryDto.name}" already exists for this service type`,
+          `Service category with name "${createServiceCategoryDto.name}" already exists for this project type`,
         );
       }
 
       const serviceCategory = await this.prisma.serviceCategory.create({
         data: createServiceCategoryDto,
         include: {
-          serviceType: true,
+          projectType: true,
           services: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -74,7 +74,7 @@ export class ServiceCategoriesService {
       const serviceCategories = await this.prisma.serviceCategory.findMany({
         where,
         include: {
-          serviceType: true,
+          projectType: true,
           services: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -102,7 +102,7 @@ export class ServiceCategoriesService {
       const serviceCategories = await this.prisma.serviceCategory.findMany({
         where: { isActive: true },
         include: {
-          serviceType: true,
+          projectType: true,
           services: {
             where: { isActive: true },
             orderBy: { displayOrder: 'asc' },
@@ -131,7 +131,7 @@ export class ServiceCategoriesService {
       const serviceCategory = await this.prisma.serviceCategory.findUnique({
         where: { id },
         include: {
-          serviceType: true,
+          projectType: true,
           services: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -154,23 +154,23 @@ export class ServiceCategoriesService {
     }
   }
 
-  async findByServiceType(serviceTypeId: string) {
+  async findByProjectType(projectTypeId: string) {
     try {
-      // Validate that serviceTypeId exists
-      const serviceType = await this.prisma.serviceType.findUnique({
-        where: { id: serviceTypeId },
+      // Validate that projectTypeId exists
+      const projectType = await this.prisma.projectType.findUnique({
+        where: { id: projectTypeId },
       });
 
-      if (!serviceType) {
+      if (!projectType) {
         throw new NotFoundException(
-          `Service type with ID ${serviceTypeId} not found`,
+          `Project type with ID ${projectTypeId} not found`,
         );
       }
 
       const serviceCategories = await this.prisma.serviceCategory.findMany({
-        where: { serviceTypeId },
+        where: { projectTypeId },
         include: {
-          serviceType: true,
+          projectType: true,
           services: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -181,8 +181,8 @@ export class ServiceCategoriesService {
       return {
         message:
           serviceCategories.length > 0
-            ? `Service categories for service type "${serviceType.name}" retrieved successfully`
-            : `No service categories found for service type "${serviceType.name}"`,
+            ? `Service categories for project type "${projectType.name}" retrieved successfully`
+            : `No service categories found for project type "${projectType.name}"`,
         count: serviceCategories.length,
         data: serviceCategories,
       };
@@ -191,7 +191,7 @@ export class ServiceCategoriesService {
         throw error;
       }
       throw new Error(
-        `Failed to retrieve service categories by service type: ${error.message}`,
+        `Failed to retrieve service categories by project type: ${error.message}`,
       );
     }
   }
@@ -201,15 +201,15 @@ export class ServiceCategoriesService {
       // Check if service category exists
       await this.findOne(id);
 
-      // If serviceTypeId is being updated, validate it exists
-      if (updateServiceCategoryDto.serviceTypeId) {
-        const serviceType = await this.prisma.serviceType.findUnique({
-          where: { id: updateServiceCategoryDto.serviceTypeId },
+      // If projectTypeId is being updated, validate it exists
+      if (updateServiceCategoryDto.projectTypeId) {
+        const projectType = await this.prisma.projectType.findUnique({
+          where: { id: updateServiceCategoryDto.projectTypeId },
         });
 
-        if (!serviceType) {
+        if (!projectType) {
           throw new NotFoundException(
-            `Service type with ID ${updateServiceCategoryDto.serviceTypeId} not found`,
+            `Project type with ID ${updateServiceCategoryDto.projectTypeId} not found`,
           );
         }
       }
@@ -219,16 +219,16 @@ export class ServiceCategoriesService {
         const existingCategory = await this.prisma.serviceCategory.findFirst({
           where: {
             name: updateServiceCategoryDto.name,
-            serviceTypeId:
-              updateServiceCategoryDto.serviceTypeId ||
+            projectTypeId:
+              updateServiceCategoryDto.projectTypeId ||
               (await this.prisma.serviceCategory.findUnique({ where: { id } }))
-                ?.serviceTypeId,
+                ?.projectTypeId,
           },
         });
 
         if (existingCategory && existingCategory.id !== id) {
           throw new ConflictException(
-            `Service category with name "${updateServiceCategoryDto.name}" already exists for this service type`,
+            `Service category with name "${updateServiceCategoryDto.name}" already exists for this project type`,
           );
         }
       }
@@ -237,7 +237,7 @@ export class ServiceCategoriesService {
         where: { id },
         data: updateServiceCategoryDto,
         include: {
-          serviceType: true,
+          projectType: true,
           services: {
             orderBy: { displayOrder: 'asc' },
           },

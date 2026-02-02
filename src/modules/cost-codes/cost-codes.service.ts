@@ -34,10 +34,25 @@ export class CostCodesService {
         );
       }
 
+      // Validate serviceCategoryId if provided
+      if (createCostCodeDto.serviceCategoryId) {
+        const serviceCategoryExists =
+          await this.prisma.serviceCategory.findUnique({
+            where: { id: createCostCodeDto.serviceCategoryId },
+          });
+
+        if (!serviceCategoryExists) {
+          throw new NotFoundException(
+            `Service category with ID ${createCostCodeDto.serviceCategoryId} not found`,
+          );
+        }
+      }
+
       const costCode = await this.prisma.costCode.create({
         data: createCostCodeDto,
         include: {
           category: true,
+          serviceCategory: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -63,17 +78,20 @@ export class CostCodesService {
     try {
       const {
         categoryId,
+        serviceCategoryId,
         questionType,
         unitType,
         isActive,
         isIncludedInBase,
         includeOptions,
         includeCategory,
+        includeServiceCategoryRelation,
       } = filterDto;
 
       const where: any = {};
 
       if (categoryId) where.categoryId = categoryId;
+      if (serviceCategoryId) where.serviceCategoryId = serviceCategoryId;
       if (questionType) where.questionType = questionType;
       if (unitType) where.unitType = unitType;
       if (isActive !== undefined) where.isActive = isActive;
@@ -84,6 +102,7 @@ export class CostCodesService {
         where,
         include: {
           category: includeCategory,
+          serviceCategory: includeServiceCategoryRelation,
           options: includeOptions
             ? {
                 orderBy: { displayOrder: 'asc' },
@@ -115,6 +134,7 @@ export class CostCodesService {
         },
         include: {
           category: true,
+          serviceCategory: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -152,6 +172,7 @@ export class CostCodesService {
           costCode: {
             include: {
               category: true,
+              serviceCategory: true,
               options: includeOptions
                 ? {
                     where: { isActive: true },
@@ -198,6 +219,7 @@ export class CostCodesService {
         },
         include: {
           category: true,
+          serviceCategory: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -226,6 +248,7 @@ export class CostCodesService {
         where: { id },
         include: {
           category: true,
+          serviceCategory: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -259,6 +282,7 @@ export class CostCodesService {
         where: { code },
         include: {
           category: true,
+          serviceCategory: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -309,11 +333,26 @@ export class CostCodesService {
         }
       }
 
+      // Validate serviceCategoryId if being updated
+      if (updateCostCodeDto.serviceCategoryId) {
+        const serviceCategoryExists =
+          await this.prisma.serviceCategory.findUnique({
+            where: { id: updateCostCodeDto.serviceCategoryId },
+          });
+
+        if (!serviceCategoryExists) {
+          throw new NotFoundException(
+            `Service category with ID ${updateCostCodeDto.serviceCategoryId} not found`,
+          );
+        }
+      }
+
       const costCode = await this.prisma.costCode.update({
         where: { id },
         data: updateCostCodeDto,
         include: {
           category: true,
+          serviceCategory: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -345,6 +384,7 @@ export class CostCodesService {
         data: { isActive: !costCode.isActive },
         include: {
           category: true,
+          serviceCategory: true,
           options: true,
         },
       });

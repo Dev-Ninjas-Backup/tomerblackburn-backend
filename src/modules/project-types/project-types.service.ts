@@ -3,29 +3,29 @@ import {
   NotFoundException,
   ConflictException,
 } from '@nestjs/common';
-import { CreateServiceTypeDto } from './dto/create-service-type.dto';
-import { UpdateServiceTypeDto } from './dto/update-service-type.dto';
+import { CreateProjectTypeDto } from './dto/create-project-type.dto';
+import { UpdateProjectTypeDto } from './dto/update-project-type.dto';
 import { PrismaService } from '@/common/prisma/prisma.service';
 
 @Injectable()
-export class ServiceTypesService {
+export class ProjectTypesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createServiceTypeDto: CreateServiceTypeDto) {
+  async create(createProjectTypeDto: CreateProjectTypeDto) {
     try {
       // Check for duplicate name
-      const existingServiceType = await this.prisma.serviceType.findFirst({
-        where: { name: createServiceTypeDto.name },
+      const existingProjectType = await this.prisma.projectType.findFirst({
+        where: { name: createProjectTypeDto.name },
       });
 
-      if (existingServiceType) {
+      if (existingProjectType) {
         throw new ConflictException(
-          `Service type with name "${createServiceTypeDto.name}" already exists`,
+          `Project type with name "${createProjectTypeDto.name}" already exists`,
         );
       }
 
-      const serviceType = await this.prisma.serviceType.create({
-        data: createServiceTypeDto,
+      const projectType = await this.prisma.projectType.create({
+        data: createProjectTypeDto,
         include: {
           serviceCategories: {
             orderBy: { displayOrder: 'asc' },
@@ -34,14 +34,14 @@ export class ServiceTypesService {
       });
 
       return {
-        message: 'Service type created successfully',
-        data: serviceType,
+        message: 'Project type created successfully',
+        data: projectType,
       };
     } catch (error) {
       if (error instanceof ConflictException) {
         throw error;
       }
-      throw new Error(`Failed to create service type: ${error.message}`);
+      throw new Error(`Failed to create project type: ${error.message}`);
     }
   }
 
@@ -53,7 +53,7 @@ export class ServiceTypesService {
         where.isActive = isActive;
       }
 
-      const serviceTypes = await this.prisma.serviceType.findMany({
+      const projectTypes = await this.prisma.projectType.findMany({
         where,
         include: {
           serviceCategories: {
@@ -65,20 +65,20 @@ export class ServiceTypesService {
 
       return {
         message:
-          serviceTypes.length > 0
-            ? 'Service types retrieved successfully'
-            : 'No service types found',
-        count: serviceTypes.length,
-        data: serviceTypes,
+          projectTypes.length > 0
+            ? 'Project types retrieved successfully'
+            : 'No project types found',
+        count: projectTypes.length,
+        data: projectTypes,
       };
     } catch (error) {
-      throw new Error(`Failed to retrieve service types: ${error.message}`);
+      throw new Error(`Failed to retrieve project types: ${error.message}`);
     }
   }
 
   async findActive() {
     try {
-      const serviceTypes = await this.prisma.serviceType.findMany({
+      const projectTypes = await this.prisma.projectType.findMany({
         where: { isActive: true },
         include: {
           serviceCategories: {
@@ -91,22 +91,22 @@ export class ServiceTypesService {
 
       return {
         message:
-          serviceTypes.length > 0
-            ? 'Active service types retrieved successfully'
-            : 'No active service types found',
-        count: serviceTypes.length,
-        data: serviceTypes,
+          projectTypes.length > 0
+            ? 'Active project types retrieved successfully'
+            : 'No active project types found',
+        count: projectTypes.length,
+        data: projectTypes,
       };
     } catch (error) {
       throw new Error(
-        `Failed to retrieve active service types: ${error.message}`,
+        `Failed to retrieve active project types: ${error.message}`,
       );
     }
   }
 
   async findOne(id: string) {
     try {
-      const serviceType = await this.prisma.serviceType.findUnique({
+      const projectType = await this.prisma.projectType.findUnique({
         where: { id },
         include: {
           serviceCategories: {
@@ -115,43 +115,43 @@ export class ServiceTypesService {
         },
       });
 
-      if (!serviceType) {
-        throw new NotFoundException(`Service type with ID ${id} not found`);
+      if (!projectType) {
+        throw new NotFoundException(`Project type with ID ${id} not found`);
       }
 
       return {
-        message: 'Service type retrieved successfully',
-        data: serviceType,
+        message: 'Project type retrieved successfully',
+        data: projectType,
       };
     } catch (error) {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new Error(`Failed to retrieve service type: ${error.message}`);
+      throw new Error(`Failed to retrieve project type: ${error.message}`);
     }
   }
 
-  async update(id: string, updateServiceTypeDto: UpdateServiceTypeDto) {
+  async update(id: string, updateProjectTypeDto: UpdateProjectTypeDto) {
     try {
-      // Check if service type exists
+      // Check if project type exists
       await this.findOne(id);
 
       // Check for duplicate name if name is being updated
-      if (updateServiceTypeDto.name) {
-        const existingServiceType = await this.prisma.serviceType.findFirst({
-          where: { name: updateServiceTypeDto.name },
+      if (updateProjectTypeDto.name) {
+        const existingProjectType = await this.prisma.projectType.findFirst({
+          where: { name: updateProjectTypeDto.name },
         });
 
-        if (existingServiceType && existingServiceType.id !== id) {
+        if (existingProjectType && existingProjectType.id !== id) {
           throw new ConflictException(
-            `Service type with name "${updateServiceTypeDto.name}" already exists`,
+            `Project type with name "${updateProjectTypeDto.name}" already exists`,
           );
         }
       }
 
-      const serviceType = await this.prisma.serviceType.update({
+      const projectType = await this.prisma.projectType.update({
         where: { id },
-        data: updateServiceTypeDto,
+        data: updateProjectTypeDto,
         include: {
           serviceCategories: {
             orderBy: { displayOrder: 'asc' },
@@ -160,8 +160,8 @@ export class ServiceTypesService {
       });
 
       return {
-        message: 'Service type updated successfully',
-        data: serviceType,
+        message: 'Project type updated successfully',
+        data: projectType,
       };
     } catch (error) {
       if (
@@ -170,32 +170,32 @@ export class ServiceTypesService {
       ) {
         throw error;
       }
-      throw new Error(`Failed to update service type: ${error.message}`);
+      throw new Error(`Failed to update project type: ${error.message}`);
     }
   }
 
   async remove(id: string) {
     try {
-      // Check if service type exists
+      // Check if project type exists
       await this.findOne(id);
 
       // Check if there are associated service categories
       const categoryCount = await this.prisma.serviceCategory.count({
-        where: { serviceTypeId: id },
+        where: { projectTypeId: id },
       });
 
       if (categoryCount > 0) {
         throw new ConflictException(
-          `Cannot delete service type with existing service categories. Found ${categoryCount} category(ies).`,
+          `Cannot delete project type with existing service categories. Found ${categoryCount} category(ies).`,
         );
       }
 
-      await this.prisma.serviceType.delete({
+      await this.prisma.projectType.delete({
         where: { id },
       });
 
       return {
-        message: 'Service type deleted successfully',
+        message: 'Project type deleted successfully',
       };
     } catch (error) {
       if (
@@ -204,7 +204,7 @@ export class ServiceTypesService {
       ) {
         throw error;
       }
-      throw new Error(`Failed to delete service type: ${error.message}`);
+      throw new Error(`Failed to delete project type: ${error.message}`);
     }
   }
 }

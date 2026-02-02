@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class ServiceTypeEntity {
+export class ProjectTypeEntity {
   @ApiProperty({
     description: 'Unique identifier',
     example: '123e4567-e89b-12d3-a456-426614174000',
@@ -8,13 +8,13 @@ export class ServiceTypeEntity {
   id: string;
 
   @ApiProperty({
-    description: 'Service type name',
+    description: 'Project type name',
     example: 'Bathroom Renovation',
   })
   name: string;
 
   @ApiProperty({
-    description: 'Detailed description of the service type',
+    description: 'Detailed description of the project type',
     example: 'Complete bathroom renovation services',
     required: false,
   })
@@ -28,7 +28,7 @@ export class ServiceTypeEntity {
   displayOrder: number;
 
   @ApiProperty({
-    description: 'Whether this service type is active',
+    description: 'Whether this project type is active',
     example: true,
     default: true,
   })

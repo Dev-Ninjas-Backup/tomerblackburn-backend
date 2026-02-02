@@ -61,10 +61,10 @@ export const ModelName = {
   EmailLog: 'EmailLog',
   NextStep: 'NextStep',
   PrivacyPolicy: 'PrivacyPolicy',
+  ProjectType: 'ProjectType',
   Service: 'Service',
   ServiceCategory: 'ServiceCategory',
   ServiceCostCode: 'ServiceCostCode',
-  ServiceType: 'ServiceType',
   Submission: 'Submission',
   SubmissionItem: 'SubmissionItem',
   SubmissionMedia: 'SubmissionMedia',
@@ -119,6 +119,7 @@ export type ActivityLogScalarFieldEnum =
 export const CostCodeScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
+  serviceCategoryId: 'serviceCategoryId',
   code: 'code',
   name: 'name',
   description: 'description',
@@ -212,6 +213,19 @@ export const PrivacyPolicyScalarFieldEnum = {
 export type PrivacyPolicyScalarFieldEnum =
   (typeof PrivacyPolicyScalarFieldEnum)[keyof typeof PrivacyPolicyScalarFieldEnum];
 
+export const ProjectTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ProjectTypeScalarFieldEnum =
+  (typeof ProjectTypeScalarFieldEnum)[keyof typeof ProjectTypeScalarFieldEnum];
+
 export const ServiceScalarFieldEnum = {
   id: 'id',
   serviceCategoryId: 'serviceCategoryId',
@@ -232,7 +246,7 @@ export type ServiceScalarFieldEnum =
 
 export const ServiceCategoryScalarFieldEnum = {
   id: 'id',
-  serviceTypeId: 'serviceTypeId',
+  projectTypeId: 'projectTypeId',
   name: 'name',
   description: 'description',
   displayOrder: 'displayOrder',
@@ -260,19 +274,6 @@ export const ServiceCostCodeScalarFieldEnum = {
 
 export type ServiceCostCodeScalarFieldEnum =
   (typeof ServiceCostCodeScalarFieldEnum)[keyof typeof ServiceCostCodeScalarFieldEnum];
-
-export const ServiceTypeScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description',
-  displayOrder: 'displayOrder',
-  isActive: 'isActive',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type ServiceTypeScalarFieldEnum =
-  (typeof ServiceTypeScalarFieldEnum)[keyof typeof ServiceTypeScalarFieldEnum];
 
 export const SubmissionScalarFieldEnum = {
   id: 'id',

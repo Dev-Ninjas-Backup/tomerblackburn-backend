@@ -419,10 +419,10 @@ export const ModelName = {
   EmailLog: 'EmailLog',
   NextStep: 'NextStep',
   PrivacyPolicy: 'PrivacyPolicy',
+  ProjectType: 'ProjectType',
   Service: 'Service',
   ServiceCategory: 'ServiceCategory',
   ServiceCostCode: 'ServiceCostCode',
-  ServiceType: 'ServiceType',
   Submission: 'Submission',
   SubmissionItem: 'SubmissionItem',
   SubmissionMedia: 'SubmissionMedia',
@@ -469,10 +469,10 @@ export type TypeMap<
       | 'emailLog'
       | 'nextStep'
       | 'privacyPolicy'
+      | 'projectType'
       | 'service'
       | 'serviceCategory'
       | 'serviceCostCode'
-      | 'serviceType'
       | 'submission'
       | 'submissionItem'
       | 'submissionMedia'
@@ -1025,6 +1025,82 @@ export type TypeMap<
         };
       };
     };
+    ProjectType: {
+      payload: Prisma.$ProjectTypePayload<ExtArgs>;
+      fields: Prisma.ProjectTypeFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ProjectTypeFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ProjectTypeFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload>;
+        };
+        findFirst: {
+          args: Prisma.ProjectTypeFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ProjectTypeFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload>;
+        };
+        findMany: {
+          args: Prisma.ProjectTypeFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload>[];
+        };
+        create: {
+          args: Prisma.ProjectTypeCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload>;
+        };
+        createMany: {
+          args: Prisma.ProjectTypeCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ProjectTypeCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload>[];
+        };
+        delete: {
+          args: Prisma.ProjectTypeDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload>;
+        };
+        update: {
+          args: Prisma.ProjectTypeUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload>;
+        };
+        deleteMany: {
+          args: Prisma.ProjectTypeDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ProjectTypeUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ProjectTypeUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload>[];
+        };
+        upsert: {
+          args: Prisma.ProjectTypeUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProjectTypePayload>;
+        };
+        aggregate: {
+          args: Prisma.ProjectTypeAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProjectType>;
+        };
+        groupBy: {
+          args: Prisma.ProjectTypeGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ProjectTypeGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ProjectTypeCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ProjectTypeCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     Service: {
       payload: Prisma.$ServicePayload<ExtArgs>;
       fields: Prisma.ServiceFieldRefs;
@@ -1249,82 +1325,6 @@ export type TypeMap<
           args: Prisma.ServiceCostCodeCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.ServiceCostCodeCountAggregateOutputType>
-            | number;
-        };
-      };
-    };
-    ServiceType: {
-      payload: Prisma.$ServiceTypePayload<ExtArgs>;
-      fields: Prisma.ServiceTypeFieldRefs;
-      operations: {
-        findUnique: {
-          args: Prisma.ServiceTypeFindUniqueArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload> | null;
-        };
-        findUniqueOrThrow: {
-          args: Prisma.ServiceTypeFindUniqueOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
-        };
-        findFirst: {
-          args: Prisma.ServiceTypeFindFirstArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload> | null;
-        };
-        findFirstOrThrow: {
-          args: Prisma.ServiceTypeFindFirstOrThrowArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
-        };
-        findMany: {
-          args: Prisma.ServiceTypeFindManyArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>[];
-        };
-        create: {
-          args: Prisma.ServiceTypeCreateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
-        };
-        createMany: {
-          args: Prisma.ServiceTypeCreateManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        createManyAndReturn: {
-          args: Prisma.ServiceTypeCreateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>[];
-        };
-        delete: {
-          args: Prisma.ServiceTypeDeleteArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
-        };
-        update: {
-          args: Prisma.ServiceTypeUpdateArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
-        };
-        deleteMany: {
-          args: Prisma.ServiceTypeDeleteManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        updateMany: {
-          args: Prisma.ServiceTypeUpdateManyArgs<ExtArgs>;
-          result: BatchPayload;
-        };
-        updateManyAndReturn: {
-          args: Prisma.ServiceTypeUpdateManyAndReturnArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>[];
-        };
-        upsert: {
-          args: Prisma.ServiceTypeUpsertArgs<ExtArgs>;
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ServiceTypePayload>;
-        };
-        aggregate: {
-          args: Prisma.ServiceTypeAggregateArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.AggregateServiceType>;
-        };
-        groupBy: {
-          args: Prisma.ServiceTypeGroupByArgs<ExtArgs>;
-          result: runtime.Types.Utils.Optional<Prisma.ServiceTypeGroupByOutputType>[];
-        };
-        count: {
-          args: Prisma.ServiceTypeCountArgs<ExtArgs>;
-          result:
-            | runtime.Types.Utils.Optional<Prisma.ServiceTypeCountAggregateOutputType>
             | number;
         };
       };
@@ -2679,6 +2679,7 @@ export type ActivityLogScalarFieldEnum =
 export const CostCodeScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
+  serviceCategoryId: 'serviceCategoryId',
   code: 'code',
   name: 'name',
   description: 'description',
@@ -2772,6 +2773,19 @@ export const PrivacyPolicyScalarFieldEnum = {
 export type PrivacyPolicyScalarFieldEnum =
   (typeof PrivacyPolicyScalarFieldEnum)[keyof typeof PrivacyPolicyScalarFieldEnum];
 
+export const ProjectTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type ProjectTypeScalarFieldEnum =
+  (typeof ProjectTypeScalarFieldEnum)[keyof typeof ProjectTypeScalarFieldEnum];
+
 export const ServiceScalarFieldEnum = {
   id: 'id',
   serviceCategoryId: 'serviceCategoryId',
@@ -2792,7 +2806,7 @@ export type ServiceScalarFieldEnum =
 
 export const ServiceCategoryScalarFieldEnum = {
   id: 'id',
-  serviceTypeId: 'serviceTypeId',
+  projectTypeId: 'projectTypeId',
   name: 'name',
   description: 'description',
   displayOrder: 'displayOrder',
@@ -2820,19 +2834,6 @@ export const ServiceCostCodeScalarFieldEnum = {
 
 export type ServiceCostCodeScalarFieldEnum =
   (typeof ServiceCostCodeScalarFieldEnum)[keyof typeof ServiceCostCodeScalarFieldEnum];
-
-export const ServiceTypeScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description',
-  displayOrder: 'displayOrder',
-  isActive: 'isActive',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-} as const;
-
-export type ServiceTypeScalarFieldEnum =
-  (typeof ServiceTypeScalarFieldEnum)[keyof typeof ServiceTypeScalarFieldEnum];
 
 export const SubmissionScalarFieldEnum = {
   id: 'id',
@@ -3409,10 +3410,10 @@ export type GlobalOmitConfig = {
   emailLog?: Prisma.EmailLogOmit;
   nextStep?: Prisma.NextStepOmit;
   privacyPolicy?: Prisma.PrivacyPolicyOmit;
+  projectType?: Prisma.ProjectTypeOmit;
   service?: Prisma.ServiceOmit;
   serviceCategory?: Prisma.ServiceCategoryOmit;
   serviceCostCode?: Prisma.ServiceCostCodeOmit;
-  serviceType?: Prisma.ServiceTypeOmit;
   submission?: Prisma.SubmissionOmit;
   submissionItem?: Prisma.SubmissionItemOmit;
   submissionMedia?: Prisma.SubmissionMediaOmit;

@@ -13,6 +13,14 @@ export class CostCodeFilterDto {
   categoryId?: string;
 
   @ApiProperty({
+    description: 'Filter by service category ID',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  serviceCategoryId?: string;
+
+  @ApiProperty({
     description: 'Filter by question type (UI behavior)',
     required: false,
     enum: QuestionType,
@@ -67,4 +75,14 @@ export class CostCodeFilterDto {
   @Type(() => Boolean)
   @IsOptional()
   includeCategory?: boolean = true;
+
+  @ApiProperty({
+    description: 'Include service category details in response',
+    required: false,
+    default: true,
+  })
+  @IsBoolean()
+  @Type(() => Boolean)
+  @IsOptional()
+  includeServiceCategoryRelation?: boolean = true;
 }

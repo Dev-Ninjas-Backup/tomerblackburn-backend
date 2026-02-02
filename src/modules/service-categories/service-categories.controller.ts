@@ -32,7 +32,7 @@ export class ServiceCategoriesController {
   @ApiOperation({
     summary: 'Create a new service category',
     description:
-      'Create a new service category (e.g., Bathroom Type, Shower Type) for a specific service type',
+      'Create a new service category (e.g., Bathroom Type, Shower Type) for a specific project type',
   })
   @ApiResponse({
     status: HttpStatus.CREATED,
@@ -43,7 +43,7 @@ export class ServiceCategoriesController {
         message: 'Service category created successfully',
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
-          serviceTypeId: '123e4567-e89b-12d3-a456-426614174001',
+          projectTypeId: '123e4567-e89b-12d3-a456-426614174001',
           name: 'Bathroom Type',
           description: 'Different types of bathroom configurations',
           displayOrder: 0,
@@ -60,12 +60,12 @@ export class ServiceCategoriesController {
   })
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
-    description: 'Service type not found',
+    description: 'Project type not found',
   })
   @ApiResponse({
     status: HttpStatus.CONFLICT,
     description:
-      'Service category with this name already exists for this service type',
+      'Service category with this name already exists for this project type',
   })
   create(@Body() createServiceCategoryDto: CreateServiceCategoryDto) {
     return this.serviceCategoriesService.create(createServiceCategoryDto);
@@ -95,7 +95,7 @@ export class ServiceCategoriesController {
         data: [
           {
             id: '123e4567-e89b-12d3-a456-426614174000',
-            serviceTypeId: '123e4567-e89b-12d3-a456-426614174001',
+            projectTypeId: '123e4567-e89b-12d3-a456-426614174001',
             name: 'Bathroom Type',
             description: 'Different types of bathroom configurations',
             displayOrder: 0,
@@ -105,7 +105,7 @@ export class ServiceCategoriesController {
           },
           {
             id: '123e4567-e89b-12d3-a456-426614174002',
-            serviceTypeId: '123e4567-e89b-12d3-a456-426614174001',
+            projectTypeId: '123e4567-e89b-12d3-a456-426614174001',
             name: 'Shower Type',
             description: 'Different types of shower configurations',
             displayOrder: 1,
@@ -140,7 +140,7 @@ export class ServiceCategoriesController {
         data: [
           {
             id: '123e4567-e89b-12d3-a456-426614174000',
-            serviceTypeId: '123e4567-e89b-12d3-a456-426614174001',
+            projectTypeId: '123e4567-e89b-12d3-a456-426614174001',
             name: 'Bathroom Type',
             description: 'Different types of bathroom configurations',
             displayOrder: 0,
@@ -161,15 +161,15 @@ export class ServiceCategoriesController {
     return this.serviceCategoriesService.findActive();
   }
 
-  @Get('service-type/:serviceTypeId')
+  @Get('project-type/:projectTypeId')
   @ApiOperation({
-    summary: 'Get all categories for a service type',
+    summary: 'Get all categories for a project type',
     description:
-      'Retrieve all service categories that belong to a specific service type',
+      'Retrieve all service categories that belong to a specific project type',
   })
   @ApiParam({
-    name: 'serviceTypeId',
-    description: 'Service type unique identifier',
+    name: 'projectTypeId',
+    description: 'Project type unique identifier',
     example: '123e4567-e89b-12d3-a456-426614174001',
   })
   @ApiResponse({
@@ -179,12 +179,12 @@ export class ServiceCategoriesController {
     schema: {
       example: {
         message:
-          'Service categories for service type "Bathroom Renovation" retrieved successfully',
+          'Service categories for project type "Bathroom Renovation" retrieved successfully',
         count: 2,
         data: [
           {
             id: '123e4567-e89b-12d3-a456-426614174000',
-            serviceTypeId: '123e4567-e89b-12d3-a456-426614174001',
+            projectTypeId: '123e4567-e89b-12d3-a456-426614174001',
             name: 'Bathroom Type',
             description: 'Different types of bathroom configurations',
             displayOrder: 0,
@@ -196,10 +196,10 @@ export class ServiceCategoriesController {
   })
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
-    description: 'Service type not found',
+    description: 'Project type not found',
   })
-  findByServiceType(@Param('serviceTypeId') serviceTypeId: string) {
-    return this.serviceCategoriesService.findByServiceType(serviceTypeId);
+  findByProjectType(@Param('projectTypeId') projectTypeId: string) {
+    return this.serviceCategoriesService.findByProjectType(projectTypeId);
   }
 
   @Get(':id')
@@ -222,7 +222,7 @@ export class ServiceCategoriesController {
         message: 'Service category retrieved successfully',
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
-          serviceTypeId: '123e4567-e89b-12d3-a456-426614174001',
+          projectTypeId: '123e4567-e89b-12d3-a456-426614174001',
           name: 'Bathroom Type',
           description: 'Different types of bathroom configurations',
           displayOrder: 0,
@@ -260,7 +260,7 @@ export class ServiceCategoriesController {
         message: 'Service category updated successfully',
         data: {
           id: '123e4567-e89b-12d3-a456-426614174000',
-          serviceTypeId: '123e4567-e89b-12d3-a456-426614174001',
+          projectTypeId: '123e4567-e89b-12d3-a456-426614174001',
           name: 'Updated Bathroom Type',
           description: 'Updated description',
           displayOrder: 0,
@@ -273,12 +273,12 @@ export class ServiceCategoriesController {
   })
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
-    description: 'Service category or service type not found',
+    description: 'Service category or project type not found',
   })
   @ApiResponse({
     status: HttpStatus.CONFLICT,
     description:
-      'Service category with this name already exists for this service type',
+      'Service category with this name already exists for this project type',
   })
   update(
     @Param('id') id: string,

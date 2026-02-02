@@ -42,7 +42,7 @@ export class ServicesService {
           imageFile: true,
           serviceCategory: {
             include: {
-              serviceType: true,
+              projectType: true,
             },
           },
         },
@@ -68,7 +68,7 @@ export class ServicesService {
           imageFile: true,
           serviceCategory: {
             include: {
-              serviceType: true,
+              projectType: true,
             },
           },
         },
@@ -96,7 +96,7 @@ export class ServicesService {
           imageFile: true,
           serviceCategory: {
             include: {
-              serviceType: true,
+              projectType: true,
             },
           },
         },
@@ -124,7 +124,7 @@ export class ServicesService {
           imageFile: true,
           serviceCategory: {
             include: {
-              serviceType: true,
+              projectType: true,
             },
           },
           serviceCostCodes: {
@@ -164,7 +164,7 @@ export class ServicesService {
           imageFile: true,
           serviceCategory: {
             include: {
-              serviceType: true,
+              projectType: true,
             },
           },
           serviceCostCodes: {
@@ -233,7 +233,7 @@ export class ServicesService {
           imageFile: true,
           serviceCategory: {
             include: {
-              serviceType: true,
+              projectType: true,
             },
           },
         },

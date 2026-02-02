@@ -1,6 +1,6 @@
-model ServiceType {
+model ProjectType {
   id          String  @id @default(uuid())
-  name        String 
+  name        String
   description String?
 
   displayOrder Int     @default(0)
@@ -13,5 +13,5 @@ model ServiceType {
 
   @@index([isActive])
   @@index([displayOrder])
-  @@map("service_types")
+  @@map("project_types")
 }
