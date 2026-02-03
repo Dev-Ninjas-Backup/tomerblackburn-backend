@@ -2679,7 +2679,7 @@ export type ActivityLogScalarFieldEnum =
 export const CostCodeScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
-  serviceCategoryId: 'serviceCategoryId',
+  serviceId: 'serviceId',
   code: 'code',
   name: 'name',
   description: 'description',
