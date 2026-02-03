@@ -18,6 +18,7 @@ model Service {
   serviceCategory ServiceCategory    @relation(fields: [serviceCategoryId], references: [id], onDelete: Cascade)
   imageFile       FileInstance?      @relation("ServiceImage", fields: [imageFileId], references: [id])
   submissions     Submission[]
+  costCodes        CostCode[]
   serviceCostCodes ServiceCostCode[]
 
   @@index([code])

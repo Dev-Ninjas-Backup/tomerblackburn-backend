@@ -34,16 +34,15 @@ export class CostCodesService {
         );
       }
 
-      // Validate serviceCategoryId if provided
-      if (createCostCodeDto.serviceCategoryId) {
-        const serviceCategoryExists =
-          await this.prisma.serviceCategory.findUnique({
-            where: { id: createCostCodeDto.serviceCategoryId },
-          });
+      // Validate serviceId if provided
+      if (createCostCodeDto.serviceId) {
+        const serviceExists = await this.prisma.service.findUnique({
+          where: { id: createCostCodeDto.serviceId },
+        });
 
-        if (!serviceCategoryExists) {
+        if (!serviceExists) {
           throw new NotFoundException(
-            `Service category with ID ${createCostCodeDto.serviceCategoryId} not found`,
+            `Service with ID ${createCostCodeDto.serviceId} not found`,
           );
         }
       }
@@ -52,7 +51,7 @@ export class CostCodesService {
         data: createCostCodeDto,
         include: {
           category: true,
-          serviceCategory: true,
+          service: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -78,20 +77,20 @@ export class CostCodesService {
     try {
       const {
         categoryId,
-        serviceCategoryId,
+        serviceId,
         questionType,
         unitType,
         isActive,
         isIncludedInBase,
         includeOptions,
         includeCategory,
-        includeServiceCategoryRelation,
+        includeServiceRelation,
       } = filterDto;
 
       const where: any = {};
 
       if (categoryId) where.categoryId = categoryId;
-      if (serviceCategoryId) where.serviceCategoryId = serviceCategoryId;
+      if (serviceId) where.serviceId = serviceId;
       if (questionType) where.questionType = questionType;
       if (unitType) where.unitType = unitType;
       if (isActive !== undefined) where.isActive = isActive;
@@ -102,7 +101,7 @@ export class CostCodesService {
         where,
         include: {
           category: includeCategory,
-          serviceCategory: includeServiceCategoryRelation,
+          service: includeServiceRelation,
           options: includeOptions
             ? {
                 orderBy: { displayOrder: 'asc' },
@@ -134,7 +133,7 @@ export class CostCodesService {
         },
         include: {
           category: true,
-          serviceCategory: true,
+          service: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -172,7 +171,7 @@ export class CostCodesService {
           costCode: {
             include: {
               category: true,
-              serviceCategory: true,
+              service: true,
               options: includeOptions
                 ? {
                     where: { isActive: true },
@@ -219,7 +218,7 @@ export class CostCodesService {
         },
         include: {
           category: true,
-          serviceCategory: true,
+          service: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -248,7 +247,7 @@ export class CostCodesService {
         where: { id },
         include: {
           category: true,
-          serviceCategory: true,
+          service: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -282,7 +281,7 @@ export class CostCodesService {
         where: { code },
         include: {
           category: true,
-          serviceCategory: true,
+          service: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -333,16 +332,15 @@ export class CostCodesService {
         }
       }
 
-      // Validate serviceCategoryId if being updated
-      if (updateCostCodeDto.serviceCategoryId) {
-        const serviceCategoryExists =
-          await this.prisma.serviceCategory.findUnique({
-            where: { id: updateCostCodeDto.serviceCategoryId },
-          });
+      // Validate serviceId if being updated
+      if (updateCostCodeDto.serviceId) {
+        const serviceExists = await this.prisma.service.findUnique({
+          where: { id: updateCostCodeDto.serviceId },
+        });
 
-        if (!serviceCategoryExists) {
+        if (!serviceExists) {
           throw new NotFoundException(
-            `Service category with ID ${updateCostCodeDto.serviceCategoryId} not found`,
+            `Service with ID ${updateCostCodeDto.serviceId} not found`,
           );
         }
       }
@@ -352,7 +350,7 @@ export class CostCodesService {
         data: updateCostCodeDto,
         include: {
           category: true,
-          serviceCategory: true,
+          service: true,
           options: {
             orderBy: { displayOrder: 'asc' },
           },
@@ -384,7 +382,7 @@ export class CostCodesService {
         data: { isActive: !costCode.isActive },
         include: {
           category: true,
-          serviceCategory: true,
+          service: true,
           options: true,
         },
       });

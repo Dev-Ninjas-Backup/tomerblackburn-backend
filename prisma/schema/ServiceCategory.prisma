@@ -12,7 +12,6 @@ model ServiceCategory {
 
   projectType ProjectType @relation(fields: [projectTypeId], references: [id], onDelete: Cascade)
   services    Service[]
-  costCodes   CostCode[]
 
   @@index([projectTypeId])
   @@index([isActive])

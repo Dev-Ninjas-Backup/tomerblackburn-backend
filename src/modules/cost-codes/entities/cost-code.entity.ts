@@ -10,7 +10,7 @@ export class CostCodeEntity implements CostCode {
   categoryId: string;
 
   @ApiProperty()
-  serviceCategoryId: string | null;
+  serviceId: string | null;
 
   @ApiProperty()
   code: string;

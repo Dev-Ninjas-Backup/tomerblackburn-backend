@@ -1,7 +1,7 @@
 model CostCode {
   id                String  @id @default(uuid())
   categoryId        String
-  serviceCategoryId String?
+  serviceId         String?
   code              String  @unique
   name              String
   description       String?
@@ -22,14 +22,14 @@ model CostCode {
   updatedAt DateTime @updatedAt
 
   category         CostCodeCategory @relation(fields: [categoryId], references: [id])
-  serviceCategory  ServiceCategory? @relation(fields: [serviceCategoryId], references: [id])
+  service          Service?         @relation(fields: [serviceId], references: [id])
   options          CostCodeOption[]
   serviceCostCodes ServiceCostCode[]
   submissionItems  SubmissionItem[]
 
   @@index([code])
   @@index([categoryId])
-  @@index([serviceCategoryId])
+  @@index([serviceId])
   @@index([isActive])
   @@index([questionType])
   @@index([displayOrder])
