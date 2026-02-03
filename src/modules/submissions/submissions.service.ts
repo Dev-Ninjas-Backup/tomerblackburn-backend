@@ -264,38 +264,57 @@ export class SubmissionsService {
     }
   }
 
-  async findAll(status?: SubmissionStatus) {
+  async findAll(
+    status?: SubmissionStatus,
+    page: number = 1,
+    limit: number = 10,
+  ) {
     try {
       const where = status ? { status } : {};
+      const skip = (page - 1) * limit;
 
-      const submissions = await this.prisma.submission.findMany({
-        where,
-        include: {
-          service: true,
-          submissionItems: {
-            include: {
-              costCode: true,
-              selectedOption: true,
+      const [submissions, total] = await Promise.all([
+        this.prisma.submission.findMany({
+          where,
+          include: {
+            service: true,
+            submissionItems: {
+              include: {
+                costCode: true,
+                selectedOption: true,
+              },
+            },
+            submissionMedia: {
+              include: {
+                fileInstance: true,
+              },
             },
           },
-          submissionMedia: {
-            include: {
-              fileInstance: true,
-            },
+          orderBy: {
+            submittedAt: 'desc',
           },
-        },
-        orderBy: {
-          submittedAt: 'desc',
-        },
-      });
+          skip,
+          take: limit,
+        }),
+        this.prisma.submission.count({ where }),
+      ]);
+
+      const totalPages = Math.ceil(total / limit);
 
       return {
         message:
           submissions.length > 0
             ? 'Submissions retrieved successfully'
             : 'No submissions found',
-        count: submissions.length,
         data: submissions,
+        pagination: {
+          total,
+          page,
+          limit,
+          totalPages,
+          hasNextPage: page < totalPages,
+          hasPreviousPage: page > 1,
+        },
       };
     } catch (error) {
       throw new Error(`Failed to retrieve submissions: ${error.message}`);
