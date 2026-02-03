@@ -13,6 +13,8 @@ import {
 } from '../pdf/pdf-generator.service';
 import * as path from 'path';
 import * as fs from 'fs/promises';
+import { existsSync } from 'fs';
+import * as ExcelJS from 'exceljs';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
@@ -794,6 +796,166 @@ export class SubmissionsService {
       }
       throw new Error(`Failed to delete next step: ${error.message}`);
     }
+  }
+
+  async exportToExcel(status?: SubmissionStatus): Promise<ExcelJS.Buffer> {
+    const workbook = new ExcelJS.Workbook();
+
+    const possiblePaths = [
+      path.join(process.cwd(), 'Submission Template.xlsx'),
+      path.join(process.cwd(), 'dist', 'Submission Template.xlsx'),
+      path.join(__dirname, '..', '..', '..', 'Submission Template.xlsx'),
+      '/app/Submission Template.xlsx',
+    ];
+
+    let templatePath: string | null = null;
+    for (const testPath of possiblePaths) {
+      if (existsSync(testPath)) {
+        templatePath = testPath;
+        break;
+      }
+    }
+
+    if (!templatePath) {
+      throw new Error(
+        'Template file "Submission Template.xlsx" not found. Please ensure the file exists in the project root directory.',
+      );
+    }
+
+    await workbook.xlsx.readFile(templatePath);
+
+    const worksheet = workbook.getWorksheet('Blank Template');
+    if (!worksheet) {
+      throw new Error(
+        'Worksheet "Blank Template" not found in Submission Template.xlsx',
+      );
+    }
+
+    const where = status ? { status } : {};
+    const submissions = await this.prisma.submission.findMany({
+      where,
+      include: {
+        service: true,
+        submissionItems: {
+          include: {
+            costCode: {
+              include: { category: true },
+            },
+            selectedOption: true,
+          },
+        },
+      },
+      orderBy: { submittedAt: 'desc' },
+    });
+
+    const UNIT_TYPE_LABELS: Record<string, string> = {
+      FIXED: 'Fixed',
+      PER_SQFT: 'Sqft',
+      PER_EACH: 'Each',
+      PER_LOT: 'Lot',
+      PER_SET: 'Set',
+      PER_UPGRADE: 'Upgrade',
+    };
+
+    let currentRow = 2;
+
+    for (const submission of submissions) {
+      const clientAddress =
+        submission.projectAddress +
+        (submission.zipCode ? `, ${submission.zipCode}` : '');
+
+      // Section header row per submission
+      const sectionRow = worksheet.getRow(currentRow);
+      sectionRow.values = [
+        `${submission.submissionNumber} — ${submission.clientName}`,
+        '',
+        submission.service.name,
+        submission.status,
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        Number(submission.totalAmount),
+        '',
+        '',
+        submission.submissionNumber,
+        submission.clientName,
+        submission.clientEmail,
+        submission.clientPhone,
+        clientAddress,
+        submission.projectNotes || '',
+      ];
+      sectionRow.font = { bold: true, size: 11 };
+      sectionRow.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'FFE2EFDA' },
+      };
+      sectionRow.getCell(13).numFmt = '#,##0.00';
+      sectionRow.commit();
+      currentRow++;
+
+      // Item rows
+      const enabledItems = submission.submissionItems.filter(
+        (item) => item.isEnabled,
+      );
+
+      for (const item of enabledItems) {
+        const row = worksheet.getRow(currentRow);
+
+        const unitCost = Number(item.costCode.basePrice);
+        const clientPrice = Number(item.unitPrice);
+        const markup = unitCost > 0 ? (clientPrice - unitCost) / unitCost : 0;
+        const margin =
+          clientPrice > 0 ? (clientPrice - unitCost) / clientPrice : 0;
+        const profit = clientPrice - unitCost;
+
+        row.values = [
+          item.costCode.category.name,
+          item.costCode.code,
+          item.itemName || item.costCode.name,
+          item.itemDescription || item.costCode.description || '',
+          Number(item.quantity),
+          UNIT_TYPE_LABELS[item.costCode.unitType] || 'Fixed',
+          unitCost,
+          '',
+          '',
+          unitCost,
+          markup,
+          '%',
+          clientPrice,
+          margin,
+          profit,
+          submission.submissionNumber,
+          submission.clientName,
+          submission.clientEmail,
+          submission.clientPhone,
+          clientAddress,
+          submission.projectNotes || '',
+        ];
+
+        row.getCell(5).numFmt = '0.00';
+        row.getCell(7).numFmt = '#,##0.00';
+        row.getCell(10).numFmt = '#,##0.00';
+        row.getCell(11).numFmt = '0.0000';
+        row.getCell(13).numFmt = '#,##0.00';
+        row.getCell(14).numFmt = '0.0000';
+        row.getCell(15).numFmt = '#,##0.00';
+
+        row.commit();
+        currentRow++;
+      }
+
+      // Blank row between submissions
+      currentRow++;
+    }
+
+    const buffer = await workbook.xlsx.writeBuffer();
+    return buffer;
   }
 
   async updateWhatHappensNextSteps(dto: UpdateWhatHappensNextDto) {
