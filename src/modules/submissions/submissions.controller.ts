@@ -19,7 +19,13 @@ import { CreateNextStepDto } from './dto/create-next-step.dto';
 import { UpdateNextStepDto } from './dto/update-next-step.dto';
 import { UpdateWhatHappensNextDto } from './dto/update-what-happens-next.dto';
 import { UpdateStatusDto } from './dto/update-status.dto';
-import { SubmissionStatus } from 'generated/prisma/enums';
+import { SubmissionQueryDto } from './dto/submission-query.dto';
+import {
+  SubmissionStatus,
+  QuestionType,
+  UnitType,
+  MediaType,
+} from 'generated/prisma/enums';
 
 @ApiTags('Submissions')
 @Controller('submissions')
@@ -33,10 +39,13 @@ export class SubmissionsController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Get all submissions' })
-  @ApiQuery({ name: 'status', required: false, enum: SubmissionStatus })
-  findAll(@Query('status') status?: SubmissionStatus) {
-    return this.submissionsService.findAll(status);
+  @ApiOperation({ summary: 'Get all submissions with pagination' })
+  findAll(@Query() query: SubmissionQueryDto) {
+    return this.submissionsService.findAll(
+      query.status,
+      query.page,
+      query.limit,
+    );
   }
 
   @Get('dashboard-stats')
@@ -62,6 +71,17 @@ export class SubmissionsController {
 
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.send(buffer);
+  }
+
+  @Get('enums')
+  @ApiOperation({ summary: 'Get all submission-related enum values' })
+  getEnums() {
+    return {
+      submissionStatus: Object.values(SubmissionStatus),
+      questionType: Object.values(QuestionType),
+      unitType: Object.values(UnitType),
+      mediaType: Object.values(MediaType),
+    };
   }
 
   @Get('what-happens-next')
