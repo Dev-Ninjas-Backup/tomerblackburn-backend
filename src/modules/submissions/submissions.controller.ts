@@ -7,7 +7,10 @@ import {
   Param,
   Delete,
   Query,
+  Res,
+  Header,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { ApiTags, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { SubmissionsService } from './submissions.service';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
@@ -15,6 +18,7 @@ import { UpdateSubmissionDto } from './dto/update-submission.dto';
 import { CreateNextStepDto } from './dto/create-next-step.dto';
 import { UpdateNextStepDto } from './dto/update-next-step.dto';
 import { UpdateWhatHappensNextDto } from './dto/update-what-happens-next.dto';
+import { UpdateStatusDto } from './dto/update-status.dto';
 import { SubmissionStatus } from 'generated/prisma/enums';
 
 @ApiTags('Submissions')
@@ -41,6 +45,25 @@ export class SubmissionsController {
     return this.submissionsService.getDashboardStats();
   }
 
+  @Get('export')
+  @ApiOperation({ summary: 'Export submissions to Excel' })
+  @ApiQuery({ name: 'status', required: false, enum: SubmissionStatus })
+  @Header(
+    'Content-Type',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  )
+  async exportToExcel(
+    @Res() res: Response,
+    @Query('status') status?: SubmissionStatus,
+  ) {
+    const buffer = await this.submissionsService.exportToExcel(status);
+
+    const filename = `submission-export-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
+
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.send(buffer);
+  }
+
   @Get('what-happens-next')
   @ApiOperation({ summary: 'Get what happens next steps after submission' })
   getWhatHappensNext() {
@@ -59,74 +82,7 @@ export class SubmissionsController {
     );
   }
 
-  @Get('by-number/:submissionNumber')
-  @ApiOperation({ summary: 'Get submission by submission number' })
-  findBySubmissionNumber(@Param('submissionNumber') submissionNumber: string) {
-    return this.submissionsService.findBySubmissionNumber(submissionNumber);
-  }
-
-  @Get(':id')
-  @ApiOperation({ summary: 'Get submission by ID' })
-  findOne(@Param('id') id: string) {
-    return this.submissionsService.findOne(id);
-  }
-
-  @Patch(':id')
-  @ApiOperation({ summary: 'Update submission' })
-  update(
-    @Param('id') id: string,
-    @Body() updateSubmissionDto: UpdateSubmissionDto,
-  ) {
-    return this.submissionsService.update(id, updateSubmissionDto);
-  }
-
-  @Patch(':id/status')
-  @ApiOperation({ summary: 'Update submission status' })
-  updateStatus(
-    @Param('id') id: string,
-    @Body('status') status: SubmissionStatus,
-  ) {
-    return this.submissionsService.updateStatus(id, status);
-  }
-
-  @Post(':id/media')
-  @ApiOperation({ summary: 'Add media to submission' })
-  addMedia(
-    @Param('id') id: string,
-    @Body()
-    body: {
-      fileInstanceId: string;
-      mediaType: 'PHOTO' | 'VIDEO';
-      description?: string;
-    },
-  ) {
-    return this.submissionsService.addMedia(
-      id,
-      body.fileInstanceId,
-      body.mediaType,
-      body.description,
-    );
-  }
-
-  @Delete('media/:mediaId')
-  @ApiOperation({ summary: 'Remove media from submission' })
-  removeMedia(@Param('mediaId') mediaId: string) {
-    return this.submissionsService.removeMedia(mediaId);
-  }
-
-  @Post(':id/regenerate-pdf')
-  @ApiOperation({ summary: 'Regenerate PDF for submission' })
-  regeneratePdf(@Param('id') id: string) {
-    return this.submissionsService.regeneratePdf(id);
-  }
-
-  @Delete(':id')
-  @ApiOperation({ summary: 'Delete submission' })
-  remove(@Param('id') id: string) {
-    return this.submissionsService.remove(id);
-  }
-
-  // Next Steps CRUD endpoints
+  // Next Steps CRUD endpoints (must be before :id catch-all)
   @Post('next-steps')
   @ApiOperation({ summary: 'Create a new next step' })
   createNextStep(@Body() createNextStepDto: CreateNextStepDto) {
@@ -166,5 +122,72 @@ export class SubmissionsController {
   @ApiOperation({ summary: 'Delete a next step' })
   deleteNextStep(@Param('id') id: string) {
     return this.submissionsService.deleteNextStep(id);
+  }
+
+  @Get('by-number/:submissionNumber')
+  @ApiOperation({ summary: 'Get submission by submission number' })
+  findBySubmissionNumber(@Param('submissionNumber') submissionNumber: string) {
+    return this.submissionsService.findBySubmissionNumber(submissionNumber);
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get submission by ID' })
+  findOne(@Param('id') id: string) {
+    return this.submissionsService.findOne(id);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update submission' })
+  update(
+    @Param('id') id: string,
+    @Body() updateSubmissionDto: UpdateSubmissionDto,
+  ) {
+    return this.submissionsService.update(id, updateSubmissionDto);
+  }
+
+  @Patch(':id/status')
+  @ApiOperation({ summary: 'Update submission status' })
+  updateStatus(
+    @Param('id') id: string,
+    @Body() updateStatusDto: UpdateStatusDto,
+  ) {
+    return this.submissionsService.updateStatus(id, updateStatusDto.status);
+  }
+
+  @Post(':id/media')
+  @ApiOperation({ summary: 'Add media to submission' })
+  addMedia(
+    @Param('id') id: string,
+    @Body()
+    body: {
+      fileInstanceId: string;
+      mediaType: 'PHOTO' | 'VIDEO';
+      description?: string;
+    },
+  ) {
+    return this.submissionsService.addMedia(
+      id,
+      body.fileInstanceId,
+      body.mediaType,
+      body.description,
+    );
+  }
+
+  @Delete('media/:mediaId')
+  @ApiOperation({ summary: 'Remove media from submission' })
+  removeMedia(@Param('mediaId') mediaId: string) {
+    return this.submissionsService.removeMedia(mediaId);
+  }
+
+  @Post(':id/regenerate-pdf')
+  @ApiOperation({ summary: 'Regenerate PDF for submission' })
+  regeneratePdf(@Param('id') id: string) {
+    return this.submissionsService.regeneratePdf(id);
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete submission' })
+  remove(@Param('id') id: string) {
+    return this.submissionsService.remove(id);
   }
 }
