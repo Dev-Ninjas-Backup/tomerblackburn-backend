@@ -25,7 +25,7 @@
     "seed": "ts-node -r tsconfig-paths/register prisma/seed.ts",
     "format:fix": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "ci:check": "npm run format && npm run lint && npm run prisma:validate && npm run build && npm run start:prod",
-    "deploy:check": "docker compsoe --profile prod build --no-cache",
+    "deploy:check": "docker compose --profile prod build --no-cache",
     "ci:fix": "npm run format:fix",
     "prepare": "husky"
   },
