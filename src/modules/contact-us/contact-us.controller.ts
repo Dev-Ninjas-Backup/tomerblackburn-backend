@@ -27,6 +27,7 @@ import {
   ContactUsResponseDto,
 } from './dto/update-contact-us.dto';
 import { PaginationQueryDto } from './dto/pagination-query.dto';
+import { ExportContactsByIdsDto } from './dto/export-by-ids.dto';
 
 @ApiTags('Contact Us')
 @Controller('contact-us')
@@ -104,6 +105,42 @@ export class ContactUsController {
       isRead === 'true' ? true : isRead === 'false' ? false : undefined;
 
     const buffer = await this.contactUsService.exportToExcel(readFilter);
+
+    const filename = `contact-submissions-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
+
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.send(buffer);
+  }
+
+  @Post('export')
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Export specific contact submissions by IDs to Excel',
+    description:
+      'Export selected contact form submissions as an Excel file in BuilderTrend format',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Contact submissions exported successfully',
+    headers: {
+      'Content-Type': {
+        description:
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      },
+      'Content-Disposition': {
+        description: 'attachment; filename=contact-submissions.xlsx',
+      },
+    },
+  })
+  @Header(
+    'Content-Type',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  )
+  async exportByIds(
+    @Res() res: Response,
+    @Body() exportByIdsDto: ExportContactsByIdsDto,
+  ) {
+    const buffer = await this.contactUsService.exportByIds(exportByIdsDto.ids);
 
     const filename = `contact-submissions-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
 
