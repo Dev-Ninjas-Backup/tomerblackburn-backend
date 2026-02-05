@@ -20,6 +20,7 @@ import { UpdateNextStepDto } from './dto/update-next-step.dto';
 import { UpdateWhatHappensNextDto } from './dto/update-what-happens-next.dto';
 import { UpdateStatusDto } from './dto/update-status.dto';
 import { SubmissionQueryDto } from './dto/submission-query.dto';
+import { ExportSubmissionsByIdsDto } from './dto/export-by-ids.dto';
 import {
   SubmissionStatus,
   QuestionType,
@@ -66,6 +67,26 @@ export class SubmissionsController {
     @Query('status') status?: SubmissionStatus,
   ) {
     const buffer = await this.submissionsService.exportToExcel(status);
+
+    const filename = `submission-export-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
+
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.send(buffer);
+  }
+
+  @Post('export')
+  @ApiOperation({ summary: 'Export specific submissions by IDs to Excel' })
+  @Header(
+    'Content-Type',
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  )
+  async exportByIds(
+    @Res() res: Response,
+    @Body() exportByIdsDto: ExportSubmissionsByIdsDto,
+  ) {
+    const buffer = await this.submissionsService.exportByIds(
+      exportByIdsDto.ids,
+    );
 
     const filename = `submission-export-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
 

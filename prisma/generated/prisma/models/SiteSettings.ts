@@ -31,6 +31,8 @@ export type SiteSettingsMinAggregateOutputType = {
   logoImageId: string | null;
   contactNumber: string | null;
   contactEmail: string | null;
+  location: string | null;
+  address: string | null;
   facebookUrl: string | null;
   instagramUrl: string | null;
   twitterUrl: string | null;
@@ -45,6 +47,8 @@ export type SiteSettingsMaxAggregateOutputType = {
   logoImageId: string | null;
   contactNumber: string | null;
   contactEmail: string | null;
+  location: string | null;
+  address: string | null;
   facebookUrl: string | null;
   instagramUrl: string | null;
   twitterUrl: string | null;
@@ -59,6 +63,8 @@ export type SiteSettingsCountAggregateOutputType = {
   logoImageId: number;
   contactNumber: number;
   contactEmail: number;
+  location: number;
+  address: number;
   facebookUrl: number;
   instagramUrl: number;
   twitterUrl: number;
@@ -74,6 +80,8 @@ export type SiteSettingsMinAggregateInputType = {
   logoImageId?: true;
   contactNumber?: true;
   contactEmail?: true;
+  location?: true;
+  address?: true;
   facebookUrl?: true;
   instagramUrl?: true;
   twitterUrl?: true;
@@ -88,6 +96,8 @@ export type SiteSettingsMaxAggregateInputType = {
   logoImageId?: true;
   contactNumber?: true;
   contactEmail?: true;
+  location?: true;
+  address?: true;
   facebookUrl?: true;
   instagramUrl?: true;
   twitterUrl?: true;
@@ -102,6 +112,8 @@ export type SiteSettingsCountAggregateInputType = {
   logoImageId?: true;
   contactNumber?: true;
   contactEmail?: true;
+  location?: true;
+  address?: true;
   facebookUrl?: true;
   instagramUrl?: true;
   twitterUrl?: true;
@@ -197,6 +209,8 @@ export type SiteSettingsGroupByOutputType = {
   logoImageId: string | null;
   contactNumber: string | null;
   contactEmail: string | null;
+  location: string | null;
+  address: string | null;
   facebookUrl: string | null;
   instagramUrl: string | null;
   twitterUrl: string | null;
@@ -230,6 +244,8 @@ export type SiteSettingsWhereInput = {
   logoImageId?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   contactNumber?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   contactEmail?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
+  location?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
+  address?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   facebookUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   instagramUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   twitterUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
@@ -248,6 +264,8 @@ export type SiteSettingsOrderByWithRelationInput = {
   logoImageId?: Prisma.SortOrderInput | Prisma.SortOrder;
   contactNumber?: Prisma.SortOrderInput | Prisma.SortOrder;
   contactEmail?: Prisma.SortOrderInput | Prisma.SortOrder;
+  location?: Prisma.SortOrderInput | Prisma.SortOrder;
+  address?: Prisma.SortOrderInput | Prisma.SortOrder;
   facebookUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
   instagramUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
   twitterUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -270,6 +288,8 @@ export type SiteSettingsWhereUniqueInput = Prisma.AtLeast<
     logoImageId?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
     contactNumber?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
     contactEmail?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
+    location?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
+    address?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
     facebookUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
     instagramUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
     twitterUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
@@ -290,6 +310,8 @@ export type SiteSettingsOrderByWithAggregationInput = {
   logoImageId?: Prisma.SortOrderInput | Prisma.SortOrder;
   contactNumber?: Prisma.SortOrderInput | Prisma.SortOrder;
   contactEmail?: Prisma.SortOrderInput | Prisma.SortOrder;
+  location?: Prisma.SortOrderInput | Prisma.SortOrder;
+  address?: Prisma.SortOrderInput | Prisma.SortOrder;
   facebookUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
   instagramUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
   twitterUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -326,6 +348,14 @@ export type SiteSettingsScalarWhereWithAggregatesInput = {
     | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
     | string
     | null;
+  location?:
+    | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
+    | string
+    | null;
+  address?:
+    | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
+    | string
+    | null;
   facebookUrl?:
     | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
     | string
@@ -354,6 +384,8 @@ export type SiteSettingsCreateInput = {
   siteDescription?: string | null;
   contactNumber?: string | null;
   contactEmail?: string | null;
+  location?: string | null;
+  address?: string | null;
   facebookUrl?: string | null;
   instagramUrl?: string | null;
   twitterUrl?: string | null;
@@ -369,6 +401,8 @@ export type SiteSettingsUncheckedCreateInput = {
   logoImageId?: string | null;
   contactNumber?: string | null;
   contactEmail?: string | null;
+  location?: string | null;
+  address?: string | null;
   facebookUrl?: string | null;
   instagramUrl?: string | null;
   twitterUrl?: string | null;
@@ -391,6 +425,8 @@ export type SiteSettingsUpdateInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   instagramUrl?:
     | Prisma.NullableStringFieldUpdateOperationsInput
@@ -418,6 +454,8 @@ export type SiteSettingsUncheckedUpdateInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   instagramUrl?:
     | Prisma.NullableStringFieldUpdateOperationsInput
@@ -435,6 +473,8 @@ export type SiteSettingsCreateManyInput = {
   logoImageId?: string | null;
   contactNumber?: string | null;
   contactEmail?: string | null;
+  location?: string | null;
+  address?: string | null;
   facebookUrl?: string | null;
   instagramUrl?: string | null;
   twitterUrl?: string | null;
@@ -457,6 +497,8 @@ export type SiteSettingsUpdateManyMutationInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   instagramUrl?:
     | Prisma.NullableStringFieldUpdateOperationsInput
@@ -483,6 +525,8 @@ export type SiteSettingsUncheckedUpdateManyInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   instagramUrl?:
     | Prisma.NullableStringFieldUpdateOperationsInput
@@ -510,6 +554,8 @@ export type SiteSettingsCountOrderByAggregateInput = {
   logoImageId?: Prisma.SortOrder;
   contactNumber?: Prisma.SortOrder;
   contactEmail?: Prisma.SortOrder;
+  location?: Prisma.SortOrder;
+  address?: Prisma.SortOrder;
   facebookUrl?: Prisma.SortOrder;
   instagramUrl?: Prisma.SortOrder;
   twitterUrl?: Prisma.SortOrder;
@@ -524,6 +570,8 @@ export type SiteSettingsMaxOrderByAggregateInput = {
   logoImageId?: Prisma.SortOrder;
   contactNumber?: Prisma.SortOrder;
   contactEmail?: Prisma.SortOrder;
+  location?: Prisma.SortOrder;
+  address?: Prisma.SortOrder;
   facebookUrl?: Prisma.SortOrder;
   instagramUrl?: Prisma.SortOrder;
   twitterUrl?: Prisma.SortOrder;
@@ -538,6 +586,8 @@ export type SiteSettingsMinOrderByAggregateInput = {
   logoImageId?: Prisma.SortOrder;
   contactNumber?: Prisma.SortOrder;
   contactEmail?: Prisma.SortOrder;
+  location?: Prisma.SortOrder;
+  address?: Prisma.SortOrder;
   facebookUrl?: Prisma.SortOrder;
   instagramUrl?: Prisma.SortOrder;
   twitterUrl?: Prisma.SortOrder;
@@ -661,6 +711,8 @@ export type SiteSettingsCreateWithoutLogoImageInput = {
   siteDescription?: string | null;
   contactNumber?: string | null;
   contactEmail?: string | null;
+  location?: string | null;
+  address?: string | null;
   facebookUrl?: string | null;
   instagramUrl?: string | null;
   twitterUrl?: string | null;
@@ -674,6 +726,8 @@ export type SiteSettingsUncheckedCreateWithoutLogoImageInput = {
   siteDescription?: string | null;
   contactNumber?: string | null;
   contactEmail?: string | null;
+  location?: string | null;
+  address?: string | null;
   facebookUrl?: string | null;
   instagramUrl?: string | null;
   twitterUrl?: string | null;
@@ -738,6 +792,8 @@ export type SiteSettingsScalarWhereInput = {
   logoImageId?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   contactNumber?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   contactEmail?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
+  location?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
+  address?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   facebookUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   instagramUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   twitterUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
@@ -751,6 +807,8 @@ export type SiteSettingsCreateManyLogoImageInput = {
   siteDescription?: string | null;
   contactNumber?: string | null;
   contactEmail?: string | null;
+  location?: string | null;
+  address?: string | null;
   facebookUrl?: string | null;
   instagramUrl?: string | null;
   twitterUrl?: string | null;
@@ -773,6 +831,8 @@ export type SiteSettingsUpdateWithoutLogoImageInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   instagramUrl?:
     | Prisma.NullableStringFieldUpdateOperationsInput
@@ -798,6 +858,8 @@ export type SiteSettingsUncheckedUpdateWithoutLogoImageInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   instagramUrl?:
     | Prisma.NullableStringFieldUpdateOperationsInput
@@ -823,6 +885,8 @@ export type SiteSettingsUncheckedUpdateManyWithoutLogoImageInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   instagramUrl?:
     | Prisma.NullableStringFieldUpdateOperationsInput
@@ -844,6 +908,8 @@ export type SiteSettingsSelect<
     logoImageId?: boolean;
     contactNumber?: boolean;
     contactEmail?: boolean;
+    location?: boolean;
+    address?: boolean;
     facebookUrl?: boolean;
     instagramUrl?: boolean;
     twitterUrl?: boolean;
@@ -865,6 +931,8 @@ export type SiteSettingsSelectCreateManyAndReturn<
     logoImageId?: boolean;
     contactNumber?: boolean;
     contactEmail?: boolean;
+    location?: boolean;
+    address?: boolean;
     facebookUrl?: boolean;
     instagramUrl?: boolean;
     twitterUrl?: boolean;
@@ -886,6 +954,8 @@ export type SiteSettingsSelectUpdateManyAndReturn<
     logoImageId?: boolean;
     contactNumber?: boolean;
     contactEmail?: boolean;
+    location?: boolean;
+    address?: boolean;
     facebookUrl?: boolean;
     instagramUrl?: boolean;
     twitterUrl?: boolean;
@@ -903,6 +973,8 @@ export type SiteSettingsSelectScalar = {
   logoImageId?: boolean;
   contactNumber?: boolean;
   contactEmail?: boolean;
+  location?: boolean;
+  address?: boolean;
   facebookUrl?: boolean;
   instagramUrl?: boolean;
   twitterUrl?: boolean;
@@ -920,6 +992,8 @@ export type SiteSettingsOmit<
   | 'logoImageId'
   | 'contactNumber'
   | 'contactEmail'
+  | 'location'
+  | 'address'
   | 'facebookUrl'
   | 'instagramUrl'
   | 'twitterUrl'
@@ -962,6 +1036,8 @@ export type $SiteSettingsPayload<
       logoImageId: string | null;
       contactNumber: string | null;
       contactEmail: string | null;
+      location: string | null;
+      address: string | null;
       facebookUrl: string | null;
       instagramUrl: string | null;
       twitterUrl: string | null;
@@ -1584,6 +1660,8 @@ export interface SiteSettingsFieldRefs {
   readonly logoImageId: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly contactNumber: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly contactEmail: Prisma.FieldRef<'SiteSettings', 'String'>;
+  readonly location: Prisma.FieldRef<'SiteSettings', 'String'>;
+  readonly address: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly facebookUrl: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly instagramUrl: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly twitterUrl: Prisma.FieldRef<'SiteSettings', 'String'>;

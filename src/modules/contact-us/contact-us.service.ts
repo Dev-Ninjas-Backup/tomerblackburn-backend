@@ -569,4 +569,110 @@ export class ContactUsService {
       throw new Error(`Failed to export contacts to Excel: ${error.message}`);
     }
   }
+
+  async exportByIds(ids: string[]): Promise<ExcelJS.Buffer> {
+    try {
+      if (!ids || ids.length === 0) {
+        throw new Error('At least one contact ID is required');
+      }
+
+      const workbook = new ExcelJS.Workbook();
+
+      const possiblePaths = [
+        path.join(process.cwd(), 'Leads Template.xlsx'),
+        path.join(process.cwd(), 'dist', 'Leads Template.xlsx'),
+        path.join(__dirname, '..', '..', '..', 'Leads Template.xlsx'),
+        '/app/Leads Template.xlsx',
+      ];
+
+      let templatePath: string | null = null;
+      for (const testPath of possiblePaths) {
+        if (fs.existsSync(testPath)) {
+          templatePath = testPath;
+          this.logger.log(`Found template at: ${templatePath}`);
+          break;
+        }
+      }
+
+      if (!templatePath) {
+        const searchedPaths = possiblePaths.join('\n  - ');
+        this.logger.error(
+          `Template file not found. Searched in:\n  - ${searchedPaths}\nCurrent working directory: ${process.cwd()}`,
+        );
+        throw new Error(
+          `Template file "Leads Template.xlsx" not found. Please ensure the file exists in the project root directory.`,
+        );
+      }
+
+      await workbook.xlsx.readFile(templatePath);
+
+      const worksheet = workbook.getWorksheet('Blank Template');
+      if (!worksheet) {
+        throw new Error(
+          'Template worksheet "Blank Template" not found in the Excel file',
+        );
+      }
+
+      const contacts = await this.prisma.contactUs.findMany({
+        where: {
+          id: {
+            in: ids,
+          },
+        },
+        orderBy: { createdAt: 'desc' },
+      });
+
+      if (contacts.length === 0) {
+        throw new NotFoundException('No contacts found with the provided IDs');
+      }
+
+      let currentRow = 2;
+
+      for (const contact of contacts) {
+        const row = worksheet.getRow(currentRow);
+
+        const displayName = `${contact.firstName} ${contact.lastName}`;
+
+        row.values = [
+          displayName,
+          displayName,
+          contact.firstName,
+          contact.lastName,
+          contact.address,
+          contact.city,
+          contact.state,
+          contact.zipCode,
+          contact.address,
+          contact.city,
+          contact.state,
+          contact.zipCode,
+          'Open',
+          null,
+          'Contact Form',
+          contact.phone,
+          null,
+          contact.email,
+          contact.message,
+          null,
+          null,
+          null,
+          null,
+        ];
+
+        row.commit();
+        currentRow++;
+      }
+
+      const buffer = await workbook.xlsx.writeBuffer();
+      return buffer;
+    } catch (error) {
+      this.logger.error(
+        `Failed to export contacts to Excel by IDs: ${error.message}`,
+        error.stack,
+      );
+      throw new Error(
+        `Failed to export contacts to Excel by IDs: ${error.message}`,
+      );
+    }
+  }
 }

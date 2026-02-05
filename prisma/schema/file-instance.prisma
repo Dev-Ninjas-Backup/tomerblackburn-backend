@@ -23,6 +23,8 @@ model FileInstance {
   userAvatars             User[]                 @relation("UserAvatar")
   estimatorBackgrounds    EstimatorPage[]        @relation("EstimatorBackground")
   whyChooseUsIcons        WhyChooseUsFeature[]   @relation("WhyChooseUsIcon")
+  projectTypes            ProjectType[]
+  serviceCategories       ServiceCategory[]
 
   @@map("file_instances")
 }

@@ -8,6 +8,8 @@ model SiteSettings {
 
   contactNumber String?
   contactEmail  String?
+  location      String? // Address/Location field
+  address       String? // Alternative address field
 
   // Social Media Links
   facebookUrl  String?

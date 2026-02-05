@@ -39,6 +39,7 @@ export type ServiceCategoryMinAggregateOutputType = {
   projectTypeId: string | null;
   name: string | null;
   description: string | null;
+  imageId: string | null;
   displayOrder: number | null;
   isActive: boolean | null;
   createdAt: Date | null;
@@ -50,6 +51,7 @@ export type ServiceCategoryMaxAggregateOutputType = {
   projectTypeId: string | null;
   name: string | null;
   description: string | null;
+  imageId: string | null;
   displayOrder: number | null;
   isActive: boolean | null;
   createdAt: Date | null;
@@ -61,6 +63,7 @@ export type ServiceCategoryCountAggregateOutputType = {
   projectTypeId: number;
   name: number;
   description: number;
+  imageId: number;
   displayOrder: number;
   isActive: number;
   createdAt: number;
@@ -81,6 +84,7 @@ export type ServiceCategoryMinAggregateInputType = {
   projectTypeId?: true;
   name?: true;
   description?: true;
+  imageId?: true;
   displayOrder?: true;
   isActive?: true;
   createdAt?: true;
@@ -92,6 +96,7 @@ export type ServiceCategoryMaxAggregateInputType = {
   projectTypeId?: true;
   name?: true;
   description?: true;
+  imageId?: true;
   displayOrder?: true;
   isActive?: true;
   createdAt?: true;
@@ -103,6 +108,7 @@ export type ServiceCategoryCountAggregateInputType = {
   projectTypeId?: true;
   name?: true;
   description?: true;
+  imageId?: true;
   displayOrder?: true;
   isActive?: true;
   createdAt?: true;
@@ -212,6 +218,7 @@ export type ServiceCategoryGroupByOutputType = {
   projectTypeId: string;
   name: string;
   description: string | null;
+  imageId: string | null;
   displayOrder: number;
   isActive: boolean;
   createdAt: Date;
@@ -245,10 +252,15 @@ export type ServiceCategoryWhereInput = {
   projectTypeId?: Prisma.StringFilter<'ServiceCategory'> | string;
   name?: Prisma.StringFilter<'ServiceCategory'> | string;
   description?: Prisma.StringNullableFilter<'ServiceCategory'> | string | null;
+  imageId?: Prisma.StringNullableFilter<'ServiceCategory'> | string | null;
   displayOrder?: Prisma.IntFilter<'ServiceCategory'> | number;
   isActive?: Prisma.BoolFilter<'ServiceCategory'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'ServiceCategory'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'ServiceCategory'> | Date | string;
+  image?: Prisma.XOR<
+    Prisma.FileInstanceNullableScalarRelationFilter,
+    Prisma.FileInstanceWhereInput
+  > | null;
   projectType?: Prisma.XOR<
     Prisma.ProjectTypeScalarRelationFilter,
     Prisma.ProjectTypeWhereInput
@@ -261,10 +273,12 @@ export type ServiceCategoryOrderByWithRelationInput = {
   projectTypeId?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
+  imageId?: Prisma.SortOrderInput | Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  image?: Prisma.FileInstanceOrderByWithRelationInput;
   projectType?: Prisma.ProjectTypeOrderByWithRelationInput;
   services?: Prisma.ServiceOrderByRelationAggregateInput;
 };
@@ -281,10 +295,15 @@ export type ServiceCategoryWhereUniqueInput = Prisma.AtLeast<
       | Prisma.StringNullableFilter<'ServiceCategory'>
       | string
       | null;
+    imageId?: Prisma.StringNullableFilter<'ServiceCategory'> | string | null;
     displayOrder?: Prisma.IntFilter<'ServiceCategory'> | number;
     isActive?: Prisma.BoolFilter<'ServiceCategory'> | boolean;
     createdAt?: Prisma.DateTimeFilter<'ServiceCategory'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'ServiceCategory'> | Date | string;
+    image?: Prisma.XOR<
+      Prisma.FileInstanceNullableScalarRelationFilter,
+      Prisma.FileInstanceWhereInput
+    > | null;
     projectType?: Prisma.XOR<
       Prisma.ProjectTypeScalarRelationFilter,
       Prisma.ProjectTypeWhereInput
@@ -299,6 +318,7 @@ export type ServiceCategoryOrderByWithAggregationInput = {
   projectTypeId?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
+  imageId?: Prisma.SortOrderInput | Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -325,6 +345,10 @@ export type ServiceCategoryScalarWhereWithAggregatesInput = {
     | Prisma.StringNullableWithAggregatesFilter<'ServiceCategory'>
     | string
     | null;
+  imageId?:
+    | Prisma.StringNullableWithAggregatesFilter<'ServiceCategory'>
+    | string
+    | null;
   displayOrder?: Prisma.IntWithAggregatesFilter<'ServiceCategory'> | number;
   isActive?: Prisma.BoolWithAggregatesFilter<'ServiceCategory'> | boolean;
   createdAt?:
@@ -345,6 +369,7 @@ export type ServiceCategoryCreateInput = {
   isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  image?: Prisma.FileInstanceCreateNestedOneWithoutServiceCategoriesInput;
   projectType: Prisma.ProjectTypeCreateNestedOneWithoutServiceCategoriesInput;
   services?: Prisma.ServiceCreateNestedManyWithoutServiceCategoryInput;
 };
@@ -354,6 +379,7 @@ export type ServiceCategoryUncheckedCreateInput = {
   projectTypeId: string;
   name: string;
   description?: string | null;
+  imageId?: string | null;
   displayOrder?: number;
   isActive?: boolean;
   createdAt?: Date | string;
@@ -369,6 +395,7 @@ export type ServiceCategoryUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  image?: Prisma.FileInstanceUpdateOneWithoutServiceCategoriesNestedInput;
   projectType?: Prisma.ProjectTypeUpdateOneRequiredWithoutServiceCategoriesNestedInput;
   services?: Prisma.ServiceUpdateManyWithoutServiceCategoryNestedInput;
 };
@@ -378,6 +405,7 @@ export type ServiceCategoryUncheckedUpdateInput = {
   projectTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -390,6 +418,7 @@ export type ServiceCategoryCreateManyInput = {
   projectTypeId: string;
   name: string;
   description?: string | null;
+  imageId?: string | null;
   displayOrder?: number;
   isActive?: boolean;
   createdAt?: Date | string;
@@ -411,6 +440,7 @@ export type ServiceCategoryUncheckedUpdateManyInput = {
   projectTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -437,6 +467,7 @@ export type ServiceCategoryCountOrderByAggregateInput = {
   projectTypeId?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
+  imageId?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -452,6 +483,7 @@ export type ServiceCategoryMaxOrderByAggregateInput = {
   projectTypeId?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
+  imageId?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -463,6 +495,7 @@ export type ServiceCategoryMinOrderByAggregateInput = {
   projectTypeId?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
+  imageId?: Prisma.SortOrder;
   displayOrder?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -609,6 +642,116 @@ export type ServiceCategoryUpdateOneRequiredWithoutServicesNestedInput = {
   >;
 };
 
+export type ServiceCategoryCreateNestedManyWithoutImageInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ServiceCategoryCreateWithoutImageInput,
+        Prisma.ServiceCategoryUncheckedCreateWithoutImageInput
+      >
+    | Prisma.ServiceCategoryCreateWithoutImageInput[]
+    | Prisma.ServiceCategoryUncheckedCreateWithoutImageInput[];
+  connectOrCreate?:
+    | Prisma.ServiceCategoryCreateOrConnectWithoutImageInput
+    | Prisma.ServiceCategoryCreateOrConnectWithoutImageInput[];
+  createMany?: Prisma.ServiceCategoryCreateManyImageInputEnvelope;
+  connect?:
+    | Prisma.ServiceCategoryWhereUniqueInput
+    | Prisma.ServiceCategoryWhereUniqueInput[];
+};
+
+export type ServiceCategoryUncheckedCreateNestedManyWithoutImageInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ServiceCategoryCreateWithoutImageInput,
+        Prisma.ServiceCategoryUncheckedCreateWithoutImageInput
+      >
+    | Prisma.ServiceCategoryCreateWithoutImageInput[]
+    | Prisma.ServiceCategoryUncheckedCreateWithoutImageInput[];
+  connectOrCreate?:
+    | Prisma.ServiceCategoryCreateOrConnectWithoutImageInput
+    | Prisma.ServiceCategoryCreateOrConnectWithoutImageInput[];
+  createMany?: Prisma.ServiceCategoryCreateManyImageInputEnvelope;
+  connect?:
+    | Prisma.ServiceCategoryWhereUniqueInput
+    | Prisma.ServiceCategoryWhereUniqueInput[];
+};
+
+export type ServiceCategoryUpdateManyWithoutImageNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ServiceCategoryCreateWithoutImageInput,
+        Prisma.ServiceCategoryUncheckedCreateWithoutImageInput
+      >
+    | Prisma.ServiceCategoryCreateWithoutImageInput[]
+    | Prisma.ServiceCategoryUncheckedCreateWithoutImageInput[];
+  connectOrCreate?:
+    | Prisma.ServiceCategoryCreateOrConnectWithoutImageInput
+    | Prisma.ServiceCategoryCreateOrConnectWithoutImageInput[];
+  upsert?:
+    | Prisma.ServiceCategoryUpsertWithWhereUniqueWithoutImageInput
+    | Prisma.ServiceCategoryUpsertWithWhereUniqueWithoutImageInput[];
+  createMany?: Prisma.ServiceCategoryCreateManyImageInputEnvelope;
+  set?:
+    | Prisma.ServiceCategoryWhereUniqueInput
+    | Prisma.ServiceCategoryWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ServiceCategoryWhereUniqueInput
+    | Prisma.ServiceCategoryWhereUniqueInput[];
+  delete?:
+    | Prisma.ServiceCategoryWhereUniqueInput
+    | Prisma.ServiceCategoryWhereUniqueInput[];
+  connect?:
+    | Prisma.ServiceCategoryWhereUniqueInput
+    | Prisma.ServiceCategoryWhereUniqueInput[];
+  update?:
+    | Prisma.ServiceCategoryUpdateWithWhereUniqueWithoutImageInput
+    | Prisma.ServiceCategoryUpdateWithWhereUniqueWithoutImageInput[];
+  updateMany?:
+    | Prisma.ServiceCategoryUpdateManyWithWhereWithoutImageInput
+    | Prisma.ServiceCategoryUpdateManyWithWhereWithoutImageInput[];
+  deleteMany?:
+    | Prisma.ServiceCategoryScalarWhereInput
+    | Prisma.ServiceCategoryScalarWhereInput[];
+};
+
+export type ServiceCategoryUncheckedUpdateManyWithoutImageNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ServiceCategoryCreateWithoutImageInput,
+        Prisma.ServiceCategoryUncheckedCreateWithoutImageInput
+      >
+    | Prisma.ServiceCategoryCreateWithoutImageInput[]
+    | Prisma.ServiceCategoryUncheckedCreateWithoutImageInput[];
+  connectOrCreate?:
+    | Prisma.ServiceCategoryCreateOrConnectWithoutImageInput
+    | Prisma.ServiceCategoryCreateOrConnectWithoutImageInput[];
+  upsert?:
+    | Prisma.ServiceCategoryUpsertWithWhereUniqueWithoutImageInput
+    | Prisma.ServiceCategoryUpsertWithWhereUniqueWithoutImageInput[];
+  createMany?: Prisma.ServiceCategoryCreateManyImageInputEnvelope;
+  set?:
+    | Prisma.ServiceCategoryWhereUniqueInput
+    | Prisma.ServiceCategoryWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ServiceCategoryWhereUniqueInput
+    | Prisma.ServiceCategoryWhereUniqueInput[];
+  delete?:
+    | Prisma.ServiceCategoryWhereUniqueInput
+    | Prisma.ServiceCategoryWhereUniqueInput[];
+  connect?:
+    | Prisma.ServiceCategoryWhereUniqueInput
+    | Prisma.ServiceCategoryWhereUniqueInput[];
+  update?:
+    | Prisma.ServiceCategoryUpdateWithWhereUniqueWithoutImageInput
+    | Prisma.ServiceCategoryUpdateWithWhereUniqueWithoutImageInput[];
+  updateMany?:
+    | Prisma.ServiceCategoryUpdateManyWithWhereWithoutImageInput
+    | Prisma.ServiceCategoryUpdateManyWithWhereWithoutImageInput[];
+  deleteMany?:
+    | Prisma.ServiceCategoryScalarWhereInput
+    | Prisma.ServiceCategoryScalarWhereInput[];
+};
+
 export type ServiceCategoryCreateWithoutProjectTypeInput = {
   id?: string;
   name: string;
@@ -617,6 +760,7 @@ export type ServiceCategoryCreateWithoutProjectTypeInput = {
   isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  image?: Prisma.FileInstanceCreateNestedOneWithoutServiceCategoriesInput;
   services?: Prisma.ServiceCreateNestedManyWithoutServiceCategoryInput;
 };
 
@@ -624,6 +768,7 @@ export type ServiceCategoryUncheckedCreateWithoutProjectTypeInput = {
   id?: string;
   name: string;
   description?: string | null;
+  imageId?: string | null;
   displayOrder?: number;
   isActive?: boolean;
   createdAt?: Date | string;
@@ -686,6 +831,7 @@ export type ServiceCategoryScalarWhereInput = {
   projectTypeId?: Prisma.StringFilter<'ServiceCategory'> | string;
   name?: Prisma.StringFilter<'ServiceCategory'> | string;
   description?: Prisma.StringNullableFilter<'ServiceCategory'> | string | null;
+  imageId?: Prisma.StringNullableFilter<'ServiceCategory'> | string | null;
   displayOrder?: Prisma.IntFilter<'ServiceCategory'> | number;
   isActive?: Prisma.BoolFilter<'ServiceCategory'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'ServiceCategory'> | Date | string;
@@ -700,6 +846,7 @@ export type ServiceCategoryCreateWithoutServicesInput = {
   isActive?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  image?: Prisma.FileInstanceCreateNestedOneWithoutServiceCategoriesInput;
   projectType: Prisma.ProjectTypeCreateNestedOneWithoutServiceCategoriesInput;
 };
 
@@ -708,6 +855,7 @@ export type ServiceCategoryUncheckedCreateWithoutServicesInput = {
   projectTypeId: string;
   name: string;
   description?: string | null;
+  imageId?: string | null;
   displayOrder?: number;
   isActive?: boolean;
   createdAt?: Date | string;
@@ -750,6 +898,7 @@ export type ServiceCategoryUpdateWithoutServicesInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  image?: Prisma.FileInstanceUpdateOneWithoutServiceCategoriesNestedInput;
   projectType?: Prisma.ProjectTypeUpdateOneRequiredWithoutServiceCategoriesNestedInput;
 };
 
@@ -758,16 +907,85 @@ export type ServiceCategoryUncheckedUpdateWithoutServicesInput = {
   projectTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
+export type ServiceCategoryCreateWithoutImageInput = {
+  id?: string;
+  name: string;
+  description?: string | null;
+  displayOrder?: number;
+  isActive?: boolean;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  projectType: Prisma.ProjectTypeCreateNestedOneWithoutServiceCategoriesInput;
+  services?: Prisma.ServiceCreateNestedManyWithoutServiceCategoryInput;
+};
+
+export type ServiceCategoryUncheckedCreateWithoutImageInput = {
+  id?: string;
+  projectTypeId: string;
+  name: string;
+  description?: string | null;
+  displayOrder?: number;
+  isActive?: boolean;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  services?: Prisma.ServiceUncheckedCreateNestedManyWithoutServiceCategoryInput;
+};
+
+export type ServiceCategoryCreateOrConnectWithoutImageInput = {
+  where: Prisma.ServiceCategoryWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.ServiceCategoryCreateWithoutImageInput,
+    Prisma.ServiceCategoryUncheckedCreateWithoutImageInput
+  >;
+};
+
+export type ServiceCategoryCreateManyImageInputEnvelope = {
+  data:
+    | Prisma.ServiceCategoryCreateManyImageInput
+    | Prisma.ServiceCategoryCreateManyImageInput[];
+  skipDuplicates?: boolean;
+};
+
+export type ServiceCategoryUpsertWithWhereUniqueWithoutImageInput = {
+  where: Prisma.ServiceCategoryWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.ServiceCategoryUpdateWithoutImageInput,
+    Prisma.ServiceCategoryUncheckedUpdateWithoutImageInput
+  >;
+  create: Prisma.XOR<
+    Prisma.ServiceCategoryCreateWithoutImageInput,
+    Prisma.ServiceCategoryUncheckedCreateWithoutImageInput
+  >;
+};
+
+export type ServiceCategoryUpdateWithWhereUniqueWithoutImageInput = {
+  where: Prisma.ServiceCategoryWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.ServiceCategoryUpdateWithoutImageInput,
+    Prisma.ServiceCategoryUncheckedUpdateWithoutImageInput
+  >;
+};
+
+export type ServiceCategoryUpdateManyWithWhereWithoutImageInput = {
+  where: Prisma.ServiceCategoryScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.ServiceCategoryUpdateManyMutationInput,
+    Prisma.ServiceCategoryUncheckedUpdateManyWithoutImageInput
+  >;
+};
+
 export type ServiceCategoryCreateManyProjectTypeInput = {
   id?: string;
   name: string;
   description?: string | null;
+  imageId?: string | null;
   displayOrder?: number;
   isActive?: boolean;
   createdAt?: Date | string;
@@ -782,6 +1000,7 @@ export type ServiceCategoryUpdateWithoutProjectTypeInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  image?: Prisma.FileInstanceUpdateOneWithoutServiceCategoriesNestedInput;
   services?: Prisma.ServiceUpdateManyWithoutServiceCategoryNestedInput;
 };
 
@@ -789,6 +1008,7 @@ export type ServiceCategoryUncheckedUpdateWithoutProjectTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -798,6 +1018,53 @@ export type ServiceCategoryUncheckedUpdateWithoutProjectTypeInput = {
 
 export type ServiceCategoryUncheckedUpdateManyWithoutProjectTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  imageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type ServiceCategoryCreateManyImageInput = {
+  id?: string;
+  projectTypeId: string;
+  name: string;
+  description?: string | null;
+  displayOrder?: number;
+  isActive?: boolean;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type ServiceCategoryUpdateWithoutImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  projectType?: Prisma.ProjectTypeUpdateOneRequiredWithoutServiceCategoriesNestedInput;
+  services?: Prisma.ServiceUpdateManyWithoutServiceCategoryNestedInput;
+};
+
+export type ServiceCategoryUncheckedUpdateWithoutImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  projectTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  services?: Prisma.ServiceUncheckedUpdateManyWithoutServiceCategoryNestedInput;
+};
+
+export type ServiceCategoryUncheckedUpdateManyWithoutImageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  projectTypeId?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
@@ -853,10 +1120,12 @@ export type ServiceCategorySelect<
     projectTypeId?: boolean;
     name?: boolean;
     description?: boolean;
+    imageId?: boolean;
     displayOrder?: boolean;
     isActive?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    image?: boolean | Prisma.ServiceCategory$imageArgs<ExtArgs>;
     projectType?: boolean | Prisma.ProjectTypeDefaultArgs<ExtArgs>;
     services?: boolean | Prisma.ServiceCategory$servicesArgs<ExtArgs>;
     _count?:
@@ -875,10 +1144,12 @@ export type ServiceCategorySelectCreateManyAndReturn<
     projectTypeId?: boolean;
     name?: boolean;
     description?: boolean;
+    imageId?: boolean;
     displayOrder?: boolean;
     isActive?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    image?: boolean | Prisma.ServiceCategory$imageArgs<ExtArgs>;
     projectType?: boolean | Prisma.ProjectTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['serviceCategory']
@@ -893,10 +1164,12 @@ export type ServiceCategorySelectUpdateManyAndReturn<
     projectTypeId?: boolean;
     name?: boolean;
     description?: boolean;
+    imageId?: boolean;
     displayOrder?: boolean;
     isActive?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    image?: boolean | Prisma.ServiceCategory$imageArgs<ExtArgs>;
     projectType?: boolean | Prisma.ProjectTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['serviceCategory']
@@ -907,6 +1180,7 @@ export type ServiceCategorySelectScalar = {
   projectTypeId?: boolean;
   name?: boolean;
   description?: boolean;
+  imageId?: boolean;
   displayOrder?: boolean;
   isActive?: boolean;
   createdAt?: boolean;
@@ -921,6 +1195,7 @@ export type ServiceCategoryOmit<
   | 'projectTypeId'
   | 'name'
   | 'description'
+  | 'imageId'
   | 'displayOrder'
   | 'isActive'
   | 'createdAt'
@@ -931,6 +1206,7 @@ export type ServiceCategoryInclude<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
+  image?: boolean | Prisma.ServiceCategory$imageArgs<ExtArgs>;
   projectType?: boolean | Prisma.ProjectTypeDefaultArgs<ExtArgs>;
   services?: boolean | Prisma.ServiceCategory$servicesArgs<ExtArgs>;
   _count?: boolean | Prisma.ServiceCategoryCountOutputTypeDefaultArgs<ExtArgs>;
@@ -939,12 +1215,14 @@ export type ServiceCategoryIncludeCreateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
+  image?: boolean | Prisma.ServiceCategory$imageArgs<ExtArgs>;
   projectType?: boolean | Prisma.ProjectTypeDefaultArgs<ExtArgs>;
 };
 export type ServiceCategoryIncludeUpdateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
+  image?: boolean | Prisma.ServiceCategory$imageArgs<ExtArgs>;
   projectType?: boolean | Prisma.ProjectTypeDefaultArgs<ExtArgs>;
 };
 
@@ -954,6 +1232,7 @@ export type $ServiceCategoryPayload<
 > = {
   name: 'ServiceCategory';
   objects: {
+    image: Prisma.$FileInstancePayload<ExtArgs> | null;
     projectType: Prisma.$ProjectTypePayload<ExtArgs>;
     services: Prisma.$ServicePayload<ExtArgs>[];
   };
@@ -963,6 +1242,7 @@ export type $ServiceCategoryPayload<
       projectTypeId: string;
       name: string;
       description: string | null;
+      imageId: string | null;
       displayOrder: number;
       isActive: boolean;
       createdAt: Date;
@@ -1529,6 +1809,19 @@ export interface Prisma__ServiceCategoryClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: 'PrismaPromise';
+  image<T extends Prisma.ServiceCategory$imageArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.ServiceCategory$imageArgs<ExtArgs>>,
+  ): Prisma.Prisma__FileInstanceClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$FileInstancePayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   projectType<T extends Prisma.ProjectTypeDefaultArgs<ExtArgs> = {}>(
     args?: Prisma.Subset<T, Prisma.ProjectTypeDefaultArgs<ExtArgs>>,
   ): Prisma.Prisma__ProjectTypeClient<
@@ -1600,6 +1893,7 @@ export interface ServiceCategoryFieldRefs {
   readonly projectTypeId: Prisma.FieldRef<'ServiceCategory', 'String'>;
   readonly name: Prisma.FieldRef<'ServiceCategory', 'String'>;
   readonly description: Prisma.FieldRef<'ServiceCategory', 'String'>;
+  readonly imageId: Prisma.FieldRef<'ServiceCategory', 'String'>;
   readonly displayOrder: Prisma.FieldRef<'ServiceCategory', 'Int'>;
   readonly isActive: Prisma.FieldRef<'ServiceCategory', 'Boolean'>;
   readonly createdAt: Prisma.FieldRef<'ServiceCategory', 'DateTime'>;
@@ -2072,6 +2366,28 @@ export type ServiceCategoryDeleteManyArgs<
    * Limit how many ServiceCategories to delete.
    */
   limit?: number;
+};
+
+/**
+ * ServiceCategory.image
+ */
+export type ServiceCategory$imageArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the FileInstance
+   */
+  select?: Prisma.FileInstanceSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the FileInstance
+   */
+  omit?: Prisma.FileInstanceOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FileInstanceInclude<ExtArgs> | null;
+  where?: Prisma.FileInstanceWhereInput;
 };
 
 /**
