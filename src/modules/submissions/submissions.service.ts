@@ -11,6 +11,7 @@ import {
   PdfGeneratorService,
   SubmissionPdfData,
 } from '../pdf/pdf-generator.service';
+import { EmailService } from '../notifications/email.service';
 import * as path from 'path';
 import * as fs from 'fs/promises';
 import { existsSync } from 'fs';
@@ -26,6 +27,7 @@ export class SubmissionsService {
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
     private readonly pdfGeneratorService: PdfGeneratorService,
+    private readonly emailService: EmailService,
   ) {
     this.uploadsDir = path.join(process.cwd(), 'uploads');
 
@@ -71,7 +73,9 @@ export class SubmissionsService {
     return `${prefix}${nextNumber.toString().padStart(3, '0')}`;
   }
 
-  private async generateAndUploadPdf(submissionId: string): Promise<string> {
+  private async generateAndUploadPdf(
+    submissionId: string,
+  ): Promise<{ url: string; buffer: Buffer }> {
     // Get full submission data
     const submission = await this.prisma.submission.findUnique({
       where: { id: submissionId },
@@ -136,7 +140,7 @@ export class SubmissionsService {
     const relativePath = path.join('document', filename).replace(/\\/g, '/');
     const url = `${this.baseUrl}/uploads/${relativePath}`;
 
-    return url;
+    return { url, buffer: pdfBuffer };
   }
 
   async create(createSubmissionDto: CreateSubmissionDto) {
@@ -229,8 +233,11 @@ export class SubmissionsService {
       });
 
       let pdfUrl: string | null = null;
+      let pdfBuffer: Buffer | undefined;
       try {
-        pdfUrl = await this.generateAndUploadPdf(submission.id);
+        const pdfResult = await this.generateAndUploadPdf(submission.id);
+        pdfUrl = pdfResult.url;
+        pdfBuffer = pdfResult.buffer;
 
         submission = await this.prisma.submission.update({
           where: { id: submission.id },
@@ -250,6 +257,22 @@ export class SubmissionsService {
             },
           },
         });
+
+        // Send email with PDF attachment
+        if (pdfBuffer) {
+          this.emailService
+            .sendSubmissionEmail(
+              submission.id,
+              submission.clientEmail,
+              submission.clientName,
+              submission.submissionNumber,
+              pdfUrl,
+              pdfBuffer,
+            )
+            .catch((error) => {
+              console.error('Failed to send submission email:', error);
+            });
+        }
       } catch (pdfError) {
         console.error('Failed to generate PDF:', pdfError);
       }
@@ -491,11 +514,11 @@ export class SubmissionsService {
     try {
       const { data: submission } = await this.findOne(id);
 
-      const pdfUrl = await this.generateAndUploadPdf(submission.id);
+      const pdfResult = await this.generateAndUploadPdf(submission.id);
 
       const updatedSubmission = await this.prisma.submission.update({
         where: { id },
-        data: { pdfUrl },
+        data: { pdfUrl: pdfResult.url },
         include: {
           service: true,
           submissionItems: {
@@ -510,7 +533,7 @@ export class SubmissionsService {
       return {
         message: 'PDF regenerated successfully',
         data: updatedSubmission,
-        pdfUrl,
+        pdfUrl: pdfResult.url,
       };
     } catch (error) {
       if (error instanceof NotFoundException) {
