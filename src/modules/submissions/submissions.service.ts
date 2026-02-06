@@ -162,6 +162,18 @@ export class SubmissionsService {
         items,
       } = createSubmissionDto;
 
+      // Validate that the service exists
+      const service = await this.prisma.service.findUnique({
+        where: { id: serviceId },
+      });
+
+      if (!service) {
+        throw new NotFoundException(
+          `Service with ID "${serviceId}" not found. Please select a valid service.`,
+        );
+      }
+
+      // Validate submission items if provided
       const submissionItemsData = items
         ? await Promise.all(
             items.map(async (item) => {
@@ -169,11 +181,23 @@ export class SubmissionsService {
                 where: { id: item.costCodeId },
               });
 
+              if (!costCode) {
+                throw new NotFoundException(
+                  `Cost code with ID "${item.costCodeId}" not found. Please provide valid cost codes.`,
+                );
+              }
+
               let selectedOption = null;
               if (item.selectedOptionId) {
                 selectedOption = await this.prisma.costCodeOption.findUnique({
                   where: { id: item.selectedOptionId },
                 });
+
+                if (!selectedOption) {
+                  throw new NotFoundException(
+                    `Cost code option with ID "${item.selectedOptionId}" not found. Please provide valid options.`,
+                  );
+                }
               }
 
               const totalPrice = item.unitPrice * (item.quantity ?? 1);
@@ -283,7 +307,47 @@ export class SubmissionsService {
         pdfUrl,
       };
     } catch (error) {
-      throw new Error(`Failed to create submission: ${error.message}`);
+      // Handle specific error types
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+
+      // Handle Prisma foreign key constraint errors
+      if (error.code === 'P2003') {
+        const field = error.meta?.field_name || 'unknown';
+        if (field.includes('serviceId')) {
+          throw new NotFoundException(
+            'The selected service does not exist. Please choose a valid service.',
+          );
+        } else if (field.includes('costCodeId')) {
+          throw new NotFoundException(
+            'One or more cost codes in the submission items do not exist. Please verify the cost codes.',
+          );
+        } else {
+          throw new NotFoundException(
+            `Invalid reference: ${field}. Please check your submission data.`,
+          );
+        }
+      }
+
+      // Handle Prisma unique constraint errors
+      if (error.code === 'P2002') {
+        throw new Error(
+          'A submission with this information already exists. Please check for duplicates.',
+        );
+      }
+
+      // Handle validation errors
+      if (error.name === 'ValidationError') {
+        throw new Error(
+          `Validation failed: ${error.message}. Please check your input data.`,
+        );
+      }
+
+      // Generic error with more context
+      throw new Error(
+        `Failed to create submission: ${error.message || 'Unknown error occurred'}. Please contact support if the problem persists.`,
+      );
     }
   }
 
@@ -439,6 +503,7 @@ export class SubmissionsService {
 
   async update(id: string, updateSubmissionDto: UpdateSubmissionDto) {
     try {
+      // Check if submission exists
       await this.findOne(id);
 
       const submission = await this.prisma.submission.update({
@@ -468,7 +533,23 @@ export class SubmissionsService {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new Error(`Failed to update submission: ${error.message}`);
+
+      // Handle Prisma foreign key constraint errors
+      if (error.code === 'P2003') {
+        const field = error.meta?.field_name || 'unknown';
+        throw new NotFoundException(
+          `Invalid reference in ${field}. Please check your submission data.`,
+        );
+      }
+
+      // Handle record not found
+      if (error.code === 'P2025') {
+        throw new NotFoundException(`Submission with ID "${id}" not found.`);
+      }
+
+      throw new Error(
+        `Failed to update submission: ${error.message || 'Unknown error occurred'}`,
+      );
     }
   }
 
@@ -550,7 +631,19 @@ export class SubmissionsService {
     description?: string,
   ) {
     try {
+      // Validate submission exists
       await this.findOne(submissionId);
+
+      // Validate file instance exists
+      const fileInstance = await this.prisma.fileInstance.findUnique({
+        where: { id: fileInstanceId },
+      });
+
+      if (!fileInstance) {
+        throw new NotFoundException(
+          `File with ID "${fileInstanceId}" not found. Please upload the file first.`,
+        );
+      }
 
       const existingMedia = await this.prisma.submissionMedia.count({
         where: { submissionId },
@@ -577,7 +670,17 @@ export class SubmissionsService {
       if (error instanceof NotFoundException) {
         throw error;
       }
-      throw new Error(`Failed to add media to submission: ${error.message}`);
+
+      // Handle Prisma foreign key constraint errors
+      if (error.code === 'P2003') {
+        throw new NotFoundException(
+          'Invalid submission or file reference. Please verify the IDs.',
+        );
+      }
+
+      throw new Error(
+        `Failed to add media to submission: ${error.message || 'Unknown error occurred'}`,
+      );
     }
   }
 
