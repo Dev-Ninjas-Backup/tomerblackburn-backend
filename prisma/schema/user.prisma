@@ -11,7 +11,6 @@ model User {
   updatedAt    DateTime  @updatedAt
 
   avatarFile   FileInstance? @relation("UserAvatar", fields: [avatarFileId], references: [id])
-  activityLogs ActivityLog[]
 
   @@index([email])
   @@index([role])

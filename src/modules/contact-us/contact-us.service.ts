@@ -21,6 +21,21 @@ export class ContactUsService {
         data: createDto,
       });
 
+      // Log activity for notifications (recent activities)
+      await this.prisma.activityLog.create({
+        data: {
+          action: 'create',
+          entityType: 'contact_us',
+          entityId: contact.id,
+          description: `New contact form from ${contact.firstName} ${contact.lastName} (${contact.email})`,
+          metadata: JSON.stringify({
+            firstName: contact.firstName,
+            lastName: contact.lastName,
+            email: contact.email,
+          }),
+        },
+      });
+
       this.sendToBuilderTrend(createDto).catch((error) => {
         this.logger.error(
           `Failed to send contact form to BuilderTrend: ${error.message}`,
