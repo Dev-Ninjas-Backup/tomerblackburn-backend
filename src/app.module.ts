@@ -24,6 +24,7 @@ import { AboutUsModule } from './modules/about-us/about-us.module';
 import { EstimatorPageModule } from './modules/estimator-page/estimator-page.module';
 import { PrivacyPolicyModule } from './modules/privacy-policy/privacy-policy.module';
 import { TermsOfServiceModule } from './modules/terms-of-service/terms-of-service.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { PricingService } from './modules/pricing/pricing.service';
 import { EmailService } from './modules/notifications/email.service';
 import { PdfGeneratorService } from './modules/pdf/pdf-generator.service';
@@ -58,6 +59,7 @@ import { InitModule } from './common/init/init.module';
     EstimatorPageModule,
     PrivacyPolicyModule,
     TermsOfServiceModule,
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [AppService, PricingService, EmailService, PdfGeneratorService],
