@@ -47,7 +47,9 @@ export class DashboardService {
     const rangeMonths = this.normalizeMonths(months);
 
     const now = new Date();
-    const endDate = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1));
+    const endDate = new Date(
+      Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1),
+    );
     const startDate = new Date(
       Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - (rangeMonths - 1), 1),
     );
@@ -68,7 +70,8 @@ export class DashboardService {
     const totalsByMonth = new Map<string, number>();
     for (const row of rows) {
       const monthKey = this.toMonthKey(row.month);
-      const value = row.total !== null && row.total !== undefined ? Number(row.total) : 0;
+      const value =
+        row.total !== null && row.total !== undefined ? Number(row.total) : 0;
       totalsByMonth.set(monthKey, value);
     }
 
