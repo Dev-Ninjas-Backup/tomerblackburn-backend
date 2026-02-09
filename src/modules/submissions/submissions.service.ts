@@ -96,9 +96,12 @@ export class SubmissionsService {
       );
     }
 
+    const siteSettings = await this.prisma.siteSettings.findFirst();
+
     // Prepare PDF data
     const pdfData: SubmissionPdfData = {
       submissionNumber: submission.submissionNumber,
+      tagline: siteSettings?.siteDescription ?? undefined,
       clientName: submission.clientName,
       clientEmail: submission.clientEmail,
       clientPhone: submission.clientPhone,
@@ -253,6 +256,21 @@ export class SubmissionsService {
               fileInstance: true,
             },
           },
+        },
+      });
+
+      // Log activity for notifications (recent activities)
+      await this.prisma.activityLog.create({
+        data: {
+          action: 'create',
+          entityType: 'submission',
+          entityId: submission.id,
+          description: `New estimate submission ${submission.submissionNumber} from ${submission.clientName}`,
+          metadata: JSON.stringify({
+            submissionNumber: submission.submissionNumber,
+            clientName: submission.clientName,
+            clientEmail: submission.clientEmail,
+          }),
         },
       });
 
@@ -980,7 +998,11 @@ export class SubmissionsService {
     const submissions = await this.prisma.submission.findMany({
       where,
       include: {
-        service: true,
+        service: {
+          include: {
+            serviceCategory: { include: { projectType: true } },
+          },
+        },
         submissionItems: {
           include: {
             costCode: {
@@ -1009,12 +1031,14 @@ export class SubmissionsService {
         submission.projectAddress +
         (submission.zipCode ? `, ${submission.zipCode}` : '');
 
-      // Section header row per submission
+      // Section header row: Category = submission title, Title = Project Type
+      const projectTypeName =
+        submission.service.serviceCategory?.projectType?.name ?? '';
       const sectionRow = worksheet.getRow(currentRow);
       sectionRow.values = [
         `${submission.submissionNumber} — ${submission.clientName}`,
         '',
-        submission.service.name,
+        projectTypeName,
         submission.status,
         '',
         '',
@@ -1044,35 +1068,42 @@ export class SubmissionsService {
       sectionRow.commit();
       currentRow++;
 
-      // Item rows
+      // Item rows: Category = service, Title = Cost code title
       const enabledItems = submission.submissionItems.filter(
         (item) => item.isEnabled,
       );
 
       for (const item of enabledItems) {
         const row = worksheet.getRow(currentRow);
+        const costCodeTitle = item.itemName || item.costCode.name;
 
-        const unitCost = Number(item.costCode.basePrice);
-        const clientPrice = Number(item.unitPrice);
-        const markup = unitCost > 0 ? (clientPrice - unitCost) / unitCost : 0;
+        const unitCostPerUnit = Number(item.costCode.basePrice);
+        const clientUnitPrice = Number(item.unitPrice);
+        const quantity = Number(item.quantity);
+        const totalClientPrice = quantity * clientUnitPrice;
+        const totalCost = quantity * unitCostPerUnit;
+        const profit = totalClientPrice - totalCost;
         const margin =
-          clientPrice > 0 ? (clientPrice - unitCost) / clientPrice : 0;
-        const profit = clientPrice - unitCost;
+          totalClientPrice > 0
+            ? (totalClientPrice - totalCost) / totalClientPrice
+            : 0;
+        const markup =
+          totalCost > 0 ? (totalClientPrice - totalCost) / totalCost : 0;
 
         row.values = [
-          item.costCode.category.name,
+          submission.service.name,
           item.costCode.code,
-          item.itemName || item.costCode.name,
+          costCodeTitle,
           item.itemDescription || item.costCode.description || '',
-          Number(item.quantity),
+          quantity,
           UNIT_TYPE_LABELS[item.costCode.unitType] || 'Fixed',
-          unitCost,
+          unitCostPerUnit,
           '',
           '',
-          unitCost,
+          unitCostPerUnit,
           markup,
           '%',
-          clientPrice,
+          totalClientPrice,
           margin,
           profit,
           submission.submissionNumber,
@@ -1147,7 +1178,11 @@ export class SubmissionsService {
         },
       },
       include: {
-        service: true,
+        service: {
+          include: {
+            serviceCategory: { include: { projectType: true } },
+          },
+        },
         submissionItems: {
           include: {
             costCode: {
@@ -1180,12 +1215,14 @@ export class SubmissionsService {
         submission.projectAddress +
         (submission.zipCode ? `, ${submission.zipCode}` : '');
 
-      // Section header row per submission
+      // Section header row: Category = submission title, Title = Project Type
+      const projectTypeName =
+        submission.service.serviceCategory?.projectType?.name ?? '';
       const sectionRow = worksheet.getRow(currentRow);
       sectionRow.values = [
         `${submission.submissionNumber} — ${submission.clientName}`,
         '',
-        submission.service.name,
+        projectTypeName,
         submission.status,
         '',
         '',
@@ -1215,35 +1252,42 @@ export class SubmissionsService {
       sectionRow.commit();
       currentRow++;
 
-      // Item rows
+      // Item rows: Category = service, Title = Cost code title
       const enabledItems = submission.submissionItems.filter(
         (item) => item.isEnabled,
       );
 
       for (const item of enabledItems) {
         const row = worksheet.getRow(currentRow);
+        const costCodeTitle = item.itemName || item.costCode.name;
 
-        const unitCost = Number(item.costCode.basePrice);
-        const clientPrice = Number(item.unitPrice);
-        const markup = unitCost > 0 ? (clientPrice - unitCost) / unitCost : 0;
+        const unitCostPerUnit = Number(item.costCode.basePrice);
+        const clientUnitPrice = Number(item.unitPrice);
+        const quantity = Number(item.quantity);
+        const totalClientPrice = quantity * clientUnitPrice;
+        const totalCost = quantity * unitCostPerUnit;
+        const profit = totalClientPrice - totalCost;
         const margin =
-          clientPrice > 0 ? (clientPrice - unitCost) / clientPrice : 0;
-        const profit = clientPrice - unitCost;
+          totalClientPrice > 0
+            ? (totalClientPrice - totalCost) / totalClientPrice
+            : 0;
+        const markup =
+          totalCost > 0 ? (totalClientPrice - totalCost) / totalCost : 0;
 
         row.values = [
-          item.costCode.category.name,
+          submission.service.name,
           item.costCode.code,
-          item.itemName || item.costCode.name,
+          costCodeTitle,
           item.itemDescription || item.costCode.description || '',
-          Number(item.quantity),
+          quantity,
           UNIT_TYPE_LABELS[item.costCode.unitType] || 'Fixed',
-          unitCost,
+          unitCostPerUnit,
           '',
           '',
-          unitCost,
+          unitCostPerUnit,
           markup,
           '%',
-          clientPrice,
+          totalClientPrice,
           margin,
           profit,
           submission.submissionNumber,

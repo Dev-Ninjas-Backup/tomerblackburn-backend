@@ -53,6 +53,10 @@ export class EmailService {
     this.logger.log('Email transporter initialized successfully');
   }
 
+  isConfigured(): boolean {
+    return !!this.transporter;
+  }
+
   async sendSubmissionEmail(
     submissionId: string,
     clientEmail: string,

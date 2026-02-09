@@ -2662,14 +2662,12 @@ export type TransactionIsolationLevel =
 
 export const ActivityLogScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   action: 'action',
   entityType: 'entityType',
   entityId: 'entityId',
   description: 'description',
   metadata: 'metadata',
-  ipAddress: 'ipAddress',
-  userAgent: 'userAgent',
+  isRead: 'isRead',
   createdAt: 'createdAt',
 } as const;
 
@@ -3139,6 +3137,14 @@ export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Boolean'
+>;
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -3216,14 +3222,6 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
   'Int[]'
->;
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'Boolean'
 >;
 
 /**

@@ -9,6 +9,8 @@ export interface SubmissionPdfData {
   clientPhone: string;
   projectAddress: string;
   zipCode?: string;
+  /** Tagline/subtitle shown below company name in PDF header (e.g. from site settings). */
+  tagline?: string;
   service: {
     name: string;
     code: string;
@@ -35,17 +37,19 @@ export class PdfGeneratorService {
   private readonly secondaryColor = '#2d3748'; // Dark gray
   private readonly accentColor = '#3182ce'; // Blue
   private readonly lightGray = '#e2e8f0';
+  /** Reserve 100pt for footer to prevent overflow. */
+  private readonly footerReserve = 100;
 
   async generateSubmissionPdf(data: SubmissionPdfData): Promise<Buffer> {
     return new Promise((resolve, reject) => {
       try {
         const doc = new PDFDocument({
-          size: 'LETTER',
+          size: 'A4',
           margins: { top: 50, bottom: 50, left: 50, right: 50 },
           info: {
             Title: `Estimate ${data.submissionNumber}`,
             Author: 'BBurn Builders',
-            Subject: `Bathroom Renovation Estimate for ${data.clientName}`,
+            Subject: `${data.tagline ?? 'Estimate'} for ${data.clientName}`,
           },
         });
 
@@ -81,7 +85,7 @@ export class PdfGeneratorService {
       .fontSize(12)
       .font('Helvetica')
       .fillColor(this.secondaryColor)
-      .text('Professional Bathroom Renovation', 50, 82);
+      .text(data.tagline ?? 'Professional Home Renovation', 50, 82);
 
     // Estimate Number and Date (right aligned)
     doc
@@ -96,7 +100,7 @@ export class PdfGeneratorService {
     // Horizontal line
     doc
       .moveTo(50, 110)
-      .lineTo(562, 110)
+      .lineTo(545, 110)
       .strokeColor(this.lightGray)
       .lineWidth(2)
       .stroke();
@@ -144,7 +148,7 @@ export class PdfGeneratorService {
     // Horizontal line
     doc
       .moveTo(50, clientInfoY + 60)
-      .lineTo(562, clientInfoY + 60)
+      .lineTo(545, clientInfoY + 60)
       .strokeColor(this.lightGray)
       .lineWidth(1)
       .stroke();
@@ -183,6 +187,7 @@ export class PdfGeneratorService {
   private addLineItems(doc: PDFKit.PDFDocument, data: SubmissionPdfData): void {
     const startY = 300;
     let currentY = startY;
+    const rowHeight = 25;
 
     // Section Title
     doc
@@ -215,16 +220,20 @@ export class PdfGeneratorService {
 
     for (let i = 0; i < enabledItems.length; i++) {
       const item = enabledItems[i];
+      const maxContentY = this.getMaxContentY(doc);
 
-      // Check if we need a new page
-      if (currentY > 680) {
-        doc.addPage();
+      // Check if we need a new page (A4: leave room for footer)
+      if (currentY + rowHeight > maxContentY) {
+        doc.addPage({
+          size: 'A4',
+          margins: { top: 50, bottom: 50, left: 50, right: 50 },
+        });
         currentY = 50;
       }
 
       // Alternating row background
       if (i % 2 === 0) {
-        doc.rect(50, currentY, 512, 25).fillColor('#f7fafc').fill();
+        doc.rect(50, currentY, 512, rowHeight).fillColor('#f7fafc').fill();
       }
 
       doc.fillColor(this.secondaryColor);
@@ -242,7 +251,7 @@ export class PdfGeneratorService {
         .text(this.formatCurrency(item.unitPrice), 400, currentY + 8)
         .text(this.formatCurrency(item.totalPrice), 480, currentY + 8);
 
-      currentY += 25;
+      currentY += rowHeight;
     }
 
     // Store the current Y position for totals
@@ -251,10 +260,25 @@ export class PdfGeneratorService {
 
   private addTotals(doc: PDFKit.PDFDocument, data: SubmissionPdfData): void {
     let currentY = (doc as any).lastItemY || 500;
+    const totalsHeight = 120;
+    const notesMaxHeight = 80;
+    const maxContentY = this.getMaxContentY(doc);
+    const notesHeight = data.projectNotes
+      ? Math.min(
+          doc.heightOfString(data.projectNotes, { width: 512 }),
+          notesMaxHeight,
+        )
+      : 0;
 
-    // Check if we need a new page
-    if (currentY > 650) {
-      doc.addPage();
+    // Only add a new page if totals + notes would not fit
+    if (
+      currentY + totalsHeight + (notesHeight ? notesHeight + 70 : 0) >
+      maxContentY
+    ) {
+      doc.addPage({
+        size: 'A4',
+        margins: { top: 50, bottom: 50, left: 50, right: 50 },
+      });
       currentY = 50;
     }
 
@@ -266,7 +290,7 @@ export class PdfGeneratorService {
     // Horizontal line above totals
     doc
       .moveTo(totalsX, currentY)
-      .lineTo(562, currentY)
+      .lineTo(545, currentY)
       .strokeColor(this.lightGray)
       .lineWidth(1)
       .stroke();
@@ -293,7 +317,7 @@ export class PdfGeneratorService {
     // Horizontal line
     doc
       .moveTo(totalsX, currentY)
-      .lineTo(562, currentY)
+      .lineTo(545, currentY)
       .strokeColor(this.primaryColor)
       .lineWidth(2)
       .stroke();
@@ -302,18 +326,18 @@ export class PdfGeneratorService {
 
     // Total Amount
     doc
-      .fontSize(14)
+      .fontSize(10)
       .font('Helvetica-Bold')
       .fillColor(this.primaryColor)
       .text('TOTAL ESTIMATE:', totalsX, currentY)
       .text(this.formatCurrency(data.totalAmount), 460, currentY);
 
-    // Project Notes (if any)
+    // Project Notes (if any) - limit height so text does not trigger extra pages
     if (data.projectNotes) {
       currentY += 50;
 
       doc
-        .fontSize(12)
+        .fontSize(10)
         .font('Helvetica-Bold')
         .fillColor(this.primaryColor)
         .text('PROJECT NOTES', 50, currentY);
@@ -324,23 +348,31 @@ export class PdfGeneratorService {
         .fontSize(10)
         .font('Helvetica')
         .fillColor(this.secondaryColor)
-        .text(data.projectNotes, 50, currentY, { width: 512 });
+        .text(data.projectNotes, 50, currentY, {
+          width: 512,
+          height: notesMaxHeight,
+          ellipsis: true,
+        });
     }
   }
 
+  private getMaxContentY(doc: PDFKit.PDFDocument): number {
+    return doc.page.height - doc.page.margins.bottom - this.footerReserve;
+  }
+
   private addFooter(doc: PDFKit.PDFDocument, data: SubmissionPdfData): void {
-    const pageHeight = doc.page.height;
-    const footerY = pageHeight - 80;
+    const footerHeight = 70;
+    const footerY = doc.page.height - doc.page.margins.bottom - footerHeight;
 
     // Footer line
     doc
       .moveTo(50, footerY)
-      .lineTo(562, footerY)
+      .lineTo(545, footerY)
       .strokeColor(this.lightGray)
       .lineWidth(1)
       .stroke();
 
-    // Disclaimer
+    // Disclaimer - fixed height so wrapping does not create extra pages
     doc
       .fontSize(8)
       .font('Helvetica')
@@ -349,8 +381,8 @@ export class PdfGeneratorService {
         'This estimate is valid for 30 days from the date of issue. Prices are subject to change based on final site inspection. ' +
           'Additional costs may apply for unforeseen conditions. This is an estimate only and not a binding contract.',
         50,
-        footerY + 15,
-        { width: 512, align: 'center' },
+        footerY + 10,
+        { width: 512, height: 28, align: 'center', ellipsis: true },
       );
 
     // Company contact
@@ -361,7 +393,7 @@ export class PdfGeneratorService {
       .text(
         'BBurn Builders | info@bburnbuilders.com | (312) 555-1234',
         50,
-        footerY + 45,
+        footerY + 42,
         {
           width: 512,
           align: 'center',

@@ -102,14 +102,12 @@ export type TransactionIsolationLevel =
 
 export const ActivityLogScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   action: 'action',
   entityType: 'entityType',
   entityId: 'entityId',
   description: 'description',
   metadata: 'metadata',
-  ipAddress: 'ipAddress',
-  userAgent: 'userAgent',
+  isRead: 'isRead',
   createdAt: 'createdAt',
 } as const;
 
