@@ -82,7 +82,8 @@ export class CreateServiceDto {
   markup?: number;
 
   @ApiProperty({
-    description: 'Client-facing price (basePrice + markup). Auto-calculated if not provided.',
+    description:
+      'Client-facing price (basePrice + markup). Auto-calculated if not provided.',
     example: 18000.0,
     minimum: 0,
     default: 0,

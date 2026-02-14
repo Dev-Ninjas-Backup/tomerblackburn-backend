@@ -367,8 +367,7 @@ export class CostCodesService {
         const updatedMarkup =
           updateCostCodeDto.markup ?? Number(existingCostCode.markup);
         if (updateCostCodeDto.clientPrice === undefined) {
-          updateData.clientPrice =
-            updatedBasePrice * (1 + updatedMarkup / 100);
+          updateData.clientPrice = updatedBasePrice * (1 + updatedMarkup / 100);
         }
       }
 

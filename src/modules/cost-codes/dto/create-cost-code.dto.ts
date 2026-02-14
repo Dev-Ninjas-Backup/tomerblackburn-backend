@@ -82,7 +82,8 @@ export class CreateCostCodeDto {
   markup?: number;
 
   @ApiProperty({
-    description: 'Client-facing price (basePrice + markup). Auto-calculated if not provided.',
+    description:
+      'Client-facing price (basePrice + markup). Auto-calculated if not provided.',
     example: 600.0,
     default: 0,
   })
