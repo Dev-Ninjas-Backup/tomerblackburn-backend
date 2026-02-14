@@ -25,6 +25,12 @@ export class CostCodeEntity implements CostCode {
   basePrice: Decimal;
 
   @ApiProperty()
+  markup: Decimal;
+
+  @ApiProperty()
+  clientPrice: Decimal;
+
+  @ApiProperty()
   unitType: CostCode['unitType'];
 
   @ApiProperty()

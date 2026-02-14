@@ -6,7 +6,9 @@ model Service {
   shortDescription  String?
   fullDescription   String?
 
-  basePrice Decimal @default(0) @db.Decimal(10, 2)
+  basePrice   Decimal @default(0) @db.Decimal(10, 2)
+  markup      Decimal @default(0) @db.Decimal(5, 2)
+  clientPrice Decimal @default(0) @db.Decimal(10, 2)
 
   imageFileId  String?
   displayOrder Int     @default(0)

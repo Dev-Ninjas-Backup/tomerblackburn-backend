@@ -11,6 +11,8 @@ model Submission {
   zipCode        String?
 
   basePrice            Decimal @db.Decimal(10, 2)
+  markup               Decimal @default(0) @db.Decimal(5, 2)
+  clientPrice          Decimal @default(0) @db.Decimal(10, 2)
   additionalItemsTotal Decimal @default(0) @db.Decimal(10, 2)
   totalAmount          Decimal @db.Decimal(10, 2)
 

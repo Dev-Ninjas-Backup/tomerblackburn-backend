@@ -75,6 +75,18 @@ export class CostCodeResponseDto {
   basePrice: number;
 
   @ApiProperty({
+    description: 'Markup percentage (e.g. 20 for 20%)',
+    example: 20.0,
+  })
+  markup: number;
+
+  @ApiProperty({
+    description: 'Client-facing price (basePrice + markup)',
+    example: 600.0,
+  })
+  clientPrice: number;
+
+  @ApiProperty({
     description: 'Unit type for pricing calculation',
     enum: UnitType,
     example: UnitType.FIXED,

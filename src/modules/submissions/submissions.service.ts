@@ -112,6 +112,8 @@ export class SubmissionsService {
         code: submission.service.code,
       },
       basePrice: Number(submission.basePrice),
+      markup: Number(submission.markup),
+      clientPrice: Number(submission.clientPrice),
       additionalItemsTotal: Number(submission.additionalItemsTotal),
       totalAmount: Number(submission.totalAmount),
       submittedAt: submission.submittedAt,
@@ -158,12 +160,18 @@ export class SubmissionsService {
         projectAddress,
         zipCode,
         basePrice,
+        markup: inputMarkup,
+        clientPrice: inputClientPrice,
         additionalItemsTotal,
         totalAmount,
         projectNotes,
         additionalDetails,
         items,
       } = createSubmissionDto;
+
+      // Auto-calculate clientPrice from basePrice + markup if not provided
+      const markup = inputMarkup ?? 0;
+      const clientPrice = inputClientPrice ?? basePrice * (1 + markup / 100);
 
       // Validate that the service exists
       const service = await this.prisma.service.findUnique({
@@ -234,6 +242,8 @@ export class SubmissionsService {
           projectAddress,
           zipCode,
           basePrice,
+          markup,
+          clientPrice,
           additionalItemsTotal: additionalItemsTotal ?? 0,
           totalAmount,
           projectNotes,

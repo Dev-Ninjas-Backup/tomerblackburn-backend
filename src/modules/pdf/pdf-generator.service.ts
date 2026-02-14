@@ -16,6 +16,8 @@ export interface SubmissionPdfData {
     code: string;
   };
   basePrice: number;
+  markup: number;
+  clientPrice: number;
   additionalItemsTotal: number;
   totalAmount: number;
   submittedAt: Date;
@@ -306,6 +308,22 @@ export class PdfGeneratorService {
       .text(this.formatCurrency(data.basePrice), 480, currentY);
 
     currentY += 20;
+
+    // Markup
+    if (data.markup > 0) {
+      doc
+        .text(`Markup (${data.markup}%):`, totalsX, currentY)
+        .text(this.formatCurrency(data.clientPrice - data.basePrice), 480, currentY);
+
+      currentY += 20;
+
+      // Client Price
+      doc
+        .text('Client Price:', totalsX, currentY)
+        .text(this.formatCurrency(data.clientPrice), 480, currentY);
+
+      currentY += 20;
+    }
 
     // Additional Items
     doc

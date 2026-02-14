@@ -71,6 +71,28 @@ export class CreateCostCodeDto {
   basePrice?: number;
 
   @ApiProperty({
+    description: 'Markup percentage applied to base price (e.g. 20 for 20%)',
+    example: 20.0,
+    default: 0,
+  })
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0)
+  @IsOptional()
+  markup?: number;
+
+  @ApiProperty({
+    description: 'Client-facing price (basePrice + markup). Auto-calculated if not provided.',
+    example: 600.0,
+    default: 0,
+  })
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0)
+  @IsOptional()
+  clientPrice?: number;
+
+  @ApiProperty({
     description: 'Unit type for pricing calculation',
     enum: UnitType,
     enumName: 'UnitType',

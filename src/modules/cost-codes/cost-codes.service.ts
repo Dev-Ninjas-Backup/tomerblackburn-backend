@@ -47,8 +47,18 @@ export class CostCodesService {
         }
       }
 
+      // Auto-calculate clientPrice from basePrice + markup if not provided
+      const basePrice = createCostCodeDto.basePrice ?? 0;
+      const markup = createCostCodeDto.markup ?? 0;
+      const clientPrice =
+        createCostCodeDto.clientPrice ?? basePrice * (1 + markup / 100);
+
       const costCode = await this.prisma.costCode.create({
-        data: createCostCodeDto,
+        data: {
+          ...createCostCodeDto,
+          markup,
+          clientPrice,
+        },
         include: {
           category: true,
           service: true,
@@ -345,9 +355,26 @@ export class CostCodesService {
         }
       }
 
+      // Auto-calculate clientPrice if markup or basePrice changed
+      const updateData: any = { ...updateCostCodeDto };
+      if (
+        updateCostCodeDto.basePrice !== undefined ||
+        updateCostCodeDto.markup !== undefined
+      ) {
+        const existingCostCode = (await this.findOne(id)).data;
+        const updatedBasePrice =
+          updateCostCodeDto.basePrice ?? Number(existingCostCode.basePrice);
+        const updatedMarkup =
+          updateCostCodeDto.markup ?? Number(existingCostCode.markup);
+        if (updateCostCodeDto.clientPrice === undefined) {
+          updateData.clientPrice =
+            updatedBasePrice * (1 + updatedMarkup / 100);
+        }
+      }
+
       const costCode = await this.prisma.costCode.update({
         where: { id },
-        data: updateCostCodeDto,
+        data: updateData,
         include: {
           category: true,
           service: true,

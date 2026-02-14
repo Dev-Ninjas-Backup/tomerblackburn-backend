@@ -6,8 +6,10 @@ model CostCode {
   name              String
   description       String?
 
-  basePrice Decimal  @default(0) @db.Decimal(10, 2)
-  unitType  UnitType @default(FIXED)
+  basePrice   Decimal  @default(0) @db.Decimal(10, 2)
+  markup      Decimal  @default(0) @db.Decimal(5, 2)
+  clientPrice Decimal  @default(0) @db.Decimal(10, 2)
+  unitType    UnitType @default(FIXED)
 
   questionType QuestionType @default(WHITE)
 
