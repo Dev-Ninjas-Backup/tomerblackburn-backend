@@ -42,6 +42,12 @@ class ServiceSummaryDto {
 
   @ApiProperty()
   basePrice: number;
+
+  @ApiProperty()
+  markup: number;
+
+  @ApiProperty()
+  clientPrice: number;
 }
 
 class CostCodeSummaryDto {
@@ -186,6 +192,18 @@ export class SubmissionResponseDto {
     example: 15000.0,
   })
   basePrice: number;
+
+  @ApiProperty({
+    description: 'Markup percentage (e.g. 20 for 20%)',
+    example: 20.0,
+  })
+  markup: number;
+
+  @ApiProperty({
+    description: 'Client-facing price (basePrice + markup)',
+    example: 18000.0,
+  })
+  clientPrice: number;
 
   @ApiProperty({
     description: 'Additional items total',

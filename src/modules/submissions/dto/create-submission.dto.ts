@@ -133,6 +133,30 @@ export class CreateSubmissionDto {
   basePrice: number;
 
   @ApiProperty({
+    description: 'Markup percentage applied to base price (e.g. 20 for 20%)',
+    example: 20.0,
+    default: 0,
+    required: false,
+  })
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0)
+  @IsOptional()
+  markup?: number;
+
+  @ApiProperty({
+    description: 'Client-facing price (basePrice + markup)',
+    example: 18000.0,
+    default: 0,
+    required: false,
+  })
+  @IsNumber()
+  @Type(() => Number)
+  @Min(0)
+  @IsOptional()
+  clientPrice?: number;
+
+  @ApiProperty({
     description: 'Total of additional items',
     example: 5000.0,
     default: 0,
