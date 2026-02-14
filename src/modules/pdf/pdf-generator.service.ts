@@ -313,7 +313,11 @@ export class PdfGeneratorService {
     if (data.markup > 0) {
       doc
         .text(`Markup (${data.markup}%):`, totalsX, currentY)
-        .text(this.formatCurrency(data.clientPrice - data.basePrice), 480, currentY);
+        .text(
+          this.formatCurrency(data.clientPrice - data.basePrice),
+          480,
+          currentY,
+        );
 
       currentY += 20;
 

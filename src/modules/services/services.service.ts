@@ -238,7 +238,8 @@ export class ServicesService {
         updateServiceDto.markup !== undefined
       ) {
         const basePrice =
-          updateServiceDto.basePrice ?? Number((await this.findOne(id)).data.basePrice);
+          updateServiceDto.basePrice ??
+          Number((await this.findOne(id)).data.basePrice);
         const markup = updateServiceDto.markup ?? 0;
         if (updateServiceDto.clientPrice === undefined) {
           updateData.clientPrice = basePrice * (1 + markup / 100);
