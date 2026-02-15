@@ -1101,27 +1101,27 @@ export class SubmissionsService {
           totalCost > 0 ? (totalClientPrice - totalCost) / totalCost : 0;
 
         row.values = [
-          submission.service.name,
-          item.costCode.code,
-          costCodeTitle,
-          item.itemDescription || item.costCode.description || '',
-          quantity,
-          UNIT_TYPE_LABELS[item.costCode.unitType] || 'Fixed',
-          unitCostPerUnit,
-          '',
-          '',
-          unitCostPerUnit,
-          markup,
-          '%',
-          totalClientPrice,
-          margin,
-          profit,
-          submission.submissionNumber,
-          submission.clientName,
-          submission.clientEmail,
-          submission.clientPhone,
-          clientAddress,
-          submission.projectNotes || '',
+          item.costCode.category?.name || '', // Col 1: Category
+          item.costCode.code, // Col 2: Cost Code
+          costCodeTitle, // Col 3: Title
+          item.itemDescription || item.costCode.description || '', // Col 4: Description
+          quantity, // Col 5: Quantity
+          UNIT_TYPE_LABELS[item.costCode.unitType] || 'Fixed', // Col 6: Unit
+          unitCostPerUnit, // Col 7: Unit Cost
+          '', // Col 8: Cost Type (no data available)
+          item.selectedOptionName || item.userInputValue || '', // Col 9: Marked As
+          totalCost, // Col 10: Builder Cost (qty × unit cost)
+          markup, // Col 11: Markup
+          '%', // Col 12: Markup Type
+          totalClientPrice, // Col 13: Client Price
+          margin, // Col 14: Margin
+          profit, // Col 15: Profit
+          submission.submissionNumber, // Col 16: Submission #
+          submission.clientName, // Col 17: Client Name
+          submission.clientEmail, // Col 18: Email
+          submission.clientPhone, // Col 19: Phone
+          clientAddress, // Col 20: Address
+          item.notes || '', // Col 21: Notes
         ];
 
         row.getCell(5).numFmt = '0.00';
@@ -1285,27 +1285,27 @@ export class SubmissionsService {
           totalCost > 0 ? (totalClientPrice - totalCost) / totalCost : 0;
 
         row.values = [
-          submission.service.name,
-          item.costCode.code,
-          costCodeTitle,
-          item.itemDescription || item.costCode.description || '',
-          quantity,
-          UNIT_TYPE_LABELS[item.costCode.unitType] || 'Fixed',
-          unitCostPerUnit,
-          '',
-          '',
-          unitCostPerUnit,
-          markup,
-          '%',
-          totalClientPrice,
-          margin,
-          profit,
-          submission.submissionNumber,
-          submission.clientName,
-          submission.clientEmail,
-          submission.clientPhone,
-          clientAddress,
-          submission.projectNotes || '',
+          item.costCode.category?.name || '', // Col 1: Category
+          item.costCode.code, // Col 2: Cost Code
+          costCodeTitle, // Col 3: Title
+          item.itemDescription || item.costCode.description || '', // Col 4: Description
+          quantity, // Col 5: Quantity
+          UNIT_TYPE_LABELS[item.costCode.unitType] || 'Fixed', // Col 6: Unit
+          unitCostPerUnit, // Col 7: Unit Cost
+          '', // Col 8: Cost Type (no data available)
+          item.selectedOptionName || item.userInputValue || '', // Col 9: Marked As
+          totalCost, // Col 10: Builder Cost (qty × unit cost)
+          markup, // Col 11: Markup
+          '%', // Col 12: Markup Type
+          totalClientPrice, // Col 13: Client Price
+          margin, // Col 14: Margin
+          profit, // Col 15: Profit
+          submission.submissionNumber, // Col 16: Submission #
+          submission.clientName, // Col 17: Client Name
+          submission.clientEmail, // Col 18: Email
+          submission.clientPhone, // Col 19: Phone
+          clientAddress, // Col 20: Address
+          item.notes || '', // Col 21: Notes
         ];
 
         row.getCell(5).numFmt = '0.00';
