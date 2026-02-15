@@ -971,7 +971,9 @@ export class SubmissionsService {
     }
   }
 
-  async exportToExcel(status?: SubmissionStatus): Promise<ExcelJS.Buffer> {
+  async exportToExcel(
+    status?: SubmissionStatus,
+  ): Promise<{ buffer: ExcelJS.Buffer; submissionNumbers: string[] }> {
     const workbook = new ExcelJS.Workbook();
 
     const possiblePaths = [
@@ -1041,43 +1043,6 @@ export class SubmissionsService {
         submission.projectAddress +
         (submission.zipCode ? `, ${submission.zipCode}` : '');
 
-      // Section header row: Category = submission title, Title = Project Type
-      const projectTypeName =
-        submission.service.serviceCategory?.projectType?.name ?? '';
-      const sectionRow = worksheet.getRow(currentRow);
-      sectionRow.values = [
-        `${submission.submissionNumber} — ${submission.clientName}`,
-        '',
-        projectTypeName,
-        submission.status,
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        Number(submission.totalAmount),
-        '',
-        '',
-        submission.submissionNumber,
-        submission.clientName,
-        submission.clientEmail,
-        submission.clientPhone,
-        clientAddress,
-        submission.projectNotes || '',
-      ];
-      sectionRow.font = { bold: true, size: 11 };
-      sectionRow.fill = {
-        type: 'pattern',
-        pattern: 'solid',
-        fgColor: { argb: 'FFE2EFDA' },
-      };
-      sectionRow.getCell(13).numFmt = '#,##0.00';
-      sectionRow.commit();
-      currentRow++;
-
       // Item rows: Category = service, Title = Cost code title
       const enabledItems = submission.submissionItems.filter(
         (item) => item.isEnabled,
@@ -1135,16 +1100,16 @@ export class SubmissionsService {
         row.commit();
         currentRow++;
       }
-
-      // Blank row between submissions
-      currentRow++;
     }
 
     const buffer = await workbook.xlsx.writeBuffer();
-    return buffer;
+    const submissionNumbers = submissions.map((s) => s.submissionNumber);
+    return { buffer, submissionNumbers };
   }
 
-  async exportByIds(ids: string[]): Promise<ExcelJS.Buffer> {
+  async exportByIds(
+    ids: string[],
+  ): Promise<{ buffer: ExcelJS.Buffer; submissionNumbers: string[] }> {
     if (!ids || ids.length === 0) {
       throw new Error('At least one submission ID is required');
     }
@@ -1225,43 +1190,6 @@ export class SubmissionsService {
         submission.projectAddress +
         (submission.zipCode ? `, ${submission.zipCode}` : '');
 
-      // Section header row: Category = submission title, Title = Project Type
-      const projectTypeName =
-        submission.service.serviceCategory?.projectType?.name ?? '';
-      const sectionRow = worksheet.getRow(currentRow);
-      sectionRow.values = [
-        `${submission.submissionNumber} — ${submission.clientName}`,
-        '',
-        projectTypeName,
-        submission.status,
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        Number(submission.totalAmount),
-        '',
-        '',
-        submission.submissionNumber,
-        submission.clientName,
-        submission.clientEmail,
-        submission.clientPhone,
-        clientAddress,
-        submission.projectNotes || '',
-      ];
-      sectionRow.font = { bold: true, size: 11 };
-      sectionRow.fill = {
-        type: 'pattern',
-        pattern: 'solid',
-        fgColor: { argb: 'FFE2EFDA' },
-      };
-      sectionRow.getCell(13).numFmt = '#,##0.00';
-      sectionRow.commit();
-      currentRow++;
-
       // Item rows: Category = service, Title = Cost code title
       const enabledItems = submission.submissionItems.filter(
         (item) => item.isEnabled,
@@ -1319,13 +1247,11 @@ export class SubmissionsService {
         row.commit();
         currentRow++;
       }
-
-      // Blank row between submissions
-      currentRow++;
     }
 
     const buffer = await workbook.xlsx.writeBuffer();
-    return buffer;
+    const submissionNumbers = submissions.map((s) => s.submissionNumber);
+    return { buffer, submissionNumbers };
   }
 
   async updateWhatHappensNextSteps(dto: UpdateWhatHappensNextDto) {

@@ -66,9 +66,13 @@ export class SubmissionsController {
     @Res() res: Response,
     @Query('status') status?: SubmissionStatus,
   ) {
-    const buffer = await this.submissionsService.exportToExcel(status);
+    const { buffer, submissionNumbers } =
+      await this.submissionsService.exportToExcel(status);
 
-    const filename = `submission-export-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
+    const filename =
+      submissionNumbers.length === 1
+        ? `${submissionNumbers[0]}.xlsx`
+        : `${submissionNumbers.join('_')}.xlsx`;
 
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.send(buffer);
@@ -84,11 +88,13 @@ export class SubmissionsController {
     @Res() res: Response,
     @Body() exportByIdsDto: ExportSubmissionsByIdsDto,
   ) {
-    const buffer = await this.submissionsService.exportByIds(
-      exportByIdsDto.ids,
-    );
+    const { buffer, submissionNumbers } =
+      await this.submissionsService.exportByIds(exportByIdsDto.ids);
 
-    const filename = `submission-export-${new Date().toISOString().replace(/[:.]/g, '-')}.xlsx`;
+    const filename =
+      submissionNumbers.length === 1
+        ? `${submissionNumbers[0]}.xlsx`
+        : `${submissionNumbers.join('_')}.xlsx`;
 
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.send(buffer);
