@@ -133,6 +133,9 @@ export const CostCodeScalarFieldEnum = {
   requiresQuantity: 'requiresQuantity',
   isOptional: 'isOptional',
   isActive: 'isActive',
+  parentCostCodeId: 'parentCostCodeId',
+  showWhenParentValue: 'showWhenParentValue',
+  nestedInputType: 'nestedInputType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;

@@ -20,6 +20,10 @@ model CostCode {
   isOptional       Boolean @default(false)
   isActive         Boolean @default(true)
 
+  parentCostCodeId      String? // Parent question ID
+  showWhenParentValue   String? // Condition: "true", "false", "optionId", "ANY"
+  nestedInputType       String? // "QUANTITY", "DROPDOWN", "CUSTOM_PRICE", "NONE"
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -28,6 +32,9 @@ model CostCode {
   options          CostCodeOption[]
   serviceCostCodes ServiceCostCode[]
   submissionItems  SubmissionItem[]
+
+  parentCostCode CostCode? @relation("NestedQuestions", fields: [parentCostCodeId], references: [id])
+  childCostCodes CostCode[] @relation("NestedQuestions")
 
   @@index([code])
   @@index([categoryId])

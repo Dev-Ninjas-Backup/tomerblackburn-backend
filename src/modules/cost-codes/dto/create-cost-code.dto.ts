@@ -168,4 +168,37 @@ export class CreateCostCodeDto {
   @IsBoolean()
   @IsOptional()
   isActive?: boolean;
+
+  @ApiProperty({
+    description: 'Parent cost code ID for nested questions',
+    example: '123e4567-e89b-12d3-a456-426614174000',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  parentCostCodeId?: string;
+
+  @ApiProperty({
+    description:
+      'Condition to show this nested question (true/false/optionId/ANY)',
+    example: 'true',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  showWhenParentValue?: string;
+
+  @ApiProperty({
+    description: 'Type of nested input',
+    example: 'QUANTITY',
+    enum: ['QUANTITY', 'DROPDOWN', 'CUSTOM_PRICE', 'NONE'],
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  @IsEnum(['QUANTITY', 'DROPDOWN', 'CUSTOM_PRICE', 'NONE'], {
+    message:
+      'nestedInputType must be one of: QUANTITY, DROPDOWN, CUSTOM_PRICE, NONE',
+  })
+  nestedInputType?: string;
 }

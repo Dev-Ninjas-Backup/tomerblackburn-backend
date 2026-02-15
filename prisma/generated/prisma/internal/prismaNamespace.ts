@@ -93,12 +93,12 @@ export type PrismaVersion = {
 };
 
 /**
- * Prisma Client JS version: 7.4.0
- * Query Engine version: ab56fe763f921d033a6c195e7ddeb3e255bdbb57
+ * Prisma Client JS version: 7.3.0
+ * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
  */
 export const prismaVersion: PrismaVersion = {
-  client: '7.4.0',
-  engine: 'ab56fe763f921d033a6c195e7ddeb3e255bdbb57',
+  client: '7.3.0',
+  engine: '9d6ad21cbbceab97458517b147a6a09ff43aa735',
 };
 
 /**
@@ -2770,6 +2770,9 @@ export const CostCodeScalarFieldEnum = {
   requiresQuantity: 'requiresQuantity',
   isOptional: 'isOptional',
   isActive: 'isActive',
+  parentCostCodeId: 'parentCostCodeId',
+  showWhenParentValue: 'showWhenParentValue',
+  nestedInputType: 'nestedInputType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;

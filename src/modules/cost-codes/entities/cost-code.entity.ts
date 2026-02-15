@@ -54,6 +54,15 @@ export class CostCodeEntity implements CostCode {
   @ApiProperty()
   isActive: boolean;
 
+  @ApiProperty({ required: false, nullable: true })
+  parentCostCodeId: string | null;
+
+  @ApiProperty({ required: false, nullable: true })
+  showWhenParentValue: string | null;
+
+  @ApiProperty({ required: false, nullable: true })
+  nestedInputType: string | null;
+
   @ApiProperty()
   createdAt: Date;
 

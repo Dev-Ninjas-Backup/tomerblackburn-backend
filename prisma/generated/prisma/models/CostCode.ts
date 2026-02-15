@@ -60,6 +60,9 @@ export type CostCodeMinAggregateOutputType = {
   requiresQuantity: boolean | null;
   isOptional: boolean | null;
   isActive: boolean | null;
+  parentCostCodeId: string | null;
+  showWhenParentValue: string | null;
+  nestedInputType: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -82,6 +85,9 @@ export type CostCodeMaxAggregateOutputType = {
   requiresQuantity: boolean | null;
   isOptional: boolean | null;
   isActive: boolean | null;
+  parentCostCodeId: string | null;
+  showWhenParentValue: string | null;
+  nestedInputType: string | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -104,6 +110,9 @@ export type CostCodeCountAggregateOutputType = {
   requiresQuantity: number;
   isOptional: number;
   isActive: number;
+  parentCostCodeId: number;
+  showWhenParentValue: number;
+  nestedInputType: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -143,6 +152,9 @@ export type CostCodeMinAggregateInputType = {
   requiresQuantity?: true;
   isOptional?: true;
   isActive?: true;
+  parentCostCodeId?: true;
+  showWhenParentValue?: true;
+  nestedInputType?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -165,6 +177,9 @@ export type CostCodeMaxAggregateInputType = {
   requiresQuantity?: true;
   isOptional?: true;
   isActive?: true;
+  parentCostCodeId?: true;
+  showWhenParentValue?: true;
+  nestedInputType?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -187,6 +202,9 @@ export type CostCodeCountAggregateInputType = {
   requiresQuantity?: true;
   isOptional?: true;
   isActive?: true;
+  parentCostCodeId?: true;
+  showWhenParentValue?: true;
+  nestedInputType?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -303,6 +321,9 @@ export type CostCodeGroupByOutputType = {
   requiresQuantity: boolean;
   isOptional: boolean;
   isActive: boolean;
+  parentCostCodeId: string | null;
+  showWhenParentValue: string | null;
+  nestedInputType: string | null;
   createdAt: Date;
   updatedAt: Date;
   _count: CostCodeCountAggregateOutputType | null;
@@ -363,6 +384,9 @@ export type CostCodeWhereInput = {
   requiresQuantity?: Prisma.BoolFilter<'CostCode'> | boolean;
   isOptional?: Prisma.BoolFilter<'CostCode'> | boolean;
   isActive?: Prisma.BoolFilter<'CostCode'> | boolean;
+  parentCostCodeId?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  showWhenParentValue?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  nestedInputType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
   createdAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
   category?: Prisma.XOR<
@@ -376,6 +400,11 @@ export type CostCodeWhereInput = {
   options?: Prisma.CostCodeOptionListRelationFilter;
   serviceCostCodes?: Prisma.ServiceCostCodeListRelationFilter;
   submissionItems?: Prisma.SubmissionItemListRelationFilter;
+  parentCostCode?: Prisma.XOR<
+    Prisma.CostCodeNullableScalarRelationFilter,
+    Prisma.CostCodeWhereInput
+  > | null;
+  childCostCodes?: Prisma.CostCodeListRelationFilter;
 };
 
 export type CostCodeOrderByWithRelationInput = {
@@ -396,6 +425,9 @@ export type CostCodeOrderByWithRelationInput = {
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
+  parentCostCodeId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  showWhenParentValue?: Prisma.SortOrderInput | Prisma.SortOrder;
+  nestedInputType?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   category?: Prisma.CostCodeCategoryOrderByWithRelationInput;
@@ -403,6 +435,8 @@ export type CostCodeOrderByWithRelationInput = {
   options?: Prisma.CostCodeOptionOrderByRelationAggregateInput;
   serviceCostCodes?: Prisma.ServiceCostCodeOrderByRelationAggregateInput;
   submissionItems?: Prisma.SubmissionItemOrderByRelationAggregateInput;
+  parentCostCode?: Prisma.CostCodeOrderByWithRelationInput;
+  childCostCodes?: Prisma.CostCodeOrderByRelationAggregateInput;
 };
 
 export type CostCodeWhereUniqueInput = Prisma.AtLeast<
@@ -444,6 +478,12 @@ export type CostCodeWhereUniqueInput = Prisma.AtLeast<
     requiresQuantity?: Prisma.BoolFilter<'CostCode'> | boolean;
     isOptional?: Prisma.BoolFilter<'CostCode'> | boolean;
     isActive?: Prisma.BoolFilter<'CostCode'> | boolean;
+    parentCostCodeId?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+    showWhenParentValue?:
+      | Prisma.StringNullableFilter<'CostCode'>
+      | string
+      | null;
+    nestedInputType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
     createdAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
     category?: Prisma.XOR<
@@ -457,6 +497,11 @@ export type CostCodeWhereUniqueInput = Prisma.AtLeast<
     options?: Prisma.CostCodeOptionListRelationFilter;
     serviceCostCodes?: Prisma.ServiceCostCodeListRelationFilter;
     submissionItems?: Prisma.SubmissionItemListRelationFilter;
+    parentCostCode?: Prisma.XOR<
+      Prisma.CostCodeNullableScalarRelationFilter,
+      Prisma.CostCodeWhereInput
+    > | null;
+    childCostCodes?: Prisma.CostCodeListRelationFilter;
   },
   'id' | 'code'
 >;
@@ -479,6 +524,9 @@ export type CostCodeOrderByWithAggregationInput = {
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
+  parentCostCodeId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  showWhenParentValue?: Prisma.SortOrderInput | Prisma.SortOrder;
+  nestedInputType?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.CostCodeCountOrderByAggregateInput;
@@ -538,6 +586,18 @@ export type CostCodeScalarWhereWithAggregatesInput = {
   requiresQuantity?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
   isOptional?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
   isActive?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
+  parentCostCodeId?:
+    | Prisma.StringNullableWithAggregatesFilter<'CostCode'>
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.StringNullableWithAggregatesFilter<'CostCode'>
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.StringNullableWithAggregatesFilter<'CostCode'>
+    | string
+    | null;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<'CostCode'> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<'CostCode'> | Date | string;
 };
@@ -558,6 +618,8 @@ export type CostCodeCreateInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
@@ -565,6 +627,8 @@ export type CostCodeCreateInput = {
   options?: Prisma.CostCodeOptionCreateNestedManyWithoutCostCodeInput;
   serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
+  parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
+  childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateInput = {
@@ -585,11 +649,15 @@ export type CostCodeUncheckedCreateInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
+  childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeUpdateInput = {
@@ -625,6 +693,14 @@ export type CostCodeUpdateInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
@@ -632,6 +708,8 @@ export type CostCodeUpdateInput = {
   options?: Prisma.CostCodeOptionUpdateManyWithoutCostCodeNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
+  parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
+  childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateInput = {
@@ -669,11 +747,24 @@ export type CostCodeUncheckedUpdateInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
+  childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeCreateManyInput = {
@@ -694,6 +785,9 @@ export type CostCodeCreateManyInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -731,6 +825,14 @@ export type CostCodeUpdateManyMutationInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -770,8 +872,35 @@ export type CostCodeUncheckedUpdateManyInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type CostCodeNullableScalarRelationFilter = {
+  is?: Prisma.CostCodeWhereInput | null;
+  isNot?: Prisma.CostCodeWhereInput | null;
+};
+
+export type CostCodeListRelationFilter = {
+  every?: Prisma.CostCodeWhereInput;
+  some?: Prisma.CostCodeWhereInput;
+  none?: Prisma.CostCodeWhereInput;
+};
+
+export type CostCodeOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder;
 };
 
 export type CostCodeCountOrderByAggregateInput = {
@@ -792,6 +921,9 @@ export type CostCodeCountOrderByAggregateInput = {
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
+  parentCostCodeId?: Prisma.SortOrder;
+  showWhenParentValue?: Prisma.SortOrder;
+  nestedInputType?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -822,6 +954,9 @@ export type CostCodeMaxOrderByAggregateInput = {
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
+  parentCostCodeId?: Prisma.SortOrder;
+  showWhenParentValue?: Prisma.SortOrder;
+  nestedInputType?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -844,6 +979,9 @@ export type CostCodeMinOrderByAggregateInput = {
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
+  parentCostCodeId?: Prisma.SortOrder;
+  showWhenParentValue?: Prisma.SortOrder;
+  nestedInputType?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -856,19 +994,48 @@ export type CostCodeSumOrderByAggregateInput = {
   displayOrder?: Prisma.SortOrder;
 };
 
-export type CostCodeListRelationFilter = {
-  every?: Prisma.CostCodeWhereInput;
-  some?: Prisma.CostCodeWhereInput;
-  none?: Prisma.CostCodeWhereInput;
-};
-
-export type CostCodeOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder;
-};
-
 export type CostCodeScalarRelationFilter = {
   is?: Prisma.CostCodeWhereInput;
   isNot?: Prisma.CostCodeWhereInput;
+};
+
+export type CostCodeCreateNestedOneWithoutChildCostCodesInput = {
+  create?: Prisma.XOR<
+    Prisma.CostCodeCreateWithoutChildCostCodesInput,
+    Prisma.CostCodeUncheckedCreateWithoutChildCostCodesInput
+  >;
+  connectOrCreate?: Prisma.CostCodeCreateOrConnectWithoutChildCostCodesInput;
+  connect?: Prisma.CostCodeWhereUniqueInput;
+};
+
+export type CostCodeCreateNestedManyWithoutParentCostCodeInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.CostCodeCreateWithoutParentCostCodeInput,
+        Prisma.CostCodeUncheckedCreateWithoutParentCostCodeInput
+      >
+    | Prisma.CostCodeCreateWithoutParentCostCodeInput[]
+    | Prisma.CostCodeUncheckedCreateWithoutParentCostCodeInput[];
+  connectOrCreate?:
+    | Prisma.CostCodeCreateOrConnectWithoutParentCostCodeInput
+    | Prisma.CostCodeCreateOrConnectWithoutParentCostCodeInput[];
+  createMany?: Prisma.CostCodeCreateManyParentCostCodeInputEnvelope;
+  connect?: Prisma.CostCodeWhereUniqueInput | Prisma.CostCodeWhereUniqueInput[];
+};
+
+export type CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.CostCodeCreateWithoutParentCostCodeInput,
+        Prisma.CostCodeUncheckedCreateWithoutParentCostCodeInput
+      >
+    | Prisma.CostCodeCreateWithoutParentCostCodeInput[]
+    | Prisma.CostCodeUncheckedCreateWithoutParentCostCodeInput[];
+  connectOrCreate?:
+    | Prisma.CostCodeCreateOrConnectWithoutParentCostCodeInput
+    | Prisma.CostCodeCreateOrConnectWithoutParentCostCodeInput[];
+  createMany?: Prisma.CostCodeCreateManyParentCostCodeInputEnvelope;
+  connect?: Prisma.CostCodeWhereUniqueInput | Prisma.CostCodeWhereUniqueInput[];
 };
 
 export type DecimalFieldUpdateOperationsInput = {
@@ -893,6 +1060,89 @@ export type IntFieldUpdateOperationsInput = {
   decrement?: number;
   multiply?: number;
   divide?: number;
+};
+
+export type CostCodeUpdateOneWithoutChildCostCodesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.CostCodeCreateWithoutChildCostCodesInput,
+    Prisma.CostCodeUncheckedCreateWithoutChildCostCodesInput
+  >;
+  connectOrCreate?: Prisma.CostCodeCreateOrConnectWithoutChildCostCodesInput;
+  upsert?: Prisma.CostCodeUpsertWithoutChildCostCodesInput;
+  disconnect?: Prisma.CostCodeWhereInput | boolean;
+  delete?: Prisma.CostCodeWhereInput | boolean;
+  connect?: Prisma.CostCodeWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.CostCodeUpdateToOneWithWhereWithoutChildCostCodesInput,
+      Prisma.CostCodeUpdateWithoutChildCostCodesInput
+    >,
+    Prisma.CostCodeUncheckedUpdateWithoutChildCostCodesInput
+  >;
+};
+
+export type CostCodeUpdateManyWithoutParentCostCodeNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.CostCodeCreateWithoutParentCostCodeInput,
+        Prisma.CostCodeUncheckedCreateWithoutParentCostCodeInput
+      >
+    | Prisma.CostCodeCreateWithoutParentCostCodeInput[]
+    | Prisma.CostCodeUncheckedCreateWithoutParentCostCodeInput[];
+  connectOrCreate?:
+    | Prisma.CostCodeCreateOrConnectWithoutParentCostCodeInput
+    | Prisma.CostCodeCreateOrConnectWithoutParentCostCodeInput[];
+  upsert?:
+    | Prisma.CostCodeUpsertWithWhereUniqueWithoutParentCostCodeInput
+    | Prisma.CostCodeUpsertWithWhereUniqueWithoutParentCostCodeInput[];
+  createMany?: Prisma.CostCodeCreateManyParentCostCodeInputEnvelope;
+  set?: Prisma.CostCodeWhereUniqueInput | Prisma.CostCodeWhereUniqueInput[];
+  disconnect?:
+    | Prisma.CostCodeWhereUniqueInput
+    | Prisma.CostCodeWhereUniqueInput[];
+  delete?: Prisma.CostCodeWhereUniqueInput | Prisma.CostCodeWhereUniqueInput[];
+  connect?: Prisma.CostCodeWhereUniqueInput | Prisma.CostCodeWhereUniqueInput[];
+  update?:
+    | Prisma.CostCodeUpdateWithWhereUniqueWithoutParentCostCodeInput
+    | Prisma.CostCodeUpdateWithWhereUniqueWithoutParentCostCodeInput[];
+  updateMany?:
+    | Prisma.CostCodeUpdateManyWithWhereWithoutParentCostCodeInput
+    | Prisma.CostCodeUpdateManyWithWhereWithoutParentCostCodeInput[];
+  deleteMany?:
+    | Prisma.CostCodeScalarWhereInput
+    | Prisma.CostCodeScalarWhereInput[];
+};
+
+export type CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.CostCodeCreateWithoutParentCostCodeInput,
+        Prisma.CostCodeUncheckedCreateWithoutParentCostCodeInput
+      >
+    | Prisma.CostCodeCreateWithoutParentCostCodeInput[]
+    | Prisma.CostCodeUncheckedCreateWithoutParentCostCodeInput[];
+  connectOrCreate?:
+    | Prisma.CostCodeCreateOrConnectWithoutParentCostCodeInput
+    | Prisma.CostCodeCreateOrConnectWithoutParentCostCodeInput[];
+  upsert?:
+    | Prisma.CostCodeUpsertWithWhereUniqueWithoutParentCostCodeInput
+    | Prisma.CostCodeUpsertWithWhereUniqueWithoutParentCostCodeInput[];
+  createMany?: Prisma.CostCodeCreateManyParentCostCodeInputEnvelope;
+  set?: Prisma.CostCodeWhereUniqueInput | Prisma.CostCodeWhereUniqueInput[];
+  disconnect?:
+    | Prisma.CostCodeWhereUniqueInput
+    | Prisma.CostCodeWhereUniqueInput[];
+  delete?: Prisma.CostCodeWhereUniqueInput | Prisma.CostCodeWhereUniqueInput[];
+  connect?: Prisma.CostCodeWhereUniqueInput | Prisma.CostCodeWhereUniqueInput[];
+  update?:
+    | Prisma.CostCodeUpdateWithWhereUniqueWithoutParentCostCodeInput
+    | Prisma.CostCodeUpdateWithWhereUniqueWithoutParentCostCodeInput[];
+  updateMany?:
+    | Prisma.CostCodeUpdateManyWithWhereWithoutParentCostCodeInput
+    | Prisma.CostCodeUpdateManyWithWhereWithoutParentCostCodeInput[];
+  deleteMany?:
+    | Prisma.CostCodeScalarWhereInput
+    | Prisma.CostCodeScalarWhereInput[];
 };
 
 export type CostCodeCreateNestedManyWithoutCategoryInput = {
@@ -1161,6 +1411,339 @@ export type CostCodeUpdateOneRequiredWithoutSubmissionItemsNestedInput = {
   >;
 };
 
+export type CostCodeCreateWithoutChildCostCodesInput = {
+  id?: string;
+  code: string;
+  name: string;
+  description?: string | null;
+  basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  step?: number;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
+  requiresQuantity?: boolean;
+  isOptional?: boolean;
+  isActive?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
+  service?: Prisma.ServiceCreateNestedOneWithoutCostCodesInput;
+  options?: Prisma.CostCodeOptionCreateNestedManyWithoutCostCodeInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
+  submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
+  parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
+};
+
+export type CostCodeUncheckedCreateWithoutChildCostCodesInput = {
+  id?: string;
+  categoryId: string;
+  serviceId?: string | null;
+  code: string;
+  name: string;
+  description?: string | null;
+  basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  step?: number;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
+  requiresQuantity?: boolean;
+  isOptional?: boolean;
+  isActive?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
+  submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
+};
+
+export type CostCodeCreateOrConnectWithoutChildCostCodesInput = {
+  where: Prisma.CostCodeWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.CostCodeCreateWithoutChildCostCodesInput,
+    Prisma.CostCodeUncheckedCreateWithoutChildCostCodesInput
+  >;
+};
+
+export type CostCodeCreateWithoutParentCostCodeInput = {
+  id?: string;
+  code: string;
+  name: string;
+  description?: string | null;
+  basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  step?: number;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
+  requiresQuantity?: boolean;
+  isOptional?: boolean;
+  isActive?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
+  service?: Prisma.ServiceCreateNestedOneWithoutCostCodesInput;
+  options?: Prisma.CostCodeOptionCreateNestedManyWithoutCostCodeInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
+  submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
+  childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
+};
+
+export type CostCodeUncheckedCreateWithoutParentCostCodeInput = {
+  id?: string;
+  categoryId: string;
+  serviceId?: string | null;
+  code: string;
+  name: string;
+  description?: string | null;
+  basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  step?: number;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
+  requiresQuantity?: boolean;
+  isOptional?: boolean;
+  isActive?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
+  submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
+  childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
+};
+
+export type CostCodeCreateOrConnectWithoutParentCostCodeInput = {
+  where: Prisma.CostCodeWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.CostCodeCreateWithoutParentCostCodeInput,
+    Prisma.CostCodeUncheckedCreateWithoutParentCostCodeInput
+  >;
+};
+
+export type CostCodeCreateManyParentCostCodeInputEnvelope = {
+  data:
+    | Prisma.CostCodeCreateManyParentCostCodeInput
+    | Prisma.CostCodeCreateManyParentCostCodeInput[];
+  skipDuplicates?: boolean;
+};
+
+export type CostCodeUpsertWithoutChildCostCodesInput = {
+  update: Prisma.XOR<
+    Prisma.CostCodeUpdateWithoutChildCostCodesInput,
+    Prisma.CostCodeUncheckedUpdateWithoutChildCostCodesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.CostCodeCreateWithoutChildCostCodesInput,
+    Prisma.CostCodeUncheckedCreateWithoutChildCostCodesInput
+  >;
+  where?: Prisma.CostCodeWhereInput;
+};
+
+export type CostCodeUpdateToOneWithWhereWithoutChildCostCodesInput = {
+  where?: Prisma.CostCodeWhereInput;
+  data: Prisma.XOR<
+    Prisma.CostCodeUpdateWithoutChildCostCodesInput,
+    Prisma.CostCodeUncheckedUpdateWithoutChildCostCodesInput
+  >;
+};
+
+export type CostCodeUpdateWithoutChildCostCodesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  code?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  basePrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  markup?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  clientPrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  step?: Prisma.IntFieldUpdateOperationsInput | number;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
+  service?: Prisma.ServiceUpdateOneWithoutCostCodesNestedInput;
+  options?: Prisma.CostCodeOptionUpdateManyWithoutCostCodeNestedInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
+  submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
+  parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
+};
+
+export type CostCodeUncheckedUpdateWithoutChildCostCodesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string;
+  serviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  code?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  basePrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  markup?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  clientPrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  step?: Prisma.IntFieldUpdateOperationsInput | number;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
+  submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
+};
+
+export type CostCodeUpsertWithWhereUniqueWithoutParentCostCodeInput = {
+  where: Prisma.CostCodeWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.CostCodeUpdateWithoutParentCostCodeInput,
+    Prisma.CostCodeUncheckedUpdateWithoutParentCostCodeInput
+  >;
+  create: Prisma.XOR<
+    Prisma.CostCodeCreateWithoutParentCostCodeInput,
+    Prisma.CostCodeUncheckedCreateWithoutParentCostCodeInput
+  >;
+};
+
+export type CostCodeUpdateWithWhereUniqueWithoutParentCostCodeInput = {
+  where: Prisma.CostCodeWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.CostCodeUpdateWithoutParentCostCodeInput,
+    Prisma.CostCodeUncheckedUpdateWithoutParentCostCodeInput
+  >;
+};
+
+export type CostCodeUpdateManyWithWhereWithoutParentCostCodeInput = {
+  where: Prisma.CostCodeScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.CostCodeUpdateManyMutationInput,
+    Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeInput
+  >;
+};
+
+export type CostCodeScalarWhereInput = {
+  AND?: Prisma.CostCodeScalarWhereInput | Prisma.CostCodeScalarWhereInput[];
+  OR?: Prisma.CostCodeScalarWhereInput[];
+  NOT?: Prisma.CostCodeScalarWhereInput | Prisma.CostCodeScalarWhereInput[];
+  id?: Prisma.StringFilter<'CostCode'> | string;
+  categoryId?: Prisma.StringFilter<'CostCode'> | string;
+  serviceId?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  code?: Prisma.StringFilter<'CostCode'> | string;
+  name?: Prisma.StringFilter<'CostCode'> | string;
+  description?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  basePrice?:
+    | Prisma.DecimalFilter<'CostCode'>
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  markup?:
+    | Prisma.DecimalFilter<'CostCode'>
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  clientPrice?:
+    | Prisma.DecimalFilter<'CostCode'>
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  unitType?: Prisma.EnumUnitTypeFilter<'CostCode'> | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFilter<'CostCode'>
+    | $Enums.QuestionType;
+  step?: Prisma.IntFilter<'CostCode'> | number;
+  displayOrder?: Prisma.IntFilter<'CostCode'> | number;
+  isIncludedInBase?: Prisma.BoolFilter<'CostCode'> | boolean;
+  requiresQuantity?: Prisma.BoolFilter<'CostCode'> | boolean;
+  isOptional?: Prisma.BoolFilter<'CostCode'> | boolean;
+  isActive?: Prisma.BoolFilter<'CostCode'> | boolean;
+  parentCostCodeId?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  showWhenParentValue?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  nestedInputType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  createdAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
+};
+
 export type CostCodeCreateWithoutCategoryInput = {
   id?: string;
   code: string;
@@ -1177,12 +1760,16 @@ export type CostCodeCreateWithoutCategoryInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   service?: Prisma.ServiceCreateNestedOneWithoutCostCodesInput;
   options?: Prisma.CostCodeOptionCreateNestedManyWithoutCostCodeInput;
   serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
+  parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
+  childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutCategoryInput = {
@@ -1202,11 +1789,15 @@ export type CostCodeUncheckedCreateWithoutCategoryInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
+  childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutCategoryInput = {
@@ -1252,48 +1843,6 @@ export type CostCodeUpdateManyWithWhereWithoutCategoryInput = {
   >;
 };
 
-export type CostCodeScalarWhereInput = {
-  AND?: Prisma.CostCodeScalarWhereInput | Prisma.CostCodeScalarWhereInput[];
-  OR?: Prisma.CostCodeScalarWhereInput[];
-  NOT?: Prisma.CostCodeScalarWhereInput | Prisma.CostCodeScalarWhereInput[];
-  id?: Prisma.StringFilter<'CostCode'> | string;
-  categoryId?: Prisma.StringFilter<'CostCode'> | string;
-  serviceId?: Prisma.StringNullableFilter<'CostCode'> | string | null;
-  code?: Prisma.StringFilter<'CostCode'> | string;
-  name?: Prisma.StringFilter<'CostCode'> | string;
-  description?: Prisma.StringNullableFilter<'CostCode'> | string | null;
-  basePrice?:
-    | Prisma.DecimalFilter<'CostCode'>
-    | runtime.Decimal
-    | runtime.DecimalJsLike
-    | number
-    | string;
-  markup?:
-    | Prisma.DecimalFilter<'CostCode'>
-    | runtime.Decimal
-    | runtime.DecimalJsLike
-    | number
-    | string;
-  clientPrice?:
-    | Prisma.DecimalFilter<'CostCode'>
-    | runtime.Decimal
-    | runtime.DecimalJsLike
-    | number
-    | string;
-  unitType?: Prisma.EnumUnitTypeFilter<'CostCode'> | $Enums.UnitType;
-  questionType?:
-    | Prisma.EnumQuestionTypeFilter<'CostCode'>
-    | $Enums.QuestionType;
-  step?: Prisma.IntFilter<'CostCode'> | number;
-  displayOrder?: Prisma.IntFilter<'CostCode'> | number;
-  isIncludedInBase?: Prisma.BoolFilter<'CostCode'> | boolean;
-  requiresQuantity?: Prisma.BoolFilter<'CostCode'> | boolean;
-  isOptional?: Prisma.BoolFilter<'CostCode'> | boolean;
-  isActive?: Prisma.BoolFilter<'CostCode'> | boolean;
-  createdAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
-  updatedAt?: Prisma.DateTimeFilter<'CostCode'> | Date | string;
-};
-
 export type CostCodeCreateWithoutOptionsInput = {
   id?: string;
   code: string;
@@ -1310,12 +1859,16 @@ export type CostCodeCreateWithoutOptionsInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
   service?: Prisma.ServiceCreateNestedOneWithoutCostCodesInput;
   serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
+  parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
+  childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutOptionsInput = {
@@ -1336,10 +1889,14 @@ export type CostCodeUncheckedCreateWithoutOptionsInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
+  childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutOptionsInput = {
@@ -1403,12 +1960,22 @@ export type CostCodeUpdateWithoutOptionsInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
   service?: Prisma.ServiceUpdateOneWithoutCostCodesNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
+  parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
+  childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutOptionsInput = {
@@ -1446,10 +2013,23 @@ export type CostCodeUncheckedUpdateWithoutOptionsInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
+  childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeCreateWithoutServiceInput = {
@@ -1468,12 +2048,16 @@ export type CostCodeCreateWithoutServiceInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
   options?: Prisma.CostCodeOptionCreateNestedManyWithoutCostCodeInput;
   serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
+  parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
+  childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutServiceInput = {
@@ -1493,11 +2077,15 @@ export type CostCodeUncheckedCreateWithoutServiceInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
+  childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutServiceInput = {
@@ -1559,12 +2147,16 @@ export type CostCodeCreateWithoutServiceCostCodesInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
   service?: Prisma.ServiceCreateNestedOneWithoutCostCodesInput;
   options?: Prisma.CostCodeOptionCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
+  parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
+  childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutServiceCostCodesInput = {
@@ -1585,10 +2177,14 @@ export type CostCodeUncheckedCreateWithoutServiceCostCodesInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
+  childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutServiceCostCodesInput = {
@@ -1652,12 +2248,22 @@ export type CostCodeUpdateWithoutServiceCostCodesInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
   service?: Prisma.ServiceUpdateOneWithoutCostCodesNestedInput;
   options?: Prisma.CostCodeOptionUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
+  parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
+  childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutServiceCostCodesInput = {
@@ -1695,10 +2301,23 @@ export type CostCodeUncheckedUpdateWithoutServiceCostCodesInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
+  childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeCreateWithoutSubmissionItemsInput = {
@@ -1717,12 +2336,16 @@ export type CostCodeCreateWithoutSubmissionItemsInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
   service?: Prisma.ServiceCreateNestedOneWithoutCostCodesInput;
   options?: Prisma.CostCodeOptionCreateNestedManyWithoutCostCodeInput;
   serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
+  parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
+  childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutSubmissionItemsInput = {
@@ -1743,10 +2366,14 @@ export type CostCodeUncheckedCreateWithoutSubmissionItemsInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
+  childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutSubmissionItemsInput = {
@@ -1810,12 +2437,22 @@ export type CostCodeUpdateWithoutSubmissionItemsInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
   service?: Prisma.ServiceUpdateOneWithoutCostCodesNestedInput;
   options?: Prisma.CostCodeOptionUpdateManyWithoutCostCodeNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
+  parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
+  childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutSubmissionItemsInput = {
@@ -1853,10 +2490,196 @@ export type CostCodeUncheckedUpdateWithoutSubmissionItemsInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
+  childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
+};
+
+export type CostCodeCreateManyParentCostCodeInput = {
+  id?: string;
+  categoryId: string;
+  serviceId?: string | null;
+  code: string;
+  name: string;
+  description?: string | null;
+  basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  step?: number;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
+  requiresQuantity?: boolean;
+  isOptional?: boolean;
+  isActive?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type CostCodeUpdateWithoutParentCostCodeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  code?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  basePrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  markup?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  clientPrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  step?: Prisma.IntFieldUpdateOperationsInput | number;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
+  service?: Prisma.ServiceUpdateOneWithoutCostCodesNestedInput;
+  options?: Prisma.CostCodeOptionUpdateManyWithoutCostCodeNestedInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
+  submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
+  childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
+};
+
+export type CostCodeUncheckedUpdateWithoutParentCostCodeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string;
+  serviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  code?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  basePrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  markup?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  clientPrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  step?: Prisma.IntFieldUpdateOperationsInput | number;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
+  submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
+  childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
+};
+
+export type CostCodeUncheckedUpdateManyWithoutParentCostCodeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string;
+  serviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  code?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  basePrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  markup?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  clientPrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  step?: Prisma.IntFieldUpdateOperationsInput | number;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type CostCodeCreateManyCategoryInput = {
@@ -1876,6 +2699,9 @@ export type CostCodeCreateManyCategoryInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -1913,12 +2739,22 @@ export type CostCodeUpdateWithoutCategoryInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   service?: Prisma.ServiceUpdateOneWithoutCostCodesNestedInput;
   options?: Prisma.CostCodeOptionUpdateManyWithoutCostCodeNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
+  parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
+  childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutCategoryInput = {
@@ -1955,11 +2791,24 @@ export type CostCodeUncheckedUpdateWithoutCategoryInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
+  childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateManyWithoutCategoryInput = {
@@ -1996,6 +2845,18 @@ export type CostCodeUncheckedUpdateManyWithoutCategoryInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -2017,6 +2878,9 @@ export type CostCodeCreateManyServiceInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -2054,12 +2918,22 @@ export type CostCodeUpdateWithoutServiceInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
   options?: Prisma.CostCodeOptionUpdateManyWithoutCostCodeNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
+  parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
+  childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutServiceInput = {
@@ -2096,11 +2970,24 @@ export type CostCodeUncheckedUpdateWithoutServiceInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
+  childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateManyWithoutServiceInput = {
@@ -2137,6 +3024,18 @@ export type CostCodeUncheckedUpdateManyWithoutServiceInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -2149,6 +3048,7 @@ export type CostCodeCountOutputType = {
   options: number;
   serviceCostCodes: number;
   submissionItems: number;
+  childCostCodes: number;
 };
 
 export type CostCodeCountOutputTypeSelect<
@@ -2158,6 +3058,7 @@ export type CostCodeCountOutputTypeSelect<
   options?: boolean | CostCodeCountOutputTypeCountOptionsArgs;
   serviceCostCodes?: boolean | CostCodeCountOutputTypeCountServiceCostCodesArgs;
   submissionItems?: boolean | CostCodeCountOutputTypeCountSubmissionItemsArgs;
+  childCostCodes?: boolean | CostCodeCountOutputTypeCountChildCostCodesArgs;
 };
 
 /**
@@ -2203,6 +3104,16 @@ export type CostCodeCountOutputTypeCountSubmissionItemsArgs<
   where?: Prisma.SubmissionItemWhereInput;
 };
 
+/**
+ * CostCodeCountOutputType without action
+ */
+export type CostCodeCountOutputTypeCountChildCostCodesArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.CostCodeWhereInput;
+};
+
 export type CostCodeSelect<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
@@ -2225,6 +3136,9 @@ export type CostCodeSelect<
     requiresQuantity?: boolean;
     isOptional?: boolean;
     isActive?: boolean;
+    parentCostCodeId?: boolean;
+    showWhenParentValue?: boolean;
+    nestedInputType?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     category?: boolean | Prisma.CostCodeCategoryDefaultArgs<ExtArgs>;
@@ -2232,6 +3146,8 @@ export type CostCodeSelect<
     options?: boolean | Prisma.CostCode$optionsArgs<ExtArgs>;
     serviceCostCodes?: boolean | Prisma.CostCode$serviceCostCodesArgs<ExtArgs>;
     submissionItems?: boolean | Prisma.CostCode$submissionItemsArgs<ExtArgs>;
+    parentCostCode?: boolean | Prisma.CostCode$parentCostCodeArgs<ExtArgs>;
+    childCostCodes?: boolean | Prisma.CostCode$childCostCodesArgs<ExtArgs>;
     _count?: boolean | Prisma.CostCodeCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['costCode']
@@ -2259,10 +3175,14 @@ export type CostCodeSelectCreateManyAndReturn<
     requiresQuantity?: boolean;
     isOptional?: boolean;
     isActive?: boolean;
+    parentCostCodeId?: boolean;
+    showWhenParentValue?: boolean;
+    nestedInputType?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     category?: boolean | Prisma.CostCodeCategoryDefaultArgs<ExtArgs>;
     service?: boolean | Prisma.CostCode$serviceArgs<ExtArgs>;
+    parentCostCode?: boolean | Prisma.CostCode$parentCostCodeArgs<ExtArgs>;
   },
   ExtArgs['result']['costCode']
 >;
@@ -2289,10 +3209,14 @@ export type CostCodeSelectUpdateManyAndReturn<
     requiresQuantity?: boolean;
     isOptional?: boolean;
     isActive?: boolean;
+    parentCostCodeId?: boolean;
+    showWhenParentValue?: boolean;
+    nestedInputType?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     category?: boolean | Prisma.CostCodeCategoryDefaultArgs<ExtArgs>;
     service?: boolean | Prisma.CostCode$serviceArgs<ExtArgs>;
+    parentCostCode?: boolean | Prisma.CostCode$parentCostCodeArgs<ExtArgs>;
   },
   ExtArgs['result']['costCode']
 >;
@@ -2315,6 +3239,9 @@ export type CostCodeSelectScalar = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  parentCostCodeId?: boolean;
+  showWhenParentValue?: boolean;
+  nestedInputType?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -2340,6 +3267,9 @@ export type CostCodeOmit<
   | 'requiresQuantity'
   | 'isOptional'
   | 'isActive'
+  | 'parentCostCodeId'
+  | 'showWhenParentValue'
+  | 'nestedInputType'
   | 'createdAt'
   | 'updatedAt',
   ExtArgs['result']['costCode']
@@ -2353,6 +3283,8 @@ export type CostCodeInclude<
   options?: boolean | Prisma.CostCode$optionsArgs<ExtArgs>;
   serviceCostCodes?: boolean | Prisma.CostCode$serviceCostCodesArgs<ExtArgs>;
   submissionItems?: boolean | Prisma.CostCode$submissionItemsArgs<ExtArgs>;
+  parentCostCode?: boolean | Prisma.CostCode$parentCostCodeArgs<ExtArgs>;
+  childCostCodes?: boolean | Prisma.CostCode$childCostCodesArgs<ExtArgs>;
   _count?: boolean | Prisma.CostCodeCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type CostCodeIncludeCreateManyAndReturn<
@@ -2361,6 +3293,7 @@ export type CostCodeIncludeCreateManyAndReturn<
 > = {
   category?: boolean | Prisma.CostCodeCategoryDefaultArgs<ExtArgs>;
   service?: boolean | Prisma.CostCode$serviceArgs<ExtArgs>;
+  parentCostCode?: boolean | Prisma.CostCode$parentCostCodeArgs<ExtArgs>;
 };
 export type CostCodeIncludeUpdateManyAndReturn<
   ExtArgs extends
@@ -2368,6 +3301,7 @@ export type CostCodeIncludeUpdateManyAndReturn<
 > = {
   category?: boolean | Prisma.CostCodeCategoryDefaultArgs<ExtArgs>;
   service?: boolean | Prisma.CostCode$serviceArgs<ExtArgs>;
+  parentCostCode?: boolean | Prisma.CostCode$parentCostCodeArgs<ExtArgs>;
 };
 
 export type $CostCodePayload<
@@ -2381,6 +3315,8 @@ export type $CostCodePayload<
     options: Prisma.$CostCodeOptionPayload<ExtArgs>[];
     serviceCostCodes: Prisma.$ServiceCostCodePayload<ExtArgs>[];
     submissionItems: Prisma.$SubmissionItemPayload<ExtArgs>[];
+    parentCostCode: Prisma.$CostCodePayload<ExtArgs> | null;
+    childCostCodes: Prisma.$CostCodePayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -2401,6 +3337,9 @@ export type $CostCodePayload<
       requiresQuantity: boolean;
       isOptional: boolean;
       isActive: boolean;
+      parentCostCodeId: string | null;
+      showWhenParentValue: string | null;
+      nestedInputType: string | null;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -3015,6 +3954,30 @@ export interface Prisma__CostCodeClient<
       >
     | Null
   >;
+  parentCostCode<T extends Prisma.CostCode$parentCostCodeArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.CostCode$parentCostCodeArgs<ExtArgs>>,
+  ): Prisma.Prisma__CostCodeClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$CostCodePayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
+  childCostCodes<T extends Prisma.CostCode$childCostCodesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.CostCode$childCostCodesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$CostCodePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3074,6 +4037,9 @@ export interface CostCodeFieldRefs {
   readonly requiresQuantity: Prisma.FieldRef<'CostCode', 'Boolean'>;
   readonly isOptional: Prisma.FieldRef<'CostCode', 'Boolean'>;
   readonly isActive: Prisma.FieldRef<'CostCode', 'Boolean'>;
+  readonly parentCostCodeId: Prisma.FieldRef<'CostCode', 'String'>;
+  readonly showWhenParentValue: Prisma.FieldRef<'CostCode', 'String'>;
+  readonly nestedInputType: Prisma.FieldRef<'CostCode', 'String'>;
   readonly createdAt: Prisma.FieldRef<'CostCode', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'CostCode', 'DateTime'>;
 }
@@ -3649,6 +4615,57 @@ export type CostCode$submissionItemsArgs<
   distinct?:
     | Prisma.SubmissionItemScalarFieldEnum
     | Prisma.SubmissionItemScalarFieldEnum[];
+};
+
+/**
+ * CostCode.parentCostCode
+ */
+export type CostCode$parentCostCodeArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the CostCode
+   */
+  select?: Prisma.CostCodeSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the CostCode
+   */
+  omit?: Prisma.CostCodeOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CostCodeInclude<ExtArgs> | null;
+  where?: Prisma.CostCodeWhereInput;
+};
+
+/**
+ * CostCode.childCostCodes
+ */
+export type CostCode$childCostCodesArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the CostCode
+   */
+  select?: Prisma.CostCodeSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the CostCode
+   */
+  omit?: Prisma.CostCodeOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CostCodeInclude<ExtArgs> | null;
+  where?: Prisma.CostCodeWhereInput;
+  orderBy?:
+    | Prisma.CostCodeOrderByWithRelationInput
+    | Prisma.CostCodeOrderByWithRelationInput[];
+  cursor?: Prisma.CostCodeWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.CostCodeScalarFieldEnum | Prisma.CostCodeScalarFieldEnum[];
 };
 
 /**
