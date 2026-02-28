@@ -12,6 +12,7 @@ import {
   SubmissionPdfData,
 } from '../pdf/pdf-generator.service';
 import { EmailService } from '../notifications/email.service';
+import { ZipLookupService } from './zip-lookup.service';
 import * as path from 'path';
 import * as fs from 'fs/promises';
 import { existsSync } from 'fs';
@@ -28,6 +29,7 @@ export class SubmissionsService {
     private readonly configService: ConfigService,
     private readonly pdfGeneratorService: PdfGeneratorService,
     private readonly emailService: EmailService,
+    private readonly zipLookupService: ZipLookupService,
   ) {
     this.uploadsDir = path.join(process.cwd(), 'uploads');
 
@@ -44,6 +46,43 @@ export class SubmissionsService {
     } catch {
       await fs.mkdir(this.uploadsDir, { recursive: true });
     }
+  }
+
+  private async saveSubmissionAsContact(params: {
+    clientName: string;
+    clientEmail: string;
+    clientPhone: string;
+    projectAddress: string;
+    zipCode: string;
+    projectNotes: string;
+  }): Promise<void> {
+    const parts = params.clientName.trim().split(/\s+/);
+    const firstName = parts[0] || 'N/A';
+    const lastName = parts.slice(1).join(' ') || '-';
+
+    let city = 'N/A';
+    let state = 'N/A';
+    if (params.zipCode.trim()) {
+      const location = await this.zipLookupService.getCityState(params.zipCode);
+      if (location) {
+        city = location.city;
+        state = location.state;
+      }
+    }
+
+    await this.prisma.contactUs.create({
+      data: {
+        firstName: firstName.slice(0, 100),
+        lastName: lastName.slice(0, 100),
+        email: params.clientEmail,
+        phone: params.clientPhone.slice(0, 50),
+        address: params.projectAddress.slice(0, 255),
+        city: city.slice(0, 100),
+        state: state.slice(0, 50),
+        zipCode: (params.zipCode || 'N/A').slice(0, 20),
+        message: params.projectNotes,
+      },
+    });
   }
 
   private async generateSubmissionNumber(): Promise<string> {
@@ -282,6 +321,17 @@ export class SubmissionsService {
             clientEmail: submission.clientEmail,
           }),
         },
+      });
+
+      this.saveSubmissionAsContact({
+        clientName: submission.clientName,
+        clientEmail: submission.clientEmail,
+        clientPhone: submission.clientPhone,
+        projectAddress: submission.projectAddress,
+        zipCode: submission.zipCode ?? '',
+        projectNotes: submission.projectNotes ?? '',
+      }).catch((err) => {
+        console.error('Failed to save estimator submission as contact:', err);
       });
 
       let pdfUrl: string | null = null;
