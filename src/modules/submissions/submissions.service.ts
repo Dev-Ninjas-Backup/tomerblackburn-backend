@@ -879,6 +879,7 @@ export class SubmissionsService {
             stepNumber: step.stepNumber,
             title: step.title,
             description: step.description,
+            isActive: step.isActive,
           })),
         },
       };
