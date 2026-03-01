@@ -867,7 +867,6 @@ export class SubmissionsService {
   async getWhatHappensNext() {
     try {
       const steps = await this.prisma.nextStep.findMany({
-        where: { isActive: true },
         orderBy: [{ displayOrder: 'asc' }, { stepNumber: 'asc' }],
       });
 
