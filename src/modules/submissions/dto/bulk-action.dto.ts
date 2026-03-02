@@ -1,10 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  ArrayMinSize,
-  IsArray,
-  IsNotEmpty,
-  IsString,
-} from 'class-validator';
+import { ArrayMinSize, IsArray, IsNotEmpty, IsString } from 'class-validator';
 
 export class BulkSubmissionsByIdsDto {
   @ApiProperty({
@@ -19,4 +14,3 @@ export class BulkSubmissionsByIdsDto {
   @IsNotEmpty({ each: true })
   ids: string[];
 }
-
