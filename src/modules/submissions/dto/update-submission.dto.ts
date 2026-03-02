@@ -225,6 +225,12 @@ export class SubmissionResponseDto {
   status: SubmissionStatus;
 
   @ApiProperty({
+    description: 'Whether the submission has been archived',
+    example: false,
+  })
+  isArchived: boolean;
+
+  @ApiProperty({
     description: 'Project notes',
     required: false,
   })

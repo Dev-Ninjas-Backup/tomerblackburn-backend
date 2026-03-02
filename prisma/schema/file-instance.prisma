@@ -20,6 +20,7 @@ model FileInstance {
   siteSettingsLogos       SiteSettings[]
   services                Service[]              @relation("ServiceImage")
   submissionMedia         SubmissionMedia[]
+  contactMedia            ContactMedia[]         @relation("ContactMediaFileInstance")
   userAvatars             User[]                 @relation("UserAvatar")
   estimatorBackgrounds    EstimatorPage[]        @relation("EstimatorBackground")
   whyChooseUsIcons        WhyChooseUsFeature[]   @relation("WhyChooseUsIcon")
