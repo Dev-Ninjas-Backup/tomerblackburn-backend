@@ -250,6 +250,55 @@ export class ContactUsController {
     return this.contactUsService.markAllAsRead();
   }
 
+  @Post(':id/media')
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Add media to contact submission',
+    description: 'Attach an uploaded photo or video to a contact submission',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'Contact submission ID',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Media attached to contact submission successfully',
+  })
+  addMedia(
+    @Param('id') id: string,
+    @Body()
+    body: {
+      fileInstanceId: string;
+      mediaType: 'PHOTO' | 'VIDEO';
+      description?: string;
+    },
+  ) {
+    return this.contactUsService.addMedia(
+      id,
+      body.fileInstanceId,
+      body.mediaType,
+      body.description,
+    );
+  }
+
+  @Delete('media/:mediaId')
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Remove media from contact submission',
+    description: 'Remove an attached media item from a contact submission',
+  })
+  @ApiParam({
+    name: 'mediaId',
+    description: 'Contact media ID',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Media removed from contact submission successfully',
+  })
+  removeMedia(@Param('mediaId') mediaId: string) {
+    return this.contactUsService.removeMedia(mediaId);
+  }
+
   @Delete(':id')
   @ApiBearerAuth()
   @ApiOperation({

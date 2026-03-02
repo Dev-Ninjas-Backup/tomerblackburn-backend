@@ -98,4 +98,21 @@ export class CreateSiteSettingsDto {
   @IsUrl()
   @IsOptional()
   twitterUrl?: string;
+
+  @ApiProperty({
+    description: 'CTA banner text displayed in the top bar',
+    example: 'Get Your Free Live Estimate Now!',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  ctaBannerText?: string;
+
+  @ApiProperty({
+    description: 'Whether the CTA banner is visible',
+    example: true,
+    required: false,
+  })
+  @IsOptional()
+  ctaBannerEnabled?: boolean;
 }

@@ -8,6 +8,11 @@ import { UpdateWhatHappensNextDto } from './dto/update-what-happens-next.dto';
 import { PrismaService } from '@/common/prisma/prisma.service';
 import { SubmissionStatus } from 'generated/prisma/enums';
 import {
+  SortOrder,
+  SubmissionDateRange,
+  SubmissionSortField,
+} from './dto/submission-query.dto';
+import {
   PdfGeneratorService,
   SubmissionPdfData,
 } from '../pdf/pdf-generator.service';
@@ -433,16 +438,65 @@ export class SubmissionsService {
     status?: SubmissionStatus,
     page: number = 1,
     limit: number = 10,
+    sortBy: SubmissionSortField = SubmissionSortField.DATE,
+    sortOrder: SortOrder = SortOrder.DESC,
+    dateRange?: SubmissionDateRange,
+    includeArchived: boolean = false,
   ) {
     try {
-      const where = status ? { status } : {};
+      const where: any = {};
+
+      if (status) {
+        where.status = status;
+      }
+
+      if (!includeArchived) {
+        where.isArchived = false;
+      }
+
+      if (dateRange) {
+        const days = Number(dateRange);
+        const fromDate = new Date();
+        fromDate.setDate(fromDate.getDate() - days);
+        where.submittedAt = {
+          gte: fromDate,
+        };
+      }
+
       const skip = (page - 1) * limit;
+
+      const orderBy =
+        sortBy === SubmissionSortField.NAME
+          ? { clientName: sortOrder }
+          : sortBy === SubmissionSortField.TOTAL
+            ? { totalAmount: sortOrder }
+            : sortBy === SubmissionSortField.STATUS
+              ? { status: sortOrder }
+              : sortBy === SubmissionSortField.PROJECT_TYPE
+                ? {
+                    service: {
+                      serviceCategory: {
+                        projectType: {
+                          name: sortOrder,
+                        },
+                      },
+                    },
+                  }
+                : { submittedAt: sortOrder };
 
       const [submissions, total] = await Promise.all([
         this.prisma.submission.findMany({
           where,
           include: {
-            service: true,
+            service: {
+              include: {
+                serviceCategory: {
+                  include: {
+                    projectType: true,
+                  },
+                },
+              },
+            },
             submissionItems: {
               include: {
                 costCode: true,
@@ -455,9 +509,7 @@ export class SubmissionsService {
               },
             },
           },
-          orderBy: {
-            submittedAt: 'desc',
-          },
+          orderBy,
           skip,
           take: limit,
         }),
@@ -861,6 +913,55 @@ export class SubmissionsService {
         throw error;
       }
       throw new Error(`Failed to delete submission: ${error.message}`);
+    }
+  }
+
+  async archiveMany(ids: string[]) {
+    if (!ids || ids.length === 0) {
+      throw new Error('At least one submission ID is required');
+    }
+
+    try {
+      const result = await this.prisma.submission.updateMany({
+        where: {
+          id: {
+            in: ids,
+          },
+        },
+        data: {
+          isArchived: true,
+        },
+      });
+
+      return {
+        message: `${result.count} submission(s) archived successfully`,
+        count: result.count,
+      };
+    } catch (error) {
+      throw new Error(`Failed to archive submissions: ${error.message}`);
+    }
+  }
+
+  async deleteMany(ids: string[]) {
+    if (!ids || ids.length === 0) {
+      throw new Error('At least one submission ID is required');
+    }
+
+    try {
+      const result = await this.prisma.submission.deleteMany({
+        where: {
+          id: {
+            in: ids,
+          },
+        },
+      });
+
+      return {
+        message: `${result.count} submission(s) deleted successfully`,
+        count: result.count,
+      };
+    } catch (error) {
+      throw new Error(`Failed to delete submissions: ${error.message}`);
     }
   }
 

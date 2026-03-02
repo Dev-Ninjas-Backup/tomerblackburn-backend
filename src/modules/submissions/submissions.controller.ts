@@ -9,9 +9,16 @@ import {
   Query,
   Res,
   Header,
+  HttpStatus,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { ApiTags, ApiOperation, ApiQuery } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiQuery,
+  ApiResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 import { SubmissionsService } from './submissions.service';
 import { CreateSubmissionDto } from './dto/create-submission.dto';
 import { UpdateSubmissionDto } from './dto/update-submission.dto';
@@ -21,6 +28,7 @@ import { UpdateWhatHappensNextDto } from './dto/update-what-happens-next.dto';
 import { UpdateStatusDto } from './dto/update-status.dto';
 import { SubmissionQueryDto } from './dto/submission-query.dto';
 import { ExportSubmissionsByIdsDto } from './dto/export-by-ids.dto';
+import { BulkSubmissionsByIdsDto } from './dto/bulk-action.dto';
 import {
   SubmissionStatus,
   QuestionType,
@@ -46,6 +54,10 @@ export class SubmissionsController {
       query.status,
       query.page,
       query.limit,
+      query.sortBy,
+      query.sortOrder,
+      query.dateRange,
+      query.includeArchived,
     );
   }
 
@@ -98,6 +110,28 @@ export class SubmissionsController {
 
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.send(buffer);
+  }
+
+  @Post('bulk-archive')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Archive submissions in bulk' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Submissions archived successfully',
+  })
+  archiveMany(@Body() dto: BulkSubmissionsByIdsDto) {
+    return this.submissionsService.archiveMany(dto.ids);
+  }
+
+  @Post('bulk-delete')
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Delete submissions in bulk' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Submissions deleted successfully',
+  })
+  deleteMany(@Body() dto: BulkSubmissionsByIdsDto) {
+    return this.submissionsService.deleteMany(dto.ids);
   }
 
   @Get('enums')

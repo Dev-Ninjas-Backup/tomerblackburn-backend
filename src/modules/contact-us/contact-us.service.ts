@@ -316,6 +316,16 @@ export class ContactUsService {
           orderBy: { createdAt: 'desc' },
           skip,
           take: limit,
+          include: {
+            contactMedia: {
+              include: {
+                fileInstance: true,
+              },
+              orderBy: {
+                displayOrder: 'asc',
+              },
+            },
+          },
         }),
         this.prisma.contactUs.count({ where }),
       ]);
@@ -350,6 +360,16 @@ export class ContactUsService {
     try {
       const contact = await this.prisma.contactUs.findUnique({
         where: { id },
+        include: {
+          contactMedia: {
+            include: {
+              fileInstance: true,
+            },
+            orderBy: {
+              displayOrder: 'asc',
+            },
+          },
+        },
       });
 
       if (!contact) {
@@ -488,6 +508,101 @@ export class ContactUsService {
         throw error;
       }
       throw new Error(`Failed to delete contact submission: ${error.message}`);
+    }
+  }
+
+  async addMedia(
+    contactId: string,
+    fileInstanceId: string,
+    mediaType: 'PHOTO' | 'VIDEO',
+    description?: string,
+  ) {
+    try {
+      const contact = await this.prisma.contactUs.findUnique({
+        where: { id: contactId },
+      });
+
+      if (!contact) {
+        throw new NotFoundException(
+          `Contact submission with ID "${contactId}" not found`,
+        );
+      }
+
+      const fileInstance = await this.prisma.fileInstance.findUnique({
+        where: { id: fileInstanceId },
+      });
+
+      if (!fileInstance) {
+        throw new NotFoundException(
+          `File with ID "${fileInstanceId}" not found. Please upload the file first.`,
+        );
+      }
+
+      const existingMediaCount = await this.prisma.contactMedia.count({
+        where: { contactId },
+      });
+
+      const media = await this.prisma.contactMedia.create({
+        data: {
+          contactId,
+          fileInstanceId,
+          mediaType,
+          description,
+          displayOrder: existingMediaCount,
+        },
+        include: {
+          fileInstance: true,
+        },
+      });
+
+      return {
+        message: 'Media added to contact submission successfully',
+        data: media,
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+
+      if (error.code === 'P2003') {
+        throw new NotFoundException(
+          'Invalid contact or file reference. Please verify the IDs.',
+        );
+      }
+
+      throw new Error(
+        `Failed to add media to contact submission: ${error.message || 'Unknown error occurred'}`,
+      );
+    }
+  }
+
+  async removeMedia(mediaId: string) {
+    try {
+      const media = await this.prisma.contactMedia.findUnique({
+        where: { id: mediaId },
+      });
+
+      if (!media) {
+        throw new NotFoundException(
+          `Contact media with ID ${mediaId} not found`,
+        );
+      }
+
+      await this.prisma.contactMedia.delete({
+        where: { id: mediaId },
+      });
+
+      return {
+        message: 'Media removed from contact submission successfully',
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error;
+      }
+
+      throw new Error(
+        `Failed to remove media from contact submission: ${error.message}`,
+      );
     }
   }
 

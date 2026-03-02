@@ -17,6 +17,7 @@ model Submission {
   totalAmount          Decimal @db.Decimal(10, 2)
 
   status SubmissionStatus @default(PENDING)
+  isArchived Boolean          @default(false)
 
   projectNotes      String?
   additionalDetails String?
@@ -41,6 +42,7 @@ model Submission {
   @@index([clientPhone])
   @@index([submittedAt])
   @@index([serviceId])
+  @@index([isArchived])
   @@map("submissions")
 }
 
