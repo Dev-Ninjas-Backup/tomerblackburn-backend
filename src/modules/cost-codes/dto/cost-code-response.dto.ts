@@ -137,6 +137,14 @@ export class CostCodeResponseDto {
   isActive: boolean;
 
   @ApiProperty({
+    description:
+      'If true, this cost code is branch-only: shown in estimator for conditional logic but excluded from Buildertrend/Excel export.',
+    example: false,
+    required: false,
+  })
+  excludeFromExport?: boolean;
+
+  @ApiProperty({
     description: 'Category details',
     type: CategoryDto,
     required: false,

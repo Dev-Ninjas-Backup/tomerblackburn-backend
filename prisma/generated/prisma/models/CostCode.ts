@@ -60,6 +60,7 @@ export type CostCodeMinAggregateOutputType = {
   requiresQuantity: boolean | null;
   isOptional: boolean | null;
   isActive: boolean | null;
+  excludeFromExport: boolean | null;
   parentCostCodeId: string | null;
   showWhenParentValue: string | null;
   nestedInputType: string | null;
@@ -85,6 +86,7 @@ export type CostCodeMaxAggregateOutputType = {
   requiresQuantity: boolean | null;
   isOptional: boolean | null;
   isActive: boolean | null;
+  excludeFromExport: boolean | null;
   parentCostCodeId: string | null;
   showWhenParentValue: string | null;
   nestedInputType: string | null;
@@ -110,6 +112,7 @@ export type CostCodeCountAggregateOutputType = {
   requiresQuantity: number;
   isOptional: number;
   isActive: number;
+  excludeFromExport: number;
   parentCostCodeId: number;
   showWhenParentValue: number;
   nestedInputType: number;
@@ -152,6 +155,7 @@ export type CostCodeMinAggregateInputType = {
   requiresQuantity?: true;
   isOptional?: true;
   isActive?: true;
+  excludeFromExport?: true;
   parentCostCodeId?: true;
   showWhenParentValue?: true;
   nestedInputType?: true;
@@ -177,6 +181,7 @@ export type CostCodeMaxAggregateInputType = {
   requiresQuantity?: true;
   isOptional?: true;
   isActive?: true;
+  excludeFromExport?: true;
   parentCostCodeId?: true;
   showWhenParentValue?: true;
   nestedInputType?: true;
@@ -202,6 +207,7 @@ export type CostCodeCountAggregateInputType = {
   requiresQuantity?: true;
   isOptional?: true;
   isActive?: true;
+  excludeFromExport?: true;
   parentCostCodeId?: true;
   showWhenParentValue?: true;
   nestedInputType?: true;
@@ -321,6 +327,7 @@ export type CostCodeGroupByOutputType = {
   requiresQuantity: boolean;
   isOptional: boolean;
   isActive: boolean;
+  excludeFromExport: boolean;
   parentCostCodeId: string | null;
   showWhenParentValue: string | null;
   nestedInputType: string | null;
@@ -384,6 +391,7 @@ export type CostCodeWhereInput = {
   requiresQuantity?: Prisma.BoolFilter<'CostCode'> | boolean;
   isOptional?: Prisma.BoolFilter<'CostCode'> | boolean;
   isActive?: Prisma.BoolFilter<'CostCode'> | boolean;
+  excludeFromExport?: Prisma.BoolFilter<'CostCode'> | boolean;
   parentCostCodeId?: Prisma.StringNullableFilter<'CostCode'> | string | null;
   showWhenParentValue?: Prisma.StringNullableFilter<'CostCode'> | string | null;
   nestedInputType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
@@ -425,6 +433,7 @@ export type CostCodeOrderByWithRelationInput = {
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
+  excludeFromExport?: Prisma.SortOrder;
   parentCostCodeId?: Prisma.SortOrderInput | Prisma.SortOrder;
   showWhenParentValue?: Prisma.SortOrderInput | Prisma.SortOrder;
   nestedInputType?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -478,6 +487,7 @@ export type CostCodeWhereUniqueInput = Prisma.AtLeast<
     requiresQuantity?: Prisma.BoolFilter<'CostCode'> | boolean;
     isOptional?: Prisma.BoolFilter<'CostCode'> | boolean;
     isActive?: Prisma.BoolFilter<'CostCode'> | boolean;
+    excludeFromExport?: Prisma.BoolFilter<'CostCode'> | boolean;
     parentCostCodeId?: Prisma.StringNullableFilter<'CostCode'> | string | null;
     showWhenParentValue?:
       | Prisma.StringNullableFilter<'CostCode'>
@@ -524,6 +534,7 @@ export type CostCodeOrderByWithAggregationInput = {
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
+  excludeFromExport?: Prisma.SortOrder;
   parentCostCodeId?: Prisma.SortOrderInput | Prisma.SortOrder;
   showWhenParentValue?: Prisma.SortOrderInput | Prisma.SortOrder;
   nestedInputType?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -586,6 +597,7 @@ export type CostCodeScalarWhereWithAggregatesInput = {
   requiresQuantity?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
   isOptional?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
   isActive?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
+  excludeFromExport?: Prisma.BoolWithAggregatesFilter<'CostCode'> | boolean;
   parentCostCodeId?:
     | Prisma.StringNullableWithAggregatesFilter<'CostCode'>
     | string
@@ -618,6 +630,7 @@ export type CostCodeCreateInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
   createdAt?: Date | string;
@@ -649,6 +662,7 @@ export type CostCodeUncheckedCreateInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: string | null;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
@@ -693,6 +707,7 @@ export type CostCodeUpdateInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -747,6 +762,7 @@ export type CostCodeUncheckedUpdateInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   parentCostCodeId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -785,6 +801,7 @@ export type CostCodeCreateManyInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: string | null;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
@@ -825,6 +842,7 @@ export type CostCodeUpdateManyMutationInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -872,6 +890,7 @@ export type CostCodeUncheckedUpdateManyInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   parentCostCodeId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -921,6 +940,7 @@ export type CostCodeCountOrderByAggregateInput = {
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
+  excludeFromExport?: Prisma.SortOrder;
   parentCostCodeId?: Prisma.SortOrder;
   showWhenParentValue?: Prisma.SortOrder;
   nestedInputType?: Prisma.SortOrder;
@@ -954,6 +974,7 @@ export type CostCodeMaxOrderByAggregateInput = {
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
+  excludeFromExport?: Prisma.SortOrder;
   parentCostCodeId?: Prisma.SortOrder;
   showWhenParentValue?: Prisma.SortOrder;
   nestedInputType?: Prisma.SortOrder;
@@ -979,6 +1000,7 @@ export type CostCodeMinOrderByAggregateInput = {
   requiresQuantity?: Prisma.SortOrder;
   isOptional?: Prisma.SortOrder;
   isActive?: Prisma.SortOrder;
+  excludeFromExport?: Prisma.SortOrder;
   parentCostCodeId?: Prisma.SortOrder;
   showWhenParentValue?: Prisma.SortOrder;
   nestedInputType?: Prisma.SortOrder;
@@ -1427,6 +1449,7 @@ export type CostCodeCreateWithoutChildCostCodesInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
   createdAt?: Date | string;
@@ -1457,6 +1480,7 @@ export type CostCodeUncheckedCreateWithoutChildCostCodesInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: string | null;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
@@ -1491,6 +1515,7 @@ export type CostCodeCreateWithoutParentCostCodeInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
   createdAt?: Date | string;
@@ -1521,6 +1546,7 @@ export type CostCodeUncheckedCreateWithoutParentCostCodeInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
   createdAt?: Date | string;
@@ -1599,6 +1625,7 @@ export type CostCodeUpdateWithoutChildCostCodesInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1652,6 +1679,7 @@ export type CostCodeUncheckedUpdateWithoutChildCostCodesInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   parentCostCodeId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1737,6 +1765,7 @@ export type CostCodeScalarWhereInput = {
   requiresQuantity?: Prisma.BoolFilter<'CostCode'> | boolean;
   isOptional?: Prisma.BoolFilter<'CostCode'> | boolean;
   isActive?: Prisma.BoolFilter<'CostCode'> | boolean;
+  excludeFromExport?: Prisma.BoolFilter<'CostCode'> | boolean;
   parentCostCodeId?: Prisma.StringNullableFilter<'CostCode'> | string | null;
   showWhenParentValue?: Prisma.StringNullableFilter<'CostCode'> | string | null;
   nestedInputType?: Prisma.StringNullableFilter<'CostCode'> | string | null;
@@ -1760,6 +1789,7 @@ export type CostCodeCreateWithoutCategoryInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
   createdAt?: Date | string;
@@ -1789,6 +1819,7 @@ export type CostCodeUncheckedCreateWithoutCategoryInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: string | null;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
@@ -1859,6 +1890,7 @@ export type CostCodeCreateWithoutOptionsInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
   createdAt?: Date | string;
@@ -1889,6 +1921,7 @@ export type CostCodeUncheckedCreateWithoutOptionsInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: string | null;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
@@ -1960,6 +1993,7 @@ export type CostCodeUpdateWithoutOptionsInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2013,6 +2047,7 @@ export type CostCodeUncheckedUpdateWithoutOptionsInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   parentCostCodeId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2048,6 +2083,7 @@ export type CostCodeCreateWithoutServiceInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
   createdAt?: Date | string;
@@ -2077,6 +2113,7 @@ export type CostCodeUncheckedCreateWithoutServiceInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: string | null;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
@@ -2147,6 +2184,7 @@ export type CostCodeCreateWithoutServiceCostCodesInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
   createdAt?: Date | string;
@@ -2177,6 +2215,7 @@ export type CostCodeUncheckedCreateWithoutServiceCostCodesInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: string | null;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
@@ -2248,6 +2287,7 @@ export type CostCodeUpdateWithoutServiceCostCodesInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2301,6 +2341,7 @@ export type CostCodeUncheckedUpdateWithoutServiceCostCodesInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   parentCostCodeId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2336,6 +2377,7 @@ export type CostCodeCreateWithoutSubmissionItemsInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
   createdAt?: Date | string;
@@ -2366,6 +2408,7 @@ export type CostCodeUncheckedCreateWithoutSubmissionItemsInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: string | null;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
@@ -2437,6 +2480,7 @@ export type CostCodeUpdateWithoutSubmissionItemsInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2490,6 +2534,7 @@ export type CostCodeUncheckedUpdateWithoutSubmissionItemsInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   parentCostCodeId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2527,6 +2572,7 @@ export type CostCodeCreateManyParentCostCodeInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
   createdAt?: Date | string;
@@ -2566,6 +2612,7 @@ export type CostCodeUpdateWithoutParentCostCodeInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2619,6 +2666,7 @@ export type CostCodeUncheckedUpdateWithoutParentCostCodeInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2670,6 +2718,7 @@ export type CostCodeUncheckedUpdateManyWithoutParentCostCodeInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2699,6 +2748,7 @@ export type CostCodeCreateManyCategoryInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: string | null;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
@@ -2739,6 +2789,7 @@ export type CostCodeUpdateWithoutCategoryInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2791,6 +2842,7 @@ export type CostCodeUncheckedUpdateWithoutCategoryInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   parentCostCodeId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2845,6 +2897,7 @@ export type CostCodeUncheckedUpdateManyWithoutCategoryInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   parentCostCodeId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2878,6 +2931,7 @@ export type CostCodeCreateManyServiceInput = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: string | null;
   showWhenParentValue?: string | null;
   nestedInputType?: string | null;
@@ -2918,6 +2972,7 @@ export type CostCodeUpdateWithoutServiceInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   showWhenParentValue?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -2970,6 +3025,7 @@ export type CostCodeUncheckedUpdateWithoutServiceInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   parentCostCodeId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -3024,6 +3080,7 @@ export type CostCodeUncheckedUpdateManyWithoutServiceInput = {
   requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   parentCostCodeId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -3136,6 +3193,7 @@ export type CostCodeSelect<
     requiresQuantity?: boolean;
     isOptional?: boolean;
     isActive?: boolean;
+    excludeFromExport?: boolean;
     parentCostCodeId?: boolean;
     showWhenParentValue?: boolean;
     nestedInputType?: boolean;
@@ -3175,6 +3233,7 @@ export type CostCodeSelectCreateManyAndReturn<
     requiresQuantity?: boolean;
     isOptional?: boolean;
     isActive?: boolean;
+    excludeFromExport?: boolean;
     parentCostCodeId?: boolean;
     showWhenParentValue?: boolean;
     nestedInputType?: boolean;
@@ -3209,6 +3268,7 @@ export type CostCodeSelectUpdateManyAndReturn<
     requiresQuantity?: boolean;
     isOptional?: boolean;
     isActive?: boolean;
+    excludeFromExport?: boolean;
     parentCostCodeId?: boolean;
     showWhenParentValue?: boolean;
     nestedInputType?: boolean;
@@ -3239,6 +3299,7 @@ export type CostCodeSelectScalar = {
   requiresQuantity?: boolean;
   isOptional?: boolean;
   isActive?: boolean;
+  excludeFromExport?: boolean;
   parentCostCodeId?: boolean;
   showWhenParentValue?: boolean;
   nestedInputType?: boolean;
@@ -3267,6 +3328,7 @@ export type CostCodeOmit<
   | 'requiresQuantity'
   | 'isOptional'
   | 'isActive'
+  | 'excludeFromExport'
   | 'parentCostCodeId'
   | 'showWhenParentValue'
   | 'nestedInputType'
@@ -3337,6 +3399,7 @@ export type $CostCodePayload<
       requiresQuantity: boolean;
       isOptional: boolean;
       isActive: boolean;
+      excludeFromExport: boolean;
       parentCostCodeId: string | null;
       showWhenParentValue: string | null;
       nestedInputType: string | null;
@@ -4037,6 +4100,7 @@ export interface CostCodeFieldRefs {
   readonly requiresQuantity: Prisma.FieldRef<'CostCode', 'Boolean'>;
   readonly isOptional: Prisma.FieldRef<'CostCode', 'Boolean'>;
   readonly isActive: Prisma.FieldRef<'CostCode', 'Boolean'>;
+  readonly excludeFromExport: Prisma.FieldRef<'CostCode', 'Boolean'>;
   readonly parentCostCodeId: Prisma.FieldRef<'CostCode', 'String'>;
   readonly showWhenParentValue: Prisma.FieldRef<'CostCode', 'String'>;
   readonly nestedInputType: Prisma.FieldRef<'CostCode', 'String'>;
