@@ -399,20 +399,26 @@ export class CostCodesService {
       }
 
       // Validate parentCostCodeId if being updated
-      if (updateCostCodeDto.parentCostCodeId) {
-        const parentExists = await this.prisma.costCode.findUnique({
-          where: { id: updateCostCodeDto.parentCostCodeId },
-        });
+      if (updateCostCodeDto.parentCostCodeId !== undefined) {
+        if (updateCostCodeDto.parentCostCodeId === '' || updateCostCodeDto.parentCostCodeId === null) {
+          // Allow clearing parent (make it top-level)
+          updateData.parentCostCodeId = null;
+          updateData.showWhenParentValue = null;
+        } else {
+          const parentExists = await this.prisma.costCode.findUnique({
+            where: { id: updateCostCodeDto.parentCostCodeId },
+          });
 
-        if (!parentExists) {
-          throw new NotFoundException(
-            `Parent cost code with ID ${updateCostCodeDto.parentCostCodeId} not found`,
-          );
-        }
+          if (!parentExists) {
+            throw new NotFoundException(
+              `Parent cost code with ID ${updateCostCodeDto.parentCostCodeId} not found`,
+            );
+          }
 
-        // Prevent circular dependency
-        if (updateCostCodeDto.parentCostCodeId === id) {
-          throw new ConflictException('Cost code cannot be its own parent');
+          // Prevent circular dependency
+          if (updateCostCodeDto.parentCostCodeId === id) {
+            throw new ConflictException('Cost code cannot be its own parent');
+          }
         }
       }
 
