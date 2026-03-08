@@ -9,6 +9,8 @@ model Submission {
   clientPhone    String
   projectAddress String
   zipCode        String?
+  desiredStartDate DateTime?
+  buildingType     String?
 
   basePrice            Decimal @db.Decimal(10, 2)
   markup               Decimal @default(0) @db.Decimal(5, 2)
