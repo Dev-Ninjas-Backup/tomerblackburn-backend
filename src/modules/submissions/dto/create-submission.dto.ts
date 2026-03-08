@@ -124,6 +124,25 @@ export class CreateSubmissionDto {
   zipCode?: string;
 
   @ApiProperty({
+    description: 'Desired project start date',
+    example: '2026-04-01',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  desiredStartDate?: string;
+
+  @ApiProperty({
+    description: 'Building type',
+    example: 'Single Family',
+    enum: ['Single Family', 'Condo', 'Townhome', 'Multi-Unit'],
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  buildingType?: string;
+
+  @ApiProperty({
     description: 'Base price for the service',
     example: 15000.0,
   })
