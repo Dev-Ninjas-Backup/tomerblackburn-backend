@@ -1194,9 +1194,11 @@ export class SubmissionsService {
         submission.projectAddress +
         (submission.zipCode ? `, ${submission.zipCode}` : '');
 
-      // Item rows: Category = service, Title = Cost code title
+      // Item rows: only items with costs; exclude branch-only questions (no Buildertrend line)
       const enabledItems = submission.submissionItems.filter(
-        (item) => item.isEnabled,
+        (item) =>
+          item.isEnabled &&
+          !(item.costCode as { excludeFromExport?: boolean }).excludeFromExport,
       );
 
       for (const item of enabledItems) {
@@ -1341,9 +1343,11 @@ export class SubmissionsService {
         submission.projectAddress +
         (submission.zipCode ? `, ${submission.zipCode}` : '');
 
-      // Item rows: Category = service, Title = Cost code title
+      // Item rows: only items with costs; exclude branch-only questions (no Buildertrend line)
       const enabledItems = submission.submissionItems.filter(
-        (item) => item.isEnabled,
+        (item) =>
+          item.isEnabled &&
+          !(item.costCode as { excludeFromExport?: boolean }).excludeFromExport,
       );
 
       for (const item of enabledItems) {

@@ -189,7 +189,7 @@ export class PdfGeneratorService {
   private addLineItems(doc: PDFKit.PDFDocument, data: SubmissionPdfData): void {
     const startY = 300;
     let currentY = startY;
-    const rowHeight = 25;
+    const baseRowHeight = 25;
 
     // Section Title
     doc
@@ -224,7 +224,19 @@ export class PdfGeneratorService {
       const item = enabledItems[i];
       const maxContentY = this.getMaxContentY(doc);
 
-      // Check if we need a new page (A4: leave room for footer)
+      // Item name (with option if selected)
+      let itemText = item.itemName || 'Item';
+      if (item.selectedOptionName) {
+        itemText += ` (${item.selectedOptionName})`;
+      }
+
+      // Calculate row height based on description
+      const descriptionHeight = item.itemDescription
+        ? doc.heightOfString(item.itemDescription, { width: 280, fontSize: 8 })
+        : 0;
+      const rowHeight = baseRowHeight + descriptionHeight + (item.itemDescription ? 5 : 0);
+
+      // Check if we need a new page
       if (currentY + rowHeight > maxContentY) {
         doc.addPage({
           size: 'A4',
@@ -240,15 +252,26 @@ export class PdfGeneratorService {
 
       doc.fillColor(this.secondaryColor);
 
-      // Item name (with option if selected)
-      let itemText = item.itemName || 'Item';
-      if (item.selectedOptionName) {
-        itemText += ` (${item.selectedOptionName})`;
-      }
-
+      // Item name
       doc
         .fontSize(9)
-        .text(itemText, 55, currentY + 8, { width: 280, lineBreak: false })
+        .font('Helvetica-Bold')
+        .text(itemText, 55, currentY + 8, { width: 280, lineBreak: false });
+
+      // Item description (if exists)
+      if (item.itemDescription) {
+        doc
+          .fontSize(8)
+          .font('Helvetica')
+          .fillColor('#718096')
+          .text(item.itemDescription, 55, currentY + 20, { width: 280 });
+      }
+
+      // Quantity, Unit Price, Total (aligned to top)
+      doc
+        .fontSize(9)
+        .font('Helvetica')
+        .fillColor(this.secondaryColor)
         .text(item.quantity.toString(), 350, currentY + 8)
         .text(this.formatCurrency(item.unitPrice), 400, currentY + 8)
         .text(this.formatCurrency(item.totalPrice), 480, currentY + 8);

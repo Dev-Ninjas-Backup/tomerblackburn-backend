@@ -19,6 +19,7 @@ model CostCode {
   requiresQuantity Boolean @default(false)
   isOptional       Boolean @default(false)
   isActive         Boolean @default(true)
+  excludeFromExport Boolean @default(false) // Branch-only: show in estimator, do not export to Buildertrend
 
   parentCostCodeId      String? // Parent question ID
   showWhenParentValue   String? // Condition: "true", "false", "optionId", "ANY"

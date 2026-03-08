@@ -201,4 +201,14 @@ export class CreateCostCodeDto {
       'nestedInputType must be one of: QUANTITY, DROPDOWN, CUSTOM_PRICE, NONE',
   })
   nestedInputType?: string;
+
+  @ApiProperty({
+    description:
+      'If true, this question is for branching/conditional logic only: it appears in the estimator but is not exported to Buildertrend (no cost line). Use for questions like "Relocating Plumbing?" that only control which follow-up questions show.',
+    default: false,
+    required: false,
+  })
+  @IsBoolean()
+  @IsOptional()
+  excludeFromExport?: boolean;
 }
