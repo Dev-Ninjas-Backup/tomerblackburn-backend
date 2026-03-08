@@ -398,9 +398,15 @@ export class CostCodesService {
         }
       }
 
+      // Auto-calculate clientPrice if markup or basePrice changed
+      const updateData: any = { ...updateCostCodeDto };
+
       // Validate parentCostCodeId if being updated
       if (updateCostCodeDto.parentCostCodeId !== undefined) {
-        if (updateCostCodeDto.parentCostCodeId === '' || updateCostCodeDto.parentCostCodeId === null) {
+        if (
+          updateCostCodeDto.parentCostCodeId === '' ||
+          updateCostCodeDto.parentCostCodeId === null
+        ) {
           // Allow clearing parent (make it top-level)
           updateData.parentCostCodeId = null;
           updateData.showWhenParentValue = null;
@@ -421,9 +427,6 @@ export class CostCodesService {
           }
         }
       }
-
-      // Auto-calculate clientPrice if markup or basePrice changed
-      const updateData: any = { ...updateCostCodeDto };
       if (
         updateCostCodeDto.basePrice !== undefined ||
         updateCostCodeDto.markup !== undefined
