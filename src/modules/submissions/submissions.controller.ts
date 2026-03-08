@@ -81,10 +81,11 @@ export class SubmissionsController {
     const { buffer, submissionNumbers } =
       await this.submissionsService.exportToExcel(status);
 
+    const date = new Date().toISOString().split('T')[0];
     const filename =
       submissionNumbers.length === 1
-        ? `${submissionNumbers[0]}.xlsx`
-        : `${submissionNumbers.join('_')}.xlsx`;
+        ? `${submissionNumbers[0]}-${date}.xlsx`
+        : `${submissionNumbers.join('_')}-${date}.xlsx`;
 
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.send(buffer);
@@ -103,10 +104,11 @@ export class SubmissionsController {
     const { buffer, submissionNumbers } =
       await this.submissionsService.exportByIds(exportByIdsDto.ids);
 
+    const date = new Date().toISOString().split('T')[0];
     const filename =
       submissionNumbers.length === 1
-        ? `${submissionNumbers[0]}.xlsx`
-        : `${submissionNumbers.join('_')}.xlsx`;
+        ? `${submissionNumbers[0]}-${date}.xlsx`
+        : `${submissionNumbers.join('_')}-${date}.xlsx`;
 
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.send(buffer);

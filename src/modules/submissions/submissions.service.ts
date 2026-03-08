@@ -1190,10 +1190,6 @@ export class SubmissionsService {
     let currentRow = 2;
 
     for (const submission of submissions) {
-      const clientAddress =
-        submission.projectAddress +
-        (submission.zipCode ? `, ${submission.zipCode}` : '');
-
       // Item rows: only items with costs; exclude branch-only questions (no Buildertrend line)
       const enabledItems = submission.submissionItems.filter(
         (item) =>
@@ -1234,12 +1230,7 @@ export class SubmissionsService {
           totalClientPrice, // Col 13: Client Price
           margin, // Col 14: Margin
           profit, // Col 15: Profit
-          submission.submissionNumber, // Col 16: Submission #
-          submission.clientName, // Col 17: Client Name
-          submission.clientEmail, // Col 18: Email
-          submission.clientPhone, // Col 19: Phone
-          clientAddress, // Col 20: Address
-          item.notes || '', // Col 21: Notes
+          item.notes || '', // Col 16: Notes
         ];
 
         row.getCell(5).numFmt = '0.00';
@@ -1339,10 +1330,6 @@ export class SubmissionsService {
     let currentRow = 2;
 
     for (const submission of submissions) {
-      const clientAddress =
-        submission.projectAddress +
-        (submission.zipCode ? `, ${submission.zipCode}` : '');
-
       // Item rows: only items with costs; exclude branch-only questions (no Buildertrend line)
       const enabledItems = submission.submissionItems.filter(
         (item) =>
@@ -1383,12 +1370,7 @@ export class SubmissionsService {
           totalClientPrice, // Col 13: Client Price
           margin, // Col 14: Margin
           profit, // Col 15: Profit
-          submission.submissionNumber, // Col 16: Submission #
-          submission.clientName, // Col 17: Client Name
-          submission.clientEmail, // Col 18: Email
-          submission.clientPhone, // Col 19: Phone
-          clientAddress, // Col 20: Address
-          item.notes || '', // Col 21: Notes
+          item.notes || '', // Col 16: Notes
         ];
 
         row.getCell(5).numFmt = '0.00';
