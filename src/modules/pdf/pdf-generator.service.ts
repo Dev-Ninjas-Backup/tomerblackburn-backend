@@ -234,7 +234,8 @@ export class PdfGeneratorService {
       const descriptionHeight = item.itemDescription
         ? doc.heightOfString(item.itemDescription, { width: 280, fontSize: 8 })
         : 0;
-      const rowHeight = baseRowHeight + descriptionHeight + (item.itemDescription ? 5 : 0);
+      const rowHeight =
+        baseRowHeight + descriptionHeight + (item.itemDescription ? 5 : 0);
 
       // Check if we need a new page
       if (currentY + rowHeight > maxContentY) {
