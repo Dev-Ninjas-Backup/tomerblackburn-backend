@@ -64,6 +64,9 @@ export class CostCodeEntity implements CostCode {
   nestedInputType: string | null;
 
   @ApiProperty()
+  excludeFromExport: boolean;
+
+  @ApiProperty()
   createdAt: Date;
 
   @ApiProperty()

@@ -232,7 +232,7 @@ export class PdfGeneratorService {
 
       // Calculate row height based on description
       const descriptionHeight = item.itemDescription
-        ? doc.heightOfString(item.itemDescription, { width: 280, fontSize: 8 })
+        ? doc.heightOfString(item.itemDescription, { width: 280 })
         : 0;
       const rowHeight =
         baseRowHeight + descriptionHeight + (item.itemDescription ? 5 : 0);
