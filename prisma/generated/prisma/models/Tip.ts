@@ -1223,6 +1223,11 @@ export type TipFindManyArgs<
    * Skip the first `n` Tips.
    */
   skip?: number;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   *
+   * Filter by unique combinations of Tips.
+   */
   distinct?: Prisma.TipScalarFieldEnum | Prisma.TipScalarFieldEnum[];
 };
 

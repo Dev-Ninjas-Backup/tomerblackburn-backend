@@ -1980,6 +1980,11 @@ export type CostCodeOptionFindManyArgs<
    * Skip the first `n` CostCodeOptions.
    */
   skip?: number;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   *
+   * Filter by unique combinations of CostCodeOptions.
+   */
   distinct?:
     | Prisma.CostCodeOptionScalarFieldEnum
     | Prisma.CostCodeOptionScalarFieldEnum[];

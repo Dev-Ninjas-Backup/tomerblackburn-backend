@@ -1279,6 +1279,11 @@ export type HowItWorksStepFindManyArgs<
    * Skip the first `n` HowItWorksSteps.
    */
   skip?: number;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   *
+   * Filter by unique combinations of HowItWorksSteps.
+   */
   distinct?:
     | Prisma.HowItWorksStepScalarFieldEnum
     | Prisma.HowItWorksStepScalarFieldEnum[];

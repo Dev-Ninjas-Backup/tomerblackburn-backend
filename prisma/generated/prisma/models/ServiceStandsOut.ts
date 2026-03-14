@@ -1543,6 +1543,11 @@ export type ServiceStandsOutFindManyArgs<
    * Skip the first `n` ServiceStandsOuts.
    */
   skip?: number;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   *
+   * Filter by unique combinations of ServiceStandsOuts.
+   */
   distinct?:
     | Prisma.ServiceStandsOutScalarFieldEnum
     | Prisma.ServiceStandsOutScalarFieldEnum[];

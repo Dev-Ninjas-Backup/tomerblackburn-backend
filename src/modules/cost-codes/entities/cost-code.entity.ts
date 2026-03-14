@@ -18,6 +18,9 @@ export class CostCodeEntity implements CostCode {
   @ApiProperty()
   name: string;
 
+  @ApiProperty({ required: false, nullable: true })
+  elies: string | null;
+
   @ApiProperty()
   description: string | null;
 

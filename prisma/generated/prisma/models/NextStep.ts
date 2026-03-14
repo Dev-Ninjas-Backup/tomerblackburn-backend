@@ -1321,6 +1321,11 @@ export type NextStepFindManyArgs<
    * Skip the first `n` NextSteps.
    */
   skip?: number;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   *
+   * Filter by unique combinations of NextSteps.
+   */
   distinct?: Prisma.NextStepScalarFieldEnum | Prisma.NextStepScalarFieldEnum[];
 };
 

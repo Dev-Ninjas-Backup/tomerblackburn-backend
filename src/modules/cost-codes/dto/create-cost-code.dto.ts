@@ -51,6 +51,15 @@ export class CreateCostCodeDto {
   name: string;
 
   @ApiProperty({
+    description: 'Elies name for this cost code',
+    example: 'Elies value',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  elies?: string;
+
+  @ApiProperty({
     description: 'Detailed description of the work',
     example: 'Installation of floor tiles including mortar, grout, and labor',
     required: false,

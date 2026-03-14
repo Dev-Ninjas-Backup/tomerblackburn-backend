@@ -22,6 +22,16 @@ export * from './enums';
  */
 export type ActivityLog = Prisma.ActivityLogModel;
 /**
+ * Model BuildingType
+ *
+ */
+export type BuildingType = Prisma.BuildingTypeModel;
+/**
+ * Model BuildingTypeField
+ *
+ */
+export type BuildingTypeField = Prisma.BuildingTypeFieldModel;
+/**
  * Model CostCode
  *
  */

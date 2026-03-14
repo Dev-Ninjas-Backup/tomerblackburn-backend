@@ -25,6 +25,7 @@ import { EstimatorPageModule } from './modules/estimator-page/estimator-page.mod
 import { PrivacyPolicyModule } from './modules/privacy-policy/privacy-policy.module';
 import { TermsOfServiceModule } from './modules/terms-of-service/terms-of-service.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { BuildingTypesModule } from './modules/building-types/building-types.module';
 import { TipsModule } from './modules/tips/tips.module';
 import { PricingService } from './modules/pricing/pricing.service';
 import { EmailService } from './modules/notifications/email.service';
@@ -61,6 +62,7 @@ import { InitModule } from './common/init/init.module';
     PrivacyPolicyModule,
     TermsOfServiceModule,
     DashboardModule,
+    BuildingTypesModule,
     TipsModule,
   ],
   controllers: [AppController],
