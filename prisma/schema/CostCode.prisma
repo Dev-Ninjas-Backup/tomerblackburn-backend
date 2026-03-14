@@ -4,6 +4,7 @@ model CostCode {
   serviceId         String?
   code              String  @unique
   name              String
+  elies             String? // Alternative/alias name for the cost code
   description       String?
 
   basePrice   Decimal  @default(0) @db.Decimal(10, 2)

@@ -93,12 +93,12 @@ export type PrismaVersion = {
 };
 
 /**
- * Prisma Client JS version: 7.3.0
- * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
+ * Prisma Client JS version: 7.5.0
+ * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
  */
 export const prismaVersion: PrismaVersion = {
-  client: '7.3.0',
-  engine: '9d6ad21cbbceab97458517b147a6a09ff43aa735',
+  client: '7.5.0',
+  engine: '280c870be64f457428992c43c1f6d557fab6e29e',
 };
 
 /**
@@ -413,6 +413,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never
 
 export const ModelName = {
   ActivityLog: 'ActivityLog',
+  BuildingType: 'BuildingType',
+  BuildingTypeField: 'BuildingTypeField',
   CostCode: 'CostCode',
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
@@ -465,6 +467,8 @@ export type TypeMap<
   meta: {
     modelProps:
       | 'activityLog'
+      | 'buildingType'
+      | 'buildingTypeField'
       | 'costCode'
       | 'costCodeCategory'
       | 'costCodeOption'
@@ -569,6 +573,158 @@ export type TypeMap<
           args: Prisma.ActivityLogCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.ActivityLogCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    BuildingType: {
+      payload: Prisma.$BuildingTypePayload<ExtArgs>;
+      fields: Prisma.BuildingTypeFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.BuildingTypeFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.BuildingTypeFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload>;
+        };
+        findFirst: {
+          args: Prisma.BuildingTypeFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.BuildingTypeFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload>;
+        };
+        findMany: {
+          args: Prisma.BuildingTypeFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload>[];
+        };
+        create: {
+          args: Prisma.BuildingTypeCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload>;
+        };
+        createMany: {
+          args: Prisma.BuildingTypeCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.BuildingTypeCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload>[];
+        };
+        delete: {
+          args: Prisma.BuildingTypeDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload>;
+        };
+        update: {
+          args: Prisma.BuildingTypeUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload>;
+        };
+        deleteMany: {
+          args: Prisma.BuildingTypeDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.BuildingTypeUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.BuildingTypeUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload>[];
+        };
+        upsert: {
+          args: Prisma.BuildingTypeUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypePayload>;
+        };
+        aggregate: {
+          args: Prisma.BuildingTypeAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBuildingType>;
+        };
+        groupBy: {
+          args: Prisma.BuildingTypeGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.BuildingTypeGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.BuildingTypeCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.BuildingTypeCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    BuildingTypeField: {
+      payload: Prisma.$BuildingTypeFieldPayload<ExtArgs>;
+      fields: Prisma.BuildingTypeFieldFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.BuildingTypeFieldFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.BuildingTypeFieldFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload>;
+        };
+        findFirst: {
+          args: Prisma.BuildingTypeFieldFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.BuildingTypeFieldFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload>;
+        };
+        findMany: {
+          args: Prisma.BuildingTypeFieldFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload>[];
+        };
+        create: {
+          args: Prisma.BuildingTypeFieldCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload>;
+        };
+        createMany: {
+          args: Prisma.BuildingTypeFieldCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.BuildingTypeFieldCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload>[];
+        };
+        delete: {
+          args: Prisma.BuildingTypeFieldDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload>;
+        };
+        update: {
+          args: Prisma.BuildingTypeFieldUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload>;
+        };
+        deleteMany: {
+          args: Prisma.BuildingTypeFieldDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.BuildingTypeFieldUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.BuildingTypeFieldUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload>[];
+        };
+        upsert: {
+          args: Prisma.BuildingTypeFieldUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BuildingTypeFieldPayload>;
+        };
+        aggregate: {
+          args: Prisma.BuildingTypeFieldAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBuildingTypeField>;
+        };
+        groupBy: {
+          args: Prisma.BuildingTypeFieldGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.BuildingTypeFieldGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.BuildingTypeFieldCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.BuildingTypeFieldCountAggregateOutputType>
             | number;
         };
       };
@@ -2830,12 +2986,41 @@ export const ActivityLogScalarFieldEnum = {
 export type ActivityLogScalarFieldEnum =
   (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum];
 
+export const BuildingTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  isActive: 'isActive',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type BuildingTypeScalarFieldEnum =
+  (typeof BuildingTypeScalarFieldEnum)[keyof typeof BuildingTypeScalarFieldEnum];
+
+export const BuildingTypeFieldScalarFieldEnum = {
+  id: 'id',
+  buildingTypeId: 'buildingTypeId',
+  label: 'label',
+  fieldType: 'fieldType',
+  placeholder: 'placeholder',
+  isRequired: 'isRequired',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type BuildingTypeFieldScalarFieldEnum =
+  (typeof BuildingTypeFieldScalarFieldEnum)[keyof typeof BuildingTypeFieldScalarFieldEnum];
+
 export const CostCodeScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
   serviceId: 'serviceId',
   code: 'code',
   name: 'name',
+  elies: 'elies',
   description: 'description',
   basePrice: 'basePrice',
   markup: 'markup',
@@ -3372,6 +3557,22 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Int'
+>;
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Int[]'
+>;
+
+/**
  * Reference to a field of type 'UnitType'
  */
 export type EnumUnitTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -3401,22 +3602,6 @@ export type EnumQuestionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
 export type ListEnumQuestionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
   'QuestionType[]'
->;
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'Int'
->;
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'Int[]'
 >;
 
 /**
@@ -3601,6 +3786,8 @@ export type PrismaClientOptions = (
 };
 export type GlobalOmitConfig = {
   activityLog?: Prisma.ActivityLogOmit;
+  buildingType?: Prisma.BuildingTypeOmit;
+  buildingTypeField?: Prisma.BuildingTypeFieldOmit;
   costCode?: Prisma.CostCodeOmit;
   costCodeCategory?: Prisma.CostCodeCategoryOmit;
   costCodeOption?: Prisma.CostCodeOptionOmit;

@@ -200,7 +200,7 @@ export class PdfGeneratorService {
 
     currentY += 25;
 
-    // Table Header
+    // Table Header (Description and Total only - no Qty, no Unit Price)
     doc.rect(50, currentY, 512, 25).fillColor(this.primaryColor).fill();
 
     doc
@@ -208,16 +208,43 @@ export class PdfGeneratorService {
       .font('Helvetica-Bold')
       .fillColor('#ffffff')
       .text('Description', 55, currentY + 8)
-      .text('Qty', 350, currentY + 8)
-      .text('Unit Price', 400, currentY + 8)
       .text('Total', 480, currentY + 8);
 
     currentY += 25;
 
+    // Base price work of scope - add as first row
+    const basePriceRowHeight = baseRowHeight;
+    if (data.basePrice > 0) {
+      if (currentY + basePriceRowHeight > this.getMaxContentY(doc)) {
+        doc.addPage({
+          size: 'A4',
+          margins: { top: 50, bottom: 50, left: 50, right: 50 },
+        });
+        currentY = 50;
+      }
+      doc
+        .rect(50, currentY, 512, basePriceRowHeight)
+        .fillColor('#f7fafc')
+        .fill();
+      doc
+        .fontSize(9)
+        .font('Helvetica-Bold')
+        .fillColor(this.secondaryColor)
+        .text(
+          `Base Price - ${data.service.name} Bathroom Renovation (Scope of Work)`,
+          55,
+          currentY + 8,
+          { width: 420 },
+        )
+        .font('Helvetica')
+        .text(this.formatCurrency(data.basePrice), 480, currentY + 8);
+      currentY += basePriceRowHeight;
+    }
+
     // Filter enabled items only
     const enabledItems = data.items.filter((item) => item.isEnabled);
 
-    // Table Rows
+    // Table Rows (Description and Total only)
     doc.font('Helvetica').fillColor(this.secondaryColor);
 
     for (let i = 0; i < enabledItems.length; i++) {
@@ -268,13 +295,11 @@ export class PdfGeneratorService {
           .text(item.itemDescription, 55, currentY + 20, { width: 280 });
       }
 
-      // Quantity, Unit Price, Total (aligned to top)
+      // Total only (Qty and Price columns removed)
       doc
         .fontSize(9)
         .font('Helvetica')
         .fillColor(this.secondaryColor)
-        .text(item.quantity.toString(), 350, currentY + 8)
-        .text(this.formatCurrency(item.unitPrice), 400, currentY + 8)
         .text(this.formatCurrency(item.totalPrice), 480, currentY + 8);
 
       currentY += rowHeight;

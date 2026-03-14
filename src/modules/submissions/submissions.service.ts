@@ -287,7 +287,9 @@ export class SubmissionsService {
           clientPhone,
           projectAddress,
           zipCode,
-          desiredStartDate: desiredStartDate ? new Date(desiredStartDate) : null,
+          desiredStartDate: desiredStartDate
+            ? new Date(desiredStartDate)
+            : null,
           buildingType,
           basePrice,
           markup,

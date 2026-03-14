@@ -8,6 +8,8 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/ActivityLog';
+export type * from './models/BuildingType';
+export type * from './models/BuildingTypeField';
 export type * from './models/CostCode';
 export type * from './models/CostCodeCategory';
 export type * from './models/CostCodeOption';

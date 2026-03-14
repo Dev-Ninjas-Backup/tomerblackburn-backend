@@ -55,6 +55,8 @@ export const AnyNull = runtime.AnyNull;
 
 export const ModelName = {
   ActivityLog: 'ActivityLog',
+  BuildingType: 'BuildingType',
+  BuildingTypeField: 'BuildingTypeField',
   CostCode: 'CostCode',
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
@@ -116,12 +118,41 @@ export const ActivityLogScalarFieldEnum = {
 export type ActivityLogScalarFieldEnum =
   (typeof ActivityLogScalarFieldEnum)[keyof typeof ActivityLogScalarFieldEnum];
 
+export const BuildingTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  price: 'price',
+  isActive: 'isActive',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type BuildingTypeScalarFieldEnum =
+  (typeof BuildingTypeScalarFieldEnum)[keyof typeof BuildingTypeScalarFieldEnum];
+
+export const BuildingTypeFieldScalarFieldEnum = {
+  id: 'id',
+  buildingTypeId: 'buildingTypeId',
+  label: 'label',
+  fieldType: 'fieldType',
+  placeholder: 'placeholder',
+  isRequired: 'isRequired',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type BuildingTypeFieldScalarFieldEnum =
+  (typeof BuildingTypeFieldScalarFieldEnum)[keyof typeof BuildingTypeFieldScalarFieldEnum];
+
 export const CostCodeScalarFieldEnum = {
   id: 'id',
   categoryId: 'categoryId',
   serviceId: 'serviceId',
   code: 'code',
   name: 'name',
+  elies: 'elies',
   description: 'description',
   basePrice: 'basePrice',
   markup: 'markup',
