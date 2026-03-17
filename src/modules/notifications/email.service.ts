@@ -27,11 +27,23 @@ export class EmailService {
   }
 
   private initializeTransporter() {
-    const host = this.configService.get<string>('SMTP_HOST');
-    const port = this.configService.get<number>('SMTP_PORT');
-    const user = this.configService.get<string>('SMTP_USER');
-    const pass = this.configService.get<string>('SMTP_PASS');
-    const from = this.configService.get<string>('SMTP_FROM');
+    // Support both new SMTP_* env keys and legacy EMAIL_* keys
+    const host =
+      this.configService.get<string>('SMTP_HOST') ||
+      this.configService.get<string>('EMAIL_HOST');
+    const port =
+      this.configService.get<number>('SMTP_PORT') ||
+      Number(this.configService.get<string>('EMAIL_PORT'));
+    const user =
+      this.configService.get<string>('SMTP_USER') ||
+      this.configService.get<string>('EMAIL_USER');
+    const pass =
+      this.configService.get<string>('SMTP_PASS') ||
+      this.configService.get<string>('EMAIL_PASS');
+    const from =
+      this.configService.get<string>('SMTP_FROM') ||
+      this.configService.get<string>('EMAIL_FROM') ||
+      user;
 
     if (!host || !port || !user || !pass) {
       this.logger.warn(
@@ -108,6 +120,9 @@ export class EmailService {
       this.logger.log(
         `Email sent successfully to ${clientEmail}: ${info.messageId}`,
       );
+      console.log(
+        `[EmailService] Submission email sent to ${clientEmail} (submissionId=${submissionId}, messageId=${info.messageId})`,
+      );
 
       // Log the email
       await this.prisma.emailLog.create({
@@ -128,6 +143,10 @@ export class EmailService {
       this.logger.error(
         `Failed to send email to ${clientEmail}: ${error.message}`,
         error.stack,
+      );
+      console.error(
+        `[EmailService] Failed to send submission email to ${clientEmail} (submissionId=${submissionId})`,
+        error,
       );
 
       // Log the failed email
@@ -169,11 +188,18 @@ export class EmailService {
       this.logger.log(
         `Email sent successfully to ${options.to}: ${info.messageId}`,
       );
+      console.log(
+        `[EmailService] Email sent to ${options.to} (messageId=${info.messageId})`,
+      );
       return true;
     } catch (error) {
       this.logger.error(
         `Failed to send email to ${options.to}: ${error.message}`,
         error.stack,
+      );
+      console.error(
+        `[EmailService] Failed to send email to ${options.to}`,
+        error,
       );
       return false;
     }
