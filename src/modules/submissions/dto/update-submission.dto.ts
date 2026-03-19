@@ -4,7 +4,11 @@ import { CreateSubmissionDto } from './create-submission.dto';
 import { QuestionType, SubmissionStatus } from 'generated/prisma/enums';
 
 export class UpdateSubmissionDto extends PartialType(
-  OmitType(CreateSubmissionDto, ['serviceId', 'items'] as const),
+  OmitType(CreateSubmissionDto, [
+    'serviceId',
+    'items',
+    'buildingTypeFieldValues',
+  ] as const),
 ) {
   @ApiProperty({
     description: 'Submission status',

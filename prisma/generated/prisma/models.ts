@@ -23,6 +23,7 @@ export type * from './models/ServiceCostCode';
 export type * from './models/Submission';
 export type * from './models/SubmissionItem';
 export type * from './models/SubmissionMedia';
+export type * from './models/SubmissionBuildingTypeFieldValue';
 export type * from './models/TermsOfService';
 export type * from './models/Tip';
 export type * from './models/ContactUs';

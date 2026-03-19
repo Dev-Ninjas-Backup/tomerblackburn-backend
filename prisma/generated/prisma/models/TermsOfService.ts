@@ -1238,11 +1238,6 @@ export type TermsOfServiceFindManyArgs<
    * Skip the first `n` TermsOfServices.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of TermsOfServices.
-   */
   distinct?:
     | Prisma.TermsOfServiceScalarFieldEnum
     | Prisma.TermsOfServiceScalarFieldEnum[];

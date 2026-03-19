@@ -2985,11 +2985,6 @@ export type SubmissionItemFindManyArgs<
    * Skip the first `n` SubmissionItems.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of SubmissionItems.
-   */
   distinct?:
     | Prisma.SubmissionItemScalarFieldEnum
     | Prisma.SubmissionItemScalarFieldEnum[];

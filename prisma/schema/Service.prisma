@@ -2,7 +2,7 @@ model Service {
   id                String  @id @default(uuid())
   serviceCategoryId String
   code              String  @unique
-  name              String 
+  name              String
   shortDescription  String?
   fullDescription   String?
 
@@ -17,9 +17,9 @@ model Service {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  serviceCategory ServiceCategory    @relation(fields: [serviceCategoryId], references: [id], onDelete: Cascade)
-  imageFile       FileInstance?      @relation("ServiceImage", fields: [imageFileId], references: [id])
-  submissions     Submission[]
+  serviceCategory  ServiceCategory   @relation(fields: [serviceCategoryId], references: [id], onDelete: Cascade)
+  imageFile        FileInstance?     @relation("ServiceImage", fields: [imageFileId], references: [id])
+  submissions      Submission[]
   costCodes        CostCode[]
   serviceCostCodes ServiceCostCode[]
 

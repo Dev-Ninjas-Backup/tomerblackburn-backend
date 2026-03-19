@@ -1707,11 +1707,6 @@ export type ContactUsFindManyArgs<
    * Skip the first `n` Contactuses.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of Contactuses.
-   */
   distinct?:
     | Prisma.ContactUsScalarFieldEnum
     | Prisma.ContactUsScalarFieldEnum[];

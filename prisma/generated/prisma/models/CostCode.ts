@@ -103,6 +103,7 @@ export type CostCodeCountAggregateOutputType = {
   code: number;
   name: number;
   elies: number;
+  tips: number;
   description: number;
   basePrice: number;
   markup: number;
@@ -201,6 +202,7 @@ export type CostCodeCountAggregateInputType = {
   code?: true;
   name?: true;
   elies?: true;
+  tips?: true;
   description?: true;
   basePrice?: true;
   markup?: true;
@@ -322,6 +324,7 @@ export type CostCodeGroupByOutputType = {
   code: string;
   name: string;
   elies: string | null;
+  tips: string[];
   description: string | null;
   basePrice: runtime.Decimal;
   markup: runtime.Decimal;
@@ -370,6 +373,7 @@ export type CostCodeWhereInput = {
   code?: Prisma.StringFilter<'CostCode'> | string;
   name?: Prisma.StringFilter<'CostCode'> | string;
   elies?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  tips?: Prisma.StringNullableListFilter<'CostCode'>;
   description?: Prisma.StringNullableFilter<'CostCode'> | string | null;
   basePrice?:
     | Prisma.DecimalFilter<'CostCode'>
@@ -430,6 +434,7 @@ export type CostCodeOrderByWithRelationInput = {
   code?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   elies?: Prisma.SortOrderInput | Prisma.SortOrder;
+  tips?: Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   markup?: Prisma.SortOrder;
@@ -468,6 +473,7 @@ export type CostCodeWhereUniqueInput = Prisma.AtLeast<
     serviceId?: Prisma.StringNullableFilter<'CostCode'> | string | null;
     name?: Prisma.StringFilter<'CostCode'> | string;
     elies?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+    tips?: Prisma.StringNullableListFilter<'CostCode'>;
     description?: Prisma.StringNullableFilter<'CostCode'> | string | null;
     basePrice?:
       | Prisma.DecimalFilter<'CostCode'>
@@ -533,6 +539,7 @@ export type CostCodeOrderByWithAggregationInput = {
   code?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   elies?: Prisma.SortOrderInput | Prisma.SortOrder;
+  tips?: Prisma.SortOrder;
   description?: Prisma.SortOrderInput | Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   markup?: Prisma.SortOrder;
@@ -575,6 +582,7 @@ export type CostCodeScalarWhereWithAggregatesInput = {
   code?: Prisma.StringWithAggregatesFilter<'CostCode'> | string;
   name?: Prisma.StringWithAggregatesFilter<'CostCode'> | string;
   elies?: Prisma.StringNullableWithAggregatesFilter<'CostCode'> | string | null;
+  tips?: Prisma.StringNullableListFilter<'CostCode'>;
   description?:
     | Prisma.StringNullableWithAggregatesFilter<'CostCode'>
     | string
@@ -631,6 +639,7 @@ export type CostCodeCreateInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -664,6 +673,7 @@ export type CostCodeUncheckedCreateInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -693,6 +703,7 @@ export type CostCodeUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -749,6 +760,7 @@ export type CostCodeUncheckedUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -806,6 +818,7 @@ export type CostCodeCreateManyInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -831,6 +844,7 @@ export type CostCodeUpdateManyMutationInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -880,6 +894,7 @@ export type CostCodeUncheckedUpdateManyInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -926,6 +941,14 @@ export type CostCodeUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null;
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null;
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>;
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
 export type CostCodeNullableScalarRelationFilter = {
   is?: Prisma.CostCodeWhereInput | null;
   isNot?: Prisma.CostCodeWhereInput | null;
@@ -948,6 +971,7 @@ export type CostCodeCountOrderByAggregateInput = {
   code?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   elies?: Prisma.SortOrder;
+  tips?: Prisma.SortOrder;
   description?: Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   markup?: Prisma.SortOrder;
@@ -1043,6 +1067,10 @@ export type CostCodeScalarRelationFilter = {
   isNot?: Prisma.CostCodeWhereInput;
 };
 
+export type CostCodeCreatetipsInput = {
+  set: string[];
+};
+
 export type CostCodeCreateNestedOneWithoutChildCostCodesInput = {
   create?: Prisma.XOR<
     Prisma.CostCodeCreateWithoutChildCostCodesInput,
@@ -1080,6 +1108,11 @@ export type CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput = {
     | Prisma.CostCodeCreateOrConnectWithoutParentCostCodeInput[];
   createMany?: Prisma.CostCodeCreateManyParentCostCodeInputEnvelope;
   connect?: Prisma.CostCodeWhereUniqueInput | Prisma.CostCodeWhereUniqueInput[];
+};
+
+export type CostCodeUpdatetipsInput = {
+  set?: string[];
+  push?: string | string[];
 };
 
 export type EnumUnitTypeFieldUpdateOperationsInput = {
@@ -1444,6 +1477,7 @@ export type CostCodeCreateWithoutChildCostCodesInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1476,6 +1510,7 @@ export type CostCodeUncheckedCreateWithoutChildCostCodesInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1512,6 +1547,7 @@ export type CostCodeCreateWithoutParentCostCodeInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1544,6 +1580,7 @@ export type CostCodeUncheckedCreateWithoutParentCostCodeInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1607,6 +1644,7 @@ export type CostCodeUpdateWithoutChildCostCodesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -1662,6 +1700,7 @@ export type CostCodeUncheckedUpdateWithoutChildCostCodesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -1749,6 +1788,7 @@ export type CostCodeScalarWhereInput = {
   code?: Prisma.StringFilter<'CostCode'> | string;
   name?: Prisma.StringFilter<'CostCode'> | string;
   elies?: Prisma.StringNullableFilter<'CostCode'> | string | null;
+  tips?: Prisma.StringNullableListFilter<'CostCode'>;
   description?: Prisma.StringNullableFilter<'CostCode'> | string | null;
   basePrice?:
     | Prisma.DecimalFilter<'CostCode'>
@@ -1791,6 +1831,7 @@ export type CostCodeCreateWithoutCategoryInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1822,6 +1863,7 @@ export type CostCodeUncheckedCreateWithoutCategoryInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1894,6 +1936,7 @@ export type CostCodeCreateWithoutOptionsInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1926,6 +1969,7 @@ export type CostCodeUncheckedCreateWithoutOptionsInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1982,6 +2026,7 @@ export type CostCodeUpdateWithoutOptionsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2037,6 +2082,7 @@ export type CostCodeUncheckedUpdateWithoutOptionsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2091,6 +2137,7 @@ export type CostCodeCreateWithoutServiceInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2122,6 +2169,7 @@ export type CostCodeUncheckedCreateWithoutServiceInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2194,6 +2242,7 @@ export type CostCodeCreateWithoutServiceCostCodesInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2226,6 +2275,7 @@ export type CostCodeUncheckedCreateWithoutServiceCostCodesInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2282,6 +2332,7 @@ export type CostCodeUpdateWithoutServiceCostCodesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2337,6 +2388,7 @@ export type CostCodeUncheckedUpdateWithoutServiceCostCodesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2391,6 +2443,7 @@ export type CostCodeCreateWithoutSubmissionItemsInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2423,6 +2476,7 @@ export type CostCodeUncheckedCreateWithoutSubmissionItemsInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2479,6 +2533,7 @@ export type CostCodeUpdateWithoutSubmissionItemsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2534,6 +2589,7 @@ export type CostCodeUncheckedUpdateWithoutSubmissionItemsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2590,6 +2646,7 @@ export type CostCodeCreateManyParentCostCodeInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2614,6 +2671,7 @@ export type CostCodeUpdateWithoutParentCostCodeInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2669,6 +2727,7 @@ export type CostCodeUncheckedUpdateWithoutParentCostCodeInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2722,6 +2781,7 @@ export type CostCodeUncheckedUpdateManyWithoutParentCostCodeInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2770,6 +2830,7 @@ export type CostCodeCreateManyCategoryInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2795,6 +2856,7 @@ export type CostCodeUpdateWithoutCategoryInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2849,6 +2911,7 @@ export type CostCodeUncheckedUpdateWithoutCategoryInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2905,6 +2968,7 @@ export type CostCodeUncheckedUpdateManyWithoutCategoryInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -2957,6 +3021,7 @@ export type CostCodeCreateManyServiceInput = {
   code: string;
   name: string;
   elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
   description?: string | null;
   basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2982,6 +3047,7 @@ export type CostCodeUpdateWithoutServiceInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -3036,6 +3102,7 @@ export type CostCodeUncheckedUpdateWithoutServiceInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -3092,6 +3159,7 @@ export type CostCodeUncheckedUpdateManyWithoutServiceInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
@@ -3223,6 +3291,7 @@ export type CostCodeSelect<
     code?: boolean;
     name?: boolean;
     elies?: boolean;
+    tips?: boolean;
     description?: boolean;
     basePrice?: boolean;
     markup?: boolean;
@@ -3264,6 +3333,7 @@ export type CostCodeSelectCreateManyAndReturn<
     code?: boolean;
     name?: boolean;
     elies?: boolean;
+    tips?: boolean;
     description?: boolean;
     basePrice?: boolean;
     markup?: boolean;
@@ -3300,6 +3370,7 @@ export type CostCodeSelectUpdateManyAndReturn<
     code?: boolean;
     name?: boolean;
     elies?: boolean;
+    tips?: boolean;
     description?: boolean;
     basePrice?: boolean;
     markup?: boolean;
@@ -3332,6 +3403,7 @@ export type CostCodeSelectScalar = {
   code?: boolean;
   name?: boolean;
   elies?: boolean;
+  tips?: boolean;
   description?: boolean;
   basePrice?: boolean;
   markup?: boolean;
@@ -3362,6 +3434,7 @@ export type CostCodeOmit<
   | 'code'
   | 'name'
   | 'elies'
+  | 'tips'
   | 'description'
   | 'basePrice'
   | 'markup'
@@ -3434,6 +3507,7 @@ export type $CostCodePayload<
       code: string;
       name: string;
       elies: string | null;
+      tips: string[];
       description: string | null;
       basePrice: runtime.Decimal;
       markup: runtime.Decimal;
@@ -4136,6 +4210,7 @@ export interface CostCodeFieldRefs {
   readonly code: Prisma.FieldRef<'CostCode', 'String'>;
   readonly name: Prisma.FieldRef<'CostCode', 'String'>;
   readonly elies: Prisma.FieldRef<'CostCode', 'String'>;
+  readonly tips: Prisma.FieldRef<'CostCode', 'String[]'>;
   readonly description: Prisma.FieldRef<'CostCode', 'String'>;
   readonly basePrice: Prisma.FieldRef<'CostCode', 'Decimal'>;
   readonly markup: Prisma.FieldRef<'CostCode', 'Decimal'>;
@@ -4370,11 +4445,6 @@ export type CostCodeFindManyArgs<
    * Skip the first `n` CostCodes.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of CostCodes.
-   */
   distinct?: Prisma.CostCodeScalarFieldEnum | Prisma.CostCodeScalarFieldEnum[];
 };
 

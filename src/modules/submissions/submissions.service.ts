@@ -205,6 +205,8 @@ export class SubmissionsService {
         zipCode,
         desiredStartDate,
         buildingType,
+        buildingTypeId,
+        buildingTypeFieldValues,
         basePrice,
         markup: inputMarkup,
         clientPrice: inputClientPrice,
@@ -228,6 +230,45 @@ export class SubmissionsService {
         throw new NotFoundException(
           `Service with ID "${serviceId}" not found. Please select a valid service.`,
         );
+      }
+
+      // Validate building type and dynamic field values (if provided)
+      let resolvedBuildingTypeName: string | undefined = buildingType;
+      if (buildingTypeFieldValues?.length && !buildingTypeId) {
+        throw new Error(
+          'buildingTypeId is required when buildingTypeFieldValues are provided.',
+        );
+      }
+
+      if (buildingTypeId) {
+        const buildingTypeRecord = await this.prisma.buildingType.findUnique({
+          where: { id: buildingTypeId },
+          include: { fields: true },
+        });
+
+        if (!buildingTypeRecord) {
+          throw new NotFoundException(
+            `Building type with ID "${buildingTypeId}" not found.`,
+          );
+        }
+
+        if (!resolvedBuildingTypeName) {
+          resolvedBuildingTypeName = buildingTypeRecord.name;
+        }
+
+        if (buildingTypeFieldValues?.length) {
+          const allowedFieldIds = new Set(
+            buildingTypeRecord.fields.map((f) => f.id),
+          );
+          const invalid = buildingTypeFieldValues.filter(
+            (fv) => !allowedFieldIds.has(fv.fieldId),
+          );
+          if (invalid.length) {
+            throw new Error(
+              `One or more buildingTypeFieldValues.fieldId are invalid for buildingTypeId "${buildingTypeId}".`,
+            );
+          }
+        }
       }
 
       // Validate submission items if provided
@@ -290,7 +331,8 @@ export class SubmissionsService {
           desiredStartDate: desiredStartDate
             ? new Date(desiredStartDate)
             : null,
-          buildingType,
+          buildingType: resolvedBuildingTypeName,
+          buildingTypeId,
           basePrice,
           markup,
           clientPrice,
@@ -302,9 +344,23 @@ export class SubmissionsService {
           submissionItems: submissionItemsData
             ? { create: submissionItemsData }
             : undefined,
+          buildingTypeFieldValues: buildingTypeFieldValues?.length
+            ? {
+                create: buildingTypeFieldValues.map((fv) => ({
+                  fieldId: fv.fieldId,
+                  value: fv.value,
+                })),
+              }
+            : undefined,
         },
         include: {
           service: true,
+          buildingTypeRef: true,
+          buildingTypeFieldValues: {
+            include: {
+              field: true,
+            },
+          },
           submissionItems: {
             include: {
               costCode: true,
@@ -357,6 +413,12 @@ export class SubmissionsService {
           data: { pdfUrl },
           include: {
             service: true,
+            buildingTypeRef: true,
+            buildingTypeFieldValues: {
+              include: {
+                field: true,
+              },
+            },
             submissionItems: {
               include: {
                 costCode: true,
@@ -503,6 +565,12 @@ export class SubmissionsService {
                 },
               },
             },
+            buildingTypeRef: true,
+            buildingTypeFieldValues: {
+              include: {
+                field: true,
+              },
+            },
             submissionItems: {
               include: {
                 costCode: true,
@@ -550,6 +618,12 @@ export class SubmissionsService {
         where: { id },
         include: {
           service: true,
+          buildingTypeRef: true,
+          buildingTypeFieldValues: {
+            include: {
+              field: true,
+            },
+          },
           submissionItems: {
             include: {
               costCode: {
@@ -598,6 +672,12 @@ export class SubmissionsService {
         where: { submissionNumber },
         include: {
           service: true,
+          buildingTypeRef: true,
+          buildingTypeFieldValues: {
+            include: {
+              field: true,
+            },
+          },
           submissionItems: {
             include: {
               costCode: {

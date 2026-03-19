@@ -93,12 +93,12 @@ export type PrismaVersion = {
 };
 
 /**
- * Prisma Client JS version: 7.5.0
- * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
+ * Prisma Client JS version: 7.3.0
+ * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
  */
 export const prismaVersion: PrismaVersion = {
-  client: '7.5.0',
-  engine: '280c870be64f457428992c43c1f6d557fab6e29e',
+  client: '7.3.0',
+  engine: '9d6ad21cbbceab97458517b147a6a09ff43aa735',
 };
 
 /**
@@ -428,6 +428,7 @@ export const ModelName = {
   Submission: 'Submission',
   SubmissionItem: 'SubmissionItem',
   SubmissionMedia: 'SubmissionMedia',
+  SubmissionBuildingTypeFieldValue: 'SubmissionBuildingTypeFieldValue',
   TermsOfService: 'TermsOfService',
   Tip: 'Tip',
   ContactUs: 'ContactUs',
@@ -482,6 +483,7 @@ export type TypeMap<
       | 'submission'
       | 'submissionItem'
       | 'submissionMedia'
+      | 'submissionBuildingTypeFieldValue'
       | 'termsOfService'
       | 'tip'
       | 'contactUs'
@@ -1713,6 +1715,82 @@ export type TypeMap<
           args: Prisma.SubmissionMediaCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.SubmissionMediaCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    SubmissionBuildingTypeFieldValue: {
+      payload: Prisma.$SubmissionBuildingTypeFieldValuePayload<ExtArgs>;
+      fields: Prisma.SubmissionBuildingTypeFieldValueFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.SubmissionBuildingTypeFieldValueFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.SubmissionBuildingTypeFieldValueFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload>;
+        };
+        findFirst: {
+          args: Prisma.SubmissionBuildingTypeFieldValueFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.SubmissionBuildingTypeFieldValueFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload>;
+        };
+        findMany: {
+          args: Prisma.SubmissionBuildingTypeFieldValueFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload>[];
+        };
+        create: {
+          args: Prisma.SubmissionBuildingTypeFieldValueCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload>;
+        };
+        createMany: {
+          args: Prisma.SubmissionBuildingTypeFieldValueCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.SubmissionBuildingTypeFieldValueCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload>[];
+        };
+        delete: {
+          args: Prisma.SubmissionBuildingTypeFieldValueDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload>;
+        };
+        update: {
+          args: Prisma.SubmissionBuildingTypeFieldValueUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload>;
+        };
+        deleteMany: {
+          args: Prisma.SubmissionBuildingTypeFieldValueDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.SubmissionBuildingTypeFieldValueUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.SubmissionBuildingTypeFieldValueUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload>[];
+        };
+        upsert: {
+          args: Prisma.SubmissionBuildingTypeFieldValueUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SubmissionBuildingTypeFieldValuePayload>;
+        };
+        aggregate: {
+          args: Prisma.SubmissionBuildingTypeFieldValueAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSubmissionBuildingTypeFieldValue>;
+        };
+        groupBy: {
+          args: Prisma.SubmissionBuildingTypeFieldValueGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.SubmissionBuildingTypeFieldValueGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.SubmissionBuildingTypeFieldValueCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.SubmissionBuildingTypeFieldValueCountAggregateOutputType>
             | number;
         };
       };
@@ -3021,6 +3099,7 @@ export const CostCodeScalarFieldEnum = {
   code: 'code',
   name: 'name',
   elies: 'elies',
+  tips: 'tips',
   description: 'description',
   basePrice: 'basePrice',
   markup: 'markup',
@@ -3195,6 +3274,7 @@ export const SubmissionScalarFieldEnum = {
   zipCode: 'zipCode',
   desiredStartDate: 'desiredStartDate',
   buildingType: 'buildingType',
+  buildingTypeId: 'buildingTypeId',
   basePrice: 'basePrice',
   markup: 'markup',
   clientPrice: 'clientPrice',
@@ -3249,6 +3329,18 @@ export const SubmissionMediaScalarFieldEnum = {
 
 export type SubmissionMediaScalarFieldEnum =
   (typeof SubmissionMediaScalarFieldEnum)[keyof typeof SubmissionMediaScalarFieldEnum];
+
+export const SubmissionBuildingTypeFieldValueScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  fieldId: 'fieldId',
+  value: 'value',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type SubmissionBuildingTypeFieldValueScalarFieldEnum =
+  (typeof SubmissionBuildingTypeFieldValueScalarFieldEnum)[keyof typeof SubmissionBuildingTypeFieldValueScalarFieldEnum];
 
 export const TermsOfServiceScalarFieldEnum = {
   id: 'id',
@@ -3801,6 +3893,7 @@ export type GlobalOmitConfig = {
   submission?: Prisma.SubmissionOmit;
   submissionItem?: Prisma.SubmissionItemOmit;
   submissionMedia?: Prisma.SubmissionMediaOmit;
+  submissionBuildingTypeFieldValue?: Prisma.SubmissionBuildingTypeFieldValueOmit;
   termsOfService?: Prisma.TermsOfServiceOmit;
   tip?: Prisma.TipOmit;
   contactUs?: Prisma.ContactUsOmit;

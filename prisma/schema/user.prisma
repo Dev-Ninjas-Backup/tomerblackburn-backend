@@ -10,7 +10,7 @@ model User {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
-  avatarFile   FileInstance? @relation("UserAvatar", fields: [avatarFileId], references: [id])
+  avatarFile FileInstance? @relation("UserAvatar", fields: [avatarFileId], references: [id])
 
   @@index([email])
   @@index([role])

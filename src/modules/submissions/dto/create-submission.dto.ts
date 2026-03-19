@@ -73,6 +73,24 @@ export class SubmissionItemInputDto {
   notes?: string;
 }
 
+export class SubmissionBuildingTypeFieldValueInputDto {
+  @ApiProperty({
+    description: 'Building type field ID',
+    example: '123e4567-e89b-12d3-a456-426614174000',
+  })
+  @IsString()
+  @IsNotEmpty()
+  fieldId: string;
+
+  @ApiProperty({
+    description: 'Value for the building type field',
+    example: '3',
+  })
+  @IsString()
+  @IsNotEmpty()
+  value: string;
+}
+
 export class CreateSubmissionDto {
   @ApiProperty({
     description: 'Service ID',
@@ -141,6 +159,26 @@ export class CreateSubmissionDto {
   @IsString()
   @IsOptional()
   buildingType?: string;
+
+  @ApiProperty({
+    description: 'Building type ID (UUID)',
+    example: '123e4567-e89b-12d3-a456-426614174000',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  buildingTypeId?: string;
+
+  @ApiProperty({
+    description: 'Dynamic building type field values',
+    type: [SubmissionBuildingTypeFieldValueInputDto],
+    required: false,
+  })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => SubmissionBuildingTypeFieldValueInputDto)
+  @IsOptional()
+  buildingTypeFieldValues?: SubmissionBuildingTypeFieldValueInputDto[];
 
   @ApiProperty({
     description: 'Base price for the service',

@@ -1630,11 +1630,6 @@ export type EstimatorPageFindManyArgs<
    * Skip the first `n` EstimatorPages.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of EstimatorPages.
-   */
   distinct?:
     | Prisma.EstimatorPageScalarFieldEnum
     | Prisma.EstimatorPageScalarFieldEnum[];

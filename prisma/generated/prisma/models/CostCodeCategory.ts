@@ -1601,11 +1601,6 @@ export type CostCodeCategoryFindManyArgs<
    * Skip the first `n` CostCodeCategories.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of CostCodeCategories.
-   */
   distinct?:
     | Prisma.CostCodeCategoryScalarFieldEnum
     | Prisma.CostCodeCategoryScalarFieldEnum[];

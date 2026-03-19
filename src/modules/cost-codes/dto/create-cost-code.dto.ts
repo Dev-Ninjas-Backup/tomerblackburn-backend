@@ -6,6 +6,7 @@ import {
   IsNumber,
   IsBoolean,
   IsEnum,
+  IsArray,
   MaxLength,
   Min,
 } from 'class-validator';
@@ -58,6 +59,17 @@ export class CreateCostCodeDto {
   @IsString()
   @IsOptional()
   elies?: string;
+
+  @ApiProperty({
+    description: 'Tips for this cost code (array format)',
+    example: ['Measure twice, cut once', 'Confirm subfloor is level'],
+    required: false,
+    type: [String],
+  })
+  @IsArray()
+  @IsString({ each: true })
+  @IsOptional()
+  tips?: string[];
 
   @ApiProperty({
     description: 'Detailed description of the work',

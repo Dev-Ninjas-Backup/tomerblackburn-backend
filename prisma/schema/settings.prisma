@@ -25,4 +25,3 @@ model SiteSettings {
 
   @@map("site_settings")
 }
-
