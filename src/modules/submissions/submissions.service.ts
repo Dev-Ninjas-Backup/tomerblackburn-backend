@@ -60,6 +60,7 @@ export class SubmissionsService {
     projectAddress: string;
     zipCode: string;
     projectNotes: string;
+    projectStartDate?: Date | string | null;
   }): Promise<void> {
     const parts = params.clientName.trim().split(/\s+/);
     const firstName = parts[0] || 'N/A';
@@ -86,6 +87,9 @@ export class SubmissionsService {
         state: state.slice(0, 50),
         zipCode: (params.zipCode || 'N/A').slice(0, 20),
         message: params.projectNotes,
+        projectStartDate: params.projectStartDate
+          ? new Date(params.projectStartDate)
+          : undefined,
       },
     });
   }
@@ -154,6 +158,10 @@ export class SubmissionsService {
       service: {
         name: submission.service.name,
         code: submission.service.code,
+        scopeDescription:
+          submission.service.fullDescription ??
+          submission.service.shortDescription ??
+          undefined,
       },
       basePrice: Number(submission.basePrice),
       markup: Number(submission.markup),
@@ -162,7 +170,11 @@ export class SubmissionsService {
       totalAmount: Number(submission.totalAmount),
       submittedAt: submission.submittedAt,
       items: submission.submissionItems.map((item) => ({
-        itemName: item.itemName || item.costCode?.name || 'Item',
+        itemName:
+          item.itemName ||
+          item.costCode?.elies ||
+          item.costCode?.name ||
+          'Item',
         itemDescription:
           item.itemDescription || item.costCode?.description || undefined,
         quantity: Number(item.quantity),
@@ -309,7 +321,8 @@ export class SubmissionsService {
                 questionType: costCode?.questionType,
                 isEnabled: item.isEnabled ?? true,
                 userInputValue: item.userInputValue,
-                itemName: costCode?.name,
+                // Prefer "elies" (alias) if available; fall back to "name"
+                itemName: costCode?.elies ?? costCode?.name,
                 itemDescription: costCode?.description,
                 selectedOptionName: selectedOption?.optionName,
                 notes: item.notes,
@@ -397,6 +410,7 @@ export class SubmissionsService {
         projectAddress: submission.projectAddress,
         zipCode: submission.zipCode ?? '',
         projectNotes: submission.projectNotes ?? '',
+        projectStartDate: submission.desiredStartDate,
       }).catch((err) => {
         console.error('Failed to save estimator submission as contact:', err);
       });
