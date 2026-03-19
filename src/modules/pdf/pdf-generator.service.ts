@@ -14,6 +14,7 @@ export interface SubmissionPdfData {
   service: {
     name: string;
     code: string;
+    scopeDescription?: string;
   };
   basePrice: number;
   markup: number;
@@ -45,13 +46,14 @@ export class PdfGeneratorService {
   async generateSubmissionPdf(data: SubmissionPdfData): Promise<Buffer> {
     return new Promise((resolve, reject) => {
       try {
+        const pdfTagline = this.normalizeTaglineForPdf(data.tagline);
         const doc = new PDFDocument({
           size: 'A4',
           margins: { top: 50, bottom: 50, left: 50, right: 50 },
           info: {
             Title: `Estimate ${data.submissionNumber}`,
             Author: 'BBurn Builders',
-            Subject: `${data.tagline ?? 'Estimate'} for ${data.clientName}`,
+            Subject: `${pdfTagline ?? 'Estimate'} for ${data.clientName}`,
           },
         });
 
@@ -87,7 +89,12 @@ export class PdfGeneratorService {
       .fontSize(12)
       .font('Helvetica')
       .fillColor(this.secondaryColor)
-      .text(data.tagline ?? 'Professional Home Renovation', 50, 82);
+      .text(
+        this.normalizeTaglineForPdf(data.tagline) ??
+          'Professional Home Renovation',
+        50,
+        82,
+      );
 
     // Estimate Number and Date (right aligned)
     doc
@@ -213,7 +220,13 @@ export class PdfGeneratorService {
     currentY += 25;
 
     // Base price work of scope - add as first row
-    const basePriceRowHeight = baseRowHeight;
+    const scopeDescription = data.service.scopeDescription;
+    const scopeDescriptionHeight = scopeDescription
+      ? doc.heightOfString(scopeDescription, { width: 420 })
+      : 0;
+    const basePriceRowHeight =
+      baseRowHeight + (scopeDescription ? scopeDescriptionHeight + 5 : 0);
+
     if (data.basePrice > 0) {
       if (currentY + basePriceRowHeight > this.getMaxContentY(doc)) {
         doc.addPage({
@@ -237,12 +250,25 @@ export class PdfGeneratorService {
           { width: 420 },
         )
         .font('Helvetica')
+        .fontSize(8)
+        .fillColor('#718096');
+
+      if (scopeDescription) {
+        doc.text(scopeDescription, 55, currentY + 24, { width: 420 });
+      }
+
+      doc
+        .font('Helvetica')
+        .fontSize(9)
+        .fillColor(this.secondaryColor)
         .text(this.formatCurrency(data.basePrice), 480, currentY + 8);
       currentY += basePriceRowHeight;
     }
 
     // Filter enabled items only
-    const enabledItems = data.items.filter((item) => item.isEnabled);
+    const enabledItems = data.items.filter(
+      (item) => item.isEnabled && item.totalPrice > 0,
+    );
 
     // Table Rows (Description and Total only)
     doc.font('Helvetica').fillColor(this.secondaryColor);
@@ -478,6 +504,15 @@ export class PdfGeneratorService {
       currency: 'USD',
       minimumFractionDigits: 2,
     }).format(amount);
+  }
+
+  private normalizeTaglineForPdf(tagline?: string): string | undefined {
+    if (!tagline) return undefined;
+
+    // Commonize tagline by removing trailing location like "in Chicago"
+    // so PDFs don't show a city-specific message.
+    const normalized = tagline.replace(/\s+in\s+[A-Za-z\s]+$/i, '').trim();
+    return normalized || tagline;
   }
 
   private formatDate(date: Date): string {
