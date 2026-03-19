@@ -1637,11 +1637,6 @@ export type WhyChooseUsFeatureFindManyArgs<
    * Skip the first `n` WhyChooseUsFeatures.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of WhyChooseUsFeatures.
-   */
   distinct?:
     | Prisma.WhyChooseUsFeatureScalarFieldEnum
     | Prisma.WhyChooseUsFeatureScalarFieldEnum[];

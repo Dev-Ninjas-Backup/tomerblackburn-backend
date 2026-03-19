@@ -70,6 +70,7 @@ export const ModelName = {
   Submission: 'Submission',
   SubmissionItem: 'SubmissionItem',
   SubmissionMedia: 'SubmissionMedia',
+  SubmissionBuildingTypeFieldValue: 'SubmissionBuildingTypeFieldValue',
   TermsOfService: 'TermsOfService',
   Tip: 'Tip',
   ContactUs: 'ContactUs',
@@ -153,6 +154,7 @@ export const CostCodeScalarFieldEnum = {
   code: 'code',
   name: 'name',
   elies: 'elies',
+  tips: 'tips',
   description: 'description',
   basePrice: 'basePrice',
   markup: 'markup',
@@ -327,6 +329,7 @@ export const SubmissionScalarFieldEnum = {
   zipCode: 'zipCode',
   desiredStartDate: 'desiredStartDate',
   buildingType: 'buildingType',
+  buildingTypeId: 'buildingTypeId',
   basePrice: 'basePrice',
   markup: 'markup',
   clientPrice: 'clientPrice',
@@ -381,6 +384,18 @@ export const SubmissionMediaScalarFieldEnum = {
 
 export type SubmissionMediaScalarFieldEnum =
   (typeof SubmissionMediaScalarFieldEnum)[keyof typeof SubmissionMediaScalarFieldEnum];
+
+export const SubmissionBuildingTypeFieldValueScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  fieldId: 'fieldId',
+  value: 'value',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type SubmissionBuildingTypeFieldValueScalarFieldEnum =
+  (typeof SubmissionBuildingTypeFieldValueScalarFieldEnum)[keyof typeof SubmissionBuildingTypeFieldValueScalarFieldEnum];
 
 export const TermsOfServiceScalarFieldEnum = {
   id: 'id',

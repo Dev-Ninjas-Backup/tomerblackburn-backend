@@ -1523,11 +1523,6 @@ export type AboutUsFindManyArgs<
    * Skip the first `n` Aboutuses.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of Aboutuses.
-   */
   distinct?: Prisma.AboutUsScalarFieldEnum | Prisma.AboutUsScalarFieldEnum[];
 };
 

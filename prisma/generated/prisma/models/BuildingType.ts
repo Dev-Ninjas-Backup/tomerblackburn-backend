@@ -247,6 +247,7 @@ export type BuildingTypeWhereInput = {
   createdAt?: Prisma.DateTimeFilter<'BuildingType'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'BuildingType'> | Date | string;
   fields?: Prisma.BuildingTypeFieldListRelationFilter;
+  submissions?: Prisma.SubmissionListRelationFilter;
 };
 
 export type BuildingTypeOrderByWithRelationInput = {
@@ -258,6 +259,7 @@ export type BuildingTypeOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   fields?: Prisma.BuildingTypeFieldOrderByRelationAggregateInput;
+  submissions?: Prisma.SubmissionOrderByRelationAggregateInput;
 };
 
 export type BuildingTypeWhereUniqueInput = Prisma.AtLeast<
@@ -278,6 +280,7 @@ export type BuildingTypeWhereUniqueInput = Prisma.AtLeast<
     createdAt?: Prisma.DateTimeFilter<'BuildingType'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'BuildingType'> | Date | string;
     fields?: Prisma.BuildingTypeFieldListRelationFilter;
+    submissions?: Prisma.SubmissionListRelationFilter;
   },
   'id'
 >;
@@ -334,6 +337,7 @@ export type BuildingTypeCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   fields?: Prisma.BuildingTypeFieldCreateNestedManyWithoutBuildingTypeInput;
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutBuildingTypeRefInput;
 };
 
 export type BuildingTypeUncheckedCreateInput = {
@@ -345,6 +349,7 @@ export type BuildingTypeUncheckedCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   fields?: Prisma.BuildingTypeFieldUncheckedCreateNestedManyWithoutBuildingTypeInput;
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutBuildingTypeRefInput;
 };
 
 export type BuildingTypeUpdateInput = {
@@ -361,6 +366,7 @@ export type BuildingTypeUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   fields?: Prisma.BuildingTypeFieldUpdateManyWithoutBuildingTypeNestedInput;
+  submissions?: Prisma.SubmissionUpdateManyWithoutBuildingTypeRefNestedInput;
 };
 
 export type BuildingTypeUncheckedUpdateInput = {
@@ -377,6 +383,7 @@ export type BuildingTypeUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   fields?: Prisma.BuildingTypeFieldUncheckedUpdateManyWithoutBuildingTypeNestedInput;
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutBuildingTypeRefNestedInput;
 };
 
 export type BuildingTypeCreateManyInput = {
@@ -464,6 +471,11 @@ export type BuildingTypeScalarRelationFilter = {
   isNot?: Prisma.BuildingTypeWhereInput;
 };
 
+export type BuildingTypeNullableScalarRelationFilter = {
+  is?: Prisma.BuildingTypeWhereInput | null;
+  isNot?: Prisma.BuildingTypeWhereInput | null;
+};
+
 export type DecimalFieldUpdateOperationsInput = {
   set?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   increment?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -506,6 +518,34 @@ export type BuildingTypeUpdateOneRequiredWithoutFieldsNestedInput = {
   >;
 };
 
+export type BuildingTypeCreateNestedOneWithoutSubmissionsInput = {
+  create?: Prisma.XOR<
+    Prisma.BuildingTypeCreateWithoutSubmissionsInput,
+    Prisma.BuildingTypeUncheckedCreateWithoutSubmissionsInput
+  >;
+  connectOrCreate?: Prisma.BuildingTypeCreateOrConnectWithoutSubmissionsInput;
+  connect?: Prisma.BuildingTypeWhereUniqueInput;
+};
+
+export type BuildingTypeUpdateOneWithoutSubmissionsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.BuildingTypeCreateWithoutSubmissionsInput,
+    Prisma.BuildingTypeUncheckedCreateWithoutSubmissionsInput
+  >;
+  connectOrCreate?: Prisma.BuildingTypeCreateOrConnectWithoutSubmissionsInput;
+  upsert?: Prisma.BuildingTypeUpsertWithoutSubmissionsInput;
+  disconnect?: Prisma.BuildingTypeWhereInput | boolean;
+  delete?: Prisma.BuildingTypeWhereInput | boolean;
+  connect?: Prisma.BuildingTypeWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.BuildingTypeUpdateToOneWithWhereWithoutSubmissionsInput,
+      Prisma.BuildingTypeUpdateWithoutSubmissionsInput
+    >,
+    Prisma.BuildingTypeUncheckedUpdateWithoutSubmissionsInput
+  >;
+};
+
 export type BuildingTypeCreateWithoutFieldsInput = {
   id?: string;
   name: string;
@@ -514,6 +554,7 @@ export type BuildingTypeCreateWithoutFieldsInput = {
   displayOrder?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  submissions?: Prisma.SubmissionCreateNestedManyWithoutBuildingTypeRefInput;
 };
 
 export type BuildingTypeUncheckedCreateWithoutFieldsInput = {
@@ -524,6 +565,7 @@ export type BuildingTypeUncheckedCreateWithoutFieldsInput = {
   displayOrder?: number;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  submissions?: Prisma.SubmissionUncheckedCreateNestedManyWithoutBuildingTypeRefInput;
 };
 
 export type BuildingTypeCreateOrConnectWithoutFieldsInput = {
@@ -567,6 +609,7 @@ export type BuildingTypeUpdateWithoutFieldsInput = {
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  submissions?: Prisma.SubmissionUpdateManyWithoutBuildingTypeRefNestedInput;
 };
 
 export type BuildingTypeUncheckedUpdateWithoutFieldsInput = {
@@ -582,6 +625,89 @@ export type BuildingTypeUncheckedUpdateWithoutFieldsInput = {
   displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  submissions?: Prisma.SubmissionUncheckedUpdateManyWithoutBuildingTypeRefNestedInput;
+};
+
+export type BuildingTypeCreateWithoutSubmissionsInput = {
+  id?: string;
+  name: string;
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  isActive?: boolean;
+  displayOrder?: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  fields?: Prisma.BuildingTypeFieldCreateNestedManyWithoutBuildingTypeInput;
+};
+
+export type BuildingTypeUncheckedCreateWithoutSubmissionsInput = {
+  id?: string;
+  name: string;
+  price?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  isActive?: boolean;
+  displayOrder?: number;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  fields?: Prisma.BuildingTypeFieldUncheckedCreateNestedManyWithoutBuildingTypeInput;
+};
+
+export type BuildingTypeCreateOrConnectWithoutSubmissionsInput = {
+  where: Prisma.BuildingTypeWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.BuildingTypeCreateWithoutSubmissionsInput,
+    Prisma.BuildingTypeUncheckedCreateWithoutSubmissionsInput
+  >;
+};
+
+export type BuildingTypeUpsertWithoutSubmissionsInput = {
+  update: Prisma.XOR<
+    Prisma.BuildingTypeUpdateWithoutSubmissionsInput,
+    Prisma.BuildingTypeUncheckedUpdateWithoutSubmissionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.BuildingTypeCreateWithoutSubmissionsInput,
+    Prisma.BuildingTypeUncheckedCreateWithoutSubmissionsInput
+  >;
+  where?: Prisma.BuildingTypeWhereInput;
+};
+
+export type BuildingTypeUpdateToOneWithWhereWithoutSubmissionsInput = {
+  where?: Prisma.BuildingTypeWhereInput;
+  data: Prisma.XOR<
+    Prisma.BuildingTypeUpdateWithoutSubmissionsInput,
+    Prisma.BuildingTypeUncheckedUpdateWithoutSubmissionsInput
+  >;
+};
+
+export type BuildingTypeUpdateWithoutSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  price?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  fields?: Prisma.BuildingTypeFieldUpdateManyWithoutBuildingTypeNestedInput;
+};
+
+export type BuildingTypeUncheckedUpdateWithoutSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  price?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  fields?: Prisma.BuildingTypeFieldUncheckedUpdateManyWithoutBuildingTypeNestedInput;
 };
 
 /**
@@ -590,6 +716,7 @@ export type BuildingTypeUncheckedUpdateWithoutFieldsInput = {
 
 export type BuildingTypeCountOutputType = {
   fields: number;
+  submissions: number;
 };
 
 export type BuildingTypeCountOutputTypeSelect<
@@ -597,6 +724,7 @@ export type BuildingTypeCountOutputTypeSelect<
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   fields?: boolean | BuildingTypeCountOutputTypeCountFieldsArgs;
+  submissions?: boolean | BuildingTypeCountOutputTypeCountSubmissionsArgs;
 };
 
 /**
@@ -622,6 +750,16 @@ export type BuildingTypeCountOutputTypeCountFieldsArgs<
   where?: Prisma.BuildingTypeFieldWhereInput;
 };
 
+/**
+ * BuildingTypeCountOutputType without action
+ */
+export type BuildingTypeCountOutputTypeCountSubmissionsArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.SubmissionWhereInput;
+};
+
 export type BuildingTypeSelect<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
@@ -635,6 +773,7 @@ export type BuildingTypeSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     fields?: boolean | Prisma.BuildingType$fieldsArgs<ExtArgs>;
+    submissions?: boolean | Prisma.BuildingType$submissionsArgs<ExtArgs>;
     _count?: boolean | Prisma.BuildingTypeCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['buildingType']
@@ -700,6 +839,7 @@ export type BuildingTypeInclude<
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   fields?: boolean | Prisma.BuildingType$fieldsArgs<ExtArgs>;
+  submissions?: boolean | Prisma.BuildingType$submissionsArgs<ExtArgs>;
   _count?: boolean | Prisma.BuildingTypeCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type BuildingTypeIncludeCreateManyAndReturn<
@@ -718,6 +858,7 @@ export type $BuildingTypePayload<
   name: 'BuildingType';
   objects: {
     fields: Prisma.$BuildingTypeFieldPayload<ExtArgs>[];
+    submissions: Prisma.$SubmissionPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1295,6 +1436,17 @@ export interface Prisma__BuildingTypeClient<
       >
     | Null
   >;
+  submissions<T extends Prisma.BuildingType$submissionsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.BuildingType$submissionsArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$SubmissionPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1564,11 +1716,6 @@ export type BuildingTypeFindManyArgs<
    * Skip the first `n` BuildingTypes.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of BuildingTypes.
-   */
   distinct?:
     | Prisma.BuildingTypeScalarFieldEnum
     | Prisma.BuildingTypeScalarFieldEnum[];
@@ -1840,6 +1987,37 @@ export type BuildingType$fieldsArgs<
   distinct?:
     | Prisma.BuildingTypeFieldScalarFieldEnum
     | Prisma.BuildingTypeFieldScalarFieldEnum[];
+};
+
+/**
+ * BuildingType.submissions
+ */
+export type BuildingType$submissionsArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Submission
+   */
+  select?: Prisma.SubmissionSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Submission
+   */
+  omit?: Prisma.SubmissionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionInclude<ExtArgs> | null;
+  where?: Prisma.SubmissionWhereInput;
+  orderBy?:
+    | Prisma.SubmissionOrderByWithRelationInput
+    | Prisma.SubmissionOrderByWithRelationInput[];
+  cursor?: Prisma.SubmissionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.SubmissionScalarFieldEnum
+    | Prisma.SubmissionScalarFieldEnum[];
 };
 
 /**

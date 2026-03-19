@@ -63,6 +63,14 @@ export class CostCodeResponseDto {
   name: string;
 
   @ApiProperty({
+    description: 'Tips for this cost code',
+    example: ['Measure twice, cut once'],
+    required: false,
+    type: [String],
+  })
+  tips?: string[];
+
+  @ApiProperty({
     description: 'Description',
     required: false,
   })

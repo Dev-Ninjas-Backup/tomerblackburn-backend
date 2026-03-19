@@ -97,6 +97,12 @@ export type SubmissionItem = Prisma.SubmissionItemModel;
  */
 export type SubmissionMedia = Prisma.SubmissionMediaModel;
 /**
+ * Model SubmissionBuildingTypeFieldValue
+ *
+ */
+export type SubmissionBuildingTypeFieldValue =
+  Prisma.SubmissionBuildingTypeFieldValueModel;
+/**
  * Model TermsOfService
  *
  */

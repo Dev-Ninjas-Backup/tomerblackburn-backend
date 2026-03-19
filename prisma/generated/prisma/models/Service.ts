@@ -3054,11 +3054,6 @@ export type ServiceFindManyArgs<
    * Skip the first `n` Services.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of Services.
-   */
   distinct?: Prisma.ServiceScalarFieldEnum | Prisma.ServiceScalarFieldEnum[];
 };
 

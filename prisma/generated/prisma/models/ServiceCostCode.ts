@@ -2302,11 +2302,6 @@ export type ServiceCostCodeFindManyArgs<
    * Skip the first `n` ServiceCostCodes.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of ServiceCostCodes.
-   */
   distinct?:
     | Prisma.ServiceCostCodeScalarFieldEnum
     | Prisma.ServiceCostCodeScalarFieldEnum[];

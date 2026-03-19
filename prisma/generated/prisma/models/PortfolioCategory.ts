@@ -1574,11 +1574,6 @@ export type PortfolioCategoryFindManyArgs<
    * Skip the first `n` PortfolioCategories.
    */
   skip?: number;
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-   *
-   * Filter by unique combinations of PortfolioCategories.
-   */
   distinct?:
     | Prisma.PortfolioCategoryScalarFieldEnum
     | Prisma.PortfolioCategoryScalarFieldEnum[];
