@@ -233,21 +233,33 @@ export class PdfGeneratorService {
           : 0;
         return sum + nameH + (descH ? descH + 2 : 0) + 4;
       }, 0);
-      const basePriceRowHeight = 25 + (includedItems.length > 0 ? itemLinesHeight + 10 : 0);
+      const basePriceRowHeight =
+        25 + (includedItems.length > 0 ? itemLinesHeight + 10 : 0);
 
       if (currentY + basePriceRowHeight > this.getMaxContentY(doc)) {
-        doc.addPage({ size: 'A4', margins: { top: 50, bottom: 50, left: 50, right: 50 } });
+        doc.addPage({
+          size: 'A4',
+          margins: { top: 50, bottom: 50, left: 50, right: 50 },
+        });
         currentY = 50;
       }
 
-      doc.rect(50, currentY, 512, basePriceRowHeight).fillColor('#f7fafc').fill();
+      doc
+        .rect(50, currentY, 512, basePriceRowHeight)
+        .fillColor('#f7fafc')
+        .fill();
 
       // Base price title + price
       doc
         .fontSize(9)
         .font('Helvetica-Bold')
         .fillColor(this.secondaryColor)
-        .text(`Base Price - ${data.service.name} Bathroom Renovation (Scope of Work)`, 55, currentY + 8, { width: 420 });
+        .text(
+          `Base Price - ${data.service.name} Bathroom Renovation (Scope of Work)`,
+          55,
+          currentY + 8,
+          { width: 420 },
+        );
 
       doc
         .fontSize(9)
@@ -264,7 +276,8 @@ export class PdfGeneratorService {
             .font('Helvetica-Bold')
             .fillColor('#4a5568')
             .text(`• ${item.itemName}`, 65, bulletY, { width: 400 });
-          bulletY += doc.heightOfString(`• ${item.itemName}`, { width: 400 }) + 2;
+          bulletY +=
+            doc.heightOfString(`• ${item.itemName}`, { width: 400 }) + 2;
 
           if (item.itemDescription) {
             doc
@@ -272,7 +285,8 @@ export class PdfGeneratorService {
               .font('Helvetica')
               .fillColor('#718096')
               .text(item.itemDescription, 75, bulletY, { width: 390 });
-            bulletY += doc.heightOfString(item.itemDescription, { width: 390 }) + 2;
+            bulletY +=
+              doc.heightOfString(item.itemDescription, { width: 390 }) + 2;
           }
           bulletY += 2;
         }
