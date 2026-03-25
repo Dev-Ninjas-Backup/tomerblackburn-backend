@@ -22,6 +22,10 @@ export interface SubmissionPdfData {
   additionalItemsTotal: number;
   totalAmount: number;
   submittedAt: Date;
+  includedBaseItems: Array<{
+    itemName: string;
+    itemDescription?: string;
+  }>;
   items: Array<{
     itemName: string;
     itemDescription?: string;
@@ -219,49 +223,61 @@ export class PdfGeneratorService {
 
     currentY += 25;
 
-    // Base price work of scope - add as first row
-    const scopeDescription = data.service.scopeDescription;
-    const scopeDescriptionHeight = scopeDescription
-      ? doc.heightOfString(scopeDescription, { width: 420 })
-      : 0;
-    const basePriceRowHeight =
-      baseRowHeight + (scopeDescription ? scopeDescriptionHeight + 5 : 0);
-
+    // Base price row + included items bullets
     if (data.basePrice > 0) {
+      const includedItems = data.includedBaseItems || [];
+      const itemLinesHeight = includedItems.reduce((sum, item) => {
+        const nameH = doc.heightOfString(`• ${item.itemName}`, { width: 400 });
+        const descH = item.itemDescription
+          ? doc.heightOfString(item.itemDescription, { width: 390 })
+          : 0;
+        return sum + nameH + (descH ? descH + 2 : 0) + 4;
+      }, 0);
+      const basePriceRowHeight = 25 + (includedItems.length > 0 ? itemLinesHeight + 10 : 0);
+
       if (currentY + basePriceRowHeight > this.getMaxContentY(doc)) {
-        doc.addPage({
-          size: 'A4',
-          margins: { top: 50, bottom: 50, left: 50, right: 50 },
-        });
+        doc.addPage({ size: 'A4', margins: { top: 50, bottom: 50, left: 50, right: 50 } });
         currentY = 50;
       }
-      doc
-        .rect(50, currentY, 512, basePriceRowHeight)
-        .fillColor('#f7fafc')
-        .fill();
+
+      doc.rect(50, currentY, 512, basePriceRowHeight).fillColor('#f7fafc').fill();
+
+      // Base price title + price
       doc
         .fontSize(9)
         .font('Helvetica-Bold')
         .fillColor(this.secondaryColor)
-        .text(
-          `Base Price - ${data.service.name} Bathroom Renovation (Scope of Work)`,
-          55,
-          currentY + 8,
-          { width: 420 },
-        )
-        .font('Helvetica')
-        .fontSize(8)
-        .fillColor('#718096');
-
-      if (scopeDescription) {
-        doc.text(scopeDescription, 55, currentY + 24, { width: 420 });
-      }
+        .text(`Base Price - ${data.service.name} Bathroom Renovation (Scope of Work)`, 55, currentY + 8, { width: 420 });
 
       doc
-        .font('Helvetica')
         .fontSize(9)
+        .font('Helvetica')
         .fillColor(this.secondaryColor)
         .text(this.formatCurrency(data.basePrice), 480, currentY + 8);
+
+      // Included items as bullets below base price title
+      if (includedItems.length > 0) {
+        let bulletY = currentY + 24;
+        for (const item of includedItems) {
+          doc
+            .fontSize(8)
+            .font('Helvetica-Bold')
+            .fillColor('#4a5568')
+            .text(`• ${item.itemName}`, 65, bulletY, { width: 400 });
+          bulletY += doc.heightOfString(`• ${item.itemName}`, { width: 400 }) + 2;
+
+          if (item.itemDescription) {
+            doc
+              .fontSize(7)
+              .font('Helvetica')
+              .fillColor('#718096')
+              .text(item.itemDescription, 75, bulletY, { width: 390 });
+            bulletY += doc.heightOfString(item.itemDescription, { width: 390 }) + 2;
+          }
+          bulletY += 2;
+        }
+      }
+
       currentY += basePriceRowHeight;
     }
 

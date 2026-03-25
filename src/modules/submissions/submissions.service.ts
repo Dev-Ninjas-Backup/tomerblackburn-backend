@@ -146,6 +146,17 @@ export class SubmissionsService {
 
     const siteSettings = await this.prisma.siteSettings.findFirst();
 
+    // Fetch included base items from the service's cost codes
+    const includedBaseItems = await this.prisma.costCode.findMany({
+      where: {
+        serviceCostCodes: { some: { serviceId: submission.serviceId } },
+        isIncludedInBase: true,
+        isActive: true,
+        excludeFromExport: false,
+      },
+      orderBy: { displayOrder: 'asc' },
+    });
+
     // Prepare PDF data
     const pdfData: SubmissionPdfData = {
       submissionNumber: submission.submissionNumber,
@@ -169,6 +180,10 @@ export class SubmissionsService {
       additionalItemsTotal: Number(submission.additionalItemsTotal),
       totalAmount: Number(submission.totalAmount),
       submittedAt: submission.submittedAt,
+      includedBaseItems: includedBaseItems.map((cc) => ({
+        itemName: cc.elies ?? cc.name,
+        itemDescription: cc.description ?? undefined,
+      })),
       items: submission.submissionItems.map((item) => ({
         itemName:
           item.itemName ||
