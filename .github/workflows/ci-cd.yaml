@@ -68,71 +68,48 @@ jobs:
                   cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ secrets.PACKAGE_NAME }}:buildcache
                   cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/${{ secrets.PACKAGE_NAME }}:buildcache
 
-    deploy:
-        name: Deploy
-        runs-on: ubuntu-latest
-        needs: build-and-push
-        if: github.ref == 'refs/heads/main'
+     deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    if: github.ref == 'refs/heads/main'
 
-        steps:
-            - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-            - name: Login to Docker Hub
-              uses: docker/login-action@v3
-              with:
-                  username: ${{ secrets.DOCKER_USERNAME }}
-                  password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-            - name: Install Cloudflared
-              run: |
-                  wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
-                  sudo dpkg -i cloudflared-linux-amd64.deb
-                  cloudflared --version
+      - name: Copy Compose File
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
+          source: 'compose.yaml'
+          target: '/home/${{ secrets.VPS_USER }}/server'
 
-            - name: Setup SSH Key
-              run: |
-                  mkdir -p ~/.ssh
-                  echo "${{ secrets.VPS_SSH_PRIVATE_KEY }}" > ~/.ssh/server.ssh
-                  chmod 600 ~/.ssh/server.ssh
-                  ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || true
+      # - name: Copy Caddy File
+      #   uses: appleboy/scp-action@v0.1.7
+      #   with:
+      #     host: ${{ secrets.VPS_HOST }}
+      #     username: ${{ secrets.VPS_USER }}
+      #     key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
+      #     source: 'Caddyfile'
+      #     target: '/home/${{ secrets.VPS_USER }}/server'
 
-            - name: Setup SSH Config
-              run: |
-                  cat >> ~/.ssh/config << 'EOF'
-                  Host server
-                      HostName ${{ secrets.VPS_HOST }}
-                      User ${{ secrets.VPS_USER }}
-                      ProxyCommand cloudflared access ssh --hostname ${{ secrets.VPS_HOST }}
-                      IdentityFile ~/.ssh/server.ssh
-                      StrictHostKeyChecking no
-                      LogLevel QUIET
-                      RequestTTY no
-                      UserKnownHostsFile /dev/null
-                  EOF
-                  chmod 600 ~/.ssh/config
-
-            - name: Test SSH Connection
-              run: ssh -q server 'echo "SSH connection successful"'
-
-            - name: Docker Login on Server
-              run: ssh -q server "echo '${{ secrets.DOCKER_PASSWORD }}' | docker login -u '${{ secrets.DOCKER_USERNAME }}' --password-stdin"
-
-            - name: Copy Docker Compose File
-              run: scp -q -F ~/.ssh/config docker-compose.yml server:~/apps/${{ secrets.PACKAGE_NAME }}/
-
-            - name: Deploy Application
-              run: |
-                  ssh -q server 2>&1 << 'EOF' | grep -v "Welcome\|Documentation\|Management\|Support\|System information\|System load\|Usage of\|Memory usage\|Swap usage\|Temperature\|Processes\|Users logged in\|IPv4 address\|IPv6 address\|Strictly confined\|Expanded Security\|updates can be\|Web console"
-                  cd ~/apps/${{ secrets.PACKAGE_NAME }}
-
-                  if [ ! -f .env ]; then
-                    echo "Warning: .env file not found"
-                  fi
-
-                  docker compose --profile prod pull
-                  docker compose --profile prod down
-                  docker compose --profile prod up -d --force-recreate
-                  docker system prune -f
-
-                  echo "Deployment completed successfully!"
-                  EOF
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/server
+            sudo docker compose --profile prod pull
+            sudo docker compose --profile prod down
+            sudo docker compose --profile prod up -d
+            sudo docker system prune -f
