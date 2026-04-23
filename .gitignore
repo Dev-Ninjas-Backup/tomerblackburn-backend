@@ -64,7 +64,5 @@ cost-codes-data.json
 # Uploaded files (keep directory structure but ignore files)
 /uploads/*
 !/uploads/**/.gitkeep
-temp_auto_push.bat
-temp_interactive_push.bat
 .env
 .env.bk
