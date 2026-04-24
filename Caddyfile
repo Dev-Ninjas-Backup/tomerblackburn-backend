@@ -1,5 +1,5 @@
 dev.bburnbuilders.com, www.dev.bburnbuilders.com {
-	reverse_proxy frontend-app:3000
+	reverse_proxy frontend:3000
 
 	encode gzip
 
