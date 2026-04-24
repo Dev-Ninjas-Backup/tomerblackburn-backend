@@ -46,6 +46,8 @@ services:
       - EMAIL_HOST=${EMAIL_HOST}
       - EMAIL_PORT=${EMAIL_PORT}
       - SMTP_FROM=${SMTP_FROM}
+      - SUPER_ADMIN_EMAIL=${SUPER_ADMIN_EMAIL}
+      - SUPER_ADMIN_PASSWORD=${SUPER_ADMIN_PASSWORD}
     volumes:
       - uploads_data:/app/uploads
     depends_on:
