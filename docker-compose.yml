@@ -6,16 +6,14 @@ services:
       - dev
       - prod
     restart: always
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+    env_file:
+      - .env
     ports:
       - "${POSTGRES_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - tomerblackburn-backend-network
+      - tomerblackburn-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 10s
@@ -34,29 +32,36 @@ services:
     restart: always
     expose:
       - "${PORT}"
+    env_file:
+      - .env
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public
-      - JWT_SECRET=${JWT_SECRET}
-      - JWT_EXPIRES_IN=${JWT_EXPIRES_IN}
-      - PORT=${PORT}
-      - BASE_URL=${BASE_URL}
-      - EMAIL_USER=${EMAIL_USER}
-      - EMAIL_PASS=${EMAIL_PASS}
-      - EMAIL_HOST=${EMAIL_HOST}
-      - EMAIL_PORT=${EMAIL_PORT}
-      - SMTP_FROM=${SMTP_FROM}
-      - SUPER_ADMIN_EMAIL=${SUPER_ADMIN_EMAIL}
-      - SUPER_ADMIN_PASSWORD=${SUPER_ADMIN_PASSWORD}
     volumes:
       - uploads_data:/app/uploads
     depends_on:
       postgres:
         condition: service_healthy
     networks:
-      - tomerblackburn-backend-network
       - tomerblackburn-network
     command: sh -c "echo 'Checking Prisma setup...' && ls -la prisma/ && ls -la prisma/migrations/ && echo 'Running migrations...' && npx prisma migrate deploy && echo 'Starting application...' && node dist/src/main"
+
+  frontend:
+    image: softvence/${FRONTEND_PACKAGE_NAME}:latest
+    profiles:
+      - prod
+    platform: linux/amd64
+    container_name: ${FRONTEND_PACKAGE_NAME}_app
+    restart: always
+    expose:
+      - "3000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    networks:
+      - tomerblackburn-network
 
   caddy:
     image: caddy:2-alpine
@@ -74,8 +79,8 @@ services:
       - caddy_config:/config
     depends_on:
       - app
+      - frontend
     networks:
-      - tomerblackburn-backend-network
       - tomerblackburn-network
 
   phpmyadmin:
@@ -85,22 +90,18 @@ services:
       - prod
       - dev
     restart: always
-    environment:
-      PMA_HOST: postgres
-      PMA_PORT: 5432
-      PMA_USER: ${POSTGRES_USER}
-      PMA_PASSWORD: ${POSTGRES_PASSWORD}
+    env_file:
+      - .env
     ports:
       - "8085:80"
     depends_on:
       - postgres
     networks:
-      - tomerblackburn-backend-network
+      - tomerblackburn-network
+
 networks:
-  tomerblackburn-backend-network:
-    driver: bridge
   tomerblackburn-network:
-    external: true
+    driver: bridge
 
 volumes:
   postgres_data:
