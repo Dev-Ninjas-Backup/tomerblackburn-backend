@@ -55,6 +55,7 @@ services:
         condition: service_healthy
     networks:
       - tomerblackburn-backend-network
+      - tomerblackburn-network
     command: sh -c "echo 'Checking Prisma setup...' && ls -la prisma/ && ls -la prisma/migrations/ && echo 'Running migrations...' && npx prisma migrate deploy && echo 'Starting application...' && node dist/src/main"
 
   caddy:
@@ -75,6 +76,7 @@ services:
       - app
     networks:
       - tomerblackburn-backend-network
+      - tomerblackburn-network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -97,6 +99,8 @@ services:
 networks:
   tomerblackburn-backend-network:
     driver: bridge
+  tomerblackburn-network:
+    external: true
 
 volumes:
   postgres_data:

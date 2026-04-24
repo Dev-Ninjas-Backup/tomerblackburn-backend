@@ -1,3 +1,21 @@
+dev.bburnbuilders.com, www.dev.bburnbuilders.com {
+	reverse_proxy frontend-app:3000
+
+	encode gzip
+
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}
+
 api.bburnbuilders.com {
 	reverse_proxy app:5058
 
