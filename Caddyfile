@@ -1,5 +1,5 @@
 api.bburnbuilders.com {
-	reverse_proxy app:3000
+	reverse_proxy app:5058
 
 	encode gzip
 
