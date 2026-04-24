@@ -32,8 +32,8 @@ services:
       dockerfile: Dockerfile
     container_name: ${PACKAGE_NAME}_app
     restart: always
-    ports:
-      - "${PORT}:${PORT}"
+    expose:
+      - "${PORT}"
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?schema=public
@@ -54,6 +54,25 @@ services:
     networks:
       - tomerblackburn-backend-network
     command: sh -c "echo 'Checking Prisma setup...' && ls -la prisma/ && ls -la prisma/migrations/ && echo 'Running migrations...' && npx prisma migrate deploy && echo 'Starting application...' && node dist/src/main"
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: ${PACKAGE_NAME}_caddy
+    profiles:
+      - prod
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+    networks:
+      - tomerblackburn-backend-network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -80,3 +99,5 @@ networks:
 volumes:
   postgres_data:
   uploads_data:
+  caddy_data:
+  caddy_config:
