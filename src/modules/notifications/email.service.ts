@@ -18,6 +18,7 @@ export interface EmailOptions {
 export class EmailService {
   private readonly logger = new Logger(EmailService.name);
   private transporter: nodemailer.Transporter;
+  private fromEmail: string | undefined;
 
   constructor(
     private readonly configService: ConfigService,
@@ -32,7 +33,7 @@ export class EmailService {
       this.configService.get<string>('SMTP_HOST') ||
       this.configService.get<string>('EMAIL_HOST');
     const port =
-      this.configService.get<number>('SMTP_PORT') ||
+      Number(this.configService.get<string>('SMTP_PORT')) ||
       Number(this.configService.get<string>('EMAIL_PORT'));
     const user =
       this.configService.get<string>('SMTP_USER') ||
@@ -44,6 +45,7 @@ export class EmailService {
       this.configService.get<string>('SMTP_FROM') ||
       this.configService.get<string>('EMAIL_FROM') ||
       user;
+    this.fromEmail = from ? `BBurn Builders <${from}>` : undefined;
 
     if (!host || !port || !user || !pass) {
       this.logger.warn(
@@ -56,9 +58,14 @@ export class EmailService {
       host,
       port,
       secure: port === 465,
+      requireTLS: port === 587,
       auth: {
         user,
         pass,
+      },
+      tls: {
+        ciphers: 'SSLv3',
+        rejectUnauthorized: false,
       },
     });
 
@@ -85,19 +92,27 @@ export class EmailService {
     }
 
     try {
+      const firstName = clientName.split(' ')[0];
       const emailOptions: EmailOptions = {
         to: clientEmail,
-        subject: `Your Estimate Submission ${submissionNumber}`,
+        subject: `Your Estimate Has Been Received — Next Steps`,
         html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #333;">Thank You for Your Submission!</h2>
-            <p>Dear ${clientName},</p>
-            <p>Thank you for submitting your estimate request. We have received your submission and our team will review it shortly.</p>
-            <p><strong>Submission Number:</strong> ${submissionNumber}</p>
-            <p>Your estimate details are attached to this email as a PDF document.</p>
-            <p>If you have any questions, please don't hesitate to contact us.</p>
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
+            <p>Hi ${firstName},</p>
+            <p>Thank you for taking the time to complete your estimate! We've received your submission and our team is currently reviewing the details.</p>
+            <p>This estimate is designed to provide a strong starting point based on our experience and the information you've shared, including your selections, notes, and any photos or videos. In many cases, we're able to confirm scope and budget with just a few follow-up questions. If anything needs further clarification, we'll let you know and can coordinate a walkthrough to ensure everything is fully accounted for.</p>
+            <p>Once we're aligned on scope and budget, we'll schedule a time for your project manager to meet with you on-site to take detailed measurements and walk through the project together. From there, we'll develop a clear plan along with a visual rendering so you can review and approve everything before construction begins.</p>
+            <p>In the meantime, feel free to reply with any additional details you'd like us to consider.</p>
+            <p>We look forward to connecting with you soon.</p>
             <br>
-            <p>Best regards,<br>BBurn Builders Team</p>
+            <p>
+              Best,<br>
+              Tomer Blackburn<br>
+              Owner<br>
+              BBurn Builders<br>
+              @bburnbuilders<br>
+              773-403-9950
+            </p>
           </div>
         `,
         attachments: [
@@ -108,9 +123,8 @@ export class EmailService {
         ],
       };
 
-      const fromEmail = this.configService.get<string>('SMTP_FROM');
       const info = await this.transporter.sendMail({
-        from: fromEmail,
+        from: this.fromEmail,
         to: emailOptions.to,
         subject: emailOptions.subject,
         html: emailOptions.html,
@@ -156,7 +170,7 @@ export class EmailService {
           emailType: 'submission_confirmation',
           recipientEmail: clientEmail,
           recipientName: clientName,
-          subject: `Your Estimate Submission ${submissionNumber}`,
+          subject: `Your Estimate Has Been Received — Next Steps`,
           body: '',
           status: 'failed',
           errorMessage: error.message,
@@ -167,18 +181,18 @@ export class EmailService {
     }
   }
 
-  async sendEmail(options: EmailOptions): Promise<boolean> {
+  async sendEmail(
+    options: EmailOptions,
+  ): Promise<{ success: boolean; error?: string }> {
     if (!this.transporter) {
-      this.logger.warn(
-        'Email transporter not configured. Skipping email send.',
-      );
-      return false;
+      const msg = 'Email transporter not configured. Check SMTP env variables.';
+      this.logger.warn(msg);
+      return { success: false, error: msg };
     }
 
     try {
-      const fromEmail = this.configService.get<string>('SMTP_FROM');
       const info = await this.transporter.sendMail({
-        from: fromEmail,
+        from: this.fromEmail,
         to: options.to,
         subject: options.subject,
         html: options.html,
@@ -188,20 +202,13 @@ export class EmailService {
       this.logger.log(
         `Email sent successfully to ${options.to}: ${info.messageId}`,
       );
-      console.log(
-        `[EmailService] Email sent to ${options.to} (messageId=${info.messageId})`,
-      );
-      return true;
+      return { success: true };
     } catch (error) {
       this.logger.error(
         `Failed to send email to ${options.to}: ${error.message}`,
         error.stack,
       );
-      console.error(
-        `[EmailService] Failed to send email to ${options.to}`,
-        error,
-      );
-      return false;
+      return { success: false, error: error.message };
     }
   }
 }
