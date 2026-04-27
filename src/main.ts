@@ -7,14 +7,9 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import { Request, Response, NextFunction } from 'express';
-import { json, urlencoded } from 'express';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    bodyParser: true,
-  });
-  app.use(json({ limit: '50mb' }));
-  app.use(urlencoded({ limit: '50mb', extended: true }));
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   const appVersion =
     process.env.APP_VERSION ||
@@ -33,10 +28,6 @@ async function bootstrap() {
     credentials: true,
     exposedHeaders: ['X-App-Version', 'X-Build-Time', 'X-Cache-Bust'],
   });
-
-  // Increase body size limit for large backup imports
-  app.use(json({ limit: '50mb' }));
-  app.use(urlencoded({ limit: '50mb', extended: true }));
 
   app.use((req: Request, res: Response, next: NextFunction) => {
     if (req.path.startsWith('/api') || req.path.includes('/swagger')) {
