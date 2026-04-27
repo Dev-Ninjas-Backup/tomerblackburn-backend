@@ -29,6 +29,12 @@ async function bootstrap() {
     exposedHeaders: ['X-App-Version', 'X-Build-Time', 'X-Cache-Bust'],
   });
 
+  // Increase body size limit for large backup imports
+  app.use(
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    (require('express') as typeof import('express')).json({ limit: '50mb' }),
+  );
+
   app.use((req: Request, res: Response, next: NextFunction) => {
     if (req.path.startsWith('/api') || req.path.includes('/swagger')) {
       res.setHeader(
