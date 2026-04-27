@@ -31,6 +31,7 @@ import { PricingService } from './modules/pricing/pricing.service';
 import { EmailService } from './modules/notifications/email.service';
 import { PdfGeneratorService } from './modules/pdf/pdf-generator.service';
 import { InitModule } from './common/init/init.module';
+import { DataBackupModule } from './modules/data-backup/data-backup.module';
 
 @Module({
   imports: [
@@ -64,6 +65,7 @@ import { InitModule } from './common/init/init.module';
     DashboardModule,
     BuildingTypesModule,
     TipsModule,
+    DataBackupModule,
   ],
   controllers: [AppController],
   providers: [AppService, PricingService, EmailService, PdfGeneratorService],
