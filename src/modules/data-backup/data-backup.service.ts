@@ -27,12 +27,24 @@ export const BACKUP_TABLES = {
     label: 'Building Type Fields',
     group: 'Building Types',
   },
-  // Tips
-  tips: { label: 'Tips', group: 'Content' },
-  // Site Settings
-  siteSettings: { label: 'Site Settings', group: 'Content' },
   // Portfolio
   portfolioCategories: { label: 'Portfolio Categories', group: 'Portfolio' },
+  // Web Content
+  homePage: { label: 'Home Page', group: 'Web Content' },
+  serviceStandsOut: { label: 'Service Stands Out', group: 'Web Content' },
+  aboutUs: { label: 'About Us', group: 'Web Content' },
+  estimatorPage: { label: 'Estimator Page', group: 'Web Content' },
+  howItWorksSteps: { label: 'How It Works Steps', group: 'Web Content' },
+  whyChooseUsFeatures: {
+    label: 'Why Choose Us Features',
+    group: 'Web Content',
+  },
+  privacyPolicy: { label: 'Privacy Policy', group: 'Web Content' },
+  termsOfService: { label: 'Terms of Service', group: 'Web Content' },
+  nextSteps: { label: 'Next Steps', group: 'Web Content' },
+  // Settings & Content
+  tips: { label: 'Tips', group: 'Settings' },
+  siteSettings: { label: 'Site Settings', group: 'Settings' },
 } as const;
 
 export type TableKey = keyof typeof BACKUP_TABLES;
@@ -115,6 +127,46 @@ export class DataBackupService {
               orderBy: [{ displayOrder: 'asc' }, { createdAt: 'asc' }],
             });
           break;
+        case 'portfolioCategories':
+          data.portfolioCategories =
+            await this.prisma.portfolioCategory.findMany({
+              orderBy: [{ displayOrder: 'asc' }, { createdAt: 'asc' }],
+            });
+          break;
+        case 'homePage':
+          data.homePage = await this.prisma.homePage.findMany();
+          break;
+        case 'serviceStandsOut':
+          data.serviceStandsOut = await this.prisma.serviceStandsOut.findMany();
+          break;
+        case 'aboutUs':
+          data.aboutUs = await this.prisma.aboutUs.findMany();
+          break;
+        case 'estimatorPage':
+          data.estimatorPage = await this.prisma.estimatorPage.findMany();
+          break;
+        case 'howItWorksSteps':
+          data.howItWorksSteps = await this.prisma.howItWorksStep.findMany({
+            orderBy: { stepNumber: 'asc' },
+          });
+          break;
+        case 'whyChooseUsFeatures':
+          data.whyChooseUsFeatures =
+            await this.prisma.whyChooseUsFeature.findMany({
+              orderBy: { order: 'asc' },
+            });
+          break;
+        case 'privacyPolicy':
+          data.privacyPolicy = await this.prisma.privacyPolicy.findMany();
+          break;
+        case 'termsOfService':
+          data.termsOfService = await this.prisma.termsOfService.findMany();
+          break;
+        case 'nextSteps':
+          data.nextSteps = await this.prisma.nextStep.findMany({
+            orderBy: { displayOrder: 'asc' },
+          });
+          break;
         case 'tips':
           data.tips = await this.prisma.tip.findMany({
             orderBy: { position: 'asc' },
@@ -122,12 +174,6 @@ export class DataBackupService {
           break;
         case 'siteSettings':
           data.siteSettings = await this.prisma.siteSettings.findMany();
-          break;
-        case 'portfolioCategories':
-          data.portfolioCategories =
-            await this.prisma.portfolioCategory.findMany({
-              orderBy: [{ displayOrder: 'asc' }, { createdAt: 'asc' }],
-            });
           break;
       }
     }
@@ -143,10 +189,9 @@ export class DataBackupService {
   async importSelected(backup: BackupData): Promise<ImportResults> {
     const results: Partial<Record<TableKey, ImportResult>> = {};
     const errors: string[] = [];
-
     const { data, tables } = backup;
 
-    // Import order matters for FK constraints
+    // Order matters for FK constraints
     const orderedTables: TableKey[] = [
       'projectTypes',
       'serviceCategories',
@@ -157,9 +202,18 @@ export class DataBackupService {
       'serviceCostCodes',
       'buildingTypes',
       'buildingTypeFields',
+      'portfolioCategories',
+      'homePage',
+      'serviceStandsOut',
+      'aboutUs',
+      'estimatorPage',
+      'howItWorksSteps',
+      'whyChooseUsFeatures',
+      'privacyPolicy',
+      'termsOfService',
+      'nextSteps',
       'tips',
       'siteSettings',
-      'portfolioCategories',
     ].filter((t) => tables.includes(t as TableKey)) as TableKey[];
 
     for (const table of orderedTables) {
@@ -191,7 +245,7 @@ export class DataBackupService {
           create: {
             id: row.id as string,
             name: row.name as string,
-            description: row.description as string | null,
+            description: (row.description as string) ?? null,
             displayOrder: (row.displayOrder as number) ?? 0,
             isActive: (row.isActive as boolean) ?? true,
           },
@@ -205,7 +259,7 @@ export class DataBackupService {
           create: {
             id: row.id as string,
             name: row.name as string,
-            description: row.description as string | null,
+            description: (row.description as string) ?? null,
             projectTypeId: row.projectTypeId as string,
             displayOrder: (row.displayOrder as number) ?? 0,
             isActive: (row.isActive as boolean) ?? true,
@@ -221,8 +275,8 @@ export class DataBackupService {
             id: row.id as string,
             code: row.code as string,
             name: row.name as string,
-            shortDescription: row.shortDescription as string | null,
-            fullDescription: row.fullDescription as string | null,
+            shortDescription: (row.shortDescription as string) ?? null,
+            fullDescription: (row.fullDescription as string) ?? null,
             basePrice: row.basePrice as number,
             markup: (row.markup as number) ?? 0,
             clientPrice: (row.clientPrice as number) ?? 0,
@@ -241,7 +295,7 @@ export class DataBackupService {
             id: row.id as string,
             name: row.name as string,
             slug: row.slug as string,
-            description: row.description as string | null,
+            description: (row.description as string) ?? null,
             stepNumber: (row.stepNumber as number) ?? 1,
             displayOrder: (row.displayOrder as number) ?? 0,
             isActive: (row.isActive as boolean) ?? true,
@@ -257,9 +311,9 @@ export class DataBackupService {
             id: row.id as string,
             code: row.code as string,
             name: row.name as string,
-            elies: row.elies as string | null,
+            elies: (row.elies as string) ?? null,
             tips: (row.tips as string[]) ?? [],
-            description: row.description as string | null,
+            description: (row.description as string) ?? null,
             basePrice: (row.basePrice as number) ?? 0,
             markup: (row.markup as number) ?? 0,
             clientPrice: (row.clientPrice as number) ?? 0,
@@ -290,7 +344,7 @@ export class DataBackupService {
             id: row.id as string,
             costCodeId: row.costCodeId as string,
             optionName: row.optionName as string,
-            optionValue: row.optionValue as string | null,
+            optionValue: (row.optionValue as string) ?? null,
             priceModifier: (row.priceModifier as number) ?? 0,
             isDefault: (row.isDefault as boolean) ?? false,
             displayOrder: (row.displayOrder as number) ?? 0,
@@ -340,8 +394,144 @@ export class DataBackupService {
             buildingTypeId: row.buildingTypeId as string,
             label: row.label as string,
             fieldType: (row.fieldType as string) ?? 'text',
-            placeholder: row.placeholder as string | null,
+            placeholder: (row.placeholder as string) ?? null,
             isRequired: (row.isRequired as boolean) ?? false,
+            displayOrder: (row.displayOrder as number) ?? 0,
+          },
+        });
+        break;
+
+      case 'portfolioCategories':
+        await this.prisma.portfolioCategory.upsert({
+          where: { id: row.id as string },
+          update: {},
+          create: {
+            id: row.id as string,
+            name: row.name as string,
+            slug: row.slug as string,
+            description: (row.description as string) ?? null,
+            displayOrder: (row.displayOrder as number) ?? 0,
+            isActive: (row.isActive as boolean) ?? true,
+          },
+        });
+        break;
+
+      case 'homePage':
+        await this.prisma.homePage.upsert({
+          where: { id: row.id as string },
+          update: {},
+          create: {
+            id: row.id as string,
+            title: row.title as string,
+            subTitle: row.subTitle as string,
+            ourMissionTitle: row.ourMissionTitle as string,
+            ourMissionSubTitle: row.ourMissionSubTitle as string,
+          },
+        });
+        break;
+
+      case 'serviceStandsOut':
+        await this.prisma.serviceStandsOut.upsert({
+          where: { id: row.id as string },
+          update: {},
+          create: {
+            id: row.id as string,
+            title: row.title as string,
+            description: row.description as string,
+          },
+        });
+        break;
+
+      case 'aboutUs':
+        await this.prisma.aboutUs.upsert({
+          where: { id: row.id as string },
+          update: {},
+          create: {
+            id: row.id as string,
+            title: row.title as string,
+            ownerInfo: row.ownerInfo as string,
+            description: row.description as string,
+          },
+        });
+        break;
+
+      case 'estimatorPage':
+        await this.prisma.estimatorPage.upsert({
+          where: { id: row.id as string },
+          update: {},
+          create: {
+            id: row.id as string,
+            title: row.title as string,
+            description: row.description as string,
+            howItWorksTitle: (row.howItWorksTitle as string) ?? 'How It Works',
+            whyChooseUsTitle:
+              (row.whyChooseUsTitle as string) ?? 'Why Choose Us',
+          },
+        });
+        break;
+
+      case 'howItWorksSteps':
+        await this.prisma.howItWorksStep.upsert({
+          where: { id: row.id as string },
+          update: {},
+          create: {
+            id: row.id as string,
+            stepNumber: row.stepNumber as number,
+            title: row.title as string,
+            description: row.description as string,
+          },
+        });
+        break;
+
+      case 'whyChooseUsFeatures':
+        await this.prisma.whyChooseUsFeature.upsert({
+          where: { id: row.id as string },
+          update: {},
+          create: {
+            id: row.id as string,
+            title: row.title as string,
+            description: row.description as string,
+            order: (row.order as number) ?? 0,
+          },
+        });
+        break;
+
+      case 'privacyPolicy':
+        await this.prisma.privacyPolicy.upsert({
+          where: { id: row.id as string },
+          update: {},
+          create: {
+            id: row.id as string,
+            title: row.title as string,
+            effectiveDate: new Date(row.effectiveDate as string),
+            body: row.body as string,
+          },
+        });
+        break;
+
+      case 'termsOfService':
+        await this.prisma.termsOfService.upsert({
+          where: { id: row.id as string },
+          update: {},
+          create: {
+            id: row.id as string,
+            title: row.title as string,
+            effectiveDate: new Date(row.effectiveDate as string),
+            body: row.body as string,
+          },
+        });
+        break;
+
+      case 'nextSteps':
+        await this.prisma.nextStep.upsert({
+          where: { id: row.id as string },
+          update: {},
+          create: {
+            id: row.id as string,
+            stepNumber: row.stepNumber as number,
+            title: row.title as string,
+            description: row.description as string,
+            isActive: (row.isActive as boolean) ?? true,
             displayOrder: (row.displayOrder as number) ?? 0,
           },
         });
@@ -366,31 +556,16 @@ export class DataBackupService {
           create: {
             id: row.id as string,
             siteTitle: row.siteTitle as string,
-            siteDescription: row.siteDescription as string | null,
-            contactNumber: row.contactNumber as string | null,
-            contactEmail: row.contactEmail as string | null,
-            location: row.location as string | null,
-            address: row.address as string | null,
-            facebookUrl: row.facebookUrl as string | null,
-            instagramUrl: row.instagramUrl as string | null,
-            twitterUrl: row.twitterUrl as string | null,
-            ctaBannerText: row.ctaBannerText as string | null,
+            siteDescription: (row.siteDescription as string) ?? null,
+            contactNumber: (row.contactNumber as string) ?? null,
+            contactEmail: (row.contactEmail as string) ?? null,
+            location: (row.location as string) ?? null,
+            address: (row.address as string) ?? null,
+            facebookUrl: (row.facebookUrl as string) ?? null,
+            instagramUrl: (row.instagramUrl as string) ?? null,
+            twitterUrl: (row.twitterUrl as string) ?? null,
+            ctaBannerText: (row.ctaBannerText as string) ?? null,
             ctaBannerEnabled: (row.ctaBannerEnabled as boolean) ?? true,
-          },
-        });
-        break;
-
-      case 'portfolioCategories':
-        await this.prisma.portfolioCategory.upsert({
-          where: { id: row.id as string },
-          update: {},
-          create: {
-            id: row.id as string,
-            name: row.name as string,
-            slug: row.slug as string,
-            description: row.description as string | null,
-            displayOrder: (row.displayOrder as number) ?? 0,
-            isActive: (row.isActive as boolean) ?? true,
           },
         });
         break;
