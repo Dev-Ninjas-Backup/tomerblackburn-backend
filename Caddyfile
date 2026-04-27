@@ -33,3 +33,21 @@ api.bburnbuilders.com {
 		format json
 	}
 }
+
+studio.bburnbuilders.com {
+	reverse_proxy prisma-studio:5555
+
+	encode gzip
+
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}
