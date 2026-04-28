@@ -141,6 +141,7 @@ export class SubmissionsService {
       where: { id: submissionId },
       include: {
         service: true,
+        buildingTypeRef: true,
         submissionItems: {
           include: {
             costCode: true,
@@ -211,6 +212,10 @@ export class SubmissionsService {
         isEnabled: item.isEnabled,
       })),
       projectNotes: submission.projectNotes || undefined,
+      buildingType: submission.buildingType || undefined,
+      buildingTypePrice: submission.buildingTypeRef
+        ? Number(submission.buildingTypeRef.price) || undefined
+        : undefined,
     };
 
     const pdfBuffer =
