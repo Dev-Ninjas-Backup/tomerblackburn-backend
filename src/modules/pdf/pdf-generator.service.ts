@@ -38,6 +38,8 @@ export interface SubmissionPdfData {
     isEnabled: boolean;
   }>;
   projectNotes?: string;
+  buildingType?: string;
+  buildingTypePrice?: number;
 }
 
 @Injectable()
@@ -175,9 +177,10 @@ export class PdfGeneratorService {
     data: SubmissionPdfData,
   ): void {
     const startY = 230;
+    const boxHeight = data.buildingType ? 80 : 50;
 
     // Project Summary Box
-    doc.rect(50, startY, 512, 50).fillColor('#f7fafc').fill();
+    doc.rect(50, startY, 512, boxHeight).fillColor('#f7fafc').fill();
 
     doc
       .fontSize(12)
@@ -198,10 +201,24 @@ export class PdfGeneratorService {
       .text(`Code: ${data.service.code}`, 450, startY + 20, {
         align: 'right',
       });
+
+    if (data.buildingType) {
+      doc
+        .fontSize(10)
+        .font('Helvetica-Bold')
+        .fillColor(this.primaryColor)
+        .text('Building Type:', 60, startY + 55);
+
+      doc
+        .fontSize(10)
+        .font('Helvetica')
+        .fillColor(this.secondaryColor)
+        .text(data.buildingType, 450, startY + 55, { align: 'right' });
+    }
   }
 
   private addLineItems(doc: PDFKit.PDFDocument, data: SubmissionPdfData): void {
-    const startY = 300;
+    const startY = data.buildingType ? 330 : 300;
     let currentY = startY;
     const baseRowHeight = 25;
 
@@ -458,6 +475,19 @@ export class PdfGeneratorService {
       .text(this.formatCurrency(data.additionalItemsTotal), 480, currentY);
 
     currentY += 20;
+
+    // Building Type (if present)
+    if (
+      data.buildingType &&
+      data.buildingTypePrice &&
+      data.buildingTypePrice > 0
+    ) {
+      doc
+        .text(`Building Type (${data.buildingType}):`, totalsX, currentY)
+        .text(this.formatCurrency(data.buildingTypePrice), 480, currentY);
+
+      currentY += 20;
+    }
 
     // Horizontal line
     doc
