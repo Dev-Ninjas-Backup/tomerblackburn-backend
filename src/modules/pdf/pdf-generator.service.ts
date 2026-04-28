@@ -492,10 +492,7 @@ export class PdfGeneratorService {
         .fontSize(10)
         .font('Helvetica')
         .fillColor(this.secondaryColor)
-        .text(this.formatCurrency(data.buildingTypePrice), totalsX, currentY, {
-          width: 195,
-          align: 'right',
-        });
+        .text(this.formatCurrency(data.buildingTypePrice), 480, currentY);
 
       currentY += 15;
 
