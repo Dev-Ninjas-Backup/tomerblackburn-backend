@@ -483,8 +483,27 @@ export class PdfGeneratorService {
       data.buildingTypePrice > 0
     ) {
       doc
-        .text(`Building Type (${data.buildingType}):`, totalsX, currentY)
-        .text(this.formatCurrency(data.buildingTypePrice), 480, currentY);
+        .fontSize(10)
+        .font('Helvetica')
+        .fillColor(this.secondaryColor)
+        .text('Building Type:', totalsX, currentY);
+
+      doc
+        .fontSize(10)
+        .font('Helvetica')
+        .fillColor(this.secondaryColor)
+        .text(this.formatCurrency(data.buildingTypePrice), totalsX, currentY, {
+          width: 195,
+          align: 'right',
+        });
+
+      currentY += 15;
+
+      doc
+        .fontSize(9)
+        .font('Helvetica')
+        .fillColor('#718096')
+        .text(data.buildingType, totalsX, currentY);
 
       currentY += 20;
     }
