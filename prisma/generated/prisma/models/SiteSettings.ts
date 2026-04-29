@@ -38,6 +38,9 @@ export type SiteSettingsMinAggregateOutputType = {
   twitterUrl: string | null;
   ctaBannerText: string | null;
   ctaBannerEnabled: boolean | null;
+  notificationEmail: string | null;
+  notifyOnNewSubmission: boolean | null;
+  maintenanceMode: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -56,6 +59,9 @@ export type SiteSettingsMaxAggregateOutputType = {
   twitterUrl: string | null;
   ctaBannerText: string | null;
   ctaBannerEnabled: boolean | null;
+  notificationEmail: string | null;
+  notifyOnNewSubmission: boolean | null;
+  maintenanceMode: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -74,6 +80,9 @@ export type SiteSettingsCountAggregateOutputType = {
   twitterUrl: number;
   ctaBannerText: number;
   ctaBannerEnabled: number;
+  notificationEmail: number;
+  notifyOnNewSubmission: number;
+  maintenanceMode: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -93,6 +102,9 @@ export type SiteSettingsMinAggregateInputType = {
   twitterUrl?: true;
   ctaBannerText?: true;
   ctaBannerEnabled?: true;
+  notificationEmail?: true;
+  notifyOnNewSubmission?: true;
+  maintenanceMode?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -111,6 +123,9 @@ export type SiteSettingsMaxAggregateInputType = {
   twitterUrl?: true;
   ctaBannerText?: true;
   ctaBannerEnabled?: true;
+  notificationEmail?: true;
+  notifyOnNewSubmission?: true;
+  maintenanceMode?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -129,6 +144,9 @@ export type SiteSettingsCountAggregateInputType = {
   twitterUrl?: true;
   ctaBannerText?: true;
   ctaBannerEnabled?: true;
+  notificationEmail?: true;
+  notifyOnNewSubmission?: true;
+  maintenanceMode?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -228,6 +246,9 @@ export type SiteSettingsGroupByOutputType = {
   twitterUrl: string | null;
   ctaBannerText: string | null;
   ctaBannerEnabled: boolean;
+  notificationEmail: string | null;
+  notifyOnNewSubmission: boolean;
+  maintenanceMode: boolean;
   createdAt: Date;
   updatedAt: Date;
   _count: SiteSettingsCountAggregateOutputType | null;
@@ -265,6 +286,12 @@ export type SiteSettingsWhereInput = {
   twitterUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   ctaBannerText?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   ctaBannerEnabled?: Prisma.BoolFilter<'SiteSettings'> | boolean;
+  notificationEmail?:
+    | Prisma.StringNullableFilter<'SiteSettings'>
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFilter<'SiteSettings'> | boolean;
+  maintenanceMode?: Prisma.BoolFilter<'SiteSettings'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
   logoImage?: Prisma.XOR<
@@ -287,6 +314,9 @@ export type SiteSettingsOrderByWithRelationInput = {
   twitterUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
   ctaBannerText?: Prisma.SortOrderInput | Prisma.SortOrder;
   ctaBannerEnabled?: Prisma.SortOrder;
+  notificationEmail?: Prisma.SortOrderInput | Prisma.SortOrder;
+  notifyOnNewSubmission?: Prisma.SortOrder;
+  maintenanceMode?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   logoImage?: Prisma.FileInstanceOrderByWithRelationInput;
@@ -313,6 +343,12 @@ export type SiteSettingsWhereUniqueInput = Prisma.AtLeast<
     twitterUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
     ctaBannerText?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
     ctaBannerEnabled?: Prisma.BoolFilter<'SiteSettings'> | boolean;
+    notificationEmail?:
+      | Prisma.StringNullableFilter<'SiteSettings'>
+      | string
+      | null;
+    notifyOnNewSubmission?: Prisma.BoolFilter<'SiteSettings'> | boolean;
+    maintenanceMode?: Prisma.BoolFilter<'SiteSettings'> | boolean;
     createdAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
     logoImage?: Prisma.XOR<
@@ -337,6 +373,9 @@ export type SiteSettingsOrderByWithAggregationInput = {
   twitterUrl?: Prisma.SortOrderInput | Prisma.SortOrder;
   ctaBannerText?: Prisma.SortOrderInput | Prisma.SortOrder;
   ctaBannerEnabled?: Prisma.SortOrder;
+  notificationEmail?: Prisma.SortOrderInput | Prisma.SortOrder;
+  notifyOnNewSubmission?: Prisma.SortOrder;
+  maintenanceMode?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.SiteSettingsCountOrderByAggregateInput;
@@ -395,6 +434,14 @@ export type SiteSettingsScalarWhereWithAggregatesInput = {
     | string
     | null;
   ctaBannerEnabled?: Prisma.BoolWithAggregatesFilter<'SiteSettings'> | boolean;
+  notificationEmail?:
+    | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
+    | string
+    | null;
+  notifyOnNewSubmission?:
+    | Prisma.BoolWithAggregatesFilter<'SiteSettings'>
+    | boolean;
+  maintenanceMode?: Prisma.BoolWithAggregatesFilter<'SiteSettings'> | boolean;
   createdAt?:
     | Prisma.DateTimeWithAggregatesFilter<'SiteSettings'>
     | Date
@@ -418,6 +465,9 @@ export type SiteSettingsCreateInput = {
   twitterUrl?: string | null;
   ctaBannerText?: string | null;
   ctaBannerEnabled?: boolean;
+  notificationEmail?: string | null;
+  notifyOnNewSubmission?: boolean;
+  maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   logoImage?: Prisma.FileInstanceCreateNestedOneWithoutSiteSettingsLogosInput;
@@ -437,6 +487,9 @@ export type SiteSettingsUncheckedCreateInput = {
   twitterUrl?: string | null;
   ctaBannerText?: string | null;
   ctaBannerEnabled?: boolean;
+  notificationEmail?: string | null;
+  notifyOnNewSubmission?: boolean;
+  maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -469,6 +522,12 @@ export type SiteSettingsUpdateInput = {
     | string
     | null;
   ctaBannerEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  notificationEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   logoImage?: Prisma.FileInstanceUpdateOneWithoutSiteSettingsLogosNestedInput;
@@ -503,6 +562,12 @@ export type SiteSettingsUncheckedUpdateInput = {
     | string
     | null;
   ctaBannerEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  notificationEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -521,6 +586,9 @@ export type SiteSettingsCreateManyInput = {
   twitterUrl?: string | null;
   ctaBannerText?: string | null;
   ctaBannerEnabled?: boolean;
+  notificationEmail?: string | null;
+  notifyOnNewSubmission?: boolean;
+  maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -553,6 +621,12 @@ export type SiteSettingsUpdateManyMutationInput = {
     | string
     | null;
   ctaBannerEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  notificationEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -586,6 +660,12 @@ export type SiteSettingsUncheckedUpdateManyInput = {
     | string
     | null;
   ctaBannerEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  notificationEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -614,6 +694,9 @@ export type SiteSettingsCountOrderByAggregateInput = {
   twitterUrl?: Prisma.SortOrder;
   ctaBannerText?: Prisma.SortOrder;
   ctaBannerEnabled?: Prisma.SortOrder;
+  notificationEmail?: Prisma.SortOrder;
+  notifyOnNewSubmission?: Prisma.SortOrder;
+  maintenanceMode?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -632,6 +715,9 @@ export type SiteSettingsMaxOrderByAggregateInput = {
   twitterUrl?: Prisma.SortOrder;
   ctaBannerText?: Prisma.SortOrder;
   ctaBannerEnabled?: Prisma.SortOrder;
+  notificationEmail?: Prisma.SortOrder;
+  notifyOnNewSubmission?: Prisma.SortOrder;
+  maintenanceMode?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -650,6 +736,9 @@ export type SiteSettingsMinOrderByAggregateInput = {
   twitterUrl?: Prisma.SortOrder;
   ctaBannerText?: Prisma.SortOrder;
   ctaBannerEnabled?: Prisma.SortOrder;
+  notificationEmail?: Prisma.SortOrder;
+  notifyOnNewSubmission?: Prisma.SortOrder;
+  maintenanceMode?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -777,6 +866,9 @@ export type SiteSettingsCreateWithoutLogoImageInput = {
   twitterUrl?: string | null;
   ctaBannerText?: string | null;
   ctaBannerEnabled?: boolean;
+  notificationEmail?: string | null;
+  notifyOnNewSubmission?: boolean;
+  maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -794,6 +886,9 @@ export type SiteSettingsUncheckedCreateWithoutLogoImageInput = {
   twitterUrl?: string | null;
   ctaBannerText?: string | null;
   ctaBannerEnabled?: boolean;
+  notificationEmail?: string | null;
+  notifyOnNewSubmission?: boolean;
+  maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -862,6 +957,12 @@ export type SiteSettingsScalarWhereInput = {
   twitterUrl?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   ctaBannerText?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   ctaBannerEnabled?: Prisma.BoolFilter<'SiteSettings'> | boolean;
+  notificationEmail?:
+    | Prisma.StringNullableFilter<'SiteSettings'>
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFilter<'SiteSettings'> | boolean;
+  maintenanceMode?: Prisma.BoolFilter<'SiteSettings'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
 };
@@ -879,6 +980,9 @@ export type SiteSettingsCreateManyLogoImageInput = {
   twitterUrl?: string | null;
   ctaBannerText?: string | null;
   ctaBannerEnabled?: boolean;
+  notificationEmail?: string | null;
+  notifyOnNewSubmission?: boolean;
+  maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -911,6 +1015,12 @@ export type SiteSettingsUpdateWithoutLogoImageInput = {
     | string
     | null;
   ctaBannerEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  notificationEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -943,6 +1053,12 @@ export type SiteSettingsUncheckedUpdateWithoutLogoImageInput = {
     | string
     | null;
   ctaBannerEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  notificationEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -975,6 +1091,12 @@ export type SiteSettingsUncheckedUpdateManyWithoutLogoImageInput = {
     | string
     | null;
   ctaBannerEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  notificationEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -997,6 +1119,9 @@ export type SiteSettingsSelect<
     twitterUrl?: boolean;
     ctaBannerText?: boolean;
     ctaBannerEnabled?: boolean;
+    notificationEmail?: boolean;
+    notifyOnNewSubmission?: boolean;
+    maintenanceMode?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     logoImage?: boolean | Prisma.SiteSettings$logoImageArgs<ExtArgs>;
@@ -1022,6 +1147,9 @@ export type SiteSettingsSelectCreateManyAndReturn<
     twitterUrl?: boolean;
     ctaBannerText?: boolean;
     ctaBannerEnabled?: boolean;
+    notificationEmail?: boolean;
+    notifyOnNewSubmission?: boolean;
+    maintenanceMode?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     logoImage?: boolean | Prisma.SiteSettings$logoImageArgs<ExtArgs>;
@@ -1047,6 +1175,9 @@ export type SiteSettingsSelectUpdateManyAndReturn<
     twitterUrl?: boolean;
     ctaBannerText?: boolean;
     ctaBannerEnabled?: boolean;
+    notificationEmail?: boolean;
+    notifyOnNewSubmission?: boolean;
+    maintenanceMode?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     logoImage?: boolean | Prisma.SiteSettings$logoImageArgs<ExtArgs>;
@@ -1068,6 +1199,9 @@ export type SiteSettingsSelectScalar = {
   twitterUrl?: boolean;
   ctaBannerText?: boolean;
   ctaBannerEnabled?: boolean;
+  notificationEmail?: boolean;
+  notifyOnNewSubmission?: boolean;
+  maintenanceMode?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -1089,6 +1223,9 @@ export type SiteSettingsOmit<
   | 'twitterUrl'
   | 'ctaBannerText'
   | 'ctaBannerEnabled'
+  | 'notificationEmail'
+  | 'notifyOnNewSubmission'
+  | 'maintenanceMode'
   | 'createdAt'
   | 'updatedAt',
   ExtArgs['result']['siteSettings']
@@ -1135,6 +1272,9 @@ export type $SiteSettingsPayload<
       twitterUrl: string | null;
       ctaBannerText: string | null;
       ctaBannerEnabled: boolean;
+      notificationEmail: string | null;
+      notifyOnNewSubmission: boolean;
+      maintenanceMode: boolean;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1761,6 +1901,9 @@ export interface SiteSettingsFieldRefs {
   readonly twitterUrl: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly ctaBannerText: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly ctaBannerEnabled: Prisma.FieldRef<'SiteSettings', 'Boolean'>;
+  readonly notificationEmail: Prisma.FieldRef<'SiteSettings', 'String'>;
+  readonly notifyOnNewSubmission: Prisma.FieldRef<'SiteSettings', 'Boolean'>;
+  readonly maintenanceMode: Prisma.FieldRef<'SiteSettings', 'Boolean'>;
   readonly createdAt: Prisma.FieldRef<'SiteSettings', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'SiteSettings', 'DateTime'>;
 }

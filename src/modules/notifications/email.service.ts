@@ -181,6 +181,59 @@ export class EmailService {
     }
   }
 
+  async sendAdminNewSubmissionNotification(params: {
+    toEmail: string;
+    submissionNumber: string;
+    clientName: string;
+    clientEmail: string;
+    clientPhone?: string;
+    totalAmount: number;
+    serviceName?: string;
+  }): Promise<boolean> {
+    if (!this.transporter) return false;
+
+    const {
+      toEmail,
+      submissionNumber,
+      clientName,
+      clientEmail,
+      clientPhone,
+      totalAmount,
+      serviceName,
+    } = params;
+
+    try {
+      await this.transporter.sendMail({
+        from: this.fromEmail,
+        to: toEmail,
+        subject: `New Submission Received — ${submissionNumber}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.6; color: #333;">
+            <h2 style="color: #2d4a8f;">New Estimate Submission</h2>
+            <p>A new estimate submission has been received on BBurn Builders.</p>
+            <table style="width:100%; border-collapse: collapse; margin: 16px 0;">
+              <tr><td style="padding: 8px; font-weight: bold; color: #555; width: 40%;">Submission #</td><td style="padding: 8px;">${submissionNumber}</td></tr>
+              <tr style="background:#f9f9f9"><td style="padding: 8px; font-weight: bold; color: #555;">Client Name</td><td style="padding: 8px;">${clientName}</td></tr>
+              <tr><td style="padding: 8px; font-weight: bold; color: #555;">Client Email</td><td style="padding: 8px;">${clientEmail}</td></tr>
+              ${clientPhone ? `<tr style="background:#f9f9f9"><td style="padding: 8px; font-weight: bold; color: #555;">Phone</td><td style="padding: 8px;">${clientPhone}</td></tr>` : ''}
+              ${serviceName ? `<tr><td style="padding: 8px; font-weight: bold; color: #555;">Service</td><td style="padding: 8px;">${serviceName}</td></tr>` : ''}
+              <tr style="background:#f9f9f9"><td style="padding: 8px; font-weight: bold; color: #555;">Total Amount</td><td style="padding: 8px; font-weight: bold; color: #2d4a8f;">$${totalAmount.toLocaleString()}</td></tr>
+            </table>
+            <p style="color: #888; font-size: 13px;">Log in to the admin dashboard to view the full submission details.</p>
+          </div>
+        `,
+      });
+
+      this.logger.log(
+        `Admin notification sent to ${toEmail} for submission ${submissionNumber}`,
+      );
+      return true;
+    } catch (error) {
+      this.logger.error(`Failed to send admin notification: ${error.message}`);
+      return false;
+    }
+  }
+
   async sendEmail(
     options: EmailOptions,
   ): Promise<{ success: boolean; error?: string }> {
