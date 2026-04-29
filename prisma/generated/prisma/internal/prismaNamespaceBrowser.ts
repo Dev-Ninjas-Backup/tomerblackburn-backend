@@ -73,6 +73,7 @@ export const ModelName = {
   SubmissionBuildingTypeFieldValue: 'SubmissionBuildingTypeFieldValue',
   TermsOfService: 'TermsOfService',
   Tip: 'Tip',
+  UserPermission: 'UserPermission',
   ContactUs: 'ContactUs',
   ContactMedia: 'ContactMedia',
   EstimatorPage: 'EstimatorPage',
@@ -420,6 +421,32 @@ export const TipScalarFieldEnum = {
 export type TipScalarFieldEnum =
   (typeof TipScalarFieldEnum)[keyof typeof TipScalarFieldEnum];
 
+export const UserPermissionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  submissionsView: 'submissionsView',
+  submissionsEdit: 'submissionsEdit',
+  submissionsDelete: 'submissionsDelete',
+  contactsView: 'contactsView',
+  contactsEdit: 'contactsEdit',
+  contactsDelete: 'contactsDelete',
+  costManagementView: 'costManagementView',
+  costManagementEdit: 'costManagementEdit',
+  costManagementDelete: 'costManagementDelete',
+  projectManagementView: 'projectManagementView',
+  projectManagementEdit: 'projectManagementEdit',
+  projectManagementDelete: 'projectManagementDelete',
+  webView: 'webView',
+  webEdit: 'webEdit',
+  settingsView: 'settingsView',
+  dataBackupAccess: 'dataBackupAccess',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type UserPermissionScalarFieldEnum =
+  (typeof UserPermissionScalarFieldEnum)[keyof typeof UserPermissionScalarFieldEnum];
+
 export const ContactUsScalarFieldEnum = {
   id: 'id',
   firstName: 'firstName',
@@ -599,6 +626,9 @@ export const SiteSettingsScalarFieldEnum = {
   twitterUrl: 'twitterUrl',
   ctaBannerText: 'ctaBannerText',
   ctaBannerEnabled: 'ctaBannerEnabled',
+  notificationEmail: 'notificationEmail',
+  notifyOnNewSubmission: 'notifyOnNewSubmission',
+  maintenanceMode: 'maintenanceMode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;

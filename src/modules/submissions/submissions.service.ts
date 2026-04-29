@@ -494,6 +494,27 @@ export class SubmissionsService {
               console.error('Failed to send submission email:', error);
             });
         }
+
+        // Send admin notification if enabled
+        const siteSettings = await this.prisma.siteSettings.findFirst();
+        if (
+          siteSettings?.notifyOnNewSubmission &&
+          siteSettings?.notificationEmail
+        ) {
+          this.emailService
+            .sendAdminNewSubmissionNotification({
+              toEmail: siteSettings.notificationEmail,
+              submissionNumber: submission.submissionNumber,
+              clientName: submission.clientName,
+              clientEmail: submission.clientEmail,
+              clientPhone: submission.clientPhone ?? undefined,
+              totalAmount: Number(submission.totalAmount),
+              serviceName: submission.service?.name,
+            })
+            .catch((error) => {
+              console.error('Failed to send admin notification email:', error);
+            });
+        }
       } catch (pdfError) {
         console.error('Failed to generate PDF:', pdfError);
       }

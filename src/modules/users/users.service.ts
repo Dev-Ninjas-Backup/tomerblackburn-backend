@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto, ChangePasswordDto } from './dto/update-user.dto';
+import { UserPermissionDto } from './dto/user-permission.dto';
 import { PrismaService } from '@/common/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 
@@ -31,9 +32,11 @@ export class UsersService {
         data: {
           ...createUserDto,
           password: hashedPassword,
+          permissions: { create: {} },
         },
         include: {
           avatarFile: true,
+          permissions: true,
         },
       });
 
@@ -59,6 +62,7 @@ export class UsersService {
         where,
         include: {
           avatarFile: true,
+          permissions: true,
         },
         orderBy: { createdAt: 'desc' },
       });
@@ -82,6 +86,7 @@ export class UsersService {
         where: { id },
         include: {
           avatarFile: true,
+          permissions: true,
         },
       });
 
@@ -109,6 +114,7 @@ export class UsersService {
         where: { email },
         include: {
           avatarFile: true,
+          permissions: true,
         },
       });
 
@@ -151,6 +157,7 @@ export class UsersService {
         data: updateUserDto,
         include: {
           avatarFile: true,
+          permissions: true,
         },
       });
 
@@ -224,6 +231,7 @@ export class UsersService {
         data: { isActive: !user.isActive },
         include: {
           avatarFile: true,
+          permissions: true,
         },
       });
 
@@ -268,6 +276,46 @@ export class UsersService {
       });
     } catch (error) {
       // Silently fail - this is a non-critical operation
+    }
+  }
+
+  async getPermissions(userId: string) {
+    try {
+      await this.findOne(userId);
+
+      const permissions = await this.prisma.userPermission.upsert({
+        where: { userId },
+        create: { userId },
+        update: {},
+      });
+
+      return {
+        message: 'Permissions retrieved successfully',
+        data: permissions,
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) throw error;
+      throw new Error(`Failed to retrieve permissions: ${error.message}`);
+    }
+  }
+
+  async updatePermissions(userId: string, dto: UserPermissionDto) {
+    try {
+      await this.findOne(userId);
+
+      const permissions = await this.prisma.userPermission.upsert({
+        where: { userId },
+        create: { userId, ...dto },
+        update: { ...dto },
+      });
+
+      return {
+        message: 'Permissions updated successfully',
+        data: permissions,
+      };
+    } catch (error) {
+      if (error instanceof NotFoundException) throw error;
+      throw new Error(`Failed to update permissions: ${error.message}`);
     }
   }
 }

@@ -113,6 +113,11 @@ export type TermsOfService = Prisma.TermsOfServiceModel;
  */
 export type Tip = Prisma.TipModel;
 /**
+ * Model UserPermission
+ *
+ */
+export type UserPermission = Prisma.UserPermissionModel;
+/**
  * Model ContactUs
  *
  */

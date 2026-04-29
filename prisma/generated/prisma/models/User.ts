@@ -229,6 +229,10 @@ export type UserWhereInput = {
     Prisma.FileInstanceNullableScalarRelationFilter,
     Prisma.FileInstanceWhereInput
   > | null;
+  permissions?: Prisma.XOR<
+    Prisma.UserPermissionNullableScalarRelationFilter,
+    Prisma.UserPermissionWhereInput
+  > | null;
 };
 
 export type UserOrderByWithRelationInput = {
@@ -243,6 +247,7 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   avatarFile?: Prisma.FileInstanceOrderByWithRelationInput;
+  permissions?: Prisma.UserPermissionOrderByWithRelationInput;
 };
 
 export type UserWhereUniqueInput = Prisma.AtLeast<
@@ -263,6 +268,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
     avatarFile?: Prisma.XOR<
       Prisma.FileInstanceNullableScalarRelationFilter,
       Prisma.FileInstanceWhereInput
+    > | null;
+    permissions?: Prisma.XOR<
+      Prisma.UserPermissionNullableScalarRelationFilter,
+      Prisma.UserPermissionWhereInput
     > | null;
   },
   'id' | 'email'
@@ -322,6 +331,7 @@ export type UserCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   avatarFile?: Prisma.FileInstanceCreateNestedOneWithoutUserAvatarsInput;
+  permissions?: Prisma.UserPermissionCreateNestedOneWithoutUserInput;
 };
 
 export type UserUncheckedCreateInput = {
@@ -335,6 +345,7 @@ export type UserUncheckedCreateInput = {
   lastLoginAt?: Date | string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  permissions?: Prisma.UserPermissionUncheckedCreateNestedOneWithoutUserInput;
 };
 
 export type UserUpdateInput = {
@@ -352,6 +363,7 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   avatarFile?: Prisma.FileInstanceUpdateOneWithoutUserAvatarsNestedInput;
+  permissions?: Prisma.UserPermissionUpdateOneWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateInput = {
@@ -372,6 +384,7 @@ export type UserUncheckedUpdateInput = {
     | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  permissions?: Prisma.UserPermissionUncheckedUpdateOneWithoutUserNestedInput;
 };
 
 export type UserCreateManyInput = {
@@ -423,6 +436,11 @@ export type UserUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput;
+  isNot?: Prisma.UserWhereInput;
+};
+
 export type UserListRelationFilter = {
   every?: Prisma.UserWhereInput;
   some?: Prisma.UserWhereInput;
@@ -470,6 +488,32 @@ export type UserMinOrderByAggregateInput = {
   lastLoginAt?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+};
+
+export type UserCreateNestedOneWithoutPermissionsInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPermissionsInput,
+    Prisma.UserUncheckedCreateWithoutPermissionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPermissionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+};
+
+export type UserUpdateOneRequiredWithoutPermissionsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.UserCreateWithoutPermissionsInput,
+    Prisma.UserUncheckedCreateWithoutPermissionsInput
+  >;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPermissionsInput;
+  upsert?: Prisma.UserUpsertWithoutPermissionsInput;
+  connect?: Prisma.UserWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.UserUpdateToOneWithWhereWithoutPermissionsInput,
+      Prisma.UserUpdateWithoutPermissionsInput
+    >,
+    Prisma.UserUncheckedUpdateWithoutPermissionsInput
+  >;
 };
 
 export type UserCreateNestedManyWithoutAvatarFileInput = {
@@ -562,6 +606,97 @@ export type EnumUserRoleFieldUpdateOperationsInput = {
   set?: $Enums.UserRole;
 };
 
+export type UserCreateWithoutPermissionsInput = {
+  id?: string;
+  name: string;
+  email: string;
+  password: string;
+  role?: $Enums.UserRole;
+  isActive?: boolean;
+  lastLoginAt?: Date | string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  avatarFile?: Prisma.FileInstanceCreateNestedOneWithoutUserAvatarsInput;
+};
+
+export type UserUncheckedCreateWithoutPermissionsInput = {
+  id?: string;
+  name: string;
+  email: string;
+  password: string;
+  role?: $Enums.UserRole;
+  isActive?: boolean;
+  avatarFileId?: string | null;
+  lastLoginAt?: Date | string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type UserCreateOrConnectWithoutPermissionsInput = {
+  where: Prisma.UserWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPermissionsInput,
+    Prisma.UserUncheckedCreateWithoutPermissionsInput
+  >;
+};
+
+export type UserUpsertWithoutPermissionsInput = {
+  update: Prisma.XOR<
+    Prisma.UserUpdateWithoutPermissionsInput,
+    Prisma.UserUncheckedUpdateWithoutPermissionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.UserCreateWithoutPermissionsInput,
+    Prisma.UserUncheckedCreateWithoutPermissionsInput
+  >;
+  where?: Prisma.UserWhereInput;
+};
+
+export type UserUpdateToOneWithWhereWithoutPermissionsInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutPermissionsInput,
+    Prisma.UserUncheckedUpdateWithoutPermissionsInput
+  >;
+};
+
+export type UserUpdateWithoutPermissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  avatarFile?: Prisma.FileInstanceUpdateOneWithoutUserAvatarsNestedInput;
+};
+
+export type UserUncheckedUpdateWithoutPermissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  email?: Prisma.StringFieldUpdateOperationsInput | string;
+  password?: Prisma.StringFieldUpdateOperationsInput | string;
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  avatarFileId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  lastLoginAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
 export type UserCreateWithoutAvatarFileInput = {
   id?: string;
   name: string;
@@ -572,6 +707,7 @@ export type UserCreateWithoutAvatarFileInput = {
   lastLoginAt?: Date | string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  permissions?: Prisma.UserPermissionCreateNestedOneWithoutUserInput;
 };
 
 export type UserUncheckedCreateWithoutAvatarFileInput = {
@@ -584,6 +720,7 @@ export type UserUncheckedCreateWithoutAvatarFileInput = {
   lastLoginAt?: Date | string | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  permissions?: Prisma.UserPermissionUncheckedCreateNestedOneWithoutUserInput;
 };
 
 export type UserCreateOrConnectWithoutAvatarFileInput = {
@@ -671,6 +808,7 @@ export type UserUpdateWithoutAvatarFileInput = {
     | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  permissions?: Prisma.UserPermissionUpdateOneWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateWithoutAvatarFileInput = {
@@ -687,6 +825,7 @@ export type UserUncheckedUpdateWithoutAvatarFileInput = {
     | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  permissions?: Prisma.UserPermissionUncheckedUpdateOneWithoutUserNestedInput;
 };
 
 export type UserUncheckedUpdateManyWithoutAvatarFileInput = {
@@ -721,6 +860,7 @@ export type UserSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     avatarFile?: boolean | Prisma.User$avatarFileArgs<ExtArgs>;
+    permissions?: boolean | Prisma.User$permissionsArgs<ExtArgs>;
   },
   ExtArgs['result']['user']
 >;
@@ -799,6 +939,7 @@ export type UserInclude<
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   avatarFile?: boolean | Prisma.User$avatarFileArgs<ExtArgs>;
+  permissions?: boolean | Prisma.User$permissionsArgs<ExtArgs>;
 };
 export type UserIncludeCreateManyAndReturn<
   ExtArgs extends
@@ -820,6 +961,7 @@ export type $UserPayload<
   name: 'User';
   objects: {
     avatarFile: Prisma.$FileInstancePayload<ExtArgs> | null;
+    permissions: Prisma.$UserPermissionPayload<ExtArgs> | null;
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1396,6 +1538,19 @@ export interface Prisma__UserClient<
     ExtArgs,
     GlobalOmitOptions
   >;
+  permissions<T extends Prisma.User$permissionsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.User$permissionsArgs<ExtArgs>>,
+  ): Prisma.Prisma__UserPermissionClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$UserPermissionPayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1916,6 +2071,28 @@ export type User$avatarFileArgs<
    */
   include?: Prisma.FileInstanceInclude<ExtArgs> | null;
   where?: Prisma.FileInstanceWhereInput;
+};
+
+/**
+ * User.permissions
+ */
+export type User$permissionsArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the UserPermission
+   */
+  select?: Prisma.UserPermissionSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the UserPermission
+   */
+  omit?: Prisma.UserPermissionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserPermissionInclude<ExtArgs> | null;
+  where?: Prisma.UserPermissionWhereInput;
 };
 
 /**

@@ -72,6 +72,7 @@ export class AuthService {
         where: { email },
         include: {
           avatarFile: true,
+          permissions: true,
         },
       });
 
@@ -108,6 +109,7 @@ export class AuthService {
           role: user.role,
           isActive: user.isActive,
           avatarFile: user.avatarFile,
+          permissions: user.permissions,
           lastLoginAt: user.lastLoginAt,
           createdAt: user.createdAt,
           updatedAt: user.updatedAt,
@@ -125,16 +127,9 @@ export class AuthService {
     try {
       const user = await this.prisma.user.findUnique({
         where: { id: userId },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          role: true,
-          isActive: true,
+        include: {
           avatarFile: true,
-          lastLoginAt: true,
-          createdAt: true,
-          updatedAt: true,
+          permissions: true,
         },
       });
 
@@ -142,9 +137,11 @@ export class AuthService {
         throw new UnauthorizedException('User not found');
       }
 
+      const { password, ...data } = user;
+
       return {
         message: 'Profile retrieved successfully',
-        data: user,
+        data,
       };
     } catch (error) {
       if (error instanceof UnauthorizedException) {

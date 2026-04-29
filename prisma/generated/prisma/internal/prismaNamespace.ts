@@ -431,6 +431,7 @@ export const ModelName = {
   SubmissionBuildingTypeFieldValue: 'SubmissionBuildingTypeFieldValue',
   TermsOfService: 'TermsOfService',
   Tip: 'Tip',
+  UserPermission: 'UserPermission',
   ContactUs: 'ContactUs',
   ContactMedia: 'ContactMedia',
   EstimatorPage: 'EstimatorPage',
@@ -486,6 +487,7 @@ export type TypeMap<
       | 'submissionBuildingTypeFieldValue'
       | 'termsOfService'
       | 'tip'
+      | 'userPermission'
       | 'contactUs'
       | 'contactMedia'
       | 'estimatorPage'
@@ -1947,6 +1949,82 @@ export type TypeMap<
         };
       };
     };
+    UserPermission: {
+      payload: Prisma.$UserPermissionPayload<ExtArgs>;
+      fields: Prisma.UserPermissionFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.UserPermissionFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.UserPermissionFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>;
+        };
+        findFirst: {
+          args: Prisma.UserPermissionFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.UserPermissionFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>;
+        };
+        findMany: {
+          args: Prisma.UserPermissionFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>[];
+        };
+        create: {
+          args: Prisma.UserPermissionCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>;
+        };
+        createMany: {
+          args: Prisma.UserPermissionCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.UserPermissionCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>[];
+        };
+        delete: {
+          args: Prisma.UserPermissionDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>;
+        };
+        update: {
+          args: Prisma.UserPermissionUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>;
+        };
+        deleteMany: {
+          args: Prisma.UserPermissionDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.UserPermissionUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.UserPermissionUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>[];
+        };
+        upsert: {
+          args: Prisma.UserPermissionUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserPermissionPayload>;
+        };
+        aggregate: {
+          args: Prisma.UserPermissionAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserPermission>;
+        };
+        groupBy: {
+          args: Prisma.UserPermissionGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.UserPermissionGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.UserPermissionCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.UserPermissionCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     ContactUs: {
       payload: Prisma.$ContactUsPayload<ExtArgs>;
       fields: Prisma.ContactUsFieldRefs;
@@ -3365,6 +3443,32 @@ export const TipScalarFieldEnum = {
 export type TipScalarFieldEnum =
   (typeof TipScalarFieldEnum)[keyof typeof TipScalarFieldEnum];
 
+export const UserPermissionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  submissionsView: 'submissionsView',
+  submissionsEdit: 'submissionsEdit',
+  submissionsDelete: 'submissionsDelete',
+  contactsView: 'contactsView',
+  contactsEdit: 'contactsEdit',
+  contactsDelete: 'contactsDelete',
+  costManagementView: 'costManagementView',
+  costManagementEdit: 'costManagementEdit',
+  costManagementDelete: 'costManagementDelete',
+  projectManagementView: 'projectManagementView',
+  projectManagementEdit: 'projectManagementEdit',
+  projectManagementDelete: 'projectManagementDelete',
+  webView: 'webView',
+  webEdit: 'webEdit',
+  settingsView: 'settingsView',
+  dataBackupAccess: 'dataBackupAccess',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type UserPermissionScalarFieldEnum =
+  (typeof UserPermissionScalarFieldEnum)[keyof typeof UserPermissionScalarFieldEnum];
+
 export const ContactUsScalarFieldEnum = {
   id: 'id',
   firstName: 'firstName',
@@ -3544,6 +3648,9 @@ export const SiteSettingsScalarFieldEnum = {
   twitterUrl: 'twitterUrl',
   ctaBannerText: 'ctaBannerText',
   ctaBannerEnabled: 'ctaBannerEnabled',
+  notificationEmail: 'notificationEmail',
+  notifyOnNewSubmission: 'notifyOnNewSubmission',
+  maintenanceMode: 'maintenanceMode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
@@ -3896,6 +4003,7 @@ export type GlobalOmitConfig = {
   submissionBuildingTypeFieldValue?: Prisma.SubmissionBuildingTypeFieldValueOmit;
   termsOfService?: Prisma.TermsOfServiceOmit;
   tip?: Prisma.TipOmit;
+  userPermission?: Prisma.UserPermissionOmit;
   contactUs?: Prisma.ContactUsOmit;
   contactMedia?: Prisma.ContactMediaOmit;
   estimatorPage?: Prisma.EstimatorPageOmit;

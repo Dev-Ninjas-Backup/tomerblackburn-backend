@@ -5,6 +5,7 @@ import {
   IsOptional,
   IsEmail,
   IsUrl,
+  IsBoolean,
   MaxLength,
 } from 'class-validator';
 
@@ -115,4 +116,31 @@ export class CreateSiteSettingsDto {
   })
   @IsOptional()
   ctaBannerEnabled?: boolean;
+
+  @ApiProperty({
+    description: 'Admin email address to receive new submission notifications',
+    example: 'admin@bburnbuilders.com',
+    required: false,
+  })
+  @IsEmail()
+  @IsOptional()
+  notificationEmail?: string;
+
+  @ApiProperty({
+    description: 'Whether to send admin email on new submission',
+    example: false,
+    required: false,
+  })
+  @IsBoolean()
+  @IsOptional()
+  notifyOnNewSubmission?: boolean;
+
+  @ApiProperty({
+    description: 'Put the public site into maintenance / coming soon mode',
+    example: false,
+    required: false,
+  })
+  @IsBoolean()
+  @IsOptional()
+  maintenanceMode?: boolean;
 }
