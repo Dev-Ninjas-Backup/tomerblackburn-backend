@@ -253,6 +253,12 @@ export class ServiceCategoriesController {
     return this.serviceCategoriesService.findOne(id);
   }
 
+  @Patch('reorder')
+  @ApiOperation({ summary: 'Bulk reorder service categories by displayOrder' })
+  reorder(@Body() body: { items: { id: string; displayOrder: number }[] }) {
+    return this.serviceCategoriesService.reorder(body.items);
+  }
+
   @Patch(':id')
   @ApiOperation({
     summary: 'Update service category',

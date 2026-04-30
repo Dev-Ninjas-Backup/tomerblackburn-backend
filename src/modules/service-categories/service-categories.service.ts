@@ -294,6 +294,19 @@ export class ServiceCategoriesService {
     }
   }
 
+  async reorder(items: { id: string; displayOrder: number }[]) {
+    try {
+      await this.prisma.$transaction(
+        items.map(({ id, displayOrder }) =>
+          this.prisma.serviceCategory.update({ where: { id }, data: { displayOrder } }),
+        ),
+      );
+      return { message: 'Service categories reordered successfully' };
+    } catch (error) {
+      throw new Error(`Failed to reorder service categories: ${error.message}`);
+    }
+  }
+
   async remove(id: string) {
     try {
       // Check if service category exists

@@ -195,6 +195,12 @@ export class ProjectTypesController {
     return this.projectTypesService.findOne(id);
   }
 
+  @Patch('reorder')
+  @ApiOperation({ summary: 'Bulk reorder project types by displayOrder' })
+  reorder(@Body() body: { items: { id: string; displayOrder: number }[] }) {
+    return this.projectTypesService.reorder(body.items);
+  }
+
   @Patch(':id')
   @ApiOperation({
     summary: 'Update project type',

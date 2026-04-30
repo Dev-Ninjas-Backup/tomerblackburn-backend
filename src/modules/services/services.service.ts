@@ -277,6 +277,19 @@ export class ServicesService {
     }
   }
 
+  async reorder(items: { id: string; displayOrder: number }[]) {
+    try {
+      await this.prisma.$transaction(
+        items.map(({ id, displayOrder }) =>
+          this.prisma.service.update({ where: { id }, data: { displayOrder } }),
+        ),
+      );
+      return { message: 'Services reordered successfully' };
+    } catch (error) {
+      throw new Error(`Failed to reorder services: ${error.message}`);
+    }
+  }
+
   async remove(id: string) {
     try {
       await this.findOne(id);

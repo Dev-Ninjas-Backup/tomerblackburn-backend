@@ -208,6 +208,19 @@ export class ProjectTypesService {
     }
   }
 
+  async reorder(items: { id: string; displayOrder: number }[]) {
+    try {
+      await this.prisma.$transaction(
+        items.map(({ id, displayOrder }) =>
+          this.prisma.projectType.update({ where: { id }, data: { displayOrder } }),
+        ),
+      );
+      return { message: 'Project types reordered successfully' };
+    } catch (error) {
+      throw new Error(`Failed to reorder project types: ${error.message}`);
+    }
+  }
+
   async remove(id: string) {
     try {
       // Check if project type exists
