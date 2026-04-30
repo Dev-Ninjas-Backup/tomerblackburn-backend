@@ -206,6 +206,12 @@ export class ServicesController {
     return this.servicesService.findByCode(code);
   }
 
+  @Patch('reorder')
+  @ApiOperation({ summary: 'Bulk reorder services by displayOrder' })
+  reorder(@Body() body: { items: { id: string; displayOrder: number }[] }) {
+    return this.servicesService.reorder(body.items);
+  }
+
   @Patch(':id')
   @ApiOperation({
     summary: 'Update service',
