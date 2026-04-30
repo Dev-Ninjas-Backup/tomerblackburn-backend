@@ -120,6 +120,10 @@ export class EmailService {
             filename: `${submissionNumber}-estimate.pdf`,
             content: pdfBuffer,
           },
+          {
+            filename: 'Example_Docs.pdf',
+            path: '/app/Example_Docs.pdf',
+          },
         ],
       };
 

@@ -56,6 +56,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 /generated/prisma
 *.pdf
+!Example_Docs.pdf
 *.xlsx
 /public/
 cost-codes-data.json
@@ -66,3 +67,5 @@ cost-codes-data.json
 !/uploads/**/.gitkeep
 .env
 .env.bk
+temp_auto_push.bat
+temp_interactive_push.bat

@@ -298,7 +298,10 @@ export class ServiceCategoriesService {
     try {
       await this.prisma.$transaction(
         items.map(({ id, displayOrder }) =>
-          this.prisma.serviceCategory.update({ where: { id }, data: { displayOrder } }),
+          this.prisma.serviceCategory.update({
+            where: { id },
+            data: { displayOrder },
+          }),
         ),
       );
       return { message: 'Service categories reordered successfully' };

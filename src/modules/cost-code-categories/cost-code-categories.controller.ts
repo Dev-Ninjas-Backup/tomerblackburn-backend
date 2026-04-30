@@ -173,7 +173,9 @@ export class CostCodeCategoriesController {
   }
 
   @Patch('reorder')
-  @ApiOperation({ summary: 'Bulk reorder cost code categories by displayOrder' })
+  @ApiOperation({
+    summary: 'Bulk reorder cost code categories by displayOrder',
+  })
   reorder(@Body() body: { items: { id: string; displayOrder: number }[] }) {
     return this.costCodeCategoriesService.reorder(body.items);
   }
