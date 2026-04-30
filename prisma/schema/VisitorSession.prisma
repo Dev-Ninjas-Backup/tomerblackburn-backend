@@ -1,0 +1,15 @@
+model VisitorSession {
+  id              String   @id @default(uuid())
+  socketId        String
+  ipAddress       String?
+  userAgent       String?
+  referrer        String?
+  page            String?
+  connectedAt     DateTime
+  disconnectedAt  DateTime
+  durationSeconds Int
+
+  @@index([connectedAt])
+  @@index([ipAddress])
+  @@map("visitor_sessions")
+}

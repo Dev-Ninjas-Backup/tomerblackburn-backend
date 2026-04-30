@@ -118,6 +118,11 @@ export type Tip = Prisma.TipModel;
  */
 export type UserPermission = Prisma.UserPermissionModel;
 /**
+ * Model VisitorSession
+ *
+ */
+export type VisitorSession = Prisma.VisitorSessionModel;
+/**
  * Model ContactUs
  *
  */

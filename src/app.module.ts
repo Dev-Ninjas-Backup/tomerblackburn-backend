@@ -32,6 +32,7 @@ import { EmailService } from './modules/notifications/email.service';
 import { PdfGeneratorService } from './modules/pdf/pdf-generator.service';
 import { InitModule } from './common/init/init.module';
 import { DataBackupModule } from './modules/data-backup/data-backup.module';
+import { TrafficModule } from './modules/traffic/traffic.module';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { DataBackupModule } from './modules/data-backup/data-backup.module';
     BuildingTypesModule,
     TipsModule,
     DataBackupModule,
+    TrafficModule,
   ],
   controllers: [AppController],
   providers: [AppService, PricingService, EmailService, PdfGeneratorService],
