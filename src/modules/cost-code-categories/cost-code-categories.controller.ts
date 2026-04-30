@@ -172,6 +172,12 @@ export class CostCodeCategoriesController {
     return this.costCodeCategoriesService.findBySlug(slug);
   }
 
+  @Patch('reorder')
+  @ApiOperation({ summary: 'Bulk reorder cost code categories by displayOrder' })
+  reorder(@Body() body: { items: { id: string; displayOrder: number }[] }) {
+    return this.costCodeCategoriesService.reorder(body.items);
+  }
+
   @Patch(':id')
   @ApiOperation({ summary: 'Update cost code category' })
   @ApiParam({ name: 'id', description: 'Cost code category ID' })
