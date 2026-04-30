@@ -15,23 +15,33 @@ export interface SaveSessionDto {
 @Injectable()
 export class TrafficService implements OnModuleInit {
   private recentDurations: number[] = [];
+  private totalVisitors = 0;
 
   constructor(private readonly prisma: PrismaService) {}
 
   async onModuleInit() {
-    const recent = await this.prisma.visitorSession.findMany({
-      orderBy: { connectedAt: 'desc' },
-      take: 200,
-      select: { durationSeconds: true },
-    });
+    const [recent, total] = await Promise.all([
+      this.prisma.visitorSession.findMany({
+        orderBy: { connectedAt: 'desc' },
+        take: 200,
+        select: { durationSeconds: true },
+      }),
+      this.prisma.visitorSession.count(),
+    ]);
     this.recentDurations = recent.map((r) => r.durationSeconds);
+    this.totalVisitors = total;
   }
 
   async saveSession(data: SaveSessionDto) {
     const record = await this.prisma.visitorSession.create({ data });
     this.recentDurations.unshift(data.durationSeconds);
     if (this.recentDurations.length > 200) this.recentDurations.pop();
+    this.totalVisitors += 1;
     return record;
+  }
+
+  getTotalVisitors(): number {
+    return this.totalVisitors;
   }
 
   getInMemoryAvgDuration(activeDurations: number[]): number {

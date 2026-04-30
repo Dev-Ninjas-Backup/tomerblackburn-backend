@@ -98,6 +98,7 @@ export class TrafficGateway
     this.server.emit('traffic:update', {
       liveVisitors: visitorSessions.length,
       avgDuration,
+      totalVisitors: this.trafficService.getTotalVisitors(),
       totalTracked: this.trafficService.getTrackedCount(activeDurations.length),
     });
   }
