@@ -27,6 +27,7 @@ export type * from './models/SubmissionBuildingTypeFieldValue';
 export type * from './models/TermsOfService';
 export type * from './models/Tip';
 export type * from './models/UserPermission';
+export type * from './models/VisitorSession';
 export type * from './models/ContactUs';
 export type * from './models/ContactMedia';
 export type * from './models/EstimatorPage';

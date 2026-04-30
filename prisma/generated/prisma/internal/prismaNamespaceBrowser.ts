@@ -74,6 +74,7 @@ export const ModelName = {
   TermsOfService: 'TermsOfService',
   Tip: 'Tip',
   UserPermission: 'UserPermission',
+  VisitorSession: 'VisitorSession',
   ContactUs: 'ContactUs',
   ContactMedia: 'ContactMedia',
   EstimatorPage: 'EstimatorPage',
@@ -446,6 +447,21 @@ export const UserPermissionScalarFieldEnum = {
 
 export type UserPermissionScalarFieldEnum =
   (typeof UserPermissionScalarFieldEnum)[keyof typeof UserPermissionScalarFieldEnum];
+
+export const VisitorSessionScalarFieldEnum = {
+  id: 'id',
+  socketId: 'socketId',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  referrer: 'referrer',
+  page: 'page',
+  connectedAt: 'connectedAt',
+  disconnectedAt: 'disconnectedAt',
+  durationSeconds: 'durationSeconds',
+} as const;
+
+export type VisitorSessionScalarFieldEnum =
+  (typeof VisitorSessionScalarFieldEnum)[keyof typeof VisitorSessionScalarFieldEnum];
 
 export const ContactUsScalarFieldEnum = {
   id: 'id',

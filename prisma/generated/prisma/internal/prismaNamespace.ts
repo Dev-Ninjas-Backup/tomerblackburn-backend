@@ -432,6 +432,7 @@ export const ModelName = {
   TermsOfService: 'TermsOfService',
   Tip: 'Tip',
   UserPermission: 'UserPermission',
+  VisitorSession: 'VisitorSession',
   ContactUs: 'ContactUs',
   ContactMedia: 'ContactMedia',
   EstimatorPage: 'EstimatorPage',
@@ -488,6 +489,7 @@ export type TypeMap<
       | 'termsOfService'
       | 'tip'
       | 'userPermission'
+      | 'visitorSession'
       | 'contactUs'
       | 'contactMedia'
       | 'estimatorPage'
@@ -2025,6 +2027,82 @@ export type TypeMap<
         };
       };
     };
+    VisitorSession: {
+      payload: Prisma.$VisitorSessionPayload<ExtArgs>;
+      fields: Prisma.VisitorSessionFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.VisitorSessionFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.VisitorSessionFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload>;
+        };
+        findFirst: {
+          args: Prisma.VisitorSessionFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.VisitorSessionFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload>;
+        };
+        findMany: {
+          args: Prisma.VisitorSessionFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload>[];
+        };
+        create: {
+          args: Prisma.VisitorSessionCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload>;
+        };
+        createMany: {
+          args: Prisma.VisitorSessionCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.VisitorSessionCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload>[];
+        };
+        delete: {
+          args: Prisma.VisitorSessionDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload>;
+        };
+        update: {
+          args: Prisma.VisitorSessionUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload>;
+        };
+        deleteMany: {
+          args: Prisma.VisitorSessionDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.VisitorSessionUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.VisitorSessionUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload>[];
+        };
+        upsert: {
+          args: Prisma.VisitorSessionUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorSessionPayload>;
+        };
+        aggregate: {
+          args: Prisma.VisitorSessionAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVisitorSession>;
+        };
+        groupBy: {
+          args: Prisma.VisitorSessionGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.VisitorSessionGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.VisitorSessionCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.VisitorSessionCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     ContactUs: {
       payload: Prisma.$ContactUsPayload<ExtArgs>;
       fields: Prisma.ContactUsFieldRefs;
@@ -3469,6 +3547,21 @@ export const UserPermissionScalarFieldEnum = {
 export type UserPermissionScalarFieldEnum =
   (typeof UserPermissionScalarFieldEnum)[keyof typeof UserPermissionScalarFieldEnum];
 
+export const VisitorSessionScalarFieldEnum = {
+  id: 'id',
+  socketId: 'socketId',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  referrer: 'referrer',
+  page: 'page',
+  connectedAt: 'connectedAt',
+  disconnectedAt: 'disconnectedAt',
+  durationSeconds: 'durationSeconds',
+} as const;
+
+export type VisitorSessionScalarFieldEnum =
+  (typeof VisitorSessionScalarFieldEnum)[keyof typeof VisitorSessionScalarFieldEnum];
+
 export const ContactUsScalarFieldEnum = {
   id: 'id',
   firstName: 'firstName',
@@ -4004,6 +4097,7 @@ export type GlobalOmitConfig = {
   termsOfService?: Prisma.TermsOfServiceOmit;
   tip?: Prisma.TipOmit;
   userPermission?: Prisma.UserPermissionOmit;
+  visitorSession?: Prisma.VisitorSessionOmit;
   contactUs?: Prisma.ContactUsOmit;
   contactMedia?: Prisma.ContactMediaOmit;
   estimatorPage?: Prisma.EstimatorPageOmit;
