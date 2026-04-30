@@ -500,6 +500,19 @@ export class CostCodesService {
     }
   }
 
+  async reorder(items: { id: string; displayOrder: number }[]) {
+    try {
+      await this.prisma.$transaction(
+        items.map(({ id, displayOrder }) =>
+          this.prisma.costCode.update({ where: { id }, data: { displayOrder } }),
+        ),
+      );
+      return { message: 'Cost codes reordered successfully' };
+    } catch (error) {
+      throw new Error(`Failed to reorder cost codes: ${error.message}`);
+    }
+  }
+
   async remove(id: string) {
     try {
       await this.findOne(id);

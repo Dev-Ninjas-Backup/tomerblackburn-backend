@@ -284,6 +284,12 @@ export class CostCodesController {
     return this.costCodesService.findByCode(code);
   }
 
+  @Patch('reorder')
+  @ApiOperation({ summary: 'Bulk reorder cost codes by displayOrder' })
+  reorder(@Body() body: { items: { id: string; displayOrder: number }[] }) {
+    return this.costCodesService.reorder(body.items);
+  }
+
   @Patch(':id')
   @ApiOperation({
     summary: 'Update cost code',
