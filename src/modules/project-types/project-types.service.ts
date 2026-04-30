@@ -212,7 +212,10 @@ export class ProjectTypesService {
     try {
       await this.prisma.$transaction(
         items.map(({ id, displayOrder }) =>
-          this.prisma.projectType.update({ where: { id }, data: { displayOrder } }),
+          this.prisma.projectType.update({
+            where: { id },
+            data: { displayOrder },
+          }),
         ),
       );
       return { message: 'Project types reordered successfully' };

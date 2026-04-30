@@ -236,7 +236,10 @@ export class CostCodeCategoriesService {
     try {
       await this.prisma.$transaction(
         items.map(({ id, displayOrder }) =>
-          this.prisma.costCodeCategory.update({ where: { id }, data: { displayOrder } }),
+          this.prisma.costCodeCategory.update({
+            where: { id },
+            data: { displayOrder },
+          }),
         ),
       );
       return { message: 'Categories reordered successfully' };
