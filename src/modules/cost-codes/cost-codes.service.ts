@@ -7,6 +7,7 @@ import { CreateCostCodeDto } from './dto/create-cost-code.dto';
 import { UpdateCostCodeDto } from './dto/update-cost-code.dto';
 import { CostCodeFilterDto } from './dto/cost-code-filter.dto';
 import { PrismaService } from '@/common/prisma/prisma.service';
+import * as ExcelJS from 'exceljs';
 
 @Injectable()
 export class CostCodesService {
@@ -546,5 +547,85 @@ export class CostCodesService {
       }
       throw new Error(`Failed to delete cost code: ${error.message}`);
     }
+  }
+
+  async exportForBuildertrend(): Promise<{
+    buffer: ExcelJS.Buffer;
+    filename: string;
+  }> {
+    const UNIT_MAP: Record<string, string> = {
+      FIXED: 'LS',
+      PER_SQFT: 'SF',
+      PER_EACH: 'EA',
+      PER_LOT: 'LS',
+      PER_SET: 'LS',
+      PER_UPGRADE: 'EA',
+    };
+
+    // Get all services
+    const services = await this.prisma.service.findMany({
+      where: { isActive: true },
+      orderBy: { displayOrder: 'asc' },
+    });
+
+    const workbook = new ExcelJS.Workbook();
+    workbook.creator = 'BBurn Builders';
+    workbook.created = new Date();
+
+    for (const service of services) {
+      // Get cost codes for this service, exclude branch questions
+      const costCodes = await this.prisma.costCode.findMany({
+        where: {
+          serviceId: service.id,
+          isActive: true,
+          excludeFromExport: false,
+        },
+        include: { category: true },
+        orderBy: [{ displayOrder: 'asc' }, { code: 'asc' }],
+      });
+
+      // Sheet name max 31 chars
+      const sheetName = service.name.slice(0, 31);
+      const sheet = workbook.addWorksheet(sheetName);
+
+      // Header row
+      sheet.columns = [
+        { header: 'Cost Code', key: 'code', width: 30 },
+        { header: 'Description', key: 'description', width: 50 },
+        { header: 'Unit', key: 'unit', width: 10 },
+        { header: 'Unit Cost', key: 'unitCost', width: 15 },
+        { header: 'Category', key: 'category', width: 25 },
+      ];
+
+      // Style header
+      sheet.getRow(1).eachCell((cell) => {
+        cell.font = { bold: true, color: { argb: 'FFFFFFFF' } };
+        cell.fill = {
+          type: 'pattern',
+          pattern: 'solid',
+          fgColor: { argb: 'FF1A365D' },
+        };
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
+      });
+      sheet.getRow(1).height = 20;
+
+      // Data rows
+      for (const cc of costCodes) {
+        sheet.addRow({
+          code: cc.elies ?? cc.name,
+          description: cc.description ?? '',
+          unit: UNIT_MAP[cc.unitType] ?? 'LS',
+          unitCost: Number(cc.clientPrice),
+          category: cc.category?.name ?? '',
+        });
+      }
+
+      // Format unit cost column as currency
+      sheet.getColumn('unitCost').numFmt = '$#,##0.00';
+    }
+
+    const buffer = await workbook.xlsx.writeBuffer();
+    const filename = `buildertrend-cost-codes-${new Date().toISOString().slice(0, 10)}.xlsx`;
+    return { buffer, filename };
   }
 }
