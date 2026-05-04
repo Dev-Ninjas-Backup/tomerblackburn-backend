@@ -8,7 +8,9 @@ import {
   Delete,
   Query,
   HttpStatus,
+  Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 import {
   ApiTags,
   ApiOperation,
@@ -61,6 +63,21 @@ export class CostCodesController {
   })
   create(@Body() createCostCodeDto: CreateCostCodeDto) {
     return this.costCodesService.create(createCostCodeDto);
+  }
+
+  @Get('export/buildertrend')
+  @ApiOperation({
+    summary: 'Export cost codes for Buildertrend import (Excel)',
+  })
+  async exportForBuildertrend(@Res() res: Response) {
+    const { buffer, filename } =
+      await this.costCodesService.exportForBuildertrend();
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    );
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.send(buffer);
   }
 
   @Get()
