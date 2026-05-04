@@ -64,6 +64,7 @@ enum QuestionType {
 enum UnitType {
   FIXED // Fixed one-time cost
   PER_SQFT // Price per square foot
+  PER_LF // Price per linear foot
   PER_EACH // Price per unit/item
   PER_LOT // Price per lot
   PER_SET // Price per set
