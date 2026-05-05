@@ -234,6 +234,14 @@ export class CreateSubmissionDto {
   totalAmount: number;
 
   @ApiProperty({
+    description: 'How did the client hear about us',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  hearAboutUs?: string;
+
+  @ApiProperty({
     description: 'Project notes',
     required: false,
   })

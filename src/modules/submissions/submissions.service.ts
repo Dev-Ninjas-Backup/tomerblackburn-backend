@@ -258,6 +258,7 @@ export class SubmissionsService {
         totalAmount,
         projectNotes,
         additionalDetails,
+        hearAboutUs,
         items,
       } = createSubmissionDto;
 
@@ -378,6 +379,7 @@ export class SubmissionsService {
             : null,
           buildingType: resolvedBuildingTypeName,
           buildingTypeId,
+          hearAboutUs,
           basePrice,
           markup,
           clientPrice,

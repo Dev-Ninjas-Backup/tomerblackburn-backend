@@ -1,0 +1,19 @@
+model HearAboutUsOption {
+  id           String   @id @default(uuid())
+  label        String
+  displayOrder Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("hear_about_us_options")
+}
+
+model HearAboutUsSetting {
+  id        String   @id @default(uuid())
+  isEnabled Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("hear_about_us_settings")
+}

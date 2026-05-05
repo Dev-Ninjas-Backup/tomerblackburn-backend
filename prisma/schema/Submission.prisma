@@ -12,6 +12,7 @@ model Submission {
   desiredStartDate DateTime?
   buildingType     String?
   buildingTypeId   String?
+  hearAboutUs      String?
 
   basePrice            Decimal @db.Decimal(10, 2)
   markup               Decimal @default(0) @db.Decimal(5, 2)

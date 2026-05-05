@@ -33,6 +33,7 @@ import { PdfGeneratorService } from './modules/pdf/pdf-generator.service';
 import { InitModule } from './common/init/init.module';
 import { DataBackupModule } from './modules/data-backup/data-backup.module';
 import { TrafficModule } from './modules/traffic/traffic.module';
+import { HearAboutUsModule } from './modules/hear-about-us/hear-about-us.module';
 
 @Module({
   imports: [
@@ -68,6 +69,7 @@ import { TrafficModule } from './modules/traffic/traffic.module';
     TipsModule,
     DataBackupModule,
     TrafficModule,
+    HearAboutUsModule,
   ],
   controllers: [AppController],
   providers: [AppService, PricingService, EmailService, PdfGeneratorService],
