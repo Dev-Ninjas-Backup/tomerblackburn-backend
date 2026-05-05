@@ -559,7 +559,9 @@ export class CostCodesService {
 
   async addImage(costCodeId: string, fileInstanceId: string) {
     await this.findOne(costCodeId);
-    const count = await this.prisma.costCodeImage.count({ where: { costCodeId } });
+    const count = await this.prisma.costCodeImage.count({
+      where: { costCodeId },
+    });
     const image = await this.prisma.costCodeImage.create({
       data: { costCodeId, fileInstanceId, displayOrder: count },
       include: { fileInstance: true },
@@ -575,7 +577,10 @@ export class CostCodesService {
   async reorderImages(items: { id: string; displayOrder: number }[]) {
     await this.prisma.$transaction(
       items.map(({ id, displayOrder }) =>
-        this.prisma.costCodeImage.update({ where: { id }, data: { displayOrder } }),
+        this.prisma.costCodeImage.update({
+          where: { id },
+          data: { displayOrder },
+        }),
       ),
     );
     return { message: 'Images reordered successfully' };

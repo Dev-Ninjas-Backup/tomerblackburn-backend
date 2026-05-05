@@ -377,10 +377,7 @@ export class CostCodesController {
 
   @Post(':id/images')
   @ApiOperation({ summary: 'Add image to cost code' })
-  addImage(
-    @Param('id') id: string,
-    @Body() body: { fileInstanceId: string },
-  ) {
+  addImage(@Param('id') id: string, @Body() body: { fileInstanceId: string }) {
     return this.costCodesService.addImage(id, body.fileInstanceId);
   }
 
