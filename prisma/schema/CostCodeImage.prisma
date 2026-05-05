@@ -1,0 +1,13 @@
+model CostCodeImage {
+  id           String   @id @default(uuid())
+  costCodeId   String
+  fileInstanceId String
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  costCode     CostCode     @relation(fields: [costCodeId], references: [id], onDelete: Cascade)
+  fileInstance FileInstance @relation("CostCodeImageFile", fields: [fileInstanceId], references: [id])
+
+  @@index([costCodeId])
+  @@map("cost_code_images")
+}

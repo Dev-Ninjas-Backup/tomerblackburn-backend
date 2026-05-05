@@ -26,6 +26,7 @@ model FileInstance {
   whyChooseUsIcons        WhyChooseUsFeature[] @relation("WhyChooseUsIcon")
   projectTypes            ProjectType[]
   serviceCategories       ServiceCategory[]
+  costCodeImages          CostCodeImage[]      @relation("CostCodeImageFile")
 
   @@map("file_instances")
 }
