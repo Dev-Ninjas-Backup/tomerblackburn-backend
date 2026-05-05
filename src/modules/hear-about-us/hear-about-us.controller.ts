@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Patch, Delete, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { HearAboutUsService } from './hear-about-us.service';
 import {
@@ -48,13 +56,18 @@ export class HearAboutUsController {
 
   @Patch('options/reorder')
   @ApiOperation({ summary: 'Reorder options' })
-  reorderOptions(@Body() body: { items: { id: string; displayOrder: number }[] }) {
+  reorderOptions(
+    @Body() body: { items: { id: string; displayOrder: number }[] },
+  ) {
     return this.service.reorderOptions(body.items);
   }
 
   @Patch('options/:id')
   @ApiOperation({ summary: 'Update option' })
-  updateOption(@Param('id') id: string, @Body() dto: UpdateHearAboutUsOptionDto) {
+  updateOption(
+    @Param('id') id: string,
+    @Body() dto: UpdateHearAboutUsOptionDto,
+  ) {
     return this.service.updateOption(id, dto);
   }
 
