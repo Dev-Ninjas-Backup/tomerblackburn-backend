@@ -4,8 +4,9 @@ model ProjectType {
   description String?
   imageId     String?
 
-  displayOrder Int     @default(0)
-  isActive     Boolean @default(true)
+  displayOrder  Int     @default(0)
+  isActive      Boolean @default(true)
+  isComingSoon  Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

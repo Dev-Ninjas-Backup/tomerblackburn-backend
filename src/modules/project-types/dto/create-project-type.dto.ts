@@ -75,4 +75,18 @@ export class CreateProjectTypeDto {
   @IsBoolean()
   @IsOptional()
   isActive?: boolean;
+
+  @ApiProperty({
+    description: 'Show as Coming Soon — card visible but not selectable',
+    default: false,
+    required: false,
+  })
+  @Transform(({ value }) => {
+    if (value === 'true' || value === true) return true;
+    if (value === 'false' || value === false) return false;
+    return false;
+  })
+  @IsBoolean()
+  @IsOptional()
+  isComingSoon?: boolean;
 }
