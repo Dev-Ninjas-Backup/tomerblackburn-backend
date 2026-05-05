@@ -375,6 +375,26 @@ export class CostCodesController {
     return this.costCodesService.toggleStatus(id);
   }
 
+  @Post(':id/images')
+  @ApiOperation({ summary: 'Add image to cost code' })
+  addImage(@Param('id') id: string, @Body() body: { fileInstanceId: string }) {
+    return this.costCodesService.addImage(id, body.fileInstanceId);
+  }
+
+  @Delete(':id/images/:imageId')
+  @ApiOperation({ summary: 'Remove image from cost code' })
+  removeImage(@Param('imageId') imageId: string) {
+    return this.costCodesService.removeImage(imageId);
+  }
+
+  @Patch(':id/images/reorder')
+  @ApiOperation({ summary: 'Reorder cost code images' })
+  reorderImages(
+    @Body() body: { items: { id: string; displayOrder: number }[] },
+  ) {
+    return this.costCodesService.reorderImages(body.items);
+  }
+
   @Delete(':id')
   @ApiOperation({
     summary: 'Delete cost code',

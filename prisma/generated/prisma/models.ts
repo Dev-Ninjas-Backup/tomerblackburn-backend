@@ -12,6 +12,7 @@ export type * from './models/BuildingType';
 export type * from './models/BuildingTypeField';
 export type * from './models/CostCode';
 export type * from './models/CostCodeCategory';
+export type * from './models/CostCodeImage';
 export type * from './models/CostCodeOption';
 export type * from './models/EmailLog';
 export type * from './models/HearAboutUsOption';

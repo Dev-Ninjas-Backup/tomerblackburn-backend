@@ -417,6 +417,7 @@ export const ModelName = {
   BuildingTypeField: 'BuildingTypeField',
   CostCode: 'CostCode',
   CostCodeCategory: 'CostCodeCategory',
+  CostCodeImage: 'CostCodeImage',
   CostCodeOption: 'CostCodeOption',
   EmailLog: 'EmailLog',
   HearAboutUsOption: 'HearAboutUsOption',
@@ -476,6 +477,7 @@ export type TypeMap<
       | 'buildingTypeField'
       | 'costCode'
       | 'costCodeCategory'
+      | 'costCodeImage'
       | 'costCodeOption'
       | 'emailLog'
       | 'hearAboutUsOption'
@@ -887,6 +889,82 @@ export type TypeMap<
           args: Prisma.CostCodeCategoryCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.CostCodeCategoryCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    CostCodeImage: {
+      payload: Prisma.$CostCodeImagePayload<ExtArgs>;
+      fields: Prisma.CostCodeImageFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.CostCodeImageFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.CostCodeImageFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload>;
+        };
+        findFirst: {
+          args: Prisma.CostCodeImageFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.CostCodeImageFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload>;
+        };
+        findMany: {
+          args: Prisma.CostCodeImageFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload>[];
+        };
+        create: {
+          args: Prisma.CostCodeImageCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload>;
+        };
+        createMany: {
+          args: Prisma.CostCodeImageCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.CostCodeImageCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload>[];
+        };
+        delete: {
+          args: Prisma.CostCodeImageDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload>;
+        };
+        update: {
+          args: Prisma.CostCodeImageUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload>;
+        };
+        deleteMany: {
+          args: Prisma.CostCodeImageDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.CostCodeImageUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.CostCodeImageUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload>[];
+        };
+        upsert: {
+          args: Prisma.CostCodeImageUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CostCodeImagePayload>;
+        };
+        aggregate: {
+          args: Prisma.CostCodeImageAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCostCodeImage>;
+        };
+        groupBy: {
+          args: Prisma.CostCodeImageGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.CostCodeImageGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.CostCodeImageCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.CostCodeImageCountAggregateOutputType>
             | number;
         };
       };
@@ -3450,6 +3528,17 @@ export const CostCodeCategoryScalarFieldEnum = {
 export type CostCodeCategoryScalarFieldEnum =
   (typeof CostCodeCategoryScalarFieldEnum)[keyof typeof CostCodeCategoryScalarFieldEnum];
 
+export const CostCodeImageScalarFieldEnum = {
+  id: 'id',
+  costCodeId: 'costCodeId',
+  fileInstanceId: 'fileInstanceId',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+} as const;
+
+export type CostCodeImageScalarFieldEnum =
+  (typeof CostCodeImageScalarFieldEnum)[keyof typeof CostCodeImageScalarFieldEnum];
+
 export const CostCodeOptionScalarFieldEnum = {
   id: 'id',
   costCodeId: 'costCodeId',
@@ -4262,6 +4351,7 @@ export type GlobalOmitConfig = {
   buildingTypeField?: Prisma.BuildingTypeFieldOmit;
   costCode?: Prisma.CostCodeOmit;
   costCodeCategory?: Prisma.CostCodeCategoryOmit;
+  costCodeImage?: Prisma.CostCodeImageOmit;
   costCodeOption?: Prisma.CostCodeOptionOmit;
   emailLog?: Prisma.EmailLogOmit;
   hearAboutUsOption?: Prisma.HearAboutUsOptionOmit;

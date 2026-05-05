@@ -141,6 +141,10 @@ export class CostCodesService {
             where: { isActive: true },
             orderBy: { displayOrder: 'asc' },
           },
+          images: {
+            include: { fileInstance: true },
+            orderBy: { displayOrder: 'asc' },
+          },
         },
         orderBy: [{ displayOrder: 'asc' }, { code: 'asc' }],
       });
@@ -303,6 +307,10 @@ export class CostCodesService {
           parentCostCode: true,
           childCostCodes: {
             where: { isActive: true },
+            orderBy: { displayOrder: 'asc' },
+          },
+          images: {
+            include: { fileInstance: true },
             orderBy: { displayOrder: 'asc' },
           },
         },
@@ -547,6 +555,35 @@ export class CostCodesService {
       }
       throw new Error(`Failed to delete cost code: ${error.message}`);
     }
+  }
+
+  async addImage(costCodeId: string, fileInstanceId: string) {
+    await this.findOne(costCodeId);
+    const count = await this.prisma.costCodeImage.count({
+      where: { costCodeId },
+    });
+    const image = await this.prisma.costCodeImage.create({
+      data: { costCodeId, fileInstanceId, displayOrder: count },
+      include: { fileInstance: true },
+    });
+    return { message: 'Image added successfully', data: image };
+  }
+
+  async removeImage(imageId: string) {
+    await this.prisma.costCodeImage.delete({ where: { id: imageId } });
+    return { message: 'Image deleted successfully' };
+  }
+
+  async reorderImages(items: { id: string; displayOrder: number }[]) {
+    await this.prisma.$transaction(
+      items.map(({ id, displayOrder }) =>
+        this.prisma.costCodeImage.update({
+          where: { id },
+          data: { displayOrder },
+        }),
+      ),
+    );
+    return { message: 'Images reordered successfully' };
   }
 
   async exportForBuildertrend(): Promise<{

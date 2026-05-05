@@ -38,6 +38,7 @@ model CostCode {
 
   parentCostCode CostCode?  @relation("NestedQuestions", fields: [parentCostCodeId], references: [id])
   childCostCodes CostCode[] @relation("NestedQuestions")
+  images         CostCodeImage[]
 
   @@index([code])
   @@index([categoryId])

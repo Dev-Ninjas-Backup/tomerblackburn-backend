@@ -425,6 +425,7 @@ export type CostCodeWhereInput = {
     Prisma.CostCodeWhereInput
   > | null;
   childCostCodes?: Prisma.CostCodeListRelationFilter;
+  images?: Prisma.CostCodeImageListRelationFilter;
 };
 
 export type CostCodeOrderByWithRelationInput = {
@@ -460,6 +461,7 @@ export type CostCodeOrderByWithRelationInput = {
   submissionItems?: Prisma.SubmissionItemOrderByRelationAggregateInput;
   parentCostCode?: Prisma.CostCodeOrderByWithRelationInput;
   childCostCodes?: Prisma.CostCodeOrderByRelationAggregateInput;
+  images?: Prisma.CostCodeImageOrderByRelationAggregateInput;
 };
 
 export type CostCodeWhereUniqueInput = Prisma.AtLeast<
@@ -528,6 +530,7 @@ export type CostCodeWhereUniqueInput = Prisma.AtLeast<
       Prisma.CostCodeWhereInput
     > | null;
     childCostCodes?: Prisma.CostCodeListRelationFilter;
+    images?: Prisma.CostCodeImageListRelationFilter;
   },
   'id' | 'code'
 >;
@@ -664,6 +667,7 @@ export type CostCodeCreateInput = {
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
   parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
   childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateInput = {
@@ -696,6 +700,7 @@ export type CostCodeUncheckedCreateInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
   childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageUncheckedCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeUpdateInput = {
@@ -751,6 +756,7 @@ export type CostCodeUpdateInput = {
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
   parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
   childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateInput = {
@@ -809,6 +815,7 @@ export type CostCodeUncheckedUpdateInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
   childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUncheckedUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeCreateManyInput = {
@@ -1300,6 +1307,32 @@ export type CostCodeUncheckedUpdateManyWithoutCategoryNestedInput = {
     | Prisma.CostCodeScalarWhereInput[];
 };
 
+export type CostCodeCreateNestedOneWithoutImagesInput = {
+  create?: Prisma.XOR<
+    Prisma.CostCodeCreateWithoutImagesInput,
+    Prisma.CostCodeUncheckedCreateWithoutImagesInput
+  >;
+  connectOrCreate?: Prisma.CostCodeCreateOrConnectWithoutImagesInput;
+  connect?: Prisma.CostCodeWhereUniqueInput;
+};
+
+export type CostCodeUpdateOneRequiredWithoutImagesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.CostCodeCreateWithoutImagesInput,
+    Prisma.CostCodeUncheckedCreateWithoutImagesInput
+  >;
+  connectOrCreate?: Prisma.CostCodeCreateOrConnectWithoutImagesInput;
+  upsert?: Prisma.CostCodeUpsertWithoutImagesInput;
+  connect?: Prisma.CostCodeWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.CostCodeUpdateToOneWithWhereWithoutImagesInput,
+      Prisma.CostCodeUpdateWithoutImagesInput
+    >,
+    Prisma.CostCodeUncheckedUpdateWithoutImagesInput
+  >;
+};
+
 export type CostCodeCreateNestedOneWithoutOptionsInput = {
   create?: Prisma.XOR<
     Prisma.CostCodeCreateWithoutOptionsInput,
@@ -1501,6 +1534,7 @@ export type CostCodeCreateWithoutChildCostCodesInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
   parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
+  images?: Prisma.CostCodeImageCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutChildCostCodesInput = {
@@ -1532,6 +1566,7 @@ export type CostCodeUncheckedCreateWithoutChildCostCodesInput = {
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
+  images?: Prisma.CostCodeImageUncheckedCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutChildCostCodesInput = {
@@ -1571,6 +1606,7 @@ export type CostCodeCreateWithoutParentCostCodeInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
   childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutParentCostCodeInput = {
@@ -1602,6 +1638,7 @@ export type CostCodeUncheckedCreateWithoutParentCostCodeInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
   childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageUncheckedCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutParentCostCodeInput = {
@@ -1691,6 +1728,7 @@ export type CostCodeUpdateWithoutChildCostCodesInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
   parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
+  images?: Prisma.CostCodeImageUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutChildCostCodesInput = {
@@ -1748,6 +1786,7 @@ export type CostCodeUncheckedUpdateWithoutChildCostCodesInput = {
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUncheckedUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUpsertWithWhereUniqueWithoutParentCostCodeInput = {
@@ -1855,6 +1894,7 @@ export type CostCodeCreateWithoutCategoryInput = {
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
   parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
   childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutCategoryInput = {
@@ -1886,6 +1926,7 @@ export type CostCodeUncheckedCreateWithoutCategoryInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
   childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageUncheckedCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutCategoryInput = {
@@ -1931,6 +1972,211 @@ export type CostCodeUpdateManyWithWhereWithoutCategoryInput = {
   >;
 };
 
+export type CostCodeCreateWithoutImagesInput = {
+  id?: string;
+  code: string;
+  name: string;
+  elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
+  description?: string | null;
+  basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  step?: number;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
+  requiresQuantity?: boolean;
+  isOptional?: boolean;
+  isActive?: boolean;
+  excludeFromExport?: boolean;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  category: Prisma.CostCodeCategoryCreateNestedOneWithoutCostCodesInput;
+  service?: Prisma.ServiceCreateNestedOneWithoutCostCodesInput;
+  options?: Prisma.CostCodeOptionCreateNestedManyWithoutCostCodeInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
+  submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
+  parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
+  childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
+};
+
+export type CostCodeUncheckedCreateWithoutImagesInput = {
+  id?: string;
+  categoryId: string;
+  serviceId?: string | null;
+  code: string;
+  name: string;
+  elies?: string | null;
+  tips?: Prisma.CostCodeCreatetipsInput | string[];
+  description?: string | null;
+  basePrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+  unitType?: $Enums.UnitType;
+  questionType?: $Enums.QuestionType;
+  step?: number;
+  displayOrder?: number;
+  isIncludedInBase?: boolean;
+  requiresQuantity?: boolean;
+  isOptional?: boolean;
+  isActive?: boolean;
+  excludeFromExport?: boolean;
+  parentCostCodeId?: string | null;
+  showWhenParentValue?: string | null;
+  nestedInputType?: string | null;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
+  submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
+  childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
+};
+
+export type CostCodeCreateOrConnectWithoutImagesInput = {
+  where: Prisma.CostCodeWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.CostCodeCreateWithoutImagesInput,
+    Prisma.CostCodeUncheckedCreateWithoutImagesInput
+  >;
+};
+
+export type CostCodeUpsertWithoutImagesInput = {
+  update: Prisma.XOR<
+    Prisma.CostCodeUpdateWithoutImagesInput,
+    Prisma.CostCodeUncheckedUpdateWithoutImagesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.CostCodeCreateWithoutImagesInput,
+    Prisma.CostCodeUncheckedCreateWithoutImagesInput
+  >;
+  where?: Prisma.CostCodeWhereInput;
+};
+
+export type CostCodeUpdateToOneWithWhereWithoutImagesInput = {
+  where?: Prisma.CostCodeWhereInput;
+  data: Prisma.XOR<
+    Prisma.CostCodeUpdateWithoutImagesInput,
+    Prisma.CostCodeUncheckedUpdateWithoutImagesInput
+  >;
+};
+
+export type CostCodeUpdateWithoutImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  code?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  basePrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  markup?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  clientPrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  step?: Prisma.IntFieldUpdateOperationsInput | number;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  category?: Prisma.CostCodeCategoryUpdateOneRequiredWithoutCostCodesNestedInput;
+  service?: Prisma.ServiceUpdateOneWithoutCostCodesNestedInput;
+  options?: Prisma.CostCodeOptionUpdateManyWithoutCostCodeNestedInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
+  submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
+  parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
+  childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
+};
+
+export type CostCodeUncheckedUpdateWithoutImagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  categoryId?: Prisma.StringFieldUpdateOperationsInput | string;
+  serviceId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  code?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  elies?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  tips?: Prisma.CostCodeUpdatetipsInput | string[];
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  basePrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  markup?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  clientPrice?:
+    | Prisma.DecimalFieldUpdateOperationsInput
+    | runtime.Decimal
+    | runtime.DecimalJsLike
+    | number
+    | string;
+  unitType?: Prisma.EnumUnitTypeFieldUpdateOperationsInput | $Enums.UnitType;
+  questionType?:
+    | Prisma.EnumQuestionTypeFieldUpdateOperationsInput
+    | $Enums.QuestionType;
+  step?: Prisma.IntFieldUpdateOperationsInput | number;
+  displayOrder?: Prisma.IntFieldUpdateOperationsInput | number;
+  isIncludedInBase?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  requiresQuantity?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isOptional?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  excludeFromExport?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  parentCostCodeId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  showWhenParentValue?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  nestedInputType?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
+  serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
+  submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
+  childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
+};
+
 export type CostCodeCreateWithoutOptionsInput = {
   id?: string;
   code: string;
@@ -1960,6 +2206,7 @@ export type CostCodeCreateWithoutOptionsInput = {
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
   parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
   childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutOptionsInput = {
@@ -1991,6 +2238,7 @@ export type CostCodeUncheckedCreateWithoutOptionsInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
   childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageUncheckedCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutOptionsInput = {
@@ -2073,6 +2321,7 @@ export type CostCodeUpdateWithoutOptionsInput = {
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
   parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
   childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutOptionsInput = {
@@ -2130,6 +2379,7 @@ export type CostCodeUncheckedUpdateWithoutOptionsInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
   childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUncheckedUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeCreateWithoutServiceInput = {
@@ -2161,6 +2411,7 @@ export type CostCodeCreateWithoutServiceInput = {
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
   parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
   childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutServiceInput = {
@@ -2192,6 +2443,7 @@ export type CostCodeUncheckedCreateWithoutServiceInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
   childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageUncheckedCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutServiceInput = {
@@ -2266,6 +2518,7 @@ export type CostCodeCreateWithoutServiceCostCodesInput = {
   submissionItems?: Prisma.SubmissionItemCreateNestedManyWithoutCostCodeInput;
   parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
   childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutServiceCostCodesInput = {
@@ -2297,6 +2550,7 @@ export type CostCodeUncheckedCreateWithoutServiceCostCodesInput = {
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
   submissionItems?: Prisma.SubmissionItemUncheckedCreateNestedManyWithoutCostCodeInput;
   childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageUncheckedCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutServiceCostCodesInput = {
@@ -2379,6 +2633,7 @@ export type CostCodeUpdateWithoutServiceCostCodesInput = {
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
   parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
   childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutServiceCostCodesInput = {
@@ -2436,6 +2691,7 @@ export type CostCodeUncheckedUpdateWithoutServiceCostCodesInput = {
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
   childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUncheckedUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeCreateWithoutSubmissionItemsInput = {
@@ -2467,6 +2723,7 @@ export type CostCodeCreateWithoutSubmissionItemsInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeCreateNestedManyWithoutCostCodeInput;
   parentCostCode?: Prisma.CostCodeCreateNestedOneWithoutChildCostCodesInput;
   childCostCodes?: Prisma.CostCodeCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeUncheckedCreateWithoutSubmissionItemsInput = {
@@ -2498,6 +2755,7 @@ export type CostCodeUncheckedCreateWithoutSubmissionItemsInput = {
   options?: Prisma.CostCodeOptionUncheckedCreateNestedManyWithoutCostCodeInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedCreateNestedManyWithoutCostCodeInput;
   childCostCodes?: Prisma.CostCodeUncheckedCreateNestedManyWithoutParentCostCodeInput;
+  images?: Prisma.CostCodeImageUncheckedCreateNestedManyWithoutCostCodeInput;
 };
 
 export type CostCodeCreateOrConnectWithoutSubmissionItemsInput = {
@@ -2580,6 +2838,7 @@ export type CostCodeUpdateWithoutSubmissionItemsInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
   parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
   childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutSubmissionItemsInput = {
@@ -2637,6 +2896,7 @@ export type CostCodeUncheckedUpdateWithoutSubmissionItemsInput = {
   options?: Prisma.CostCodeOptionUncheckedUpdateManyWithoutCostCodeNestedInput;
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUncheckedUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeCreateManyParentCostCodeInput = {
@@ -2718,6 +2978,7 @@ export type CostCodeUpdateWithoutParentCostCodeInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
   childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutParentCostCodeInput = {
@@ -2772,6 +3033,7 @@ export type CostCodeUncheckedUpdateWithoutParentCostCodeInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
   childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUncheckedUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateManyWithoutParentCostCodeInput = {
@@ -2903,6 +3165,7 @@ export type CostCodeUpdateWithoutCategoryInput = {
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
   parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
   childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutCategoryInput = {
@@ -2960,6 +3223,7 @@ export type CostCodeUncheckedUpdateWithoutCategoryInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
   childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUncheckedUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateManyWithoutCategoryInput = {
@@ -3094,6 +3358,7 @@ export type CostCodeUpdateWithoutServiceInput = {
   submissionItems?: Prisma.SubmissionItemUpdateManyWithoutCostCodeNestedInput;
   parentCostCode?: Prisma.CostCodeUpdateOneWithoutChildCostCodesNestedInput;
   childCostCodes?: Prisma.CostCodeUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateWithoutServiceInput = {
@@ -3151,6 +3416,7 @@ export type CostCodeUncheckedUpdateWithoutServiceInput = {
   serviceCostCodes?: Prisma.ServiceCostCodeUncheckedUpdateManyWithoutCostCodeNestedInput;
   submissionItems?: Prisma.SubmissionItemUncheckedUpdateManyWithoutCostCodeNestedInput;
   childCostCodes?: Prisma.CostCodeUncheckedUpdateManyWithoutParentCostCodeNestedInput;
+  images?: Prisma.CostCodeImageUncheckedUpdateManyWithoutCostCodeNestedInput;
 };
 
 export type CostCodeUncheckedUpdateManyWithoutServiceInput = {
@@ -3215,6 +3481,7 @@ export type CostCodeCountOutputType = {
   serviceCostCodes: number;
   submissionItems: number;
   childCostCodes: number;
+  images: number;
 };
 
 export type CostCodeCountOutputTypeSelect<
@@ -3225,6 +3492,7 @@ export type CostCodeCountOutputTypeSelect<
   serviceCostCodes?: boolean | CostCodeCountOutputTypeCountServiceCostCodesArgs;
   submissionItems?: boolean | CostCodeCountOutputTypeCountSubmissionItemsArgs;
   childCostCodes?: boolean | CostCodeCountOutputTypeCountChildCostCodesArgs;
+  images?: boolean | CostCodeCountOutputTypeCountImagesArgs;
 };
 
 /**
@@ -3280,6 +3548,16 @@ export type CostCodeCountOutputTypeCountChildCostCodesArgs<
   where?: Prisma.CostCodeWhereInput;
 };
 
+/**
+ * CostCodeCountOutputType without action
+ */
+export type CostCodeCountOutputTypeCountImagesArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.CostCodeImageWhereInput;
+};
+
 export type CostCodeSelect<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
@@ -3317,6 +3595,7 @@ export type CostCodeSelect<
     submissionItems?: boolean | Prisma.CostCode$submissionItemsArgs<ExtArgs>;
     parentCostCode?: boolean | Prisma.CostCode$parentCostCodeArgs<ExtArgs>;
     childCostCodes?: boolean | Prisma.CostCode$childCostCodesArgs<ExtArgs>;
+    images?: boolean | Prisma.CostCode$imagesArgs<ExtArgs>;
     _count?: boolean | Prisma.CostCodeCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs['result']['costCode']
@@ -3466,6 +3745,7 @@ export type CostCodeInclude<
   submissionItems?: boolean | Prisma.CostCode$submissionItemsArgs<ExtArgs>;
   parentCostCode?: boolean | Prisma.CostCode$parentCostCodeArgs<ExtArgs>;
   childCostCodes?: boolean | Prisma.CostCode$childCostCodesArgs<ExtArgs>;
+  images?: boolean | Prisma.CostCode$imagesArgs<ExtArgs>;
   _count?: boolean | Prisma.CostCodeCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type CostCodeIncludeCreateManyAndReturn<
@@ -3498,6 +3778,7 @@ export type $CostCodePayload<
     submissionItems: Prisma.$SubmissionItemPayload<ExtArgs>[];
     parentCostCode: Prisma.$CostCodePayload<ExtArgs> | null;
     childCostCodes: Prisma.$CostCodePayload<ExtArgs>[];
+    images: Prisma.$CostCodeImagePayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -4156,6 +4437,17 @@ export interface Prisma__CostCodeClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$CostCodePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  images<T extends Prisma.CostCode$imagesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.CostCode$imagesArgs<ExtArgs>>,
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$CostCodeImagePayload<ExtArgs>,
         T,
         'findMany',
         GlobalOmitOptions
@@ -4853,6 +5145,37 @@ export type CostCode$childCostCodesArgs<
   take?: number;
   skip?: number;
   distinct?: Prisma.CostCodeScalarFieldEnum | Prisma.CostCodeScalarFieldEnum[];
+};
+
+/**
+ * CostCode.images
+ */
+export type CostCode$imagesArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the CostCodeImage
+   */
+  select?: Prisma.CostCodeImageSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the CostCodeImage
+   */
+  omit?: Prisma.CostCodeImageOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CostCodeImageInclude<ExtArgs> | null;
+  where?: Prisma.CostCodeImageWhereInput;
+  orderBy?:
+    | Prisma.CostCodeImageOrderByWithRelationInput
+    | Prisma.CostCodeImageOrderByWithRelationInput[];
+  cursor?: Prisma.CostCodeImageWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.CostCodeImageScalarFieldEnum
+    | Prisma.CostCodeImageScalarFieldEnum[];
 };
 
 /**

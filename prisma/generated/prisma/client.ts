@@ -68,6 +68,11 @@ export type CostCode = Prisma.CostCodeModel;
  */
 export type CostCodeCategory = Prisma.CostCodeCategoryModel;
 /**
+ * Model CostCodeImage
+ *
+ */
+export type CostCodeImage = Prisma.CostCodeImageModel;
+/**
  * Model CostCodeOption
  *
  */

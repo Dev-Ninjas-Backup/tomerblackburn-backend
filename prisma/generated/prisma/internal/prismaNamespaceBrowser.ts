@@ -59,6 +59,7 @@ export const ModelName = {
   BuildingTypeField: 'BuildingTypeField',
   CostCode: 'CostCode',
   CostCodeCategory: 'CostCodeCategory',
+  CostCodeImage: 'CostCodeImage',
   CostCodeOption: 'CostCodeOption',
   EmailLog: 'EmailLog',
   HearAboutUsOption: 'HearAboutUsOption',
@@ -196,6 +197,17 @@ export const CostCodeCategoryScalarFieldEnum = {
 
 export type CostCodeCategoryScalarFieldEnum =
   (typeof CostCodeCategoryScalarFieldEnum)[keyof typeof CostCodeCategoryScalarFieldEnum];
+
+export const CostCodeImageScalarFieldEnum = {
+  id: 'id',
+  costCodeId: 'costCodeId',
+  fileInstanceId: 'fileInstanceId',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+} as const;
+
+export type CostCodeImageScalarFieldEnum =
+  (typeof CostCodeImageScalarFieldEnum)[keyof typeof CostCodeImageScalarFieldEnum];
 
 export const CostCodeOptionScalarFieldEnum = {
   id: 'id',
