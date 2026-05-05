@@ -54,6 +54,7 @@ export type SubmissionMinAggregateOutputType = {
   desiredStartDate: Date | null;
   buildingType: string | null;
   buildingTypeId: string | null;
+  hearAboutUs: string | null;
   basePrice: runtime.Decimal | null;
   markup: runtime.Decimal | null;
   clientPrice: runtime.Decimal | null;
@@ -84,6 +85,7 @@ export type SubmissionMaxAggregateOutputType = {
   desiredStartDate: Date | null;
   buildingType: string | null;
   buildingTypeId: string | null;
+  hearAboutUs: string | null;
   basePrice: runtime.Decimal | null;
   markup: runtime.Decimal | null;
   clientPrice: runtime.Decimal | null;
@@ -114,6 +116,7 @@ export type SubmissionCountAggregateOutputType = {
   desiredStartDate: number;
   buildingType: number;
   buildingTypeId: number;
+  hearAboutUs: number;
   basePrice: number;
   markup: number;
   clientPrice: number;
@@ -161,6 +164,7 @@ export type SubmissionMinAggregateInputType = {
   desiredStartDate?: true;
   buildingType?: true;
   buildingTypeId?: true;
+  hearAboutUs?: true;
   basePrice?: true;
   markup?: true;
   clientPrice?: true;
@@ -191,6 +195,7 @@ export type SubmissionMaxAggregateInputType = {
   desiredStartDate?: true;
   buildingType?: true;
   buildingTypeId?: true;
+  hearAboutUs?: true;
   basePrice?: true;
   markup?: true;
   clientPrice?: true;
@@ -221,6 +226,7 @@ export type SubmissionCountAggregateInputType = {
   desiredStartDate?: true;
   buildingType?: true;
   buildingTypeId?: true;
+  hearAboutUs?: true;
   basePrice?: true;
   markup?: true;
   clientPrice?: true;
@@ -345,6 +351,7 @@ export type SubmissionGroupByOutputType = {
   desiredStartDate: Date | null;
   buildingType: string | null;
   buildingTypeId: string | null;
+  hearAboutUs: string | null;
   basePrice: runtime.Decimal;
   markup: runtime.Decimal;
   clientPrice: runtime.Decimal;
@@ -400,6 +407,7 @@ export type SubmissionWhereInput = {
     | null;
   buildingType?: Prisma.StringNullableFilter<'Submission'> | string | null;
   buildingTypeId?: Prisma.StringNullableFilter<'Submission'> | string | null;
+  hearAboutUs?: Prisma.StringNullableFilter<'Submission'> | string | null;
   basePrice?:
     | Prisma.DecimalFilter<'Submission'>
     | runtime.Decimal
@@ -477,6 +485,7 @@ export type SubmissionOrderByWithRelationInput = {
   desiredStartDate?: Prisma.SortOrderInput | Prisma.SortOrder;
   buildingType?: Prisma.SortOrderInput | Prisma.SortOrder;
   buildingTypeId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  hearAboutUs?: Prisma.SortOrderInput | Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   markup?: Prisma.SortOrder;
   clientPrice?: Prisma.SortOrder;
@@ -521,6 +530,7 @@ export type SubmissionWhereUniqueInput = Prisma.AtLeast<
       | null;
     buildingType?: Prisma.StringNullableFilter<'Submission'> | string | null;
     buildingTypeId?: Prisma.StringNullableFilter<'Submission'> | string | null;
+    hearAboutUs?: Prisma.StringNullableFilter<'Submission'> | string | null;
     basePrice?:
       | Prisma.DecimalFilter<'Submission'>
       | runtime.Decimal
@@ -603,6 +613,7 @@ export type SubmissionOrderByWithAggregationInput = {
   desiredStartDate?: Prisma.SortOrderInput | Prisma.SortOrder;
   buildingType?: Prisma.SortOrderInput | Prisma.SortOrder;
   buildingTypeId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  hearAboutUs?: Prisma.SortOrderInput | Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   markup?: Prisma.SortOrder;
   clientPrice?: Prisma.SortOrder;
@@ -655,6 +666,10 @@ export type SubmissionScalarWhereWithAggregatesInput = {
     | string
     | null;
   buildingTypeId?:
+    | Prisma.StringNullableWithAggregatesFilter<'Submission'>
+    | string
+    | null;
+  hearAboutUs?:
     | Prisma.StringNullableWithAggregatesFilter<'Submission'>
     | string
     | null;
@@ -739,6 +754,7 @@ export type SubmissionCreateInput = {
   zipCode?: string | null;
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -779,6 +795,7 @@ export type SubmissionUncheckedCreateInput = {
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
   buildingTypeId?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -822,6 +839,7 @@ export type SubmissionUpdateInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -909,6 +927,7 @@ export type SubmissionUncheckedUpdateInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -984,6 +1003,7 @@ export type SubmissionCreateManyInput = {
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
   buildingTypeId?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1023,6 +1043,7 @@ export type SubmissionUpdateManyMutationInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -1104,6 +1125,7 @@ export type SubmissionUncheckedUpdateManyInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -1190,6 +1212,7 @@ export type SubmissionCountOrderByAggregateInput = {
   desiredStartDate?: Prisma.SortOrder;
   buildingType?: Prisma.SortOrder;
   buildingTypeId?: Prisma.SortOrder;
+  hearAboutUs?: Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   markup?: Prisma.SortOrder;
   clientPrice?: Prisma.SortOrder;
@@ -1228,6 +1251,7 @@ export type SubmissionMaxOrderByAggregateInput = {
   desiredStartDate?: Prisma.SortOrder;
   buildingType?: Prisma.SortOrder;
   buildingTypeId?: Prisma.SortOrder;
+  hearAboutUs?: Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   markup?: Prisma.SortOrder;
   clientPrice?: Prisma.SortOrder;
@@ -1258,6 +1282,7 @@ export type SubmissionMinOrderByAggregateInput = {
   desiredStartDate?: Prisma.SortOrder;
   buildingType?: Prisma.SortOrder;
   buildingTypeId?: Prisma.SortOrder;
+  hearAboutUs?: Prisma.SortOrder;
   basePrice?: Prisma.SortOrder;
   markup?: Prisma.SortOrder;
   clientPrice?: Prisma.SortOrder;
@@ -1622,6 +1647,7 @@ export type SubmissionCreateWithoutBuildingTypeRefInput = {
   zipCode?: string | null;
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1660,6 +1686,7 @@ export type SubmissionUncheckedCreateWithoutBuildingTypeRefInput = {
   zipCode?: string | null;
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1748,6 +1775,7 @@ export type SubmissionScalarWhereInput = {
     | null;
   buildingType?: Prisma.StringNullableFilter<'Submission'> | string | null;
   buildingTypeId?: Prisma.StringNullableFilter<'Submission'> | string | null;
+  hearAboutUs?: Prisma.StringNullableFilter<'Submission'> | string | null;
   basePrice?:
     | Prisma.DecimalFilter<'Submission'>
     | runtime.Decimal
@@ -1811,6 +1839,7 @@ export type SubmissionCreateWithoutEmailLogsInput = {
   zipCode?: string | null;
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1850,6 +1879,7 @@ export type SubmissionUncheckedCreateWithoutEmailLogsInput = {
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
   buildingTypeId?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -1920,6 +1950,7 @@ export type SubmissionUpdateWithoutEmailLogsInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -2006,6 +2037,7 @@ export type SubmissionUncheckedUpdateWithoutEmailLogsInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -2078,6 +2110,7 @@ export type SubmissionCreateWithoutServiceInput = {
   zipCode?: string | null;
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2116,6 +2149,7 @@ export type SubmissionUncheckedCreateWithoutServiceInput = {
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
   buildingTypeId?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2195,6 +2229,7 @@ export type SubmissionCreateWithoutSubmissionItemsInput = {
   zipCode?: string | null;
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2234,6 +2269,7 @@ export type SubmissionUncheckedCreateWithoutSubmissionItemsInput = {
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
   buildingTypeId?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2304,6 +2340,7 @@ export type SubmissionUpdateWithoutSubmissionItemsInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -2390,6 +2427,7 @@ export type SubmissionUncheckedUpdateWithoutSubmissionItemsInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -2462,6 +2500,7 @@ export type SubmissionCreateWithoutSubmissionMediaInput = {
   zipCode?: string | null;
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2501,6 +2540,7 @@ export type SubmissionUncheckedCreateWithoutSubmissionMediaInput = {
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
   buildingTypeId?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2571,6 +2611,7 @@ export type SubmissionUpdateWithoutSubmissionMediaInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -2657,6 +2698,7 @@ export type SubmissionUncheckedUpdateWithoutSubmissionMediaInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -2729,6 +2771,7 @@ export type SubmissionCreateWithoutBuildingTypeFieldValuesInput = {
   zipCode?: string | null;
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2768,6 +2811,7 @@ export type SubmissionUncheckedCreateWithoutBuildingTypeFieldValuesInput = {
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
   buildingTypeId?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -2839,6 +2883,7 @@ export type SubmissionUpdateWithoutBuildingTypeFieldValuesInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -2925,6 +2970,7 @@ export type SubmissionUncheckedUpdateWithoutBuildingTypeFieldValuesInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -2998,6 +3044,7 @@ export type SubmissionCreateManyBuildingTypeRefInput = {
   zipCode?: string | null;
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -3037,6 +3084,7 @@ export type SubmissionUpdateWithoutBuildingTypeRefInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -3119,6 +3167,7 @@ export type SubmissionUncheckedUpdateWithoutBuildingTypeRefInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -3200,6 +3249,7 @@ export type SubmissionUncheckedUpdateManyWithoutBuildingTypeRefInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -3270,6 +3320,7 @@ export type SubmissionCreateManyServiceInput = {
   desiredStartDate?: Date | string | null;
   buildingType?: string | null;
   buildingTypeId?: string | null;
+  hearAboutUs?: string | null;
   basePrice: runtime.Decimal | runtime.DecimalJsLike | number | string;
   markup?: runtime.Decimal | runtime.DecimalJsLike | number | string;
   clientPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string;
@@ -3309,6 +3360,7 @@ export type SubmissionUpdateWithoutServiceInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -3394,6 +3446,7 @@ export type SubmissionUncheckedUpdateWithoutServiceInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -3478,6 +3531,7 @@ export type SubmissionUncheckedUpdateManyWithoutServiceInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  hearAboutUs?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   basePrice?:
     | Prisma.DecimalFieldUpdateOperationsInput
     | runtime.Decimal
@@ -3629,6 +3683,7 @@ export type SubmissionSelect<
     desiredStartDate?: boolean;
     buildingType?: boolean;
     buildingTypeId?: boolean;
+    hearAboutUs?: boolean;
     basePrice?: boolean;
     markup?: boolean;
     clientPrice?: boolean;
@@ -3674,6 +3729,7 @@ export type SubmissionSelectCreateManyAndReturn<
     desiredStartDate?: boolean;
     buildingType?: boolean;
     buildingTypeId?: boolean;
+    hearAboutUs?: boolean;
     basePrice?: boolean;
     markup?: boolean;
     clientPrice?: boolean;
@@ -3712,6 +3768,7 @@ export type SubmissionSelectUpdateManyAndReturn<
     desiredStartDate?: boolean;
     buildingType?: boolean;
     buildingTypeId?: boolean;
+    hearAboutUs?: boolean;
     basePrice?: boolean;
     markup?: boolean;
     clientPrice?: boolean;
@@ -3746,6 +3803,7 @@ export type SubmissionSelectScalar = {
   desiredStartDate?: boolean;
   buildingType?: boolean;
   buildingTypeId?: boolean;
+  hearAboutUs?: boolean;
   basePrice?: boolean;
   markup?: boolean;
   clientPrice?: boolean;
@@ -3779,6 +3837,7 @@ export type SubmissionOmit<
   | 'desiredStartDate'
   | 'buildingType'
   | 'buildingTypeId'
+  | 'hearAboutUs'
   | 'basePrice'
   | 'markup'
   | 'clientPrice'
@@ -3852,6 +3911,7 @@ export type $SubmissionPayload<
       desiredStartDate: Date | null;
       buildingType: string | null;
       buildingTypeId: string | null;
+      hearAboutUs: string | null;
       basePrice: runtime.Decimal;
       markup: runtime.Decimal;
       clientPrice: runtime.Decimal;
@@ -4553,6 +4613,7 @@ export interface SubmissionFieldRefs {
   readonly desiredStartDate: Prisma.FieldRef<'Submission', 'DateTime'>;
   readonly buildingType: Prisma.FieldRef<'Submission', 'String'>;
   readonly buildingTypeId: Prisma.FieldRef<'Submission', 'String'>;
+  readonly hearAboutUs: Prisma.FieldRef<'Submission', 'String'>;
   readonly basePrice: Prisma.FieldRef<'Submission', 'Decimal'>;
   readonly markup: Prisma.FieldRef<'Submission', 'Decimal'>;
   readonly clientPrice: Prisma.FieldRef<'Submission', 'Decimal'>;

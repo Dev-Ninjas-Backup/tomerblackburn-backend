@@ -23,6 +23,7 @@ export type QuestionType = (typeof QuestionType)[keyof typeof QuestionType];
 export const UnitType = {
   FIXED: 'FIXED',
   PER_SQFT: 'PER_SQFT',
+  PER_LF: 'PER_LF',
   PER_EACH: 'PER_EACH',
   PER_LOT: 'PER_LOT',
   PER_SET: 'PER_SET',

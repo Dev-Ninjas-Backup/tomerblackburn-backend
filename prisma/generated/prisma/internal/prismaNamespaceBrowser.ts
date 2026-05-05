@@ -61,6 +61,8 @@ export const ModelName = {
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
   EmailLog: 'EmailLog',
+  HearAboutUsOption: 'HearAboutUsOption',
+  HearAboutUsSetting: 'HearAboutUsSetting',
   NextStep: 'NextStep',
   PrivacyPolicy: 'PrivacyPolicy',
   ProjectType: 'ProjectType',
@@ -228,6 +230,28 @@ export const EmailLogScalarFieldEnum = {
 export type EmailLogScalarFieldEnum =
   (typeof EmailLogScalarFieldEnum)[keyof typeof EmailLogScalarFieldEnum];
 
+export const HearAboutUsOptionScalarFieldEnum = {
+  id: 'id',
+  label: 'label',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type HearAboutUsOptionScalarFieldEnum =
+  (typeof HearAboutUsOptionScalarFieldEnum)[keyof typeof HearAboutUsOptionScalarFieldEnum];
+
+export const HearAboutUsSettingScalarFieldEnum = {
+  id: 'id',
+  isEnabled: 'isEnabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type HearAboutUsSettingScalarFieldEnum =
+  (typeof HearAboutUsSettingScalarFieldEnum)[keyof typeof HearAboutUsSettingScalarFieldEnum];
+
 export const NextStepScalarFieldEnum = {
   id: 'id',
   stepNumber: 'stepNumber',
@@ -261,6 +285,7 @@ export const ProjectTypeScalarFieldEnum = {
   imageId: 'imageId',
   displayOrder: 'displayOrder',
   isActive: 'isActive',
+  isComingSoon: 'isComingSoon',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
@@ -332,6 +357,7 @@ export const SubmissionScalarFieldEnum = {
   desiredStartDate: 'desiredStartDate',
   buildingType: 'buildingType',
   buildingTypeId: 'buildingTypeId',
+  hearAboutUs: 'hearAboutUs',
   basePrice: 'basePrice',
   markup: 'markup',
   clientPrice: 'clientPrice',

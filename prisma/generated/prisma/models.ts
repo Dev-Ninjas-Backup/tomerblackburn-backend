@@ -14,6 +14,8 @@ export type * from './models/CostCode';
 export type * from './models/CostCodeCategory';
 export type * from './models/CostCodeOption';
 export type * from './models/EmailLog';
+export type * from './models/HearAboutUsOption';
+export type * from './models/HearAboutUsSetting';
 export type * from './models/NextStep';
 export type * from './models/PrivacyPolicy';
 export type * from './models/ProjectType';

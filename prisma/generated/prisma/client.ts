@@ -78,6 +78,16 @@ export type CostCodeOption = Prisma.CostCodeOptionModel;
  */
 export type EmailLog = Prisma.EmailLogModel;
 /**
+ * Model HearAboutUsOption
+ *
+ */
+export type HearAboutUsOption = Prisma.HearAboutUsOptionModel;
+/**
+ * Model HearAboutUsSetting
+ *
+ */
+export type HearAboutUsSetting = Prisma.HearAboutUsSettingModel;
+/**
  * Model NextStep
  *
  */

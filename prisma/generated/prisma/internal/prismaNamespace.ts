@@ -419,6 +419,8 @@ export const ModelName = {
   CostCodeCategory: 'CostCodeCategory',
   CostCodeOption: 'CostCodeOption',
   EmailLog: 'EmailLog',
+  HearAboutUsOption: 'HearAboutUsOption',
+  HearAboutUsSetting: 'HearAboutUsSetting',
   NextStep: 'NextStep',
   PrivacyPolicy: 'PrivacyPolicy',
   ProjectType: 'ProjectType',
@@ -476,6 +478,8 @@ export type TypeMap<
       | 'costCodeCategory'
       | 'costCodeOption'
       | 'emailLog'
+      | 'hearAboutUsOption'
+      | 'hearAboutUsSetting'
       | 'nextStep'
       | 'privacyPolicy'
       | 'projectType'
@@ -1035,6 +1039,158 @@ export type TypeMap<
           args: Prisma.EmailLogCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.EmailLogCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    HearAboutUsOption: {
+      payload: Prisma.$HearAboutUsOptionPayload<ExtArgs>;
+      fields: Prisma.HearAboutUsOptionFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.HearAboutUsOptionFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.HearAboutUsOptionFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload>;
+        };
+        findFirst: {
+          args: Prisma.HearAboutUsOptionFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.HearAboutUsOptionFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload>;
+        };
+        findMany: {
+          args: Prisma.HearAboutUsOptionFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload>[];
+        };
+        create: {
+          args: Prisma.HearAboutUsOptionCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload>;
+        };
+        createMany: {
+          args: Prisma.HearAboutUsOptionCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.HearAboutUsOptionCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload>[];
+        };
+        delete: {
+          args: Prisma.HearAboutUsOptionDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload>;
+        };
+        update: {
+          args: Prisma.HearAboutUsOptionUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload>;
+        };
+        deleteMany: {
+          args: Prisma.HearAboutUsOptionDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.HearAboutUsOptionUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.HearAboutUsOptionUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload>[];
+        };
+        upsert: {
+          args: Prisma.HearAboutUsOptionUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsOptionPayload>;
+        };
+        aggregate: {
+          args: Prisma.HearAboutUsOptionAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHearAboutUsOption>;
+        };
+        groupBy: {
+          args: Prisma.HearAboutUsOptionGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.HearAboutUsOptionGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.HearAboutUsOptionCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.HearAboutUsOptionCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    HearAboutUsSetting: {
+      payload: Prisma.$HearAboutUsSettingPayload<ExtArgs>;
+      fields: Prisma.HearAboutUsSettingFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.HearAboutUsSettingFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.HearAboutUsSettingFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload>;
+        };
+        findFirst: {
+          args: Prisma.HearAboutUsSettingFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.HearAboutUsSettingFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload>;
+        };
+        findMany: {
+          args: Prisma.HearAboutUsSettingFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload>[];
+        };
+        create: {
+          args: Prisma.HearAboutUsSettingCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload>;
+        };
+        createMany: {
+          args: Prisma.HearAboutUsSettingCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.HearAboutUsSettingCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload>[];
+        };
+        delete: {
+          args: Prisma.HearAboutUsSettingDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload>;
+        };
+        update: {
+          args: Prisma.HearAboutUsSettingUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload>;
+        };
+        deleteMany: {
+          args: Prisma.HearAboutUsSettingDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.HearAboutUsSettingUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.HearAboutUsSettingUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload>[];
+        };
+        upsert: {
+          args: Prisma.HearAboutUsSettingUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$HearAboutUsSettingPayload>;
+        };
+        aggregate: {
+          args: Prisma.HearAboutUsSettingAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHearAboutUsSetting>;
+        };
+        groupBy: {
+          args: Prisma.HearAboutUsSettingGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.HearAboutUsSettingGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.HearAboutUsSettingCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.HearAboutUsSettingCountAggregateOutputType>
             | number;
         };
       };
@@ -3327,6 +3483,28 @@ export const EmailLogScalarFieldEnum = {
 export type EmailLogScalarFieldEnum =
   (typeof EmailLogScalarFieldEnum)[keyof typeof EmailLogScalarFieldEnum];
 
+export const HearAboutUsOptionScalarFieldEnum = {
+  id: 'id',
+  label: 'label',
+  displayOrder: 'displayOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type HearAboutUsOptionScalarFieldEnum =
+  (typeof HearAboutUsOptionScalarFieldEnum)[keyof typeof HearAboutUsOptionScalarFieldEnum];
+
+export const HearAboutUsSettingScalarFieldEnum = {
+  id: 'id',
+  isEnabled: 'isEnabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type HearAboutUsSettingScalarFieldEnum =
+  (typeof HearAboutUsSettingScalarFieldEnum)[keyof typeof HearAboutUsSettingScalarFieldEnum];
+
 export const NextStepScalarFieldEnum = {
   id: 'id',
   stepNumber: 'stepNumber',
@@ -3360,6 +3538,7 @@ export const ProjectTypeScalarFieldEnum = {
   imageId: 'imageId',
   displayOrder: 'displayOrder',
   isActive: 'isActive',
+  isComingSoon: 'isComingSoon',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
 } as const;
@@ -3431,6 +3610,7 @@ export const SubmissionScalarFieldEnum = {
   desiredStartDate: 'desiredStartDate',
   buildingType: 'buildingType',
   buildingTypeId: 'buildingTypeId',
+  hearAboutUs: 'hearAboutUs',
   basePrice: 'basePrice',
   markup: 'markup',
   clientPrice: 'clientPrice',
@@ -4084,6 +4264,8 @@ export type GlobalOmitConfig = {
   costCodeCategory?: Prisma.CostCodeCategoryOmit;
   costCodeOption?: Prisma.CostCodeOptionOmit;
   emailLog?: Prisma.EmailLogOmit;
+  hearAboutUsOption?: Prisma.HearAboutUsOptionOmit;
+  hearAboutUsSetting?: Prisma.HearAboutUsSettingOmit;
   nextStep?: Prisma.NextStepOmit;
   privacyPolicy?: Prisma.PrivacyPolicyOmit;
   projectType?: Prisma.ProjectTypeOmit;
