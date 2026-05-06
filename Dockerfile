@@ -68,6 +68,9 @@ COPY --from=builder ["/app/Leads Template.xlsx", "/app/Submission Template.xlsx"
 # Copy static PDF files
 COPY --from=builder /app/Example_Docs.pdf ./
 
+# Copy logo
+COPY --from=builder /app/logo.png ./
+
 # Create uploads directory structure with proper permissions
 RUN mkdir -p /app/uploads/image /app/uploads/video /app/uploads/audio /app/uploads/document /app/uploads/any
 
