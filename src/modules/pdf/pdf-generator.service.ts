@@ -371,7 +371,10 @@ export class PdfGeneratorService {
       // Small gap + ADDITIONAL ITEMS sub-header
       currentY += 4;
       if (currentY + 20 > maxContentY()) {
-        doc.addPage({ size: 'A4', margins: { top: 50, bottom: 50, left: 50, right: 50 } });
+        doc.addPage({
+          size: 'A4',
+          margins: { top: 50, bottom: 50, left: 50, right: 50 },
+        });
         currentY = 50;
       }
       doc
