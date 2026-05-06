@@ -593,13 +593,13 @@ export class CostCodesService {
     const UNIT_MAP: Record<string, string> = {
       FIXED: 'LS',
       PER_SQFT: 'SF',
+      PER_LF: 'LF',
       PER_EACH: 'EA',
       PER_LOT: 'LS',
       PER_SET: 'LS',
       PER_UPGRADE: 'EA',
     };
 
-    // Get all services
     const services = await this.prisma.service.findMany({
       where: { isActive: true },
       orderBy: { displayOrder: 'asc' },
@@ -610,55 +610,83 @@ export class CostCodesService {
     workbook.created = new Date();
 
     for (const service of services) {
-      // Get cost codes for this service, exclude branch questions
       const costCodes = await this.prisma.costCode.findMany({
-        where: {
-          serviceId: service.id,
-          isActive: true,
-          excludeFromExport: false,
-        },
+        where: { serviceId: service.id, isActive: true, excludeFromExport: false },
         include: { category: true },
         orderBy: [{ displayOrder: 'asc' }, { code: 'asc' }],
       });
 
-      // Sheet name max 31 chars
       const sheetName = service.name.slice(0, 31);
       const sheet = workbook.addWorksheet(sheetName);
 
-      // Header row
-      sheet.columns = [
-        { header: 'Cost Code', key: 'code', width: 30 },
-        { header: 'Description', key: 'description', width: 50 },
-        { header: 'Unit', key: 'unit', width: 10 },
-        { header: 'Unit Cost', key: 'unitCost', width: 15 },
-        { header: 'Category', key: 'category', width: 25 },
+      const columns = [
+        { header: 'Category',     key: 'category',    width: 20 },
+        { header: 'Cost Code',    key: 'code',        width: 20 },
+        { header: 'Title',        key: 'title',       width: 30 },
+        { header: 'Description',  key: 'description', width: 40 },
+        { header: 'Quantity',     key: 'quantity',    width: 10 },
+        { header: 'Unit',         key: 'unit',        width: 10 },
+        { header: 'Unit Cost',    key: 'unitCost',    width: 14 },
+        { header: 'Cost Type',    key: 'costType',    width: 12 },
+        { header: 'Marked As',    key: 'markedAs',    width: 14 },
+        { header: 'Builder Cost', key: 'builderCost', width: 14 },
+        { header: 'Markup',       key: 'markup',      width: 10 },
+        { header: 'Markup Type',  key: 'markupType',  width: 12 },
+        { header: 'Client Price', key: 'clientPrice', width: 14 },
+        { header: 'Margin',       key: 'margin',      width: 10 },
+        { header: 'Profit',       key: 'profit',      width: 12 },
       ];
+
+      sheet.columns = columns;
 
       // Style header
       sheet.getRow(1).eachCell((cell) => {
         cell.font = { bold: true, color: { argb: 'FFFFFFFF' } };
-        cell.fill = {
-          type: 'pattern',
-          pattern: 'solid',
-          fgColor: { argb: 'FF1A365D' },
-        };
+        cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1A365D' } };
         cell.alignment = { vertical: 'middle', horizontal: 'center' };
       });
       sheet.getRow(1).height = 20;
 
-      // Data rows
       for (const cc of costCodes) {
-        sheet.addRow({
-          code: cc.elies ?? cc.name,
-          description: cc.description ?? '',
-          unit: UNIT_MAP[cc.unitType] ?? 'LS',
-          unitCost: Number(cc.clientPrice),
-          category: cc.category?.name ?? '',
-        });
-      }
+        const quantity = 1;
+        const unitCost = Number(cc.basePrice);
+        const clientPrice = Number(cc.clientPrice);
+        const markupPct = Number(cc.markup);
+        const builderCost = quantity * unitCost;
+        const clientTotal = quantity * clientPrice;
+        const profit = clientTotal - builderCost;
+        const margin = clientTotal > 0 ? profit / clientTotal : 0;
+        const markup = builderCost > 0 ? profit / builderCost : 0;
 
-      // Format unit cost column as currency
-      sheet.getColumn('unitCost').numFmt = '$#,##0.00';
+        const row = sheet.addRow({
+          category:    cc.category?.name ?? '',
+          code:        cc.code,
+          title:       cc.elies ?? cc.name,
+          description: cc.description ?? '',
+          quantity,
+          unit:        UNIT_MAP[cc.unitType] ?? 'LS',
+          unitCost,
+          costType:    '',
+          markedAs:    '',
+          builderCost,
+          markup,
+          markupType:  '%',
+          clientPrice: clientTotal,
+          margin,
+          profit,
+        });
+
+        row.getCell('quantity').numFmt    = '0.00';
+        row.getCell('unitCost').numFmt    = '#,##0.00';
+        row.getCell('builderCost').numFmt = '#,##0.00';
+        row.getCell('markup').numFmt      = '0.0000';
+        row.getCell('clientPrice').numFmt = '#,##0.00';
+        row.getCell('margin').numFmt      = '0.0000';
+        row.getCell('profit').numFmt      = '#,##0.00';
+
+        // Suppress markup% info — just for reference
+        void markupPct;
+      }
     }
 
     const buffer = await workbook.xlsx.writeBuffer();
