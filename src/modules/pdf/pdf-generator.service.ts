@@ -50,7 +50,7 @@ export class PdfGeneratorService {
   private readonly secondaryColor = '#2d3748';
   private readonly accentColor = '#3182ce';
   private readonly lightGray = '#e2e8f0';
-  private readonly footerReserve = 80;
+  private readonly footerReserve = 60;
   private lastItemY = 0;
 
   async generateSubmissionPdf(data: SubmissionPdfData): Promise<Buffer> {
@@ -367,6 +367,24 @@ export class PdfGeneratorService {
       (item) => item.isEnabled && item.totalPrice > 0,
     );
 
+    if (enabledItems.length > 0) {
+      // Small gap + ADDITIONAL ITEMS sub-header
+      currentY += 4;
+      if (currentY + 20 > maxContentY()) {
+        doc.addPage({
+          size: 'A4',
+          margins: { top: 50, bottom: 50, left: 50, right: 50 },
+        });
+        currentY = 50;
+      }
+      doc
+        .fontSize(9)
+        .font('Helvetica-Bold')
+        .fillColor(this.primaryColor)
+        .text('ADDITIONAL ITEMS', 55, currentY);
+      currentY += 14;
+    }
+
     for (let i = 0; i < enabledItems.length; i++) {
       const item = enabledItems[i];
 
@@ -386,7 +404,8 @@ export class PdfGeneratorService {
         currentY = 50;
       }
 
-      if (i % 2 === 0) {
+      // i+1 so alternating starts white after gray base price row
+      if ((i + 1) % 2 === 0) {
         doc.rect(50, currentY, 512, rowHeight).fillColor('#f7fafc').fill();
       }
 
