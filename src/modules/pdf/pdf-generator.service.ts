@@ -98,16 +98,26 @@ export class PdfGeneratorService {
 
     if (existsSync(localLogoPath)) {
       try {
-        doc.image(localLogoPath, logoX, logoY, { width: logoSize, height: logoSize });
+        doc.image(localLogoPath, logoX, logoY, {
+          width: logoSize,
+          height: logoSize,
+        });
         logoDrawn = true;
-      } catch { /* fallback */ }
+      } catch {
+        /* fallback */
+      }
     }
 
     if (!logoDrawn && data.logoUrl) {
       try {
-        doc.image(data.logoUrl, logoX, logoY, { width: logoSize, height: logoSize });
+        doc.image(data.logoUrl, logoX, logoY, {
+          width: logoSize,
+          height: logoSize,
+        });
         logoDrawn = true;
-      } catch { /* fallback */ }
+      } catch {
+        /* fallback */
+      }
     }
 
     if (!logoDrawn) {
@@ -122,7 +132,8 @@ export class PdfGeneratorService {
       .text('BBurn Builders', textX, logoY + 4);
 
     const tagline =
-      this.normalizeTaglineForPdf(data.tagline) ?? 'Premium Home Remodeling Services';
+      this.normalizeTaglineForPdf(data.tagline) ??
+      'Premium Home Remodeling Services';
     doc
       .fontSize(9)
       .font('Helvetica')
@@ -134,8 +145,12 @@ export class PdfGeneratorService {
       .fontSize(9)
       .font('Helvetica')
       .fillColor(this.secondaryColor)
-      .text(`Estimate #: ${data.submissionNumber}`, 400, logoY + 4, { align: 'right' })
-      .text(`Date: ${this.formatDate(data.submittedAt)}`, 400, logoY + 18, { align: 'right' });
+      .text(`Estimate #: ${data.submissionNumber}`, 400, logoY + 4, {
+        align: 'right',
+      })
+      .text(`Date: ${this.formatDate(data.submittedAt)}`, 400, logoY + 18, {
+        align: 'right',
+      });
 
     const lineY = logoY + logoSize + 10;
     doc
@@ -148,7 +163,10 @@ export class PdfGeneratorService {
     doc.y = lineY + 8;
   }
 
-  private addClientInfo(doc: PDFKit.PDFDocument, data: SubmissionPdfData): void {
+  private addClientInfo(
+    doc: PDFKit.PDFDocument,
+    data: SubmissionPdfData,
+  ): void {
     const startY = doc.y;
 
     doc
@@ -190,7 +208,10 @@ export class PdfGeneratorService {
     doc.y = lineY + 8;
   }
 
-  private addProjectSummary(doc: PDFKit.PDFDocument, data: SubmissionPdfData): void {
+  private addProjectSummary(
+    doc: PDFKit.PDFDocument,
+    data: SubmissionPdfData,
+  ): void {
     const startY = doc.y;
     const boxHeight = data.buildingType ? 58 : 38;
 
@@ -274,11 +295,17 @@ export class PdfGeneratorService {
 
       // Only add new page if base price row truly doesn't fit
       if (currentY + basePriceRowHeight > maxContentY()) {
-        doc.addPage({ size: 'A4', margins: { top: 50, bottom: 50, left: 50, right: 50 } });
+        doc.addPage({
+          size: 'A4',
+          margins: { top: 50, bottom: 50, left: 50, right: 50 },
+        });
         currentY = 50;
       }
 
-      doc.rect(50, currentY, 512, basePriceRowHeight).fillColor('#f7fafc').fill();
+      doc
+        .rect(50, currentY, 512, basePriceRowHeight)
+        .fillColor('#f7fafc')
+        .fill();
 
       doc
         .fontSize(9)
@@ -316,7 +343,8 @@ export class PdfGeneratorService {
             .font('Helvetica-Bold')
             .fillColor('#4a5568')
             .text(`• ${item.itemName}`, 65, bulletY, { width: 400 });
-          bulletY += doc.heightOfString(`• ${item.itemName}`, { width: 400 }) + 2;
+          bulletY +=
+            doc.heightOfString(`• ${item.itemName}`, { width: 400 }) + 2;
 
           if (item.itemDescription) {
             doc
@@ -324,7 +352,8 @@ export class PdfGeneratorService {
               .font('Helvetica')
               .fillColor('#718096')
               .text(item.itemDescription, 75, bulletY, { width: 390 });
-            bulletY += doc.heightOfString(item.itemDescription, { width: 390 }) + 2;
+            bulletY +=
+              doc.heightOfString(item.itemDescription, { width: 390 }) + 2;
           }
           bulletY += 2;
         }
@@ -334,7 +363,9 @@ export class PdfGeneratorService {
     }
 
     // Additional items
-    const enabledItems = data.items.filter((item) => item.isEnabled && item.totalPrice > 0);
+    const enabledItems = data.items.filter(
+      (item) => item.isEnabled && item.totalPrice > 0,
+    );
 
     for (let i = 0; i < enabledItems.length; i++) {
       const item = enabledItems[i];
@@ -348,7 +379,10 @@ export class PdfGeneratorService {
       const rowHeight = baseRowHeight + descH + (item.itemDescription ? 4 : 0);
 
       if (currentY + rowHeight > maxContentY()) {
-        doc.addPage({ size: 'A4', margins: { top: 50, bottom: 50, left: 50, right: 50 } });
+        doc.addPage({
+          size: 'A4',
+          margins: { top: 50, bottom: 50, left: 50, right: 50 },
+        });
         currentY = 50;
       }
 
@@ -392,15 +426,26 @@ export class PdfGeneratorService {
     totalsHeight += 20; // base price
     if (data.markup > 0) totalsHeight += 40; // markup + client price
     totalsHeight += 20; // additional items
-    if (data.buildingType && data.buildingTypePrice && data.buildingTypePrice > 0) totalsHeight += 35;
+    if (
+      data.buildingType &&
+      data.buildingTypePrice &&
+      data.buildingTypePrice > 0
+    )
+      totalsHeight += 35;
     totalsHeight += 15 + 15 + 20; // line + total label
 
     const notesHeight = data.projectNotes
-      ? Math.min(doc.heightOfString(data.projectNotes, { width: 512 }), notesMaxHeight) + 40
+      ? Math.min(
+          doc.heightOfString(data.projectNotes, { width: 512 }),
+          notesMaxHeight,
+        ) + 40
       : 0;
 
     if (currentY + totalsHeight + notesHeight > maxContentY) {
-      doc.addPage({ size: 'A4', margins: { top: 50, bottom: 50, left: 50, right: 50 } });
+      doc.addPage({
+        size: 'A4',
+        margins: { top: 50, bottom: 50, left: 50, right: 50 },
+      });
       currentY = 50;
     }
 
@@ -428,7 +473,11 @@ export class PdfGeneratorService {
     if (data.markup > 0) {
       doc
         .text(`Markup (${data.markup}%):`, totalsX, currentY)
-        .text(this.formatCurrency(data.clientPrice - data.basePrice), 480, currentY);
+        .text(
+          this.formatCurrency(data.clientPrice - data.basePrice),
+          480,
+          currentY,
+        );
       currentY += 20;
 
       doc
@@ -442,7 +491,11 @@ export class PdfGeneratorService {
       .text(this.formatCurrency(data.additionalItemsTotal), 480, currentY);
     currentY += 20;
 
-    if (data.buildingType && data.buildingTypePrice && data.buildingTypePrice > 0) {
+    if (
+      data.buildingType &&
+      data.buildingTypePrice &&
+      data.buildingTypePrice > 0
+    ) {
       doc
         .text('Building Type:', totalsX, currentY)
         .text(this.formatCurrency(data.buildingTypePrice), 480, currentY);
