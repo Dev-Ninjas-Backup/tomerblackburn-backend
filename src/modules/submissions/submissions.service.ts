@@ -157,7 +157,9 @@ export class SubmissionsService {
       );
     }
 
-    const siteSettings = await this.prisma.siteSettings.findFirst();
+    const siteSettings = await this.prisma.siteSettings.findFirst({
+      include: { logoImage: true },
+    });
 
     // Fetch included base items from the service's cost codes
     const includedBaseItems = await this.prisma.costCode.findMany({
@@ -174,6 +176,7 @@ export class SubmissionsService {
     const pdfData: SubmissionPdfData = {
       submissionNumber: submission.submissionNumber,
       tagline: siteSettings?.siteDescription ?? undefined,
+      logoUrl: (siteSettings as any)?.logoImage?.url ?? undefined,
       clientName: submission.clientName,
       clientEmail: submission.clientEmail,
       clientPhone: submission.clientPhone,

@@ -11,6 +11,7 @@ export interface SubmissionPdfData {
   clientPhone: string;
   projectAddress: string;
   zipCode?: string;
+  logoUrl?: string;
   /** Tagline/subtitle shown below company name in PDF header (e.g. from site settings). */
   tagline?: string;
   service: {
@@ -87,139 +88,161 @@ export class PdfGeneratorService {
   }
 
   private addHeader(doc: PDFKit.PDFDocument, data: SubmissionPdfData): void {
-    // Company Logo/Name
+    const logoSize = 36;
+    const logoX = 50;
+    const logoY = 45;
+    const textX = logoX + logoSize + 10;
+
+    // Logo placeholder box (always draw as fallback)
+    doc.rect(logoX, logoY, logoSize, logoSize).fillColor('#e2e8f0').fill();
+
+    // Try to use logo image if available
+    if (data.logoUrl) {
+      try {
+        doc.image(data.logoUrl, logoX, logoY, {
+          width: logoSize,
+          height: logoSize,
+          cover: [logoSize, logoSize],
+        });
+      } catch {
+        // fallback to placeholder already drawn
+      }
+    }
+
+    // Company name — smaller, same line as logo
     doc
-      .fontSize(28)
+      .fontSize(18)
       .font('Helvetica-Bold')
       .fillColor(this.primaryColor)
-      .text('BBurn Builders', 50, 50);
+      .text('BBurn Builders', textX, logoY + 4);
 
+    // Tagline below company name
+    const tagline =
+      this.normalizeTaglineForPdf(data.tagline) ??
+      'Premium Home Remodeling Services';
     doc
-      .fontSize(12)
+      .fontSize(9)
       .font('Helvetica')
       .fillColor(this.secondaryColor)
-      .text(
-        this.normalizeTaglineForPdf(data.tagline) ??
-          'Professional Home Renovation',
-        50,
-        82,
-      );
+      .text(tagline, textX, logoY + 26);
 
-    // Estimate Number and Date (right aligned)
+    // Estimate # and Date — right side, compact
     doc
-      .fontSize(10)
+      .fontSize(9)
       .font('Helvetica')
       .fillColor(this.secondaryColor)
-      .text(`Estimate #: ${data.submissionNumber}`, 400, 50, { align: 'right' })
-      .text(`Date: ${this.formatDate(data.submittedAt)}`, 400, 65, {
+      .text(`Estimate #: ${data.submissionNumber}`, 400, logoY + 4, {
+        align: 'right',
+      })
+      .text(`Date: ${this.formatDate(data.submittedAt)}`, 400, logoY + 18, {
         align: 'right',
       });
 
     // Horizontal line
+    const lineY = logoY + logoSize + 10;
     doc
-      .moveTo(50, 110)
-      .lineTo(545, 110)
+      .moveTo(50, lineY)
+      .lineTo(545, lineY)
       .strokeColor(this.lightGray)
-      .lineWidth(2)
+      .lineWidth(1.5)
       .stroke();
 
-    doc.moveDown(2);
+    doc.y = lineY + 8;
   }
 
   private addClientInfo(
     doc: PDFKit.PDFDocument,
     data: SubmissionPdfData,
   ): void {
-    const startY = 130;
+    const startY = doc.y;
 
-    // Client Information Section
+    // Left: Client Information
     doc
-      .fontSize(14)
+      .fontSize(10)
       .font('Helvetica-Bold')
       .fillColor(this.primaryColor)
       .text('CLIENT INFORMATION', 50, startY);
 
-    doc.fontSize(10).font('Helvetica').fillColor(this.secondaryColor);
+    doc.fontSize(9).font('Helvetica').fillColor(this.secondaryColor);
+    const ciY = startY + 16;
+    doc.text(`Name: ${data.clientName}`, 50, ciY);
+    doc.text(`Email: ${data.clientEmail}`, 50, ciY + 13);
+    doc.text(`Phone: ${data.clientPhone}`, 50, ciY + 26);
 
-    const clientInfoY = startY + 25;
-    doc.text(`Name: ${data.clientName}`, 50, clientInfoY);
-    doc.text(`Email: ${data.clientEmail}`, 50, clientInfoY + 15);
-    doc.text(`Phone: ${data.clientPhone}`, 50, clientInfoY + 30);
-
-    // Project Address (right side)
+    // Right: Project Address
     doc
-      .fontSize(14)
+      .fontSize(10)
       .font('Helvetica-Bold')
       .fillColor(this.primaryColor)
       .text('PROJECT ADDRESS', 300, startY);
 
     doc
-      .fontSize(10)
+      .fontSize(9)
       .font('Helvetica')
       .fillColor(this.secondaryColor)
-      .text(data.projectAddress, 300, clientInfoY, { width: 250 });
+      .text(data.projectAddress, 300, ciY, { width: 245 });
 
     if (data.zipCode) {
-      doc.text(`Zip Code: ${data.zipCode}`, 300, clientInfoY + 30);
+      doc.text(`Zip Code: ${data.zipCode}`, 300, ciY + 26);
     }
 
-    // Horizontal line
+    const lineY = ciY + 44;
     doc
-      .moveTo(50, clientInfoY + 60)
-      .lineTo(545, clientInfoY + 60)
+      .moveTo(50, lineY)
+      .lineTo(545, lineY)
       .strokeColor(this.lightGray)
       .lineWidth(1)
       .stroke();
+
+    doc.y = lineY + 8;
   }
 
   private addProjectSummary(
     doc: PDFKit.PDFDocument,
     data: SubmissionPdfData,
   ): void {
-    const startY = 230;
-    const boxHeight = data.buildingType ? 80 : 50;
+    const startY = doc.y;
+    const boxHeight = data.buildingType ? 58 : 38;
 
-    // Project Summary Box
     doc.rect(50, startY, 512, boxHeight).fillColor('#f7fafc').fill();
 
     doc
-      .fontSize(12)
+      .fontSize(9)
       .font('Helvetica-Bold')
       .fillColor(this.primaryColor)
-      .text('PROJECT TYPE', 60, startY + 10);
+      .text('PROJECT TYPE', 60, startY + 7);
 
     doc
-      .fontSize(16)
+      .fontSize(13)
       .font('Helvetica-Bold')
       .fillColor(this.accentColor)
-      .text(`${data.service.name} Bathroom Renovation`, 60, startY + 28);
+      .text(`${data.service.name} Bathroom Renovation`, 60, startY + 20);
 
     doc
-      .fontSize(10)
+      .fontSize(9)
       .font('Helvetica')
       .fillColor(this.secondaryColor)
-      .text(`Code: ${data.service.code}`, 450, startY + 20, {
-        align: 'right',
-      });
+      .text(`Code: ${data.service.code}`, 450, startY + 20, { align: 'right' });
 
     if (data.buildingType) {
       doc
-        .fontSize(10)
+        .fontSize(9)
         .font('Helvetica-Bold')
         .fillColor(this.primaryColor)
-        .text('Building Type:', 60, startY + 55);
+        .text('Building Type:', 60, startY + 40);
 
       doc
-        .fontSize(10)
+        .fontSize(9)
         .font('Helvetica')
         .fillColor(this.secondaryColor)
-        .text(data.buildingType, 450, startY + 55, { align: 'right' });
+        .text(data.buildingType, 450, startY + 40, { align: 'right' });
     }
+
+    doc.y = startY + boxHeight + 8;
   }
 
   private addLineItems(doc: PDFKit.PDFDocument, data: SubmissionPdfData): void {
-    const startY = data.buildingType ? 330 : 300;
-    let currentY = startY;
+    let currentY = doc.y;
     const baseRowHeight = 25;
 
     // Section Title
