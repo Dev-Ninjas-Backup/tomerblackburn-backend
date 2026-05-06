@@ -611,7 +611,11 @@ export class CostCodesService {
 
     for (const service of services) {
       const costCodes = await this.prisma.costCode.findMany({
-        where: { serviceId: service.id, isActive: true, excludeFromExport: false },
+        where: {
+          serviceId: service.id,
+          isActive: true,
+          excludeFromExport: false,
+        },
         include: { category: true },
         orderBy: [{ displayOrder: 'asc' }, { code: 'asc' }],
       });
@@ -620,21 +624,21 @@ export class CostCodesService {
       const sheet = workbook.addWorksheet(sheetName);
 
       const columns = [
-        { header: 'Category',     key: 'category',    width: 20 },
-        { header: 'Cost Code',    key: 'code',        width: 20 },
-        { header: 'Title',        key: 'title',       width: 30 },
-        { header: 'Description',  key: 'description', width: 40 },
-        { header: 'Quantity',     key: 'quantity',    width: 10 },
-        { header: 'Unit',         key: 'unit',        width: 10 },
-        { header: 'Unit Cost',    key: 'unitCost',    width: 14 },
-        { header: 'Cost Type',    key: 'costType',    width: 12 },
-        { header: 'Marked As',    key: 'markedAs',    width: 14 },
+        { header: 'Category', key: 'category', width: 20 },
+        { header: 'Cost Code', key: 'code', width: 20 },
+        { header: 'Title', key: 'title', width: 30 },
+        { header: 'Description', key: 'description', width: 40 },
+        { header: 'Quantity', key: 'quantity', width: 10 },
+        { header: 'Unit', key: 'unit', width: 10 },
+        { header: 'Unit Cost', key: 'unitCost', width: 14 },
+        { header: 'Cost Type', key: 'costType', width: 12 },
+        { header: 'Marked As', key: 'markedAs', width: 14 },
         { header: 'Builder Cost', key: 'builderCost', width: 14 },
-        { header: 'Markup',       key: 'markup',      width: 10 },
-        { header: 'Markup Type',  key: 'markupType',  width: 12 },
+        { header: 'Markup', key: 'markup', width: 10 },
+        { header: 'Markup Type', key: 'markupType', width: 12 },
         { header: 'Client Price', key: 'clientPrice', width: 14 },
-        { header: 'Margin',       key: 'margin',      width: 10 },
-        { header: 'Profit',       key: 'profit',      width: 12 },
+        { header: 'Margin', key: 'margin', width: 10 },
+        { header: 'Profit', key: 'profit', width: 12 },
       ];
 
       sheet.columns = columns;
@@ -642,7 +646,11 @@ export class CostCodesService {
       // Style header
       sheet.getRow(1).eachCell((cell) => {
         cell.font = { bold: true, color: { argb: 'FFFFFFFF' } };
-        cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1A365D' } };
+        cell.fill = {
+          type: 'pattern',
+          pattern: 'solid',
+          fgColor: { argb: 'FF1A365D' },
+        };
         cell.alignment = { vertical: 'middle', horizontal: 'center' };
       });
       sheet.getRow(1).height = 20;
@@ -659,30 +667,30 @@ export class CostCodesService {
         const markup = builderCost > 0 ? profit / builderCost : 0;
 
         const row = sheet.addRow({
-          category:    cc.category?.name ?? '',
-          code:        cc.code,
-          title:       cc.elies ?? cc.name,
+          category: cc.category?.name ?? '',
+          code: cc.code,
+          title: cc.elies ?? cc.name,
           description: cc.description ?? '',
           quantity,
-          unit:        UNIT_MAP[cc.unitType] ?? 'LS',
+          unit: UNIT_MAP[cc.unitType] ?? 'LS',
           unitCost,
-          costType:    '',
-          markedAs:    '',
+          costType: '',
+          markedAs: '',
           builderCost,
           markup,
-          markupType:  '%',
+          markupType: '%',
           clientPrice: clientTotal,
           margin,
           profit,
         });
 
-        row.getCell('quantity').numFmt    = '0.00';
-        row.getCell('unitCost').numFmt    = '#,##0.00';
+        row.getCell('quantity').numFmt = '0.00';
+        row.getCell('unitCost').numFmt = '#,##0.00';
         row.getCell('builderCost').numFmt = '#,##0.00';
-        row.getCell('markup').numFmt      = '0.0000';
+        row.getCell('markup').numFmt = '0.0000';
         row.getCell('clientPrice').numFmt = '#,##0.00';
-        row.getCell('margin').numFmt      = '0.0000';
-        row.getCell('profit').numFmt      = '#,##0.00';
+        row.getCell('margin').numFmt = '0.0000';
+        row.getCell('profit').numFmt = '#,##0.00';
 
         // Suppress markup% info — just for reference
         void markupPct;

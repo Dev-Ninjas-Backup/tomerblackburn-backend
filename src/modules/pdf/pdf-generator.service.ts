@@ -94,15 +94,16 @@ export class PdfGeneratorService {
     const textX = logoX + logoSize + 10;
 
     // Logo placeholder box (always draw as fallback)
-    doc
-      .rect(logoX, logoY, logoSize, logoSize)
-      .fillColor('#e2e8f0')
-      .fill();
+    doc.rect(logoX, logoY, logoSize, logoSize).fillColor('#e2e8f0').fill();
 
     // Try to use logo image if available
     if (data.logoUrl) {
       try {
-        doc.image(data.logoUrl, logoX, logoY, { width: logoSize, height: logoSize, cover: [logoSize, logoSize] });
+        doc.image(data.logoUrl, logoX, logoY, {
+          width: logoSize,
+          height: logoSize,
+          cover: [logoSize, logoSize],
+        });
       } catch {
         // fallback to placeholder already drawn
       }
@@ -116,7 +117,9 @@ export class PdfGeneratorService {
       .text('BBurn Builders', textX, logoY + 4);
 
     // Tagline below company name
-    const tagline = this.normalizeTaglineForPdf(data.tagline) ?? 'Premium Home Remodeling Services';
+    const tagline =
+      this.normalizeTaglineForPdf(data.tagline) ??
+      'Premium Home Remodeling Services';
     doc
       .fontSize(9)
       .font('Helvetica')
@@ -128,8 +131,12 @@ export class PdfGeneratorService {
       .fontSize(9)
       .font('Helvetica')
       .fillColor(this.secondaryColor)
-      .text(`Estimate #: ${data.submissionNumber}`, 400, logoY + 4, { align: 'right' })
-      .text(`Date: ${this.formatDate(data.submittedAt)}`, 400, logoY + 18, { align: 'right' });
+      .text(`Estimate #: ${data.submissionNumber}`, 400, logoY + 4, {
+        align: 'right',
+      })
+      .text(`Date: ${this.formatDate(data.submittedAt)}`, 400, logoY + 18, {
+        align: 'right',
+      });
 
     // Horizontal line
     const lineY = logoY + logoSize + 10;
