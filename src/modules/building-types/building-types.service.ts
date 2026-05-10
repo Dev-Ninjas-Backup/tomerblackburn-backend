@@ -180,6 +180,18 @@ export class BuildingTypesService {
     };
   }
 
+  async reorder(items: { id: string; displayOrder: number }[]) {
+    await Promise.all(
+      items.map((item) =>
+        this.prisma.buildingType.update({
+          where: { id: item.id },
+          data: { displayOrder: item.displayOrder },
+        }),
+      ),
+    );
+    return { message: 'Building types reordered successfully' };
+  }
+
   async remove(id: string) {
     await this.findOne(id);
     await this.prisma.buildingType.delete({ where: { id } });

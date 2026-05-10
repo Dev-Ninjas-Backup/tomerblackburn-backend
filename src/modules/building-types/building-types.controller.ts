@@ -19,6 +19,7 @@ import {
 import { BuildingTypesService } from './building-types.service';
 import { CreateBuildingTypeDto } from './dto/create-building-type.dto';
 import { UpdateBuildingTypeDto } from './dto/update-building-type.dto';
+import { ReorderBuildingTypesDto } from './dto/reorder-building-types.dto';
 
 @ApiTags('Building Types')
 @Controller('building-types')
@@ -102,6 +103,13 @@ export class BuildingTypesController {
   })
   update(@Param('id') id: string, @Body() updateDto: UpdateBuildingTypeDto) {
     return this.buildingTypesService.update(id, updateDto);
+  }
+
+  @Patch('reorder')
+  @ApiOperation({ summary: 'Reorder building types (admin)' })
+  @ApiResponse({ status: HttpStatus.OK, description: 'Reordered successfully' })
+  reorder(@Body() dto: ReorderBuildingTypesDto) {
+    return this.buildingTypesService.reorder(dto.items);
   }
 
   @Delete(':id')
