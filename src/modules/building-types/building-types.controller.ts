@@ -88,6 +88,13 @@ export class BuildingTypesController {
     return this.buildingTypesService.findOne(id);
   }
 
+  @Patch('reorder')
+  @ApiOperation({ summary: 'Reorder building types (admin)' })
+  @ApiResponse({ status: HttpStatus.OK, description: 'Reordered successfully' })
+  reorder(@Body() dto: ReorderBuildingTypesDto) {
+    return this.buildingTypesService.reorder(dto.items);
+  }
+
   @Patch(':id')
   @ApiOperation({
     summary: 'Update building type (admin)',
@@ -103,13 +110,6 @@ export class BuildingTypesController {
   })
   update(@Param('id') id: string, @Body() updateDto: UpdateBuildingTypeDto) {
     return this.buildingTypesService.update(id, updateDto);
-  }
-
-  @Patch('reorder')
-  @ApiOperation({ summary: 'Reorder building types (admin)' })
-  @ApiResponse({ status: HttpStatus.OK, description: 'Reordered successfully' })
-  reorder(@Body() dto: ReorderBuildingTypesDto) {
-    return this.buildingTypesService.reorder(dto.items);
   }
 
   @Delete(':id')
