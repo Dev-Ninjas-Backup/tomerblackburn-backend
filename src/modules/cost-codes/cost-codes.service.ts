@@ -754,57 +754,6 @@ export class CostCodesService {
     });
     varianceSheet.getRow(1).height = 20;
 
-    // Default Buildertrend Variance Codes from screenshot
-    const defaultVariances = [
-      { category: '0 - 9 Plans', code: '01 - Dimensioning Error' },
-      { category: '0 - 9 Plans', code: '02 - Unclear detail' },
-      { category: '0 - 9 Plans', code: '03 - Code violation' },
-      { category: '10 - 19 Estimating', code: '11 - Omitted from estimate' },
-      { category: '10 - 19 Estimating', code: '12 - Data entry error (typo)' },
-      { category: '10 - 19 Estimating', code: '13 - Take-off error' },
-      { category: '10 - 19 Estimating', code: '14 - Missed in EPO review' },
-      { category: '20 - 29 Purchasing', code: '21 - Price change' },
-      { category: '20 - 29 Purchasing', code: '22 - Vendor change' },
-      { category: '20 - 29 Purchasing', code: '23 - Omitted in SOW' },
-      { category: '20 - 29 Purchasing', code: '24 - Short-shipped' },
-      { category: '20 - 29 Purchasing', code: '25 - Wrong material shipped' },
-      { category: '20 - 29 Purchasing', code: '26 - Poor quality of material' },
-      { category: '20 - 29 Purchasing', code: '27 - Tax-rate difference' },
-      { category: '30 - 39 Weather', code: '31 - Wet weather' },
-      { category: '30 - 39 Weather', code: '32 - Freezing conditions' },
-      { category: '30 - 39 Weather', code: '33 - Wind/storm damage' },
-      { category: '30 - 39 Weather', code: '34 - Weather precaution' },
-      {
-        category: '40 - 49 Site Conditions',
-        code: '41 - Unanticipated sub-surface',
-      },
-      {
-        category: '40 - 49 Site Conditions',
-        code: '42 - Elevation varies from standard',
-      },
-      {
-        category: '40 - 49 Site Conditions',
-        code: '43 - Special sites cleaning',
-      },
-      { category: '40 - 49 Site Conditions', code: '44 - Streets not in' },
-      {
-        category: '40 - 49 Site Conditions',
-        code: '45 - Dirt needed for grade',
-      },
-      { category: '40 - 49 Site Conditions', code: '46 - Dirt removal needed' },
-      {
-        category: '40 - 49 Site Conditions',
-        code: '47 - Code Official Mandated',
-      },
-    ];
-
-    for (const dv of defaultVariances) {
-      varianceSheet.addRow({
-        VarianceCategory: dv.category,
-        VarianceCodes: dv.code,
-      });
-    }
-
     const buffer = await workbook.xlsx.writeBuffer();
     const filename = `buildertrend-catalog-${new Date().toISOString().slice(0, 10)}.xlsx`;
     return { buffer, filename };
