@@ -80,6 +80,22 @@ export class CostCodesController {
     res.send(buffer);
   }
 
+  @Get('export/buildertrend-catalog')
+  @ApiOperation({
+    summary:
+      'Export global cost codes catalog for Buildertrend settings import (Excel)',
+  })
+  async exportCatalogForBuildertrend(@Res() res: Response) {
+    const { buffer, filename } =
+      await this.costCodesService.exportCatalogForBuildertrend();
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    );
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.send(buffer);
+  }
+
   @Get()
   @ApiOperation({
     summary: 'Get all cost codes with filters',
