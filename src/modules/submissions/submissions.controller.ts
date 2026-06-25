@@ -70,6 +70,7 @@ export class SubmissionsController {
   @Get('export')
   @ApiOperation({ summary: 'Export submissions to Excel' })
   @ApiQuery({ name: 'status', required: false, enum: SubmissionStatus })
+  @ApiQuery({ name: 'format', required: false, type: String })
   @Header(
     'Content-Type',
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -77,15 +78,17 @@ export class SubmissionsController {
   async exportToExcel(
     @Res() res: Response,
     @Query('status') status?: SubmissionStatus,
+    @Query('format') format?: 'report' | 'import',
   ) {
     const { buffer, submissionNumbers } =
-      await this.submissionsService.exportToExcel(status);
+      await this.submissionsService.exportToExcel(status, format);
 
     const date = new Date().toISOString().split('T')[0];
+    const prefix = format === 'import' ? 'buildertrend-import-' : '';
     const filename =
       submissionNumbers.length === 1
-        ? `${submissionNumbers[0]}-${date}.xlsx`
-        : `${submissionNumbers.join('_')}-${date}.xlsx`;
+        ? `${prefix}${submissionNumbers[0]}-${date}.xlsx`
+        : `${prefix}${submissionNumbers.join('_')}-${date}.xlsx`;
 
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.send(buffer);
@@ -93,6 +96,7 @@ export class SubmissionsController {
 
   @Post('export')
   @ApiOperation({ summary: 'Export specific submissions by IDs to Excel' })
+  @ApiQuery({ name: 'format', required: false, type: String })
   @Header(
     'Content-Type',
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
@@ -100,15 +104,17 @@ export class SubmissionsController {
   async exportByIds(
     @Res() res: Response,
     @Body() exportByIdsDto: ExportSubmissionsByIdsDto,
+    @Query('format') format?: 'report' | 'import',
   ) {
     const { buffer, submissionNumbers } =
-      await this.submissionsService.exportByIds(exportByIdsDto.ids);
+      await this.submissionsService.exportByIds(exportByIdsDto.ids, format);
 
     const date = new Date().toISOString().split('T')[0];
+    const prefix = format === 'import' ? 'buildertrend-import-' : '';
     const filename =
       submissionNumbers.length === 1
-        ? `${submissionNumbers[0]}-${date}.xlsx`
-        : `${submissionNumbers.join('_')}-${date}.xlsx`;
+        ? `${prefix}${submissionNumbers[0]}-${date}.xlsx`
+        : `${prefix}${submissionNumbers.join('_')}-${date}.xlsx`;
 
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.send(buffer);
