@@ -1306,39 +1306,8 @@ export class SubmissionsService {
 
   async exportToExcel(
     status?: SubmissionStatus,
+    format: 'report' | 'import' = 'report',
   ): Promise<{ buffer: ExcelJS.Buffer; submissionNumbers: string[] }> {
-    const workbook = new ExcelJS.Workbook();
-
-    const possiblePaths = [
-      path.join(process.cwd(), 'Submission Template.xlsx'),
-      path.join(process.cwd(), 'dist', 'Submission Template.xlsx'),
-      path.join(__dirname, '..', '..', '..', 'Submission Template.xlsx'),
-      '/app/Submission Template.xlsx',
-    ];
-
-    let templatePath: string | null = null;
-    for (const testPath of possiblePaths) {
-      if (existsSync(testPath)) {
-        templatePath = testPath;
-        break;
-      }
-    }
-
-    if (!templatePath) {
-      throw new Error(
-        'Template file "Submission Template.xlsx" not found. Please ensure the file exists in the project root directory.',
-      );
-    }
-
-    await workbook.xlsx.readFile(templatePath);
-
-    const worksheet = workbook.getWorksheet('Blank Template');
-    if (!worksheet) {
-      throw new Error(
-        'Worksheet "Blank Template" not found in Submission Template.xlsx',
-      );
-    }
-
     const where = status ? { status } : {};
     const submissions = await this.prisma.submission.findMany({
       where,
@@ -1360,116 +1329,17 @@ export class SubmissionsService {
       orderBy: { submittedAt: 'desc' },
     });
 
-    const UNIT_TYPE_LABELS: Record<string, string> = {
-      FIXED: 'Fixed',
-      PER_SQFT: 'Sqft',
-      PER_EACH: 'Each',
-      PER_LOT: 'Lot',
-      PER_SET: 'Set',
-      PER_UPGRADE: 'Upgrade',
-    };
-
-    let currentRow = 2;
-
-    for (const submission of submissions) {
-      // Item rows: only items with costs; exclude branch-only questions (no Buildertrend line)
-      const enabledItems = submission.submissionItems.filter(
-        (item) =>
-          item.isEnabled &&
-          !(item.costCode as { excludeFromExport?: boolean }).excludeFromExport,
-      );
-
-      for (const item of enabledItems) {
-        const row = worksheet.getRow(currentRow);
-        const costCodeTitle = item.itemName || item.costCode.name;
-
-        const unitCostPerUnit = Number(item.costCode.basePrice);
-        const clientUnitPrice = Number(item.unitPrice);
-        const quantity = Number(item.quantity);
-        const totalClientPrice = quantity * clientUnitPrice;
-        const totalCost = quantity * unitCostPerUnit;
-        const profit = totalClientPrice - totalCost;
-        const margin =
-          totalClientPrice > 0
-            ? (totalClientPrice - totalCost) / totalClientPrice
-            : 0;
-        const markup =
-          totalCost > 0 ? (totalClientPrice - totalCost) / totalCost : 0;
-
-        row.values = [
-          item.costCode.category?.name || '', // Col 1: Category
-          item.costCode.code, // Col 2: Cost Code
-          costCodeTitle, // Col 3: Title
-          item.itemDescription || item.costCode.description || '', // Col 4: Description
-          quantity, // Col 5: Quantity
-          UNIT_TYPE_LABELS[item.costCode.unitType] || 'Fixed', // Col 6: Unit
-          unitCostPerUnit, // Col 7: Unit Cost
-          '', // Col 8: Cost Type (no data available)
-          item.selectedOptionName || item.userInputValue || '', // Col 9: Marked As
-          totalCost, // Col 10: Builder Cost (qty × unit cost)
-          markup, // Col 11: Markup
-          '%', // Col 12: Markup Type
-          totalClientPrice, // Col 13: Client Price
-          margin, // Col 14: Margin
-          profit, // Col 15: Profit
-          item.notes || '', // Col 16: Notes
-        ];
-
-        row.getCell(5).numFmt = '0.00';
-        row.getCell(7).numFmt = '#,##0.00';
-        row.getCell(10).numFmt = '#,##0.00';
-        row.getCell(11).numFmt = '0.0000';
-        row.getCell(13).numFmt = '#,##0.00';
-        row.getCell(14).numFmt = '0.0000';
-        row.getCell(15).numFmt = '#,##0.00';
-
-        row.commit();
-        currentRow++;
-      }
-    }
-
-    const buffer = await workbook.xlsx.writeBuffer();
+    const buffer = await this.generateExcelBuffer(submissions, format);
     const submissionNumbers = submissions.map((s) => s.submissionNumber);
     return { buffer, submissionNumbers };
   }
 
   async exportByIds(
     ids: string[],
+    format: 'report' | 'import' = 'report',
   ): Promise<{ buffer: ExcelJS.Buffer; submissionNumbers: string[] }> {
     if (!ids || ids.length === 0) {
       throw new Error('At least one submission ID is required');
-    }
-
-    const workbook = new ExcelJS.Workbook();
-
-    const possiblePaths = [
-      path.join(process.cwd(), 'Submission Template.xlsx'),
-      path.join(process.cwd(), 'dist', 'Submission Template.xlsx'),
-      path.join(__dirname, '..', '..', '..', 'Submission Template.xlsx'),
-      '/app/Submission Template.xlsx',
-    ];
-
-    let templatePath: string | null = null;
-    for (const testPath of possiblePaths) {
-      if (existsSync(testPath)) {
-        templatePath = testPath;
-        break;
-      }
-    }
-
-    if (!templatePath) {
-      throw new Error(
-        'Template file "Submission Template.xlsx" not found. Please ensure the file exists in the project root directory.',
-      );
-    }
-
-    await workbook.xlsx.readFile(templatePath);
-
-    const worksheet = workbook.getWorksheet('Blank Template');
-    if (!worksheet) {
-      throw new Error(
-        'Worksheet "Blank Template" not found in Submission Template.xlsx',
-      );
     }
 
     const submissions = await this.prisma.submission.findMany({
@@ -1500,77 +1370,216 @@ export class SubmissionsService {
       throw new NotFoundException('No submissions found with the provided IDs');
     }
 
+    const buffer = await this.generateExcelBuffer(submissions, format);
+    const submissionNumbers = submissions.map((s) => s.submissionNumber);
+    return { buffer, submissionNumbers };
+  }
+
+  private async generateExcelBuffer(
+    submissions: any[],
+    format: 'report' | 'import',
+  ): Promise<ExcelJS.Buffer> {
+    const workbook = new ExcelJS.Workbook();
     const UNIT_TYPE_LABELS: Record<string, string> = {
-      FIXED: 'Fixed',
-      PER_SQFT: 'Sqft',
-      PER_EACH: 'Each',
-      PER_LOT: 'Lot',
-      PER_SET: 'Set',
-      PER_UPGRADE: 'Upgrade',
+      FIXED: 'LS',
+      PER_SQFT: 'SF',
+      PER_LF: 'LF',
+      PER_EACH: 'EA',
+      PER_LOT: 'LS',
+      PER_SET: 'LS',
+      PER_UPGRADE: 'EA',
     };
 
-    let currentRow = 2;
+    if (format === 'import') {
+      const worksheet = workbook.addWorksheet('Blank Template');
+      worksheet.columns = [
+        { header: 'Title', key: 'Title', width: 30 },
+        { header: 'Description', key: 'Description', width: 45 },
+        { header: 'Parent Group', key: 'ParentGroup', width: 20 },
+        {
+          header: 'Parent Group Description',
+          key: 'ParentGroupDescription',
+          width: 25,
+        },
+        { header: 'Subgroup', key: 'Subgroup', width: 20 },
+        {
+          header: 'Subgroup Description',
+          key: 'SubgroupDescription',
+          width: 25,
+        },
+        { header: 'Cost Code', key: 'CostCode', width: 15 },
+        { header: 'Quantity', key: 'Quantity', width: 10 },
+        { header: 'Unit', key: 'Unit', width: 10 },
+        { header: 'Unit Cost', key: 'UnitCost', width: 12 },
+        { header: 'Cost Type', key: 'CostType', width: 12 },
+        { header: 'Total Cost', key: 'TotalCost', width: 12 },
+        { header: 'Internal Notes', key: 'InternalNotes', width: 30 },
+        { header: 'Markup', key: 'Markup', width: 10 },
+        { header: 'Markup Type', key: 'MarkupType', width: 12 },
+        { header: 'Line Item Type', key: 'LineItemType', width: 15 },
+        { header: 'Tax', key: 'Tax', width: 12 },
+      ];
 
-    for (const submission of submissions) {
-      // Item rows: only items with costs; exclude branch-only questions (no Buildertrend line)
-      const enabledItems = submission.submissionItems.filter(
-        (item) =>
-          item.isEnabled &&
-          !(item.costCode as { excludeFromExport?: boolean }).excludeFromExport,
-      );
+      // Style header
+      worksheet.getRow(1).eachCell((cell) => {
+        cell.font = { bold: true };
+        cell.alignment = { vertical: 'middle', horizontal: 'left' };
+      });
+      worksheet.getRow(1).height = 20;
 
-      for (const item of enabledItems) {
-        const row = worksheet.getRow(currentRow);
-        const costCodeTitle = item.itemName || item.costCode.name;
+      let currentRow = 2;
+      for (const submission of submissions) {
+        const enabledItems = submission.submissionItems.filter(
+          (item: any) =>
+            item.isEnabled &&
+            !(item.costCode as { excludeFromExport?: boolean })
+              .excludeFromExport,
+        );
 
-        const unitCostPerUnit = Number(item.costCode.basePrice);
-        const clientUnitPrice = Number(item.unitPrice);
-        const quantity = Number(item.quantity);
-        const totalClientPrice = quantity * clientUnitPrice;
-        const totalCost = quantity * unitCostPerUnit;
-        const profit = totalClientPrice - totalCost;
-        const margin =
-          totalClientPrice > 0
-            ? (totalClientPrice - totalCost) / totalClientPrice
-            : 0;
-        const markup =
-          totalCost > 0 ? (totalClientPrice - totalCost) / totalCost : 0;
+        for (const item of enabledItems) {
+          const row = worksheet.getRow(currentRow);
 
-        row.values = [
-          item.costCode.category?.name || '', // Col 1: Category
-          item.costCode.code, // Col 2: Cost Code
-          costCodeTitle, // Col 3: Title
-          item.itemDescription || item.costCode.description || '', // Col 4: Description
-          quantity, // Col 5: Quantity
-          UNIT_TYPE_LABELS[item.costCode.unitType] || 'Fixed', // Col 6: Unit
-          unitCostPerUnit, // Col 7: Unit Cost
-          '', // Col 8: Cost Type (no data available)
-          item.selectedOptionName || item.userInputValue || '', // Col 9: Marked As
-          totalCost, // Col 10: Builder Cost (qty × unit cost)
-          markup, // Col 11: Markup
-          '%', // Col 12: Markup Type
-          totalClientPrice, // Col 13: Client Price
-          margin, // Col 14: Margin
-          profit, // Col 15: Profit
-          item.notes || '', // Col 16: Notes
-        ];
+          // Append option details or user input directly to Title to avoid Marked As mapping prompts
+          const selectionSuffix =
+            item.selectedOptionName || item.userInputValue
+              ? ` (${item.selectedOptionName || item.userInputValue})`
+              : '';
+          const title = `${item.itemName || item.costCode.name}${selectionSuffix}`;
 
-        row.getCell(5).numFmt = '0.00';
-        row.getCell(7).numFmt = '#,##0.00';
-        row.getCell(10).numFmt = '#,##0.00';
-        row.getCell(11).numFmt = '0.0000';
-        row.getCell(13).numFmt = '#,##0.00';
-        row.getCell(14).numFmt = '0.0000';
-        row.getCell(15).numFmt = '#,##0.00';
+          const unitCostPerUnit = Number(item.costCode.basePrice);
+          const clientUnitPrice = Number(item.unitPrice);
+          const quantity = Number(item.quantity);
+          const totalCost = quantity * unitCostPerUnit;
+          const totalClientPrice = quantity * clientUnitPrice;
+          const markupPct =
+            totalCost > 0 ? (totalClientPrice - totalCost) / totalCost : 0;
+          const markupValue = markupPct * 100; // Multiply by 100 to show as standard percentage like 20.00%
 
-        row.commit();
-        currentRow++;
+          row.values = [
+            title, // Title
+            item.itemDescription || item.costCode.description || '', // Description
+            item.costCode.category?.name || '', // Parent Group
+            '', // Parent Group Description
+            '', // Subgroup
+            '', // Subgroup Description
+            item.costCode.code, // Cost Code
+            quantity, // Quantity
+            UNIT_TYPE_LABELS[item.costCode.unitType] || 'LS', // Unit
+            unitCostPerUnit, // Unit Cost
+            '', // Cost Type
+            totalCost, // Total Cost
+            item.notes || '', // Internal Notes
+            markupValue, // Markup
+            '%', // Markup Type
+            'Estimate', // Line Item Type
+            'Non-Taxable', // Tax
+          ];
+
+          row.getCell(8).numFmt = '0.00';
+          row.getCell(10).numFmt = '#,##0.00';
+          row.getCell(12).numFmt = '#,##0.00';
+          row.getCell(14).numFmt = '0.0000';
+
+          row.commit();
+          currentRow++;
+        }
+      }
+    } else {
+      // Legacy 'report' format (loading from file template)
+      const possiblePaths = [
+        path.join(process.cwd(), 'Submission Template.xlsx'),
+        path.join(process.cwd(), 'dist', 'Submission Template.xlsx'),
+        path.join(__dirname, '..', '..', '..', 'Submission Template.xlsx'),
+        '/app/Submission Template.xlsx',
+      ];
+
+      let templatePath: string | null = null;
+      for (const testPath of possiblePaths) {
+        if (existsSync(testPath)) {
+          templatePath = testPath;
+          break;
+        }
+      }
+
+      if (!templatePath) {
+        throw new Error(
+          'Template file "Submission Template.xlsx" not found. Please ensure the file exists in the project root directory.',
+        );
+      }
+
+      await workbook.xlsx.readFile(templatePath);
+
+      const worksheet = workbook.getWorksheet('Blank Template');
+      if (!worksheet) {
+        throw new Error(
+          'Worksheet "Blank Template" not found in Submission Template.xlsx',
+        );
+      }
+
+      let currentRow = 2;
+      for (const submission of submissions) {
+        const enabledItems = submission.submissionItems.filter(
+          (item: any) =>
+            item.isEnabled &&
+            !(item.costCode as { excludeFromExport?: boolean })
+              .excludeFromExport,
+        );
+
+        for (const item of enabledItems) {
+          const row = worksheet.getRow(currentRow);
+          const costCodeTitle = item.itemName || item.costCode.name;
+
+          const unitCostPerUnit = Number(item.costCode.basePrice);
+          const clientUnitPrice = Number(item.unitPrice);
+          const quantity = Number(item.quantity);
+          const totalClientPrice = quantity * clientUnitPrice;
+          const totalCost = quantity * unitCostPerUnit;
+          const profit = totalClientPrice - totalCost;
+          const margin =
+            totalClientPrice > 0
+              ? (totalClientPrice - totalCost) / totalClientPrice
+              : 0;
+          const markup =
+            totalCost > 0 ? (totalClientPrice - totalCost) / totalCost : 0;
+
+          // Multiply by 100 to format correctly as standard percentage values instead of decimals
+          const markupValue = markup * 100;
+          const marginValue = margin * 100;
+
+          row.values = [
+            item.costCode.category?.name || '', // Col 1: Category
+            item.costCode.code, // Col 2: Cost Code
+            costCodeTitle, // Col 3: Title
+            item.itemDescription || item.costCode.description || '', // Col 4: Description
+            quantity, // Col 5: Quantity
+            UNIT_TYPE_LABELS[item.costCode.unitType] || 'LS', // Col 6: Unit
+            unitCostPerUnit, // Col 7: Unit Cost
+            '', // Col 8: Cost Type
+            item.selectedOptionName || item.userInputValue || '', // Col 9: Marked As
+            totalCost, // Col 10: Builder Cost
+            markupValue, // Col 11: Markup
+            '%', // Col 12: Markup Type
+            totalClientPrice, // Col 13: Client Price
+            marginValue, // Col 14: Margin
+            profit, // Col 15: Profit
+            item.notes || '', // Col 16: Notes
+          ];
+
+          row.getCell(5).numFmt = '0.00';
+          row.getCell(7).numFmt = '#,##0.00';
+          row.getCell(10).numFmt = '#,##0.00';
+          row.getCell(11).numFmt = '0.0000';
+          row.getCell(13).numFmt = '#,##0.00';
+          row.getCell(14).numFmt = '0.0000';
+          row.getCell(15).numFmt = '#,##0.00';
+
+          row.commit();
+          currentRow++;
+        }
       }
     }
 
-    const buffer = await workbook.xlsx.writeBuffer();
-    const submissionNumbers = submissions.map((s) => s.submissionNumber);
-    return { buffer, submissionNumbers };
+    return await workbook.xlsx.writeBuffer();
   }
 
   async updateWhatHappensNextSteps(dto: UpdateWhatHappensNextDto) {
