@@ -322,7 +322,9 @@ export class PdfGeneratorService {
           .fontSize(8)
           .font('Helvetica')
           .fillColor('#718096')
-          .text(data.service.scopeDescription, 55, currentY + 22, { width: 420 });
+          .text(data.service.scopeDescription, 55, currentY + 22, {
+            width: 420,
+          });
       }
 
       currentY += headerBlockHeight;
@@ -340,7 +342,9 @@ export class PdfGeneratorService {
         currentY += startPadding;
 
         for (const item of includedItems) {
-          const nameH = doc.heightOfString(`• ${item.itemName}`, { width: 400 });
+          const nameH = doc.heightOfString(`• ${item.itemName}`, {
+            width: 400,
+          });
           const descH = item.itemDescription
             ? doc.heightOfString(item.itemDescription, { width: 390 })
             : 0;
@@ -370,7 +374,9 @@ export class PdfGeneratorService {
               .fontSize(7)
               .font('Helvetica')
               .fillColor('#718096')
-              .text(item.itemDescription, 75, currentY + 2 + nameH + 2, { width: 390 });
+              .text(item.itemDescription, 75, currentY + 2 + nameH + 2, {
+                width: 390,
+              });
           }
 
           currentY += itemHeight;
