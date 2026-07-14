@@ -283,18 +283,10 @@ export class PdfGeneratorService {
       const scopeDescH = data.service.scopeDescription
         ? doc.heightOfString(data.service.scopeDescription, { width: 420 }) + 4
         : 0;
-      const itemLinesHeight = includedItems.reduce((sum, item) => {
-        const nameH = doc.heightOfString(`• ${item.itemName}`, { width: 400 });
-        const descH = item.itemDescription
-          ? doc.heightOfString(item.itemDescription, { width: 390 })
-          : 0;
-        return sum + nameH + (descH ? descH + 2 : 0) + 4;
-      }, 0);
-      const basePriceRowHeight =
-        22 + scopeDescH + (includedItems.length > 0 ? itemLinesHeight + 8 : 0);
+      const headerBlockHeight = 22 + scopeDescH + 4;
 
-      // Only add new page if base price row truly doesn't fit
-      if (currentY + basePriceRowHeight > maxContentY()) {
+      // Check page break for the header block
+      if (currentY + headerBlockHeight > maxContentY()) {
         doc.addPage({
           size: 'A4',
           margins: { top: 50, bottom: 50, left: 50, right: 50 },
@@ -302,8 +294,9 @@ export class PdfGeneratorService {
         currentY = 50;
       }
 
+      // Draw background for header block
       doc
-        .rect(50, currentY, 512, basePriceRowHeight)
+        .rect(50, currentY, 512, headerBlockHeight)
         .fillColor('#f7fafc')
         .fill();
 
@@ -324,42 +317,76 @@ export class PdfGeneratorService {
         .fillColor(this.secondaryColor)
         .text(this.formatCurrency(data.basePrice), 480, currentY + 7);
 
-      let afterTitleY = currentY + 22;
       if (data.service.scopeDescription) {
         doc
           .fontSize(8)
           .font('Helvetica')
           .fillColor('#718096')
-          .text(data.service.scopeDescription, 55, afterTitleY, { width: 420 });
-        afterTitleY +=
-          doc.heightOfString(data.service.scopeDescription, { width: 420 }) + 4;
+          .text(data.service.scopeDescription, 55, currentY + 22, { width: 420 });
       }
 
+      currentY += headerBlockHeight;
+
       if (includedItems.length > 0) {
-        let bulletY = afterTitleY;
+        const startPadding = 4;
+        if (currentY + startPadding > maxContentY()) {
+          doc.addPage({
+            size: 'A4',
+            margins: { top: 50, bottom: 50, left: 50, right: 50 },
+          });
+          currentY = 50;
+        }
+        doc.rect(50, currentY, 512, startPadding).fillColor('#f7fafc').fill();
+        currentY += startPadding;
+
         for (const item of includedItems) {
+          const nameH = doc.heightOfString(`• ${item.itemName}`, { width: 400 });
+          const descH = item.itemDescription
+            ? doc.heightOfString(item.itemDescription, { width: 390 })
+            : 0;
+          const itemHeight = nameH + (descH ? descH + 2 : 0) + 4;
+
+          if (currentY + itemHeight > maxContentY()) {
+            doc.addPage({
+              size: 'A4',
+              margins: { top: 50, bottom: 50, left: 50, right: 50 },
+            });
+            currentY = 50;
+          }
+
+          // Draw background for this item row
+          doc.rect(50, currentY, 512, itemHeight).fillColor('#f7fafc').fill();
+
+          // Draw item name
           doc
             .fontSize(8)
             .font('Helvetica-Bold')
             .fillColor('#4a5568')
-            .text(`• ${item.itemName}`, 65, bulletY, { width: 400 });
-          bulletY +=
-            doc.heightOfString(`• ${item.itemName}`, { width: 400 }) + 2;
+            .text(`• ${item.itemName}`, 65, currentY + 2, { width: 400 });
 
+          // Draw description if exists
           if (item.itemDescription) {
             doc
               .fontSize(7)
               .font('Helvetica')
               .fillColor('#718096')
-              .text(item.itemDescription, 75, bulletY, { width: 390 });
-            bulletY +=
-              doc.heightOfString(item.itemDescription, { width: 390 }) + 2;
+              .text(item.itemDescription, 75, currentY + 2 + nameH + 2, { width: 390 });
           }
-          bulletY += 2;
-        }
-      }
 
-      currentY += basePriceRowHeight;
+          currentY += itemHeight;
+        }
+
+        const endPadding = 4;
+        if (currentY + endPadding > maxContentY()) {
+          doc.addPage({
+            size: 'A4',
+            margins: { top: 50, bottom: 50, left: 50, right: 50 },
+          });
+          currentY = 50;
+        }
+        doc.rect(50, currentY, 512, endPadding).fillColor('#f7fafc').fill();
+        currentY += endPadding;
+      }
     }
 
     // Additional items
