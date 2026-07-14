@@ -17,7 +17,8 @@ model FileInstance {
   aboutUsImages           AboutUs[]
   portfolioImages         Portfolio[]
   portfolioCategoryImages PortfolioImage[]
-  siteSettingsLogos       SiteSettings[]
+  siteSettingsLogos       SiteSettings[]       @relation("SiteSettingsLogo")
+  siteSettingsGuide       SiteSettings[]       @relation("SiteSettingsGuide")
   services                Service[]            @relation("ServiceImage")
   submissionMedia         SubmissionMedia[]
   contactMedia            ContactMedia[]       @relation("ContactMediaFileInstance")

@@ -671,6 +671,7 @@ export const SiteSettingsScalarFieldEnum = {
   siteTitle: 'siteTitle',
   siteDescription: 'siteDescription',
   logoImageId: 'logoImageId',
+  guidePdfId: 'guidePdfId',
   contactNumber: 'contactNumber',
   contactEmail: 'contactEmail',
   location: 'location',

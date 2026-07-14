@@ -29,6 +29,7 @@ export type SiteSettingsMinAggregateOutputType = {
   siteTitle: string | null;
   siteDescription: string | null;
   logoImageId: string | null;
+  guidePdfId: string | null;
   contactNumber: string | null;
   contactEmail: string | null;
   location: string | null;
@@ -50,6 +51,7 @@ export type SiteSettingsMaxAggregateOutputType = {
   siteTitle: string | null;
   siteDescription: string | null;
   logoImageId: string | null;
+  guidePdfId: string | null;
   contactNumber: string | null;
   contactEmail: string | null;
   location: string | null;
@@ -71,6 +73,7 @@ export type SiteSettingsCountAggregateOutputType = {
   siteTitle: number;
   siteDescription: number;
   logoImageId: number;
+  guidePdfId: number;
   contactNumber: number;
   contactEmail: number;
   location: number;
@@ -93,6 +96,7 @@ export type SiteSettingsMinAggregateInputType = {
   siteTitle?: true;
   siteDescription?: true;
   logoImageId?: true;
+  guidePdfId?: true;
   contactNumber?: true;
   contactEmail?: true;
   location?: true;
@@ -114,6 +118,7 @@ export type SiteSettingsMaxAggregateInputType = {
   siteTitle?: true;
   siteDescription?: true;
   logoImageId?: true;
+  guidePdfId?: true;
   contactNumber?: true;
   contactEmail?: true;
   location?: true;
@@ -135,6 +140,7 @@ export type SiteSettingsCountAggregateInputType = {
   siteTitle?: true;
   siteDescription?: true;
   logoImageId?: true;
+  guidePdfId?: true;
   contactNumber?: true;
   contactEmail?: true;
   location?: true;
@@ -237,6 +243,7 @@ export type SiteSettingsGroupByOutputType = {
   siteTitle: string;
   siteDescription: string | null;
   logoImageId: string | null;
+  guidePdfId: string | null;
   contactNumber: string | null;
   contactEmail: string | null;
   location: string | null;
@@ -277,6 +284,7 @@ export type SiteSettingsWhereInput = {
   siteTitle?: Prisma.StringFilter<'SiteSettings'> | string;
   siteDescription?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   logoImageId?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
+  guidePdfId?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   contactNumber?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   contactEmail?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   location?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
@@ -298,6 +306,10 @@ export type SiteSettingsWhereInput = {
     Prisma.FileInstanceNullableScalarRelationFilter,
     Prisma.FileInstanceWhereInput
   > | null;
+  guidePdf?: Prisma.XOR<
+    Prisma.FileInstanceNullableScalarRelationFilter,
+    Prisma.FileInstanceWhereInput
+  > | null;
 };
 
 export type SiteSettingsOrderByWithRelationInput = {
@@ -305,6 +317,7 @@ export type SiteSettingsOrderByWithRelationInput = {
   siteTitle?: Prisma.SortOrder;
   siteDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
   logoImageId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  guidePdfId?: Prisma.SortOrderInput | Prisma.SortOrder;
   contactNumber?: Prisma.SortOrderInput | Prisma.SortOrder;
   contactEmail?: Prisma.SortOrderInput | Prisma.SortOrder;
   location?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -320,6 +333,7 @@ export type SiteSettingsOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   logoImage?: Prisma.FileInstanceOrderByWithRelationInput;
+  guidePdf?: Prisma.FileInstanceOrderByWithRelationInput;
 };
 
 export type SiteSettingsWhereUniqueInput = Prisma.AtLeast<
@@ -334,6 +348,7 @@ export type SiteSettingsWhereUniqueInput = Prisma.AtLeast<
       | string
       | null;
     logoImageId?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
+    guidePdfId?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
     contactNumber?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
     contactEmail?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
     location?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
@@ -355,6 +370,10 @@ export type SiteSettingsWhereUniqueInput = Prisma.AtLeast<
       Prisma.FileInstanceNullableScalarRelationFilter,
       Prisma.FileInstanceWhereInput
     > | null;
+    guidePdf?: Prisma.XOR<
+      Prisma.FileInstanceNullableScalarRelationFilter,
+      Prisma.FileInstanceWhereInput
+    > | null;
   },
   'id'
 >;
@@ -364,6 +383,7 @@ export type SiteSettingsOrderByWithAggregationInput = {
   siteTitle?: Prisma.SortOrder;
   siteDescription?: Prisma.SortOrderInput | Prisma.SortOrder;
   logoImageId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  guidePdfId?: Prisma.SortOrderInput | Prisma.SortOrder;
   contactNumber?: Prisma.SortOrderInput | Prisma.SortOrder;
   contactEmail?: Prisma.SortOrderInput | Prisma.SortOrder;
   location?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -398,6 +418,10 @@ export type SiteSettingsScalarWhereWithAggregatesInput = {
     | string
     | null;
   logoImageId?:
+    | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
+    | string
+    | null;
+  guidePdfId?:
     | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
     | string
     | null;
@@ -471,6 +495,7 @@ export type SiteSettingsCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   logoImage?: Prisma.FileInstanceCreateNestedOneWithoutSiteSettingsLogosInput;
+  guidePdf?: Prisma.FileInstanceCreateNestedOneWithoutSiteSettingsGuideInput;
 };
 
 export type SiteSettingsUncheckedCreateInput = {
@@ -478,6 +503,7 @@ export type SiteSettingsUncheckedCreateInput = {
   siteTitle: string;
   siteDescription?: string | null;
   logoImageId?: string | null;
+  guidePdfId?: string | null;
   contactNumber?: string | null;
   contactEmail?: string | null;
   location?: string | null;
@@ -531,6 +557,7 @@ export type SiteSettingsUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   logoImage?: Prisma.FileInstanceUpdateOneWithoutSiteSettingsLogosNestedInput;
+  guidePdf?: Prisma.FileInstanceUpdateOneWithoutSiteSettingsGuideNestedInput;
 };
 
 export type SiteSettingsUncheckedUpdateInput = {
@@ -541,6 +568,7 @@ export type SiteSettingsUncheckedUpdateInput = {
     | string
     | null;
   logoImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  guidePdfId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   contactNumber?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -577,6 +605,7 @@ export type SiteSettingsCreateManyInput = {
   siteTitle: string;
   siteDescription?: string | null;
   logoImageId?: string | null;
+  guidePdfId?: string | null;
   contactNumber?: string | null;
   contactEmail?: string | null;
   location?: string | null;
@@ -639,6 +668,7 @@ export type SiteSettingsUncheckedUpdateManyInput = {
     | string
     | null;
   logoImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  guidePdfId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   contactNumber?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -685,6 +715,7 @@ export type SiteSettingsCountOrderByAggregateInput = {
   siteTitle?: Prisma.SortOrder;
   siteDescription?: Prisma.SortOrder;
   logoImageId?: Prisma.SortOrder;
+  guidePdfId?: Prisma.SortOrder;
   contactNumber?: Prisma.SortOrder;
   contactEmail?: Prisma.SortOrder;
   location?: Prisma.SortOrder;
@@ -706,6 +737,7 @@ export type SiteSettingsMaxOrderByAggregateInput = {
   siteTitle?: Prisma.SortOrder;
   siteDescription?: Prisma.SortOrder;
   logoImageId?: Prisma.SortOrder;
+  guidePdfId?: Prisma.SortOrder;
   contactNumber?: Prisma.SortOrder;
   contactEmail?: Prisma.SortOrder;
   location?: Prisma.SortOrder;
@@ -727,6 +759,7 @@ export type SiteSettingsMinOrderByAggregateInput = {
   siteTitle?: Prisma.SortOrder;
   siteDescription?: Prisma.SortOrder;
   logoImageId?: Prisma.SortOrder;
+  guidePdfId?: Prisma.SortOrder;
   contactNumber?: Prisma.SortOrder;
   contactEmail?: Prisma.SortOrder;
   location?: Prisma.SortOrder;
@@ -760,6 +793,23 @@ export type SiteSettingsCreateNestedManyWithoutLogoImageInput = {
     | Prisma.SiteSettingsWhereUniqueInput[];
 };
 
+export type SiteSettingsCreateNestedManyWithoutGuidePdfInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.SiteSettingsCreateWithoutGuidePdfInput,
+        Prisma.SiteSettingsUncheckedCreateWithoutGuidePdfInput
+      >
+    | Prisma.SiteSettingsCreateWithoutGuidePdfInput[]
+    | Prisma.SiteSettingsUncheckedCreateWithoutGuidePdfInput[];
+  connectOrCreate?:
+    | Prisma.SiteSettingsCreateOrConnectWithoutGuidePdfInput
+    | Prisma.SiteSettingsCreateOrConnectWithoutGuidePdfInput[];
+  createMany?: Prisma.SiteSettingsCreateManyGuidePdfInputEnvelope;
+  connect?:
+    | Prisma.SiteSettingsWhereUniqueInput
+    | Prisma.SiteSettingsWhereUniqueInput[];
+};
+
 export type SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput = {
   create?:
     | Prisma.XOR<
@@ -772,6 +822,23 @@ export type SiteSettingsUncheckedCreateNestedManyWithoutLogoImageInput = {
     | Prisma.SiteSettingsCreateOrConnectWithoutLogoImageInput
     | Prisma.SiteSettingsCreateOrConnectWithoutLogoImageInput[];
   createMany?: Prisma.SiteSettingsCreateManyLogoImageInputEnvelope;
+  connect?:
+    | Prisma.SiteSettingsWhereUniqueInput
+    | Prisma.SiteSettingsWhereUniqueInput[];
+};
+
+export type SiteSettingsUncheckedCreateNestedManyWithoutGuidePdfInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.SiteSettingsCreateWithoutGuidePdfInput,
+        Prisma.SiteSettingsUncheckedCreateWithoutGuidePdfInput
+      >
+    | Prisma.SiteSettingsCreateWithoutGuidePdfInput[]
+    | Prisma.SiteSettingsUncheckedCreateWithoutGuidePdfInput[];
+  connectOrCreate?:
+    | Prisma.SiteSettingsCreateOrConnectWithoutGuidePdfInput
+    | Prisma.SiteSettingsCreateOrConnectWithoutGuidePdfInput[];
+  createMany?: Prisma.SiteSettingsCreateManyGuidePdfInputEnvelope;
   connect?:
     | Prisma.SiteSettingsWhereUniqueInput
     | Prisma.SiteSettingsWhereUniqueInput[];
@@ -815,6 +882,44 @@ export type SiteSettingsUpdateManyWithoutLogoImageNestedInput = {
     | Prisma.SiteSettingsScalarWhereInput[];
 };
 
+export type SiteSettingsUpdateManyWithoutGuidePdfNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.SiteSettingsCreateWithoutGuidePdfInput,
+        Prisma.SiteSettingsUncheckedCreateWithoutGuidePdfInput
+      >
+    | Prisma.SiteSettingsCreateWithoutGuidePdfInput[]
+    | Prisma.SiteSettingsUncheckedCreateWithoutGuidePdfInput[];
+  connectOrCreate?:
+    | Prisma.SiteSettingsCreateOrConnectWithoutGuidePdfInput
+    | Prisma.SiteSettingsCreateOrConnectWithoutGuidePdfInput[];
+  upsert?:
+    | Prisma.SiteSettingsUpsertWithWhereUniqueWithoutGuidePdfInput
+    | Prisma.SiteSettingsUpsertWithWhereUniqueWithoutGuidePdfInput[];
+  createMany?: Prisma.SiteSettingsCreateManyGuidePdfInputEnvelope;
+  set?:
+    | Prisma.SiteSettingsWhereUniqueInput
+    | Prisma.SiteSettingsWhereUniqueInput[];
+  disconnect?:
+    | Prisma.SiteSettingsWhereUniqueInput
+    | Prisma.SiteSettingsWhereUniqueInput[];
+  delete?:
+    | Prisma.SiteSettingsWhereUniqueInput
+    | Prisma.SiteSettingsWhereUniqueInput[];
+  connect?:
+    | Prisma.SiteSettingsWhereUniqueInput
+    | Prisma.SiteSettingsWhereUniqueInput[];
+  update?:
+    | Prisma.SiteSettingsUpdateWithWhereUniqueWithoutGuidePdfInput
+    | Prisma.SiteSettingsUpdateWithWhereUniqueWithoutGuidePdfInput[];
+  updateMany?:
+    | Prisma.SiteSettingsUpdateManyWithWhereWithoutGuidePdfInput
+    | Prisma.SiteSettingsUpdateManyWithWhereWithoutGuidePdfInput[];
+  deleteMany?:
+    | Prisma.SiteSettingsScalarWhereInput
+    | Prisma.SiteSettingsScalarWhereInput[];
+};
+
 export type SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput = {
   create?:
     | Prisma.XOR<
@@ -853,6 +958,44 @@ export type SiteSettingsUncheckedUpdateManyWithoutLogoImageNestedInput = {
     | Prisma.SiteSettingsScalarWhereInput[];
 };
 
+export type SiteSettingsUncheckedUpdateManyWithoutGuidePdfNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.SiteSettingsCreateWithoutGuidePdfInput,
+        Prisma.SiteSettingsUncheckedCreateWithoutGuidePdfInput
+      >
+    | Prisma.SiteSettingsCreateWithoutGuidePdfInput[]
+    | Prisma.SiteSettingsUncheckedCreateWithoutGuidePdfInput[];
+  connectOrCreate?:
+    | Prisma.SiteSettingsCreateOrConnectWithoutGuidePdfInput
+    | Prisma.SiteSettingsCreateOrConnectWithoutGuidePdfInput[];
+  upsert?:
+    | Prisma.SiteSettingsUpsertWithWhereUniqueWithoutGuidePdfInput
+    | Prisma.SiteSettingsUpsertWithWhereUniqueWithoutGuidePdfInput[];
+  createMany?: Prisma.SiteSettingsCreateManyGuidePdfInputEnvelope;
+  set?:
+    | Prisma.SiteSettingsWhereUniqueInput
+    | Prisma.SiteSettingsWhereUniqueInput[];
+  disconnect?:
+    | Prisma.SiteSettingsWhereUniqueInput
+    | Prisma.SiteSettingsWhereUniqueInput[];
+  delete?:
+    | Prisma.SiteSettingsWhereUniqueInput
+    | Prisma.SiteSettingsWhereUniqueInput[];
+  connect?:
+    | Prisma.SiteSettingsWhereUniqueInput
+    | Prisma.SiteSettingsWhereUniqueInput[];
+  update?:
+    | Prisma.SiteSettingsUpdateWithWhereUniqueWithoutGuidePdfInput
+    | Prisma.SiteSettingsUpdateWithWhereUniqueWithoutGuidePdfInput[];
+  updateMany?:
+    | Prisma.SiteSettingsUpdateManyWithWhereWithoutGuidePdfInput
+    | Prisma.SiteSettingsUpdateManyWithWhereWithoutGuidePdfInput[];
+  deleteMany?:
+    | Prisma.SiteSettingsScalarWhereInput
+    | Prisma.SiteSettingsScalarWhereInput[];
+};
+
 export type SiteSettingsCreateWithoutLogoImageInput = {
   id?: string;
   siteTitle: string;
@@ -871,12 +1014,14 @@ export type SiteSettingsCreateWithoutLogoImageInput = {
   maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  guidePdf?: Prisma.FileInstanceCreateNestedOneWithoutSiteSettingsGuideInput;
 };
 
 export type SiteSettingsUncheckedCreateWithoutLogoImageInput = {
   id?: string;
   siteTitle: string;
   siteDescription?: string | null;
+  guidePdfId?: string | null;
   contactNumber?: string | null;
   contactEmail?: string | null;
   location?: string | null;
@@ -905,6 +1050,63 @@ export type SiteSettingsCreateManyLogoImageInputEnvelope = {
   data:
     | Prisma.SiteSettingsCreateManyLogoImageInput
     | Prisma.SiteSettingsCreateManyLogoImageInput[];
+  skipDuplicates?: boolean;
+};
+
+export type SiteSettingsCreateWithoutGuidePdfInput = {
+  id?: string;
+  siteTitle: string;
+  siteDescription?: string | null;
+  contactNumber?: string | null;
+  contactEmail?: string | null;
+  location?: string | null;
+  address?: string | null;
+  facebookUrl?: string | null;
+  instagramUrl?: string | null;
+  twitterUrl?: string | null;
+  ctaBannerText?: string | null;
+  ctaBannerEnabled?: boolean;
+  notificationEmail?: string | null;
+  notifyOnNewSubmission?: boolean;
+  maintenanceMode?: boolean;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  logoImage?: Prisma.FileInstanceCreateNestedOneWithoutSiteSettingsLogosInput;
+};
+
+export type SiteSettingsUncheckedCreateWithoutGuidePdfInput = {
+  id?: string;
+  siteTitle: string;
+  siteDescription?: string | null;
+  logoImageId?: string | null;
+  contactNumber?: string | null;
+  contactEmail?: string | null;
+  location?: string | null;
+  address?: string | null;
+  facebookUrl?: string | null;
+  instagramUrl?: string | null;
+  twitterUrl?: string | null;
+  ctaBannerText?: string | null;
+  ctaBannerEnabled?: boolean;
+  notificationEmail?: string | null;
+  notifyOnNewSubmission?: boolean;
+  maintenanceMode?: boolean;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type SiteSettingsCreateOrConnectWithoutGuidePdfInput = {
+  where: Prisma.SiteSettingsWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.SiteSettingsCreateWithoutGuidePdfInput,
+    Prisma.SiteSettingsUncheckedCreateWithoutGuidePdfInput
+  >;
+};
+
+export type SiteSettingsCreateManyGuidePdfInputEnvelope = {
+  data:
+    | Prisma.SiteSettingsCreateManyGuidePdfInput
+    | Prisma.SiteSettingsCreateManyGuidePdfInput[];
   skipDuplicates?: boolean;
 };
 
@@ -948,6 +1150,7 @@ export type SiteSettingsScalarWhereInput = {
   siteTitle?: Prisma.StringFilter<'SiteSettings'> | string;
   siteDescription?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   logoImageId?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
+  guidePdfId?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   contactNumber?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   contactEmail?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
   location?: Prisma.StringNullableFilter<'SiteSettings'> | string | null;
@@ -967,10 +1170,60 @@ export type SiteSettingsScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
 };
 
+export type SiteSettingsUpsertWithWhereUniqueWithoutGuidePdfInput = {
+  where: Prisma.SiteSettingsWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.SiteSettingsUpdateWithoutGuidePdfInput,
+    Prisma.SiteSettingsUncheckedUpdateWithoutGuidePdfInput
+  >;
+  create: Prisma.XOR<
+    Prisma.SiteSettingsCreateWithoutGuidePdfInput,
+    Prisma.SiteSettingsUncheckedCreateWithoutGuidePdfInput
+  >;
+};
+
+export type SiteSettingsUpdateWithWhereUniqueWithoutGuidePdfInput = {
+  where: Prisma.SiteSettingsWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.SiteSettingsUpdateWithoutGuidePdfInput,
+    Prisma.SiteSettingsUncheckedUpdateWithoutGuidePdfInput
+  >;
+};
+
+export type SiteSettingsUpdateManyWithWhereWithoutGuidePdfInput = {
+  where: Prisma.SiteSettingsScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.SiteSettingsUpdateManyMutationInput,
+    Prisma.SiteSettingsUncheckedUpdateManyWithoutGuidePdfInput
+  >;
+};
+
 export type SiteSettingsCreateManyLogoImageInput = {
   id?: string;
   siteTitle: string;
   siteDescription?: string | null;
+  guidePdfId?: string | null;
+  contactNumber?: string | null;
+  contactEmail?: string | null;
+  location?: string | null;
+  address?: string | null;
+  facebookUrl?: string | null;
+  instagramUrl?: string | null;
+  twitterUrl?: string | null;
+  ctaBannerText?: string | null;
+  ctaBannerEnabled?: boolean;
+  notificationEmail?: string | null;
+  notifyOnNewSubmission?: boolean;
+  maintenanceMode?: boolean;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type SiteSettingsCreateManyGuidePdfInput = {
+  id?: string;
+  siteTitle: string;
+  siteDescription?: string | null;
+  logoImageId?: string | null;
   contactNumber?: string | null;
   contactEmail?: string | null;
   location?: string | null;
@@ -1023,6 +1276,7 @@ export type SiteSettingsUpdateWithoutLogoImageInput = {
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  guidePdf?: Prisma.FileInstanceUpdateOneWithoutSiteSettingsGuideNestedInput;
 };
 
 export type SiteSettingsUncheckedUpdateWithoutLogoImageInput = {
@@ -1032,6 +1286,7 @@ export type SiteSettingsUncheckedUpdateWithoutLogoImageInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  guidePdfId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   contactNumber?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1070,6 +1325,124 @@ export type SiteSettingsUncheckedUpdateManyWithoutLogoImageInput = {
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
     | null;
+  guidePdfId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  contactNumber?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  contactEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  instagramUrl?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  twitterUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  ctaBannerText?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  ctaBannerEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  notificationEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type SiteSettingsUpdateWithoutGuidePdfInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  siteTitle?: Prisma.StringFieldUpdateOperationsInput | string;
+  siteDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  contactNumber?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  contactEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  instagramUrl?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  twitterUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  ctaBannerText?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  ctaBannerEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  notificationEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  logoImage?: Prisma.FileInstanceUpdateOneWithoutSiteSettingsLogosNestedInput;
+};
+
+export type SiteSettingsUncheckedUpdateWithoutGuidePdfInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  siteTitle?: Prisma.StringFieldUpdateOperationsInput | string;
+  siteDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  logoImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  contactNumber?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  contactEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  instagramUrl?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  twitterUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  ctaBannerText?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  ctaBannerEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  notificationEmail?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type SiteSettingsUncheckedUpdateManyWithoutGuidePdfInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  siteTitle?: Prisma.StringFieldUpdateOperationsInput | string;
+  siteDescription?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  logoImageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   contactNumber?:
     | Prisma.NullableStringFieldUpdateOperationsInput
     | string
@@ -1110,6 +1483,7 @@ export type SiteSettingsSelect<
     siteTitle?: boolean;
     siteDescription?: boolean;
     logoImageId?: boolean;
+    guidePdfId?: boolean;
     contactNumber?: boolean;
     contactEmail?: boolean;
     location?: boolean;
@@ -1125,6 +1499,7 @@ export type SiteSettingsSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     logoImage?: boolean | Prisma.SiteSettings$logoImageArgs<ExtArgs>;
+    guidePdf?: boolean | Prisma.SiteSettings$guidePdfArgs<ExtArgs>;
   },
   ExtArgs['result']['siteSettings']
 >;
@@ -1138,6 +1513,7 @@ export type SiteSettingsSelectCreateManyAndReturn<
     siteTitle?: boolean;
     siteDescription?: boolean;
     logoImageId?: boolean;
+    guidePdfId?: boolean;
     contactNumber?: boolean;
     contactEmail?: boolean;
     location?: boolean;
@@ -1153,6 +1529,7 @@ export type SiteSettingsSelectCreateManyAndReturn<
     createdAt?: boolean;
     updatedAt?: boolean;
     logoImage?: boolean | Prisma.SiteSettings$logoImageArgs<ExtArgs>;
+    guidePdf?: boolean | Prisma.SiteSettings$guidePdfArgs<ExtArgs>;
   },
   ExtArgs['result']['siteSettings']
 >;
@@ -1166,6 +1543,7 @@ export type SiteSettingsSelectUpdateManyAndReturn<
     siteTitle?: boolean;
     siteDescription?: boolean;
     logoImageId?: boolean;
+    guidePdfId?: boolean;
     contactNumber?: boolean;
     contactEmail?: boolean;
     location?: boolean;
@@ -1181,6 +1559,7 @@ export type SiteSettingsSelectUpdateManyAndReturn<
     createdAt?: boolean;
     updatedAt?: boolean;
     logoImage?: boolean | Prisma.SiteSettings$logoImageArgs<ExtArgs>;
+    guidePdf?: boolean | Prisma.SiteSettings$guidePdfArgs<ExtArgs>;
   },
   ExtArgs['result']['siteSettings']
 >;
@@ -1190,6 +1569,7 @@ export type SiteSettingsSelectScalar = {
   siteTitle?: boolean;
   siteDescription?: boolean;
   logoImageId?: boolean;
+  guidePdfId?: boolean;
   contactNumber?: boolean;
   contactEmail?: boolean;
   location?: boolean;
@@ -1214,6 +1594,7 @@ export type SiteSettingsOmit<
   | 'siteTitle'
   | 'siteDescription'
   | 'logoImageId'
+  | 'guidePdfId'
   | 'contactNumber'
   | 'contactEmail'
   | 'location'
@@ -1235,18 +1616,21 @@ export type SiteSettingsInclude<
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   logoImage?: boolean | Prisma.SiteSettings$logoImageArgs<ExtArgs>;
+  guidePdf?: boolean | Prisma.SiteSettings$guidePdfArgs<ExtArgs>;
 };
 export type SiteSettingsIncludeCreateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   logoImage?: boolean | Prisma.SiteSettings$logoImageArgs<ExtArgs>;
+  guidePdf?: boolean | Prisma.SiteSettings$guidePdfArgs<ExtArgs>;
 };
 export type SiteSettingsIncludeUpdateManyAndReturn<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
   logoImage?: boolean | Prisma.SiteSettings$logoImageArgs<ExtArgs>;
+  guidePdf?: boolean | Prisma.SiteSettings$guidePdfArgs<ExtArgs>;
 };
 
 export type $SiteSettingsPayload<
@@ -1256,6 +1640,7 @@ export type $SiteSettingsPayload<
   name: 'SiteSettings';
   objects: {
     logoImage: Prisma.$FileInstancePayload<ExtArgs> | null;
+    guidePdf: Prisma.$FileInstancePayload<ExtArgs> | null;
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1263,6 +1648,7 @@ export type $SiteSettingsPayload<
       siteTitle: string;
       siteDescription: string | null;
       logoImageId: string | null;
+      guidePdfId: string | null;
       contactNumber: string | null;
       contactEmail: string | null;
       location: string | null;
@@ -1846,6 +2232,19 @@ export interface Prisma__SiteSettingsClient<
     ExtArgs,
     GlobalOmitOptions
   >;
+  guidePdf<T extends Prisma.SiteSettings$guidePdfArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.SiteSettings$guidePdfArgs<ExtArgs>>,
+  ): Prisma.Prisma__FileInstanceClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$FileInstancePayload<ExtArgs>,
+      T,
+      'findUniqueOrThrow',
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1892,6 +2291,7 @@ export interface SiteSettingsFieldRefs {
   readonly siteTitle: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly siteDescription: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly logoImageId: Prisma.FieldRef<'SiteSettings', 'String'>;
+  readonly guidePdfId: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly contactNumber: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly contactEmail: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly location: Prisma.FieldRef<'SiteSettings', 'String'>;
@@ -2380,6 +2780,28 @@ export type SiteSettingsDeleteManyArgs<
  * SiteSettings.logoImage
  */
 export type SiteSettings$logoImageArgs<
+  ExtArgs extends
+    runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the FileInstance
+   */
+  select?: Prisma.FileInstanceSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the FileInstance
+   */
+  omit?: Prisma.FileInstanceOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FileInstanceInclude<ExtArgs> | null;
+  where?: Prisma.FileInstanceWhereInput;
+};
+
+/**
+ * SiteSettings.guidePdf
+ */
+export type SiteSettings$guidePdfArgs<
   ExtArgs extends
     runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {

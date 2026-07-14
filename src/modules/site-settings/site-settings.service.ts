@@ -12,6 +12,7 @@ export class SiteSettingsService {
       let settings = await this.prisma.siteSettings.findFirst({
         include: {
           logoImage: true,
+          guidePdf: true,
         },
       });
 
@@ -24,6 +25,7 @@ export class SiteSettingsService {
           },
           include: {
             logoImage: true,
+            guidePdf: true,
           },
         });
       }
@@ -51,6 +53,7 @@ export class SiteSettingsService {
         data: createDto,
         include: {
           logoImage: true,
+          guidePdf: true,
         },
       });
 
@@ -78,6 +81,7 @@ export class SiteSettingsService {
         data: updateDto,
         include: {
           logoImage: true,
+          guidePdf: true,
         },
       });
 
