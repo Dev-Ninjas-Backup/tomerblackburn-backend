@@ -1,0 +1,21 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "main",
+    "masud",
+    "origin",
+    "saikat"
+  ],
+  "parent": {
+    "main": null,
+    "masud": "main",
+    "origin": "main",
+    "saikat": "main"
+  },
+  "order": [
+    "main",
+    "masud",
+    "origin",
+    "saikat"
+  ]
+}
