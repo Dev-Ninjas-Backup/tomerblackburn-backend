@@ -2,6 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as nodemailer from 'nodemailer';
 import { PrismaService } from '@/common/prisma/prisma.service';
+import * as path from 'path';
+import * as fs from 'fs/promises';
 
 export interface EmailOptions {
   to: string;
@@ -92,7 +94,43 @@ export class EmailService {
     }
 
     try {
-      const firstName = clientName.split(' ')[0];
+      const firstName = clientName.split(' ')[0] || clientName;
+      // Build dynamic attachments array
+      const attachments: any[] = [];
+      if (pdfBuffer) {
+        attachments.push({
+          filename: `${submissionNumber}-estimate.pdf`,
+          content: pdfBuffer,
+        });
+      }
+
+      try {
+        const settings = await this.prisma.siteSettings.findFirst({
+          include: {
+            guidePdf: true,
+          },
+        });
+
+        if (settings?.guidePdf?.path) {
+          const absolutePath = path.join(
+            process.cwd(),
+            'uploads',
+            settings.guidePdf.path,
+          );
+          const fileBuffer = await fs.readFile(absolutePath);
+          attachments.push({
+            filename:
+              settings.guidePdf.originalFilename || settings.guidePdf.filename,
+            content: fileBuffer,
+          });
+        }
+      } catch (error) {
+        this.logger.error(
+          `Failed to read or attach guide PDF setting: ${error.message}`,
+          error.stack,
+        );
+      }
+
       const emailOptions: EmailOptions = {
         to: clientEmail,
         subject: `Your Estimate Has Been Received — Next Steps`,
@@ -115,16 +153,7 @@ export class EmailService {
             </p>
           </div>
         `,
-        attachments: [
-          {
-            filename: `${submissionNumber}-estimate.pdf`,
-            content: pdfBuffer,
-          },
-          {
-            filename: 'Example_Docs.pdf',
-            path: '/app/Example_Docs.pdf',
-          },
-        ],
+        attachments,
       };
 
       const info = await this.transporter.sendMail({

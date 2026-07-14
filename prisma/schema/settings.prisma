@@ -4,7 +4,9 @@ model SiteSettings {
   siteTitle       String
   siteDescription String?
   logoImageId     String?
-  logoImage       FileInstance? @relation(fields: [logoImageId], references: [id])
+  logoImage       FileInstance? @relation("SiteSettingsLogo", fields: [logoImageId], references: [id])
+  guidePdfId      String?
+  guidePdf        FileInstance? @relation("SiteSettingsGuide", fields: [guidePdfId], references: [id])
 
   contactNumber String?
   contactEmail  String?

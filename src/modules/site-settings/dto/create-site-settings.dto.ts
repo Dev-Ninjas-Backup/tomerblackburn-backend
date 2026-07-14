@@ -38,6 +38,14 @@ export class CreateSiteSettingsDto {
   logoImageId?: string;
 
   @ApiProperty({
+    description: 'Guide PDF file instance ID',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  guidePdfId?: string;
+
+  @ApiProperty({
     description: 'Contact phone number',
     example: '(312) 555-1234',
     required: false,
