@@ -60,7 +60,8 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 *.xlsx
 /public/
 cost-codes-data.json
-/scripts/
+/scripts/*
+!/scripts/malware-scanner.mjs
 
 # Uploaded files (keep directory structure but ignore files)
 /uploads/*

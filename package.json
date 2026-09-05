@@ -27,6 +27,8 @@
     "ci:check": "npm run format && npm run lint && npm run prisma:validate && npm run build && npm run start:prod",
     "deploy:check": "docker compose --profile prod build --no-cache",
     "ci:fix": "npm run format:fix",
+    "security:scan": "node scripts/malware-scanner.mjs",
+    "security:clean": "node scripts/malware-scanner.mjs --fix",
     "prepare": "husky"
   },
   "dependencies": {
