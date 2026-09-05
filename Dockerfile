@@ -19,7 +19,7 @@ COPY . .
 # Set dummy DATABASE_URL for Prisma generate
 ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
 # Generate Prisma Client
-RUN pnpx prisma generate
+RUN pnpm run prisma:generate
 
 # Build application
 RUN pnpm build
@@ -54,7 +54,7 @@ COPY --from=builder /app/prisma/generated ./prisma/generated
 ENV DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
 
 # Generate Prisma Client (in case it's needed)
-RUN pnpx prisma generate
+RUN pnpm run prisma:generate
 
 # Verify migrations are copied
 RUN ls -la prisma/ && ls -la prisma/migrations/ || echo "Migrations directory check"
