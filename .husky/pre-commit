@@ -1,2 +1,2 @@
 # .husky/pre-commit
-npx pnpm ci:fix
+pnpm run ci:fix
