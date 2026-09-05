@@ -40,8 +40,31 @@ export class CreateCostCodeOptionDto {
   optionValue?: string;
 
   @ApiProperty({
-    description: 'Price modifier (added to base price)',
-    example: 500.0,
+    description: 'Base price (builder cost for this option)',
+    example: 250.0,
+    required: false,
+    default: 0,
+  })
+  @IsNumber()
+  @Type(() => Number)
+  @IsOptional()
+  basePrice?: number;
+
+  @ApiProperty({
+    description: 'Client price (retail price for this option)',
+    example: 300.0,
+    required: false,
+    default: 0,
+  })
+  @IsNumber()
+  @Type(() => Number)
+  @IsOptional()
+  clientPrice?: number;
+
+  @ApiProperty({
+    description:
+      'Price modifier (added to base price, synced with clientPrice)',
+    example: 300.0,
     default: 0,
   })
   @IsNumber()

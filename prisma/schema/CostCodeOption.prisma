@@ -7,7 +7,9 @@ model CostCodeOption {
   optionValue String? // Internal value or specification
 
   // Pricing - supports both modifier and absolute pricing
-  priceModifier Decimal @default(0) @db.Decimal(10, 2) // Additional cost (+$500, +$1200)
+  basePrice     Decimal @default(0) @db.Decimal(10, 2) // Builder Cost
+  clientPrice   Decimal @default(0) @db.Decimal(10, 2) // Client Price
+  priceModifier Decimal @default(0) @db.Decimal(10, 2) // Additional cost (synced with clientPrice)
 
   // Display & Behavior
   isDefault    Boolean @default(false) // Pre-selected option

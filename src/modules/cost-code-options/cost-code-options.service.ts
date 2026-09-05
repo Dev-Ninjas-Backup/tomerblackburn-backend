@@ -25,9 +25,18 @@ export class CostCodeOptionsService {
         );
       }
 
+      const clientPrice =
+        createCostCodeOptionDto.clientPrice ??
+        createCostCodeOptionDto.priceModifier ??
+        0;
+      const basePrice = createCostCodeOptionDto.basePrice ?? 0;
+
       const option = await this.prisma.costCodeOption.create({
         data: {
           ...createCostCodeOptionDto,
+          basePrice,
+          clientPrice,
+          priceModifier: clientPrice,
         },
         include: {
           costCode: {
@@ -64,16 +73,19 @@ export class CostCodeOptionsService {
         );
       }
 
-      const basePrice = Number(costCode.basePrice);
-
-      const optionsToCreate = options.map((option, index) => ({
-        costCodeId,
-        optionName: option.optionName,
-        optionValue: option.optionValue,
-        priceModifier: option.priceModifier || 0,
-        isDefault: option.isDefault || false,
-        displayOrder: option.displayOrder ?? index,
-      }));
+      const optionsToCreate = options.map((option, index) => {
+        const clientPrice = option.clientPrice ?? option.priceModifier ?? 0;
+        return {
+          costCodeId,
+          optionName: option.optionName,
+          optionValue: option.optionValue,
+          basePrice: option.basePrice ?? 0,
+          clientPrice: clientPrice,
+          priceModifier: clientPrice,
+          isDefault: option.isDefault || false,
+          displayOrder: option.displayOrder ?? index,
+        };
+      });
 
       await this.prisma.costCodeOption.createMany({
         data: optionsToCreate,
@@ -190,11 +202,22 @@ export class CostCodeOptionsService {
     try {
       await this.findOne(id);
 
+      const dataToUpdate: any = { ...updateCostCodeOptionDto };
+      if (
+        dataToUpdate.clientPrice !== undefined &&
+        dataToUpdate.priceModifier === undefined
+      ) {
+        dataToUpdate.priceModifier = dataToUpdate.clientPrice;
+      } else if (
+        dataToUpdate.priceModifier !== undefined &&
+        dataToUpdate.clientPrice === undefined
+      ) {
+        dataToUpdate.clientPrice = dataToUpdate.priceModifier;
+      }
+
       const updated = await this.prisma.costCodeOption.update({
         where: { id },
-        data: {
-          ...updateCostCodeOptionDto,
-        },
+        data: dataToUpdate,
         include: {
           costCode: {
             include: {

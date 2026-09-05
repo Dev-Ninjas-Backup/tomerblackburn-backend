@@ -3544,6 +3544,8 @@ export const CostCodeOptionScalarFieldEnum = {
   costCodeId: 'costCodeId',
   optionName: 'optionName',
   optionValue: 'optionValue',
+  basePrice: 'basePrice',
+  clientPrice: 'clientPrice',
   priceModifier: 'priceModifier',
   isDefault: 'isDefault',
   displayOrder: 'displayOrder',
