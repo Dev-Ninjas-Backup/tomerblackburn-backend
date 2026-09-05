@@ -1446,7 +1446,10 @@ export class SubmissionsService {
               : '';
           const title = `${item.itemName || item.costCode.name}${selectionSuffix}`;
 
-          const unitCostPerUnit = Number(item.costCode.basePrice);
+          const unitCostPerUnit =
+            item.selectedOption && Number(item.selectedOption.basePrice) > 0
+              ? Number(item.selectedOption.basePrice)
+              : Number(item.costCode.basePrice);
           const clientUnitPrice = Number(item.unitPrice);
           const quantity = Number(item.quantity);
           const totalCost = quantity * unitCostPerUnit;
@@ -1529,7 +1532,10 @@ export class SubmissionsService {
           const row = worksheet.getRow(currentRow);
           const costCodeTitle = item.itemName || item.costCode.name;
 
-          const unitCostPerUnit = Number(item.costCode.basePrice);
+          const unitCostPerUnit =
+            item.selectedOption && Number(item.selectedOption.basePrice) > 0
+              ? Number(item.selectedOption.basePrice)
+              : Number(item.costCode.basePrice);
           const clientUnitPrice = Number(item.unitPrice);
           const quantity = Number(item.quantity);
           const totalClientPrice = quantity * clientUnitPrice;

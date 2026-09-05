@@ -16,6 +16,12 @@ export class CostCodeOptionEntity implements CostCodeOption {
   optionValue: string | null;
 
   @ApiProperty()
+  basePrice: Decimal;
+
+  @ApiProperty()
+  clientPrice: Decimal;
+
+  @ApiProperty()
   priceModifier: Decimal;
 
   @ApiProperty()

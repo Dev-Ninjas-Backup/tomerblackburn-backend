@@ -60,6 +60,18 @@ export class CostCodeOptionResponseDto {
   optionValue?: string;
 
   @ApiProperty({
+    description: 'Base price (builder cost for this option)',
+    example: 250.0,
+  })
+  basePrice: number;
+
+  @ApiProperty({
+    description: 'Client price (retail price for this option)',
+    example: 300.0,
+  })
+  clientPrice: number;
+
+  @ApiProperty({
     description: 'Price modifier (added to base)',
     example: 500.0,
   })
