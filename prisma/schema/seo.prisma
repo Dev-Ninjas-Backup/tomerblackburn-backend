@@ -3,8 +3,8 @@ model SeoSettings {
   id                     String   @id @default(uuid())
   siteName               String   @default("BBurn Builders")
   titleTemplate          String   @default("%s | BBurn Builders")
-  defaultTitle           String   @default("BBurn Builders — Premier Custom Remodeling & Construction | Chicago, IL")
-  defaultDescription     String   @default("Chicago's premier residential remodeling and construction company. Specializing in luxury bathroom remodels, custom carpentry, plumbing, and whole-home renovations.")
+  defaultTitle           String   @default("BBurn Builders — Premier Custom Remodeling | Chicago, IL")
+  defaultDescription     String   @default("Chicago's premier remodeling contractor. Specializing in luxury bathroom remodels, custom carpentry, and home renovations. Get your free instant estimate!")
   defaultKeywords        String   @default("home remodeling chicago, bathroom remodel chicago, custom carpentry, luxury renovations illinois, general contractor chicago, bburn builders")
   siteUrl                String   @default("https://bburnbuilders.com")
   ogImageUrl             String?
