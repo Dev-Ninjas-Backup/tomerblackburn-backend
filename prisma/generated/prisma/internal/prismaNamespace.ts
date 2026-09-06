@@ -448,6 +448,8 @@ export const ModelName = {
   PortfolioCategory: 'PortfolioCategory',
   PortfolioImage: 'PortfolioImage',
   Portfolio: 'Portfolio',
+  SeoSettings: 'SeoSettings',
+  SeoPage: 'SeoPage',
   SiteSettings: 'SiteSettings',
   User: 'User',
 } as const;
@@ -508,6 +510,8 @@ export type TypeMap<
       | 'portfolioCategory'
       | 'portfolioImage'
       | 'portfolio'
+      | 'seoSettings'
+      | 'seoPage'
       | 'siteSettings'
       | 'user';
     txIsolationLevel: TransactionIsolationLevel;
@@ -3249,6 +3253,158 @@ export type TypeMap<
         };
       };
     };
+    SeoSettings: {
+      payload: Prisma.$SeoSettingsPayload<ExtArgs>;
+      fields: Prisma.SeoSettingsFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.SeoSettingsFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.SeoSettingsFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload>;
+        };
+        findFirst: {
+          args: Prisma.SeoSettingsFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.SeoSettingsFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload>;
+        };
+        findMany: {
+          args: Prisma.SeoSettingsFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload>[];
+        };
+        create: {
+          args: Prisma.SeoSettingsCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload>;
+        };
+        createMany: {
+          args: Prisma.SeoSettingsCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.SeoSettingsCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload>[];
+        };
+        delete: {
+          args: Prisma.SeoSettingsDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload>;
+        };
+        update: {
+          args: Prisma.SeoSettingsUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload>;
+        };
+        deleteMany: {
+          args: Prisma.SeoSettingsDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.SeoSettingsUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.SeoSettingsUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload>[];
+        };
+        upsert: {
+          args: Prisma.SeoSettingsUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoSettingsPayload>;
+        };
+        aggregate: {
+          args: Prisma.SeoSettingsAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSeoSettings>;
+        };
+        groupBy: {
+          args: Prisma.SeoSettingsGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.SeoSettingsGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.SeoSettingsCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.SeoSettingsCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    SeoPage: {
+      payload: Prisma.$SeoPagePayload<ExtArgs>;
+      fields: Prisma.SeoPageFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.SeoPageFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.SeoPageFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload>;
+        };
+        findFirst: {
+          args: Prisma.SeoPageFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.SeoPageFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload>;
+        };
+        findMany: {
+          args: Prisma.SeoPageFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload>[];
+        };
+        create: {
+          args: Prisma.SeoPageCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload>;
+        };
+        createMany: {
+          args: Prisma.SeoPageCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.SeoPageCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload>[];
+        };
+        delete: {
+          args: Prisma.SeoPageDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload>;
+        };
+        update: {
+          args: Prisma.SeoPageUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload>;
+        };
+        deleteMany: {
+          args: Prisma.SeoPageDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.SeoPageUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.SeoPageUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload>[];
+        };
+        upsert: {
+          args: Prisma.SeoPageUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SeoPagePayload>;
+        };
+        aggregate: {
+          args: Prisma.SeoPageAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSeoPage>;
+        };
+        groupBy: {
+          args: Prisma.SeoPageGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.SeoPageGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.SeoPageCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.SeoPageCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     SiteSettings: {
       payload: Prisma.$SiteSettingsPayload<ExtArgs>;
       fields: Prisma.SiteSettingsFieldRefs;
@@ -3998,6 +4154,66 @@ export const PortfolioScalarFieldEnum = {
 export type PortfolioScalarFieldEnum =
   (typeof PortfolioScalarFieldEnum)[keyof typeof PortfolioScalarFieldEnum];
 
+export const SeoSettingsScalarFieldEnum = {
+  id: 'id',
+  siteName: 'siteName',
+  titleTemplate: 'titleTemplate',
+  defaultTitle: 'defaultTitle',
+  defaultDescription: 'defaultDescription',
+  defaultKeywords: 'defaultKeywords',
+  siteUrl: 'siteUrl',
+  ogImageUrl: 'ogImageUrl',
+  twitterHandle: 'twitterHandle',
+  robotsIndex: 'robotsIndex',
+  robotsFollow: 'robotsFollow',
+  googleSiteVerification: 'googleSiteVerification',
+  bingSiteVerification: 'bingSiteVerification',
+  googleAnalyticsId: 'googleAnalyticsId',
+  googleTagManagerId: 'googleTagManagerId',
+  canonicalUrl: 'canonicalUrl',
+  businessType: 'businessType',
+  businessPhone: 'businessPhone',
+  businessEmail: 'businessEmail',
+  businessStreetAddress: 'businessStreetAddress',
+  businessCity: 'businessCity',
+  businessState: 'businessState',
+  businessPostalCode: 'businessPostalCode',
+  businessCountry: 'businessCountry',
+  priceRange: 'priceRange',
+  openingHours: 'openingHours',
+  geoLatitude: 'geoLatitude',
+  geoLongitude: 'geoLongitude',
+  serviceAreas: 'serviceAreas',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type SeoSettingsScalarFieldEnum =
+  (typeof SeoSettingsScalarFieldEnum)[keyof typeof SeoSettingsScalarFieldEnum];
+
+export const SeoPageScalarFieldEnum = {
+  id: 'id',
+  path: 'path',
+  pageName: 'pageName',
+  title: 'title',
+  description: 'description',
+  keywords: 'keywords',
+  ogTitle: 'ogTitle',
+  ogDescription: 'ogDescription',
+  ogImage: 'ogImage',
+  canonicalUrl: 'canonicalUrl',
+  noIndex: 'noIndex',
+  noFollow: 'noFollow',
+  priority: 'priority',
+  changeFreq: 'changeFreq',
+  structuredDataJson: 'structuredDataJson',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type SeoPageScalarFieldEnum =
+  (typeof SeoPageScalarFieldEnum)[keyof typeof SeoPageScalarFieldEnum];
+
 export const SiteSettingsScalarFieldEnum = {
   id: 'id',
   siteTitle: 'siteTitle',
@@ -4219,22 +4435,6 @@ export type ListEnumFileTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
- * Reference to a field of type 'UserRole'
- */
-export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'UserRole'
->;
-
-/**
- * Reference to a field of type 'UserRole[]'
- */
-export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  'UserRole[]'
->;
-
-/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -4248,6 +4448,22 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
   'Float[]'
+>;
+
+/**
+ * Reference to a field of type 'UserRole'
+ */
+export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'UserRole'
+>;
+
+/**
+ * Reference to a field of type 'UserRole[]'
+ */
+export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'UserRole[]'
 >;
 
 /**
@@ -4389,6 +4605,8 @@ export type GlobalOmitConfig = {
   portfolioCategory?: Prisma.PortfolioCategoryOmit;
   portfolioImage?: Prisma.PortfolioImageOmit;
   portfolio?: Prisma.PortfolioOmit;
+  seoSettings?: Prisma.SeoSettingsOmit;
+  seoPage?: Prisma.SeoPageOmit;
   siteSettings?: Prisma.SiteSettingsOmit;
   user?: Prisma.UserOmit;
 };

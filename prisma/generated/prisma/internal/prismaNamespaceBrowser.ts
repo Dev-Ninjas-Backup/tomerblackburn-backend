@@ -90,6 +90,8 @@ export const ModelName = {
   PortfolioCategory: 'PortfolioCategory',
   PortfolioImage: 'PortfolioImage',
   Portfolio: 'Portfolio',
+  SeoSettings: 'SeoSettings',
+  SeoPage: 'SeoPage',
   SiteSettings: 'SiteSettings',
   User: 'User',
 } as const;
@@ -667,6 +669,66 @@ export const PortfolioScalarFieldEnum = {
 
 export type PortfolioScalarFieldEnum =
   (typeof PortfolioScalarFieldEnum)[keyof typeof PortfolioScalarFieldEnum];
+
+export const SeoSettingsScalarFieldEnum = {
+  id: 'id',
+  siteName: 'siteName',
+  titleTemplate: 'titleTemplate',
+  defaultTitle: 'defaultTitle',
+  defaultDescription: 'defaultDescription',
+  defaultKeywords: 'defaultKeywords',
+  siteUrl: 'siteUrl',
+  ogImageUrl: 'ogImageUrl',
+  twitterHandle: 'twitterHandle',
+  robotsIndex: 'robotsIndex',
+  robotsFollow: 'robotsFollow',
+  googleSiteVerification: 'googleSiteVerification',
+  bingSiteVerification: 'bingSiteVerification',
+  googleAnalyticsId: 'googleAnalyticsId',
+  googleTagManagerId: 'googleTagManagerId',
+  canonicalUrl: 'canonicalUrl',
+  businessType: 'businessType',
+  businessPhone: 'businessPhone',
+  businessEmail: 'businessEmail',
+  businessStreetAddress: 'businessStreetAddress',
+  businessCity: 'businessCity',
+  businessState: 'businessState',
+  businessPostalCode: 'businessPostalCode',
+  businessCountry: 'businessCountry',
+  priceRange: 'priceRange',
+  openingHours: 'openingHours',
+  geoLatitude: 'geoLatitude',
+  geoLongitude: 'geoLongitude',
+  serviceAreas: 'serviceAreas',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type SeoSettingsScalarFieldEnum =
+  (typeof SeoSettingsScalarFieldEnum)[keyof typeof SeoSettingsScalarFieldEnum];
+
+export const SeoPageScalarFieldEnum = {
+  id: 'id',
+  path: 'path',
+  pageName: 'pageName',
+  title: 'title',
+  description: 'description',
+  keywords: 'keywords',
+  ogTitle: 'ogTitle',
+  ogDescription: 'ogDescription',
+  ogImage: 'ogImage',
+  canonicalUrl: 'canonicalUrl',
+  noIndex: 'noIndex',
+  noFollow: 'noFollow',
+  priority: 'priority',
+  changeFreq: 'changeFreq',
+  structuredDataJson: 'structuredDataJson',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type SeoPageScalarFieldEnum =
+  (typeof SeoPageScalarFieldEnum)[keyof typeof SeoPageScalarFieldEnum];
 
 export const SiteSettingsScalarFieldEnum = {
   id: 'id',

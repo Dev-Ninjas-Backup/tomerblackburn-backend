@@ -34,6 +34,7 @@ import { InitModule } from './common/init/init.module';
 import { DataBackupModule } from './modules/data-backup/data-backup.module';
 import { TrafficModule } from './modules/traffic/traffic.module';
 import { HearAboutUsModule } from './modules/hear-about-us/hear-about-us.module';
+import { SeoModule } from './modules/seo/seo.module';
 
 @Module({
   imports: [
@@ -70,6 +71,7 @@ import { HearAboutUsModule } from './modules/hear-about-us/hear-about-us.module'
     DataBackupModule,
     TrafficModule,
     HearAboutUsModule,
+    SeoModule,
   ],
   controllers: [AppController],
   providers: [AppService, PricingService, EmailService, PdfGeneratorService],

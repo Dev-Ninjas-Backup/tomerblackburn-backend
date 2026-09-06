@@ -43,6 +43,8 @@ export type * from './models/AboutUs';
 export type * from './models/PortfolioCategory';
 export type * from './models/PortfolioImage';
 export type * from './models/Portfolio';
+export type * from './models/SeoSettings';
+export type * from './models/SeoPage';
 export type * from './models/SiteSettings';
 export type * from './models/User';
 export type * from './commonInputTypes';
