@@ -26,6 +26,12 @@ model SiteSettings {
   notificationEmail       String?
   notifyOnNewSubmission   Boolean @default(false)
 
+  // Client estimate confirmation email template settings
+  estimateEmailSubject String? @default("Your Estimate Has Been Received — Next Steps")
+  estimateEmailIntro   String? @db.Text
+  estimateEmailBody    String? @db.Text
+  estimateEmailClosing String? @db.Text
+
   // Site availability
   maintenanceMode Boolean @default(false)
 

@@ -151,4 +151,39 @@ export class CreateSiteSettingsDto {
   @IsBoolean()
   @IsOptional()
   maintenanceMode?: boolean;
+
+  @ApiProperty({
+    description: 'Subject line for estimate confirmation email sent to client',
+    example: 'Your Estimate Has Been Received — Next Steps',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  estimateEmailSubject?: string;
+
+  @ApiProperty({
+    description:
+      'Intro paragraph for estimate confirmation email (supports {firstName})',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  estimateEmailIntro?: string;
+
+  @ApiProperty({
+    description: 'Main body details for estimate confirmation email',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  estimateEmailBody?: string;
+
+  @ApiProperty({
+    description:
+      'Closing note before signature for estimate confirmation email',
+    required: false,
+  })
+  @IsString()
+  @IsOptional()
+  estimateEmailClosing?: string;
 }
