@@ -41,6 +41,10 @@ export type SiteSettingsMinAggregateOutputType = {
   ctaBannerEnabled: boolean | null;
   notificationEmail: string | null;
   notifyOnNewSubmission: boolean | null;
+  estimateEmailSubject: string | null;
+  estimateEmailIntro: string | null;
+  estimateEmailBody: string | null;
+  estimateEmailClosing: string | null;
   maintenanceMode: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
@@ -63,6 +67,10 @@ export type SiteSettingsMaxAggregateOutputType = {
   ctaBannerEnabled: boolean | null;
   notificationEmail: string | null;
   notifyOnNewSubmission: boolean | null;
+  estimateEmailSubject: string | null;
+  estimateEmailIntro: string | null;
+  estimateEmailBody: string | null;
+  estimateEmailClosing: string | null;
   maintenanceMode: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
@@ -85,6 +93,10 @@ export type SiteSettingsCountAggregateOutputType = {
   ctaBannerEnabled: number;
   notificationEmail: number;
   notifyOnNewSubmission: number;
+  estimateEmailSubject: number;
+  estimateEmailIntro: number;
+  estimateEmailBody: number;
+  estimateEmailClosing: number;
   maintenanceMode: number;
   createdAt: number;
   updatedAt: number;
@@ -108,6 +120,10 @@ export type SiteSettingsMinAggregateInputType = {
   ctaBannerEnabled?: true;
   notificationEmail?: true;
   notifyOnNewSubmission?: true;
+  estimateEmailSubject?: true;
+  estimateEmailIntro?: true;
+  estimateEmailBody?: true;
+  estimateEmailClosing?: true;
   maintenanceMode?: true;
   createdAt?: true;
   updatedAt?: true;
@@ -130,6 +146,10 @@ export type SiteSettingsMaxAggregateInputType = {
   ctaBannerEnabled?: true;
   notificationEmail?: true;
   notifyOnNewSubmission?: true;
+  estimateEmailSubject?: true;
+  estimateEmailIntro?: true;
+  estimateEmailBody?: true;
+  estimateEmailClosing?: true;
   maintenanceMode?: true;
   createdAt?: true;
   updatedAt?: true;
@@ -152,6 +172,10 @@ export type SiteSettingsCountAggregateInputType = {
   ctaBannerEnabled?: true;
   notificationEmail?: true;
   notifyOnNewSubmission?: true;
+  estimateEmailSubject?: true;
+  estimateEmailIntro?: true;
+  estimateEmailBody?: true;
+  estimateEmailClosing?: true;
   maintenanceMode?: true;
   createdAt?: true;
   updatedAt?: true;
@@ -255,6 +279,10 @@ export type SiteSettingsGroupByOutputType = {
   ctaBannerEnabled: boolean;
   notificationEmail: string | null;
   notifyOnNewSubmission: boolean;
+  estimateEmailSubject: string | null;
+  estimateEmailIntro: string | null;
+  estimateEmailBody: string | null;
+  estimateEmailClosing: string | null;
   maintenanceMode: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -299,6 +327,22 @@ export type SiteSettingsWhereInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFilter<'SiteSettings'> | boolean;
+  estimateEmailSubject?:
+    | Prisma.StringNullableFilter<'SiteSettings'>
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.StringNullableFilter<'SiteSettings'>
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.StringNullableFilter<'SiteSettings'>
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.StringNullableFilter<'SiteSettings'>
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFilter<'SiteSettings'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
@@ -329,6 +373,10 @@ export type SiteSettingsOrderByWithRelationInput = {
   ctaBannerEnabled?: Prisma.SortOrder;
   notificationEmail?: Prisma.SortOrderInput | Prisma.SortOrder;
   notifyOnNewSubmission?: Prisma.SortOrder;
+  estimateEmailSubject?: Prisma.SortOrderInput | Prisma.SortOrder;
+  estimateEmailIntro?: Prisma.SortOrderInput | Prisma.SortOrder;
+  estimateEmailBody?: Prisma.SortOrderInput | Prisma.SortOrder;
+  estimateEmailClosing?: Prisma.SortOrderInput | Prisma.SortOrder;
   maintenanceMode?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -363,6 +411,22 @@ export type SiteSettingsWhereUniqueInput = Prisma.AtLeast<
       | string
       | null;
     notifyOnNewSubmission?: Prisma.BoolFilter<'SiteSettings'> | boolean;
+    estimateEmailSubject?:
+      | Prisma.StringNullableFilter<'SiteSettings'>
+      | string
+      | null;
+    estimateEmailIntro?:
+      | Prisma.StringNullableFilter<'SiteSettings'>
+      | string
+      | null;
+    estimateEmailBody?:
+      | Prisma.StringNullableFilter<'SiteSettings'>
+      | string
+      | null;
+    estimateEmailClosing?:
+      | Prisma.StringNullableFilter<'SiteSettings'>
+      | string
+      | null;
     maintenanceMode?: Prisma.BoolFilter<'SiteSettings'> | boolean;
     createdAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
@@ -395,6 +459,10 @@ export type SiteSettingsOrderByWithAggregationInput = {
   ctaBannerEnabled?: Prisma.SortOrder;
   notificationEmail?: Prisma.SortOrderInput | Prisma.SortOrder;
   notifyOnNewSubmission?: Prisma.SortOrder;
+  estimateEmailSubject?: Prisma.SortOrderInput | Prisma.SortOrder;
+  estimateEmailIntro?: Prisma.SortOrderInput | Prisma.SortOrder;
+  estimateEmailBody?: Prisma.SortOrderInput | Prisma.SortOrder;
+  estimateEmailClosing?: Prisma.SortOrderInput | Prisma.SortOrder;
   maintenanceMode?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -465,6 +533,22 @@ export type SiteSettingsScalarWhereWithAggregatesInput = {
   notifyOnNewSubmission?:
     | Prisma.BoolWithAggregatesFilter<'SiteSettings'>
     | boolean;
+  estimateEmailSubject?:
+    | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.StringNullableWithAggregatesFilter<'SiteSettings'>
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolWithAggregatesFilter<'SiteSettings'> | boolean;
   createdAt?:
     | Prisma.DateTimeWithAggregatesFilter<'SiteSettings'>
@@ -491,6 +575,10 @@ export type SiteSettingsCreateInput = {
   ctaBannerEnabled?: boolean;
   notificationEmail?: string | null;
   notifyOnNewSubmission?: boolean;
+  estimateEmailSubject?: string | null;
+  estimateEmailIntro?: string | null;
+  estimateEmailBody?: string | null;
+  estimateEmailClosing?: string | null;
   maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -515,6 +603,10 @@ export type SiteSettingsUncheckedCreateInput = {
   ctaBannerEnabled?: boolean;
   notificationEmail?: string | null;
   notifyOnNewSubmission?: boolean;
+  estimateEmailSubject?: string | null;
+  estimateEmailIntro?: string | null;
+  estimateEmailBody?: string | null;
+  estimateEmailClosing?: string | null;
   maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -553,6 +645,22 @@ export type SiteSettingsUpdateInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  estimateEmailSubject?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -595,6 +703,22 @@ export type SiteSettingsUncheckedUpdateInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  estimateEmailSubject?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -617,6 +741,10 @@ export type SiteSettingsCreateManyInput = {
   ctaBannerEnabled?: boolean;
   notificationEmail?: string | null;
   notifyOnNewSubmission?: boolean;
+  estimateEmailSubject?: string | null;
+  estimateEmailIntro?: string | null;
+  estimateEmailBody?: string | null;
+  estimateEmailClosing?: string | null;
   maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -655,6 +783,22 @@ export type SiteSettingsUpdateManyMutationInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  estimateEmailSubject?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -695,6 +839,22 @@ export type SiteSettingsUncheckedUpdateManyInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  estimateEmailSubject?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -727,6 +887,10 @@ export type SiteSettingsCountOrderByAggregateInput = {
   ctaBannerEnabled?: Prisma.SortOrder;
   notificationEmail?: Prisma.SortOrder;
   notifyOnNewSubmission?: Prisma.SortOrder;
+  estimateEmailSubject?: Prisma.SortOrder;
+  estimateEmailIntro?: Prisma.SortOrder;
+  estimateEmailBody?: Prisma.SortOrder;
+  estimateEmailClosing?: Prisma.SortOrder;
   maintenanceMode?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -749,6 +913,10 @@ export type SiteSettingsMaxOrderByAggregateInput = {
   ctaBannerEnabled?: Prisma.SortOrder;
   notificationEmail?: Prisma.SortOrder;
   notifyOnNewSubmission?: Prisma.SortOrder;
+  estimateEmailSubject?: Prisma.SortOrder;
+  estimateEmailIntro?: Prisma.SortOrder;
+  estimateEmailBody?: Prisma.SortOrder;
+  estimateEmailClosing?: Prisma.SortOrder;
   maintenanceMode?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -771,6 +939,10 @@ export type SiteSettingsMinOrderByAggregateInput = {
   ctaBannerEnabled?: Prisma.SortOrder;
   notificationEmail?: Prisma.SortOrder;
   notifyOnNewSubmission?: Prisma.SortOrder;
+  estimateEmailSubject?: Prisma.SortOrder;
+  estimateEmailIntro?: Prisma.SortOrder;
+  estimateEmailBody?: Prisma.SortOrder;
+  estimateEmailClosing?: Prisma.SortOrder;
   maintenanceMode?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -1011,6 +1183,10 @@ export type SiteSettingsCreateWithoutLogoImageInput = {
   ctaBannerEnabled?: boolean;
   notificationEmail?: string | null;
   notifyOnNewSubmission?: boolean;
+  estimateEmailSubject?: string | null;
+  estimateEmailIntro?: string | null;
+  estimateEmailBody?: string | null;
+  estimateEmailClosing?: string | null;
   maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1033,6 +1209,10 @@ export type SiteSettingsUncheckedCreateWithoutLogoImageInput = {
   ctaBannerEnabled?: boolean;
   notificationEmail?: string | null;
   notifyOnNewSubmission?: boolean;
+  estimateEmailSubject?: string | null;
+  estimateEmailIntro?: string | null;
+  estimateEmailBody?: string | null;
+  estimateEmailClosing?: string | null;
   maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1068,6 +1248,10 @@ export type SiteSettingsCreateWithoutGuidePdfInput = {
   ctaBannerEnabled?: boolean;
   notificationEmail?: string | null;
   notifyOnNewSubmission?: boolean;
+  estimateEmailSubject?: string | null;
+  estimateEmailIntro?: string | null;
+  estimateEmailBody?: string | null;
+  estimateEmailClosing?: string | null;
   maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1090,6 +1274,10 @@ export type SiteSettingsUncheckedCreateWithoutGuidePdfInput = {
   ctaBannerEnabled?: boolean;
   notificationEmail?: string | null;
   notifyOnNewSubmission?: boolean;
+  estimateEmailSubject?: string | null;
+  estimateEmailIntro?: string | null;
+  estimateEmailBody?: string | null;
+  estimateEmailClosing?: string | null;
   maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1165,6 +1353,22 @@ export type SiteSettingsScalarWhereInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFilter<'SiteSettings'> | boolean;
+  estimateEmailSubject?:
+    | Prisma.StringNullableFilter<'SiteSettings'>
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.StringNullableFilter<'SiteSettings'>
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.StringNullableFilter<'SiteSettings'>
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.StringNullableFilter<'SiteSettings'>
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFilter<'SiteSettings'> | boolean;
   createdAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<'SiteSettings'> | Date | string;
@@ -1214,6 +1418,10 @@ export type SiteSettingsCreateManyLogoImageInput = {
   ctaBannerEnabled?: boolean;
   notificationEmail?: string | null;
   notifyOnNewSubmission?: boolean;
+  estimateEmailSubject?: string | null;
+  estimateEmailIntro?: string | null;
+  estimateEmailBody?: string | null;
+  estimateEmailClosing?: string | null;
   maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1235,6 +1443,10 @@ export type SiteSettingsCreateManyGuidePdfInput = {
   ctaBannerEnabled?: boolean;
   notificationEmail?: string | null;
   notifyOnNewSubmission?: boolean;
+  estimateEmailSubject?: string | null;
+  estimateEmailIntro?: string | null;
+  estimateEmailBody?: string | null;
+  estimateEmailClosing?: string | null;
   maintenanceMode?: boolean;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1273,6 +1485,22 @@ export type SiteSettingsUpdateWithoutLogoImageInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  estimateEmailSubject?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1313,6 +1541,22 @@ export type SiteSettingsUncheckedUpdateWithoutLogoImageInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  estimateEmailSubject?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1352,6 +1596,22 @@ export type SiteSettingsUncheckedUpdateManyWithoutLogoImageInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  estimateEmailSubject?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1390,6 +1650,22 @@ export type SiteSettingsUpdateWithoutGuidePdfInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  estimateEmailSubject?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1430,6 +1706,22 @@ export type SiteSettingsUncheckedUpdateWithoutGuidePdfInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  estimateEmailSubject?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1469,6 +1761,22 @@ export type SiteSettingsUncheckedUpdateManyWithoutGuidePdfInput = {
     | string
     | null;
   notifyOnNewSubmission?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  estimateEmailSubject?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailIntro?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailBody?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  estimateEmailClosing?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   maintenanceMode?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1495,6 +1803,10 @@ export type SiteSettingsSelect<
     ctaBannerEnabled?: boolean;
     notificationEmail?: boolean;
     notifyOnNewSubmission?: boolean;
+    estimateEmailSubject?: boolean;
+    estimateEmailIntro?: boolean;
+    estimateEmailBody?: boolean;
+    estimateEmailClosing?: boolean;
     maintenanceMode?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
@@ -1525,6 +1837,10 @@ export type SiteSettingsSelectCreateManyAndReturn<
     ctaBannerEnabled?: boolean;
     notificationEmail?: boolean;
     notifyOnNewSubmission?: boolean;
+    estimateEmailSubject?: boolean;
+    estimateEmailIntro?: boolean;
+    estimateEmailBody?: boolean;
+    estimateEmailClosing?: boolean;
     maintenanceMode?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
@@ -1555,6 +1871,10 @@ export type SiteSettingsSelectUpdateManyAndReturn<
     ctaBannerEnabled?: boolean;
     notificationEmail?: boolean;
     notifyOnNewSubmission?: boolean;
+    estimateEmailSubject?: boolean;
+    estimateEmailIntro?: boolean;
+    estimateEmailBody?: boolean;
+    estimateEmailClosing?: boolean;
     maintenanceMode?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
@@ -1581,6 +1901,10 @@ export type SiteSettingsSelectScalar = {
   ctaBannerEnabled?: boolean;
   notificationEmail?: boolean;
   notifyOnNewSubmission?: boolean;
+  estimateEmailSubject?: boolean;
+  estimateEmailIntro?: boolean;
+  estimateEmailBody?: boolean;
+  estimateEmailClosing?: boolean;
   maintenanceMode?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
@@ -1606,6 +1930,10 @@ export type SiteSettingsOmit<
   | 'ctaBannerEnabled'
   | 'notificationEmail'
   | 'notifyOnNewSubmission'
+  | 'estimateEmailSubject'
+  | 'estimateEmailIntro'
+  | 'estimateEmailBody'
+  | 'estimateEmailClosing'
   | 'maintenanceMode'
   | 'createdAt'
   | 'updatedAt',
@@ -1660,6 +1988,10 @@ export type $SiteSettingsPayload<
       ctaBannerEnabled: boolean;
       notificationEmail: string | null;
       notifyOnNewSubmission: boolean;
+      estimateEmailSubject: string | null;
+      estimateEmailIntro: string | null;
+      estimateEmailBody: string | null;
+      estimateEmailClosing: string | null;
       maintenanceMode: boolean;
       createdAt: Date;
       updatedAt: Date;
@@ -2303,6 +2635,10 @@ export interface SiteSettingsFieldRefs {
   readonly ctaBannerEnabled: Prisma.FieldRef<'SiteSettings', 'Boolean'>;
   readonly notificationEmail: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly notifyOnNewSubmission: Prisma.FieldRef<'SiteSettings', 'Boolean'>;
+  readonly estimateEmailSubject: Prisma.FieldRef<'SiteSettings', 'String'>;
+  readonly estimateEmailIntro: Prisma.FieldRef<'SiteSettings', 'String'>;
+  readonly estimateEmailBody: Prisma.FieldRef<'SiteSettings', 'String'>;
+  readonly estimateEmailClosing: Prisma.FieldRef<'SiteSettings', 'String'>;
   readonly maintenanceMode: Prisma.FieldRef<'SiteSettings', 'Boolean'>;
   readonly createdAt: Prisma.FieldRef<'SiteSettings', 'DateTime'>;
   readonly updatedAt: Prisma.FieldRef<'SiteSettings', 'DateTime'>;

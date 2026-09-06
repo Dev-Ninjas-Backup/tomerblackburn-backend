@@ -494,6 +494,8 @@ export class SubmissionsService {
               submission.submissionNumber,
               pdfUrl,
               pdfBuffer,
+              Number(submission.totalAmount),
+              submission.submittedAt,
             )
             .catch((error) => {
               console.error('Failed to send submission email:', error);
