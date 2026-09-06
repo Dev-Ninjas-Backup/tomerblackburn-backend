@@ -198,6 +198,16 @@ export type PortfolioImage = Prisma.PortfolioImageModel;
  */
 export type Portfolio = Prisma.PortfolioModel;
 /**
+ * Model SeoSettings
+ *
+ */
+export type SeoSettings = Prisma.SeoSettingsModel;
+/**
+ * Model SeoPage
+ *
+ */
+export type SeoPage = Prisma.SeoPageModel;
+/**
  * Model SiteSettings
  *
  */

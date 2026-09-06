@@ -1,0 +1,63 @@
+// Global SEO & Metadata Settings (singleton)
+model SeoSettings {
+  id                     String   @id @default(uuid())
+  siteName               String   @default("BBurn Builders")
+  titleTemplate          String   @default("%s | BBurn Builders")
+  defaultTitle           String   @default("BBurn Builders — Premier Custom Remodeling & Construction | Chicago, IL")
+  defaultDescription     String   @default("Chicago's premier residential remodeling and construction company. Specializing in luxury bathroom remodels, custom carpentry, plumbing, and whole-home renovations.")
+  defaultKeywords        String   @default("home remodeling chicago, bathroom remodel chicago, custom carpentry, luxury renovations illinois, general contractor chicago, bburn builders")
+  siteUrl                String   @default("https://bburnbuilders.com")
+  ogImageUrl             String?
+  twitterHandle          String?  @default("@bburnbuilders")
+  robotsIndex            Boolean  @default(true)
+  robotsFollow           Boolean  @default(true)
+  googleSiteVerification String?
+  bingSiteVerification   String?
+  googleAnalyticsId      String?
+  googleTagManagerId     String?
+  canonicalUrl           String?  @default("https://bburnbuilders.com")
+
+  // Structured Data / Schema.org (LocalBusiness & GeneralContractor)
+  businessType           String   @default("GeneralContractor")
+  businessPhone          String   @default("773-403-9950")
+  businessEmail          String   @default("estimates@bburnbuilders.com")
+  businessStreetAddress  String?  @default("Chicago, IL")
+  businessCity           String   @default("Chicago")
+  businessState          String   @default("IL")
+  businessPostalCode     String?  @default("60601")
+  businessCountry        String   @default("US")
+  priceRange             String   @default("$$$")
+  openingHours           String   @default("Mo-Sa 08:00-18:00")
+  geoLatitude            Float?   @default(41.8781)
+  geoLongitude           Float?   @default(-87.6298)
+  serviceAreas           String?  @default("Chicago, Naperville, Evanston, Oak Park, Schaumburg, Hinsdale")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("seo_settings")
+}
+
+// Page-by-Page SEO Configuration
+model SeoPage {
+  id                  String   @id @default(uuid())
+  path                String   @unique // e.g. "/", "/estimator", "/portfolio", "/about", "/contact", "/privacy-policy", "/terms-of-service"
+  pageName            String   // Display name in dashboard
+  title               String
+  description         String
+  keywords            String?
+  ogTitle             String?
+  ogDescription       String?
+  ogImage             String?
+  canonicalUrl        String?
+  noIndex             Boolean  @default(false)
+  noFollow            Boolean  @default(false)
+  priority            Float    @default(0.8) // For sitemap.xml (0.1 - 1.0)
+  changeFreq          String   @default("weekly") // daily, weekly, monthly, yearly
+  structuredDataJson  String?  @db.Text // Optional custom schema override
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("seo_pages")
+}
