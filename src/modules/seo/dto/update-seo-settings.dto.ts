@@ -13,8 +13,7 @@ export class UpdateSeoSettingsDto {
   titleTemplate?: string;
 
   @ApiPropertyOptional({
-    example:
-      'BBurn Builders — Premier Custom Remodeling & Construction | Chicago, IL',
+    example: 'BBurn Builders — Premier Custom Remodeling | Chicago, IL',
   })
   @IsString()
   @IsOptional()

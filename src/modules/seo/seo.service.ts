@@ -7,10 +7,9 @@ const DEFAULT_PAGES = [
   {
     path: '/',
     pageName: 'Home Page',
-    title:
-      'BBurn Builders — Premier Custom Remodeling & Construction | Chicago, IL',
+    title: 'BBurn Builders — Premier Custom Remodeling | Chicago, IL',
     description:
-      "Chicago's premier residential remodeling and construction company. Specializing in luxury bathroom remodels, custom carpentry, plumbing, and whole-home renovations.",
+      "Chicago's premier remodeling contractor. Specializing in luxury bathroom remodels, custom carpentry, and home renovations. Get your free instant estimate!",
     keywords:
       'home remodeling chicago, bathroom remodel chicago, custom carpentry, luxury renovations illinois, general contractor chicago, bburn builders',
     priority: 1.0,
@@ -19,10 +18,9 @@ const DEFAULT_PAGES = [
   {
     path: '/estimator',
     pageName: 'Instant Project Estimator',
-    title:
-      'Instant Online Remodel Estimator — Get Transparent Pricing | BBurn Builders',
+    title: 'Online Remodel Estimator — Instant Pricing | BBurn Builders',
     description:
-      'Calculate live pricing and instantly configure your custom bathroom, kitchen, or home renovation in Chicago with our transparent cost estimator tool.',
+      'Calculate live remodeling costs and configure your custom bathroom or home renovation in Chicago with our instant, transparent project estimator tool.',
     keywords:
       'remodel calculator, bathroom remodel cost estimator, instant construction estimate chicago, renovation quote bburn builders',
     priority: 0.95,
@@ -31,10 +29,9 @@ const DEFAULT_PAGES = [
   {
     path: '/portfolio',
     pageName: 'Portfolio & Completed Projects',
-    title:
-      'Our Portfolio — Luxury Remodeling Projects & Transformations | BBurn Builders',
+    title: 'Remodeling Portfolio & Transformations | BBurn Builders',
     description:
-      'Explore our gallery of completed bathroom remodels, custom carpentry, and architectural renovations across Chicago and surrounding suburbs.',
+      'Explore our portfolio of completed luxury bathroom remodels, custom carpentry, and architectural renovations across Chicago and surrounding suburbs.',
     keywords:
       'chicago remodeling portfolio, bathroom before after photos, luxury home renovation gallery, bburn builders projects',
     priority: 0.85,
@@ -43,10 +40,9 @@ const DEFAULT_PAGES = [
   {
     path: '/about',
     pageName: 'About Us',
-    title:
-      'About BBurn Builders — Dedicated Craftsmanship & Elite Building Standards',
+    title: 'About Us — Craftsmanship & Standards | BBurn Builders',
     description:
-      'Learn about BBurn Builders, our founder Tomer Blackburn, and our commitment to uncompromising craftsmanship, transparency, and architectural excellence in Chicago.',
+      'Learn about BBurn Builders, founder Tomer Blackburn, and our dedication to elite craftsmanship, transparency, and architectural remodeling in Chicago.',
     keywords:
       'about bburn builders, tomer blackburn, chicago general contractor team, luxury builder history',
     priority: 0.75,
@@ -55,9 +51,9 @@ const DEFAULT_PAGES = [
   {
     path: '/contact',
     pageName: 'Contact Us',
-    title: 'Contact BBurn Builders — Start Your Renovation Journey Today',
+    title: 'Contact Us — Schedule Consultation | BBurn Builders',
     description:
-      'Connect with our team to schedule an on-site consultation, discuss project timelines, or request information regarding your upcoming home remodeling project.',
+      'Connect with BBurn Builders to schedule an on-site consultation, discuss timelines, or get answers for your upcoming Chicago home remodeling project.',
     keywords:
       'contact bburn builders, hire general contractor chicago, remodel consultation phone 773-403-9950',
     priority: 0.8,
@@ -66,9 +62,9 @@ const DEFAULT_PAGES = [
   {
     path: '/privacy-policy',
     pageName: 'Privacy Policy',
-    title: 'Privacy Policy — BBurn Builders',
+    title: 'Privacy Policy | BBurn Builders',
     description:
-      'Review our privacy policy to understand how BBurn Builders collects, protects, and handles your personal information.',
+      'Review the privacy policy for BBurn Builders to understand how we collect, protect, and manage your personal data across our online estimator services.',
     keywords: 'privacy policy bburn builders',
     priority: 0.3,
     changeFreq: 'yearly',
@@ -76,9 +72,9 @@ const DEFAULT_PAGES = [
   {
     path: '/terms-of-service',
     pageName: 'Terms of Service',
-    title: 'Terms of Service — BBurn Builders',
+    title: 'Terms of Service | BBurn Builders',
     description:
-      'Review the terms and conditions for using the BBurn Builders website, online estimator, and remodeling services.',
+      'Review the terms of service and conditions for using the BBurn Builders website, online remodel estimator tool, and construction consulting services.',
     keywords: 'terms of service bburn builders',
     priority: 0.3,
     changeFreq: 'yearly',
